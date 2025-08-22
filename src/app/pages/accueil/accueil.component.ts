@@ -51,7 +51,7 @@ import { AnimationService } from "../../shared/services/animation.service";
                 </a>
                 <a
                   routerLink="/contact"
-                  class="btn-secondary text-center bg-white/10 dark:bg-white/5 border-white/20 dark:border-white/10 text-white hover:bg-white/20 dark:hover:bg-white/10"
+                  class="btn-secondary text-center"
                   aria-label="Nous contacter"
                 >
                   Nous Contacter

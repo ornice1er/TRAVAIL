@@ -169,7 +169,7 @@ import { AnimationService } from '../../shared/services/animation.service';
                     <span class="text-red-500" aria-label="requis">*</span>
                   </label>
                 </div>
-                <div *ngIf="contactForm.get('accepteTraitement')?.invalid && contactForm.get('accepteTraitement')?.touched" 
+                <div *ngIf="contactForm.get('accepteTraitement')?.invalid && contactForm.get('accepteTraitement')?.touched"
                      class="error-message"
                      id="accepte-error"
                      role="alert">
