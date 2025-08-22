@@ -56,7 +56,7 @@ import { AnimationService } from "../../shared/services/animation.service";
     </section>
 
     <!-- Section Statistiques -->
-    <section
+    <!-- <section
       class="section-padding bg-primary-800 dark:bg-primary-900 text-white"
     >
       <div class="container-custom">
@@ -86,7 +86,7 @@ import { AnimationService } from "../../shared/services/animation.service";
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- Services en ligne -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
