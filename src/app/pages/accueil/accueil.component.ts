@@ -11,28 +11,48 @@ import { AnimationService } from "../../shared/services/animation.service";
     <!-- Hero Section -->
     <section
       class="relative bg-gradient-to-br from-primary-800 via-primary-700 to-primary-900 dark:from-primary-900 dark:via-primary-800 dark:to-primary-950 text-white overflow-hidden"
+      role="banner"
+      aria-label="Bannière principale du Ministère du Travail"
     >
       <div class="absolute inset-0 bg-black/20 dark:bg-black/40"></div>
       <div class="relative section-padding">
         <div class="container-custom">
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div class="animate-on-scroll">
-              <h1 class="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
+              <h1 class="text-4xl lg:text-6xl font-bold mb-6 leading-tight" id="main-title">
                 Ministère du Travail et de la Fonction Publique
               </h1>
               <p
                 class="text-xl lg:text-2xl mb-8 text-blue-100 dark:text-blue-200 font-light"
+                role="text"
               >
                 Œuvrer pour l'emploi, améliorer les conditions de travail et
                 moderniser l'administration publique béninoise.
               </p>
+              
+              <!-- Barre de recherche proéminente -->
+              <div class="mb-8">
+                <div class="relative max-w-md">
+                  <input
+                    type="search"
+                    placeholder="Rechercher un service, une information..."
+                    class="w-full px-4 py-3 pl-12 rounded-lg text-gray-900 dark:text-white dark:bg-gray-800 border border-white/20 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent"
+                    aria-label="Recherche sur le site"
+                  />
+                  <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                  </svg>
+                </div>
+              </div>
+              
               <div class="flex flex-col sm:flex-row gap-4">
-                <a routerLink="/services" class="btn-primary text-center">
+                <a routerLink="/services" class="btn-primary text-center" aria-label="Accéder à nos services en ligne">
                   Nos Services
                 </a>
                 <a
                   routerLink="/contact"
                   class="btn-secondary text-center bg-white/10 dark:bg-white/5 border-white/20 dark:border-white/10 text-white hover:bg-white/20 dark:hover:bg-white/10"
+                  aria-label="Nous contacter"
                 >
                   Nous Contacter
                 </a>
@@ -44,9 +64,11 @@ import { AnimationService } from "../../shared/services/animation.service";
                   src="https://www.travail.gouv.bj/assets/images/tour2.jpeg"
                   alt="Ministère du Travail"
                   class="rounded-2xl shadow-2xl w-full"
+                  loading="lazy"
                 />
                 <div
                   class="absolute inset-0 bg-gradient-to-t from-primary-900/50 dark:from-primary-950/70 to-transparent rounded-2xl"
+                  aria-hidden="true"
                 ></div>
               </div>
             </div>
@@ -55,9 +77,47 @@ import { AnimationService } from "../../shared/services/animation.service";
       </div>
     </section>
 
+    <!-- Accès rapide aux services essentiels -->
+    <section class="py-12 bg-white dark:bg-gray-900" aria-label="Accès rapide aux services">
+      <div class="container-custom">
+        <h2 class="text-2xl font-bold text-center text-gray-900 dark:text-white mb-8">
+          Accès rapide
+        </h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <a href="/services" class="group flex flex-col items-center p-6 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" aria-label="Offres d'emploi">
+            <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary-200 dark:group-hover:bg-primary-800/50 transition-colors">
+              <span class="text-2xl" aria-hidden="true">💼</span>
+            </div>
+            <span class="text-sm font-medium text-gray-900 dark:text-white text-center">Offres d'emploi</span>
+          </a>
+          
+          <a href="/services" class="group flex flex-col items-center p-6 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" aria-label="Concours publics">
+            <div class="w-16 h-16 bg-secondary-100 dark:bg-secondary-900/30 rounded-full flex items-center justify-center mb-4 group-hover:bg-secondary-200 dark:group-hover:bg-secondary-800/50 transition-colors">
+              <span class="text-2xl" aria-hidden="true">🏛️</span>
+            </div>
+            <span class="text-sm font-medium text-gray-900 dark:text-white text-center">Concours</span>
+          </a>
+          
+          <a href="/services" class="group flex flex-col items-center p-6 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" aria-label="Démarches administratives">
+            <div class="w-16 h-16 bg-accent-100 dark:bg-accent-900/30 rounded-full flex items-center justify-center mb-4 group-hover:bg-accent-200 dark:group-hover:bg-accent-800/50 transition-colors">
+              <span class="text-2xl" aria-hidden="true">📋</span>
+            </div>
+            <span class="text-sm font-medium text-gray-900 dark:text-white text-center">Démarches</span>
+          </a>
+          
+          <a href="/contact" class="group flex flex-col items-center p-6 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" aria-label="Nous contacter">
+            <div class="w-16 h-16 bg-yellow-100 dark:bg-yellow-900/30 rounded-full flex items-center justify-center mb-4 group-hover:bg-yellow-200 dark:group-hover:bg-yellow-800/50 transition-colors">
+              <span class="text-2xl" aria-hidden="true">📞</span>
+            </div>
+            <span class="text-sm font-medium text-gray-900 dark:text-white text-center">Contact</span>
+          </a>
+        </div>
+      </div>
+    </section>
     <!-- Section Statistiques -->
     <!-- <section
       class="section-padding bg-primary-800 dark:bg-primary-900 text-white"
+      aria-label="Statistiques du ministère"
     >
       <div class="container-custom">
         <div class="text-center mb-16 animate-on-scroll">
@@ -73,10 +133,13 @@ import { AnimationService } from "../../shared/services/animation.service";
           <div
             *ngFor="let stat of statistiques"
             class="text-center animate-on-scroll"
+            role="group"
+            [attr.aria-label]="stat.libelle + ': ' + stat.valeur"
           >
             <div
               class="text-4xl lg:text-5xl font-bold mb-2 text-secondary-400 dark:text-secondary-300"
               #statElement
+              [attr.aria-label]="stat.valeur"
             >
               {{ stat.valeur }}
             </div>
@@ -89,7 +152,7 @@ import { AnimationService } from "../../shared/services/animation.service";
     </section> -->
 
     <!-- Services en ligne -->
-    <section class="section-padding bg-gray-50 dark:bg-gray-800">
+    <section class="section-padding bg-gray-50 dark:bg-gray-800" aria-label="Services en ligne disponibles">
       <div class="container-custom">
         <div class="text-center mb-16 animate-on-scroll">
           <h2
@@ -103,13 +166,15 @@ import { AnimationService } from "../../shared/services/animation.service";
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" role="list">
           <div
             *ngFor="let service of servicesEnLigne"
             class="card p-6 text-center animate-on-scroll hover:scale-105 transition-all duration-300"
+            role="listitem"
           >
             <div
               class="w-16 h-16 bg-secondary-100 dark:bg-secondary-900/30 rounded-lg flex items-center justify-center mx-auto mb-6"
+              aria-hidden="true"
             >
               <span class="text-3xl">{{ service.icone }}</span>
             </div>
@@ -121,14 +186,14 @@ import { AnimationService } from "../../shared/services/animation.service";
             <p class="text-gray-600 dark:text-gray-300 mb-6">
               {{ service.description }}
             </p>
-            <a [href]="service.url" class="btn-primary text-sm">
+            <a [href]="service.url" class="btn-primary text-sm" [attr.aria-label]="'Accéder au service: ' + service.nom">
               Accéder au service
             </a>
           </div>
         </div>
 
         <div class="text-center mt-12 animate-on-scroll">
-          <a routerLink="/services" class="btn-secondary">
+          <a routerLink="/services" class="btn-secondary" aria-label="Voir tous nos services disponibles">
             Voir tous nos services
           </a>
         </div>

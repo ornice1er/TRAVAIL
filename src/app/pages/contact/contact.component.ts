@@ -48,36 +48,46 @@ import { AnimationService } from '../../shared/services/animation.service';
           </div>
           
           <div class="card p-8 animate-on-scroll">
-            <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+            <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
                   <label for="nom" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Nom complet *
+                    <span>Nom complet</span>
+                    <span class="text-red-500" aria-label="requis">*</span>
                   </label>
                   <input 
                     type="text" 
                     id="nom" 
                     formControlName="nom"
+                    [attr.aria-describedby]="contactForm.get('nom')?.invalid && contactForm.get('nom')?.touched ? 'nom-error' : null"
+                    [attr.aria-invalid]="contactForm.get('nom')?.invalid && contactForm.get('nom')?.touched"
                     class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-secondary-500 focus:border-transparent"
                     placeholder="Votre nom complet">
                   <div *ngIf="contactForm.get('nom')?.invalid && contactForm.get('nom')?.touched" 
-                       class="text-red-600 text-sm mt-1">
+                       class="error-message"
+                       id="nom-error"
+                       role="alert">
                     Le nom est requis
                   </div>
                 </div>
                 
                 <div>
                   <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Adresse email *
+                    <span>Adresse email</span>
+                    <span class="text-red-500" aria-label="requis">*</span>
                   </label>
                   <input 
                     type="email" 
                     id="email" 
                     formControlName="email"
+                    [attr.aria-describedby]="contactForm.get('email')?.invalid && contactForm.get('email')?.touched ? 'email-error' : null"
+                    [attr.aria-invalid]="contactForm.get('email')?.invalid && contactForm.get('email')?.touched"
                     class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-secondary-500 focus:border-transparent"
                     placeholder="votre@email.com">
                   <div *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched" 
-                       class="text-red-600 text-sm mt-1">
+                       class="error-message"
+                       id="email-error"
+                       role="alert">
                     <span *ngIf="contactForm.get('email')?.errors?.['required']">L'email est requis</span>
                     <span *ngIf="contactForm.get('email')?.errors?.['email']">Format d'email invalide</span>
                   </div>
@@ -99,11 +109,14 @@ import { AnimationService } from '../../shared/services/animation.service';
                 
                 <div>
                   <label for="sujet" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Sujet *
+                    <span>Sujet</span>
+                    <span class="text-red-500" aria-label="requis">*</span>
                   </label>
                   <select 
                     id="sujet" 
                     formControlName="sujet"
+                    [attr.aria-describedby]="contactForm.get('sujet')?.invalid && contactForm.get('sujet')?.touched ? 'sujet-error' : null"
+                    [attr.aria-invalid]="contactForm.get('sujet')?.invalid && contactForm.get('sujet')?.touched"
                     class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-secondary-500 focus:border-transparent">
                     <option value="">Sélectionnez un sujet</option>
                     <option value="emploi">Recherche d'emploi</option>
@@ -113,7 +126,9 @@ import { AnimationService } from '../../shared/services/animation.service';
                     <option value="autre">Autre</option>
                   </select>
                   <div *ngIf="contactForm.get('sujet')?.invalid && contactForm.get('sujet')?.touched" 
-                       class="text-red-600 text-sm mt-1">
+                       class="error-message"
+                       id="sujet-error"
+                       role="alert">
                     Veuillez sélectionner un sujet
                   </div>
                 </div>
@@ -121,32 +136,43 @@ import { AnimationService } from '../../shared/services/animation.service';
               
               <div class="mb-6">
                 <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Message *
+                  <span>Message</span>
+                  <span class="text-red-500" aria-label="requis">*</span>
                 </label>
                 <textarea 
                   id="message" 
                   formControlName="message"
                   rows="6"
+                  [attr.aria-describedby]="contactForm.get('message')?.invalid && contactForm.get('message')?.touched ? 'message-error' : null"
+                  [attr.aria-invalid]="contactForm.get('message')?.invalid && contactForm.get('message')?.touched"
                   class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-secondary-500 focus:border-transparent"
                   placeholder="Décrivez votre demande ou votre question..."></textarea>
                 <div *ngIf="contactForm.get('message')?.invalid && contactForm.get('message')?.touched" 
-                     class="text-red-600 text-sm mt-1">
+                     class="error-message"
+                     id="message-error"
+                     role="alert">
                   Le message est requis
                 </div>
               </div>
               
               <div class="mb-6">
-                <label class="flex items-start">
+                <div class="flex items-start">
                   <input 
                     type="checkbox" 
                     formControlName="accepteTraitement"
+                    id="accepteTraitement"
+                    [attr.aria-describedby]="contactForm.get('accepteTraitement')?.invalid && contactForm.get('accepteTraitement')?.touched ? 'accepte-error' : null"
+                    [attr.aria-invalid]="contactForm.get('accepteTraitement')?.invalid && contactForm.get('accepteTraitement')?.touched"
                     class="mt-1 rounded border-gray-300 dark:border-gray-600 text-secondary-600 focus:ring-secondary-500">
-                  <span class="ml-3 text-sm text-gray-600 dark:text-gray-300">
-                    J'accepte que mes données personnelles soient traitées par le Ministère du Travail dans le cadre de ma demande. *
-                  </span>
-                </label>
+                  <label for="accepteTraitement" class="ml-3 text-sm text-gray-600 dark:text-gray-300">
+                    J'accepte que mes données personnelles soient traitées par le Ministère du Travail dans le cadre de ma demande.
+                    <span class="text-red-500" aria-label="requis">*</span>
+                  </label>
+                </div>
                 <div *ngIf="contactForm.get('accepteTraitement')?.invalid && contactForm.get('accepteTraitement')?.touched" 
-                     class="text-red-600 text-sm mt-1">
+                     class="error-message"
+                     id="accepte-error"
+                     role="alert">
                   Vous devez accepter le traitement de vos données
                 </div>
               </div>
@@ -155,18 +181,21 @@ import { AnimationService } from '../../shared/services/animation.service';
                 <button 
                   type="submit" 
                   [disabled]="contactForm.invalid || isSubmitting"
+                  [attr.aria-describedby]="isSubmitting ? 'submit-status' : null"
                   class="btn-primary disabled:opacity-50 disabled:cursor-not-allowed">
                   <span *ngIf="!isSubmitting">Envoyer le message</span>
-                  <span *ngIf="isSubmitting">Envoi en cours...</span>
+                  <span *ngIf="isSubmitting" id="submit-status" aria-live="polite">Envoi en cours...</span>
                 </button>
               </div>
             </form>
             
             <!-- Message de succès -->
             <div *ngIf="messageEnvoye" 
-                 class="mt-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
+                 class="mt-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg"
+                 role="alert"
+                 aria-live="polite">
               <div class="flex items-center">
-                <span class="text-xl mr-3">✅</span>
+                <span class="text-xl mr-3" aria-hidden="true">✅</span>
                 <div>
                   <p class="font-medium">Message envoyé avec succès !</p>
                   <p class="text-sm">Nous vous répondrons dans les plus brefs délais.</p>

@@ -30,9 +30,10 @@ import { Actualite } from '../../shared/models/actualite.model';
               <div class="relative h-64 lg:h-auto">
                 <img [src]="actualiteUne.imageUrl" 
                      [alt]="actualiteUne.titre" 
-                     class="w-full h-full object-cover">
+                     class="w-full h-full object-cover"
+                     loading="lazy">
                 <div class="absolute top-4 left-4">
-                  <span class="bg-primary-800 dark:bg-primary-700 text-white px-4 py-2 rounded-full text-sm font-medium">
+                  <span class="bg-primary-800 dark:bg-primary-700 text-white px-4 py-2 rounded-full text-sm font-medium" aria-label="Article à la une">
                     À la une
                   </span>
                 </div>
@@ -42,9 +43,10 @@ import { Actualite } from '../../shared/models/actualite.model';
                   {{ actualiteUne.datePublication | date:'d MMMM yyyy':'fr' }}
                 </div>
                 <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">{{ actualiteUne.titre }}</h2>
-                <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">{{ actualiteUne.resume }}</p>
+                <p class="text-lg text-gray-600 dark:text-gray-300 mb-6 text-content">{{ actualiteUne.resume }}</p>
                 <a [routerLink]="['/actualites', actualiteUne.id]" 
-                   class="btn-primary w-fit">
+                   class="btn-primary w-fit"
+                   [attr.aria-label]="'Lire l\'article complet: ' + actualiteUne.titre">
                   Lire l'article complet
                 </a>
               </div>
@@ -55,14 +57,16 @@ import { Actualite } from '../../shared/models/actualite.model';
     </section>
 
     <!-- Filtres -->
-    <section class="py-8 bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+    <section class="py-8 bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700" aria-label="Filtres par catégorie">
       <div class="container-custom">
-        <div class="flex flex-wrap justify-center gap-4 animate-on-scroll">
+        <div class="flex flex-wrap justify-center gap-4 animate-on-scroll" role="group" aria-label="Filtrer les actualités par catégorie">
           <button 
             *ngFor="let categorie of categories"
             (click)="filtrerActualites(categorie.slug)"
             [class]="categorieActive === categorie.slug ? 'btn-primary' : 'btn-secondary'"
-            class="px-6 py-2 rounded-full text-sm font-medium transition-all">
+            class="px-6 py-2 rounded-full text-sm font-medium transition-all"
+            [attr.aria-pressed]="categorieActive === categorie.slug"
+            [attr.aria-label]="'Filtrer par ' + categorie.nom">
             {{ categorie.nom }}
           </button>
         </div>
@@ -70,17 +74,19 @@ import { Actualite } from '../../shared/models/actualite.model';
     </section>
 
     <!-- Liste des actualités -->
-    <section class="section-padding bg-gray-50 dark:bg-gray-800">
+    <section class="section-padding bg-gray-50 dark:bg-gray-800" aria-label="Liste des actualités">
       <div class="container-custom">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" role="list">
           <article *ngFor="let actualite of actualitesFiltrees; trackBy: trackByActualiteId" 
-                   class="card overflow-hidden animate-on-scroll hover:shadow-lg transition-all duration-300">
+                   class="card overflow-hidden animate-on-scroll hover:shadow-lg transition-all duration-300"
+                   role="listitem">
             <div class="relative h-48 overflow-hidden">
               <img [src]="actualite.imageUrl" 
                    [alt]="actualite.titre" 
-                   class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                   class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                   loading="lazy">
               <div class="absolute top-4 left-4">
-                <span class="bg-primary-800 dark:bg-primary-700 text-white px-3 py-1 rounded-full text-sm font-medium">
+                <span class="bg-primary-800 dark:bg-primary-700 text-white px-3 py-1 rounded-full text-sm font-medium" [attr.aria-label]="'Catégorie: ' + actualite.categorie">
                   {{ actualite.categorie }}
                 </span>
               </div>
@@ -90,18 +96,20 @@ import { Actualite } from '../../shared/models/actualite.model';
                 {{ actualite.datePublication | date:'d MMMM yyyy':'fr' }}
               </div>
               <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3 line-clamp-2">{{ actualite.titre }}</h3>
-              <p class="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">{{ actualite.resume }}</p>
+              <p class="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3 text-content">{{ actualite.resume }}</p>
               <div class="flex items-center justify-between">
                 <a [routerLink]="['/actualites', actualite.id]" 
-                   class="text-primary-800 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300 font-medium inline-flex items-center">
+                   class="text-primary-800 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300 font-medium inline-flex items-center"
+                   [attr.aria-label]="'Lire l\'article: ' + actualite.titre">
                   Lire la suite
-                  <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                   </svg>
                 </a>
-                <div class="flex space-x-1">
+                <div class="flex space-x-1" aria-label="Tags de l'article">
                   <span *ngFor="let tag of actualite.tags.slice(0, 2)" 
-                        class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-1 rounded text-xs">
+                        class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-1 rounded text-xs"
+                        [attr.aria-label]="'Tag: ' + tag">
                     #{{ tag }}
                   </span>
                 </div>
@@ -111,19 +119,19 @@ import { Actualite } from '../../shared/models/actualite.model';
         </div>
         
         <!-- Pagination -->
-        <div class="flex justify-center mt-12 animate-on-scroll">
-          <div class="flex space-x-2">
-            <button class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+        <nav class="flex justify-center mt-12 animate-on-scroll" aria-label="Navigation des pages">
+          <div class="flex space-x-2" role="group">
+            <button class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors" aria-label="Page précédente">
               Précédent
             </button>
-            <button class="px-4 py-2 bg-primary-800 dark:bg-primary-700 text-white rounded-lg">1</button>
-            <button class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">2</button>
-            <button class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">3</button>
-            <button class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+            <button class="px-4 py-2 bg-primary-800 dark:bg-primary-700 text-white rounded-lg" aria-current="page" aria-label="Page 1, page actuelle">1</button>
+            <button class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors" aria-label="Aller à la page 2">2</button>
+            <button class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors" aria-label="Aller à la page 3">3</button>
+            <button class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors" aria-label="Page suivante">
               Suivant
             </button>
           </div>
-        </div>
+        </nav>
       </div>
     </section>
 
@@ -134,20 +142,23 @@ import { Actualite } from '../../shared/models/actualite.model';
           <h3 class="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-4">
             Restez informé de nos actualités
           </h3>
-          <p class="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+          <p class="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto text-content">
             Inscrivez-vous à notre newsletter pour recevoir nos dernières actualités 
             et informations importantes directement dans votre boîte mail.
           </p>
-          <div class="max-w-md mx-auto">
+          <form class="max-w-md mx-auto" aria-label="Inscription à la newsletter">
             <div class="flex gap-3">
+              <label for="newsletter-email" class="sr-only">Adresse email pour la newsletter</label>
               <input type="email" 
+                     id="newsletter-email"
                      placeholder="Votre adresse email"
+                     required
                      class="flex-1 px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent">
-              <button class="btn-primary px-6 py-3 whitespace-nowrap">
+              <button type="submit" class="btn-primary px-6 py-3 whitespace-nowrap" aria-label="S'inscrire à la newsletter">
                 S'inscrire
               </button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </section>

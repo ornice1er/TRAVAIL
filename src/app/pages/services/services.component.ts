@@ -40,35 +40,39 @@ import { Service } from '../../shared/models/actualite.model';
       <div class="container-custom">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div *ngFor="let service of servicesFiltres; trackBy: trackByServiceId" 
-               class="card p-6 animate-on-scroll hover:scale-105 transition-all duration-300">
+               class="card p-6 animate-on-scroll hover:scale-105 transition-all duration-300"
+               [attr.aria-label]="'Service: ' + service.nom">
             <div class="flex items-start justify-between mb-4">
-              <div class="w-12 h-12 bg-secondary-100 dark:bg-secondary-900/30 rounded-lg flex items-center justify-center">
+              <div class="w-12 h-12 bg-secondary-100 dark:bg-secondary-900/30 rounded-lg flex items-center justify-center" aria-hidden="true">
                 <span class="text-2xl">{{ service.icone }}</span>
               </div>
               <span 
-                [class]="service.disponible ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'"
-                class="px-3 py-1 rounded-full text-xs font-medium">
+                [class]="service.disponible ? 'status-success' : 'status-warning'"
+                class="status-indicator"
+                [attr.aria-label]="service.disponible ? 'Service disponible' : 'Service bientôt disponible'">
                 {{ service.disponible ? 'Disponible' : 'Bientôt' }}
               </span>
             </div>
             
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">{{ service.nom }}</h3>
-            <p class="text-gray-600 dark:text-gray-300 mb-6">{{ service.description }}</p>
+            <p class="text-gray-600 dark:text-gray-300 mb-6 text-content">{{ service.description }}</p>
             
             <div class="flex items-center justify-between">
               <a [href]="service.url" 
                  [class]="service.disponible ? 'text-secondary-800 dark:text-secondary-400 hover:text-secondary-900 dark:hover:text-secondary-300' : 'text-gray-400 dark:text-gray-500 cursor-not-allowed'"
-                 class="font-medium inline-flex items-center">
+                 class="font-medium inline-flex items-center"
+                 [attr.aria-label]="service.disponible ? 'Accéder au service ' + service.nom : 'Service ' + service.nom + ' prochainement disponible'"
+                 [attr.tabindex]="service.disponible ? 0 : -1">
                 {{ service.disponible ? 'Accéder' : 'Prochainement' }}
-                <svg *ngIf="service.disponible" class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg *ngIf="service.disponible" class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                 </svg>
               </a>
               <div class="flex items-center text-sm text-gray-500 dark:text-gray-400">
-                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
-                <span>{{ service.tempsEstime || '5-10 min' }}</span>
+                <span [attr.aria-label]="'Temps estimé: ' + (service.tempsEstime || '5-10 min')">{{ service.tempsEstime || '5-10 min' }}</span>
               </div>
             </div>
           </div>
@@ -77,41 +81,42 @@ import { Service } from '../../shared/models/actualite.model';
     </section>
 
     <!-- Guide d'utilisation -->
-    <section class="section-padding bg-white dark:bg-gray-900">
+    <section class="section-padding bg-white dark:bg-gray-900" aria-label="Guide d'utilisation des services">
       <div class="container-custom">
         <div class="text-center mb-16 animate-on-scroll">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Comment utiliser nos services ?</h2>
-          <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto text-content">
             Suivez ces étapes simples pour accéder à nos services en ligne.
           </p>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8" role="list">
           <div *ngFor="let etape of etapesUtilisation; let i = index" 
-               class="text-center animate-on-scroll">
+               class="text-center animate-on-scroll"
+               role="listitem">
             <div class="w-16 h-16 bg-primary-800 dark:bg-primary-700 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6">
               {{ i + 1 }}
             </div>
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">{{ etape.titre }}</h3>
-            <p class="text-gray-600 dark:text-gray-300">{{ etape.description }}</p>
+            <p class="text-gray-600 dark:text-gray-300 text-content">{{ etape.description }}</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Support -->
-    <section class="py-16 bg-primary-50 dark:bg-primary-900/20">
+    <section class="py-16 bg-primary-50 dark:bg-primary-900/20" aria-label="Support et aide">
       <div class="container-custom">
         <div class="card p-8 text-center animate-on-scroll">
           <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Besoin d'aide ?</h3>
-          <p class="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
+          <p class="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto text-content">
             Notre équipe support est disponible pour vous accompagner dans l'utilisation de nos services en ligne.
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="tel:+22921300000" class="btn-primary">
+            <a href="tel:+22921300000" class="btn-primary" aria-label="Appeler le support au +229 21 30 00 00">
               📞 +229 21 30 00 00
             </a>
-            <a href="mailto:support@travail.gouv.bj" class="btn-secondary">
+            <a href="mailto:support@travail.gouv.bj" class="btn-secondary" aria-label="Envoyer un email au support">
               ✉️ {{'support@travail.gouv.bj'}}
             </a>
           </div>

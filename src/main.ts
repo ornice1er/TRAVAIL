@@ -11,8 +11,11 @@ import { RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [HeaderComponent, FooterComponent, RouterOutlet],
   template: `
+    <!-- Skip link pour l'accessibilité -->
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+    
     <app-header></app-header>
-    <main>
+    <main id="main-content" role="main">
       <router-outlet></router-outlet>
     </main>
     <app-footer></app-footer>
