@@ -122,7 +122,7 @@ import { AnimationService } from '../../shared/services/animation.service';
     </section>
 
     <!-- Chiffres clés -->
-    <section class="section-padding bg-primary-800 dark:bg-primary-900 text-white">
+    <!-- <section class="section-padding bg-primary-800 dark:bg-primary-900 text-white">
       <div class="container-custom">
         <div class="text-center mb-16 animate-on-scroll">
           <h2 class="text-3xl lg:text-4xl font-bold mb-4">Le Ministère en chiffres</h2>
@@ -136,7 +136,7 @@ import { AnimationService } from '../../shared/services/animation.service';
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
   `
 })
 export class MinistereComponent implements AfterViewInit {
