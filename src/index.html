@@ -1,9 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
-  <title>My app</title>
+  <title>Ministère du Travail et de la Fonction Publique - République du Bénin</title>
+  <meta name="description" content="Site officiel du Ministère du Travail et de la Fonction Publique de la République du Bénin. Services en ligne, emploi, concours, actualités et informations administratives.">
+  <meta name="keywords" content="Bénin, Ministère du Travail, Fonction Publique, emploi, concours, services en ligne, administration">
+  <meta name="author" content="Ministère du Travail et de la Fonction Publique - République du Bénin">
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <base href="/">
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -11,10 +15,38 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <meta name="apple-mobile-web-app-title" content="MTFP" />
   <link rel="manifest" href="/site.webmanifest" />
+  
+  <!-- Préchargement des polices critiques -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Meta tags pour les réseaux sociaux -->
+  <meta property="og:title" content="Ministère du Travail et de la Fonction Publique - République du Bénin">
+  <meta property="og:description" content="Site officiel du Ministère du Travail et de la Fonction Publique de la République du Bénin">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  
+  <!-- Amélioration de l'accessibilité -->
+  <meta name="theme-color" content="#023E79">
+  <meta name="color-scheme" content="light dark">
 </head>
 
 <body>
-  <app-root>Loading...</app-root>
+  <app-root>
+    <!-- Message de chargement accessible -->
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh; font-family: system-ui, sans-serif;">
+      <div role="status" aria-live="polite">
+        <p>Chargement du site du Ministère du Travail...</p>
+        <div style="width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid #023E79; border-radius: 50%; animation: spin 1s linear infinite; margin: 20px auto;"></div>
+      </div>
+    </div>
+    <style>
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
+  </app-root>
 </body>
 
 </html>
