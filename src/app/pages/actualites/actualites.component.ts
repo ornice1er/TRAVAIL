@@ -46,7 +46,7 @@ import { Actualite } from '../../shared/models/actualite.model';
                 <p class="text-lg text-gray-600 dark:text-gray-300 mb-6 text-content">{{ actualiteUne.resume }}</p>
                 <a [routerLink]="['/actualites', actualiteUne.id]" 
                    class="btn-primary w-fit"
-                   [attr.aria-label]="'Lire l\'article complet: ' + actualiteUne.titre">
+                   [attr.aria-label]="'Lire article complet: ' + actualiteUne.titre">
                   Lire l'article complet
                 </a>
               </div>
@@ -100,7 +100,7 @@ import { Actualite } from '../../shared/models/actualite.model';
               <div class="flex items-center justify-between">
                 <a [routerLink]="['/actualites', actualite.id]" 
                    class="text-primary-800 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300 font-medium inline-flex items-center"
-                   [attr.aria-label]="'Lire l\'article: ' + actualite.titre">
+                   [attr.aria-label]="'Lire article: ' + actualite.titre">
                   Lire la suite
                   <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
@@ -109,7 +109,7 @@ import { Actualite } from '../../shared/models/actualite.model';
                 <div class="flex space-x-1" aria-label="Tags de l'article">
                   <span *ngFor="let tag of actualite.tags.slice(0, 2)" 
                         class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-1 rounded text-xs"
-                        [attr.aria-label]="'Tag: ' + tag">
+                        [title]="'Tag: ' + tag">
                     #{{ tag }}
                   </span>
                 </div>
