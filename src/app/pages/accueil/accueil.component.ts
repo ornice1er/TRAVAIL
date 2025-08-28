@@ -476,6 +476,7 @@ import { AnimationService } from "../../shared/services/animation.service";
     `,
   ],
 })
+export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
   currentSlide = 0;
   slideInterval: any;
   
