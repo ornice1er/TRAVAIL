@@ -84,27 +84,8 @@ import { AnimationService } from "../../shared/services/animation.service";
       </div>
     </section>
 
-    <!-- Barre de recherche proéminente -->
-    <section class="py-8 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
-      <div class="container-custom">
-        <div class="max-w-2xl mx-auto">
-          <div class="relative">
-            <input
-              type="search"
-              placeholder="Rechercher un service, une information, un concours..."
-              class="w-full px-6 py-4 pl-14 rounded-xl text-gray-900 dark:text-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent shadow-lg"
-              aria-label="Recherche sur le site"
-            />
-            <svg class="absolute left-5 top-1/2 transform -translate-y-1/2 w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-            </svg>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Chiffres clés animés -->
-    <section class="section-padding bg-primary-800 dark:bg-primary-900 text-white" aria-label="Statistiques du ministère">
+    <section class="py-16 bg-primary-800 dark:bg-primary-900 text-white" aria-label="Statistiques du ministère">
       <div class="container-custom">
         <div class="text-center mb-16 animate-on-scroll">
           <h2 class="text-3xl lg:text-4xl font-bold mb-4">Le Ministère en chiffres</h2>
