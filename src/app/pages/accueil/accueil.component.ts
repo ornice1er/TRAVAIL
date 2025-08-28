@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from "@angular/core";
+import { Component, OnInit, AfterViewInit, OnDestroy } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { AnimationService } from "../../shared/services/animation.service";
@@ -8,70 +8,122 @@ import { AnimationService } from "../../shared/services/animation.service";
   standalone: true,
   imports: [CommonModule, RouterModule],
   template: `
-    <!-- Hero Section -->
-    <section
-      class="relative bg-gradient-to-br from-primary-800 via-primary-700 to-primary-900 dark:from-primary-900 dark:via-primary-800 dark:to-primary-950 text-white overflow-hidden"
-      role="banner"
-      aria-label="Bannière principale du Ministère du Travail"
-    >
-      <div class="absolute inset-0 bg-black/20 dark:bg-black/40"></div>
-      <div class="relative section-padding">
-        <div class="container-custom">
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div class="animate-on-scroll">
-              <h1 class="text-4xl lg:text-6xl font-bold mb-6 leading-tight" id="main-title">
-                Ministère du Travail et de la Fonction Publique
-              </h1>
-              <p
-                class="text-xl lg:text-2xl mb-8 text-blue-100 dark:text-blue-200 font-light"
-                role="text"
-              >
-                Œuvrer pour l'emploi, améliorer les conditions de travail et
-                moderniser l'administration publique béninoise.
-              </p>
-              
-              <!-- Barre de recherche proéminente -->
-              <div class="mb-8">
-                <div class="relative max-w-md">
-                  <input
-                    type="search"
-                    placeholder="Rechercher un service, une information..."
-                    class="w-full px-4 py-3 pl-12 rounded-lg text-gray-900 dark:text-white dark:bg-gray-800 border border-white/20 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent"
-                    aria-label="Recherche sur le site"
-                  />
-                  <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                  </svg>
+    <!-- Slider Hero Section -->
+    <section class="relative h-screen overflow-hidden" role="banner" aria-label="Slider principal du Ministère du Travail">
+      <div class="relative h-full">
+        <!-- Slides -->
+        <div class="absolute inset-0 transition-transform duration-700 ease-in-out" 
+             [style.transform]="'translateX(' + (-currentSlide * 100) + '%)'">
+          <div class="flex h-full">
+            <div *ngFor="let slide of slides; let i = index" 
+                 class="w-full h-full flex-shrink-0 relative">
+              <div class="absolute inset-0 bg-gradient-to-r" 
+                   [ngClass]="slide.bgClass">
+                <div class="absolute inset-0 bg-black/30 dark:bg-black/50"></div>
+              </div>
+              <div class="relative h-full flex items-center">
+                <div class="container-custom">
+                  <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="text-white">
+                      <div class="inline-block bg-white/20 dark:bg-white/10 px-4 py-2 rounded-full text-sm font-medium mb-4">
+                        {{ slide.category }}
+                      </div>
+                      <h1 class="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
+                        {{ slide.title }}
+                      </h1>
+                      <p class="text-xl lg:text-2xl mb-8 text-white/90 font-light">
+                        {{ slide.description }}
+                      </p>
+                      <div class="flex flex-col sm:flex-row gap-4">
+                        <a [routerLink]="slide.primaryLink" class="btn-primary bg-white text-primary-800 hover:bg-gray-100">
+                          {{ slide.primaryText }}
+                        </a>
+                        <a [routerLink]="slide.secondaryLink" class="btn-secondary border-white text-white hover:bg-white/10">
+                          {{ slide.secondaryText }}
+                        </a>
+                      </div>
+                    </div>
+                    <div class="hidden lg:block">
+                      <img [src]="slide.image" 
+                           [alt]="slide.title" 
+                           class="rounded-2xl shadow-2xl w-full max-w-lg mx-auto"
+                           loading="lazy">
+                    </div>
+                  </div>
                 </div>
               </div>
-              
-              <div class="flex flex-col sm:flex-row gap-4">
-                <a routerLink="/services" class="btn-primary text-center" aria-label="Accéder à nos services en ligne">
-                  Nos Services
-                </a>
-                <a
-                  routerLink="/contact"
-                  class="btn-secondary text-center"
-                  aria-label="Nous contacter"
-                >
-                  Nous Contacter
-                </a>
-              </div>
             </div>
-            <div class="animate-on-scroll lg:animate-slide-in-right">
-              <div class="relative">
-                <img
-                  src="https://www.travail.gouv.bj/assets/images/tour2.jpeg"
-                  alt="Ministère du Travail"
-                  class="rounded-2xl shadow-2xl w-full"
-                  loading="lazy"
-                />
-                <div
-                  class="absolute inset-0 bg-gradient-to-t from-primary-900/50 dark:from-primary-950/70 to-transparent rounded-2xl"
-                  aria-hidden="true"
-                ></div>
-              </div>
+          </div>
+        </div>
+        
+        <!-- Navigation arrows -->
+        <button (click)="previousSlide()" 
+                class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 dark:bg-white/10 hover:bg-white/30 dark:hover:bg-white/20 text-white p-3 rounded-full transition-all z-10"
+                aria-label="Slide précédent">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+          </svg>
+        </button>
+        <button (click)="nextSlide()" 
+                class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 dark:bg-white/10 hover:bg-white/30 dark:hover:bg-white/20 text-white p-3 rounded-full transition-all z-10"
+                aria-label="Slide suivant">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </button>
+        
+        <!-- Dots indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-10">
+          <button *ngFor="let slide of slides; let i = index"
+                  (click)="goToSlide(i)"
+                  [class]="i === currentSlide ? 'bg-white' : 'bg-white/50'"
+                  class="w-3 h-3 rounded-full transition-all hover:bg-white/80"
+                  [attr.aria-label]="'Aller au slide ' + (i + 1)">
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Barre de recherche proéminente -->
+    <section class="py-8 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+      <div class="container-custom">
+        <div class="max-w-2xl mx-auto">
+          <div class="relative">
+            <input
+              type="search"
+              placeholder="Rechercher un service, une information, un concours..."
+              class="w-full px-6 py-4 pl-14 rounded-xl text-gray-900 dark:text-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent shadow-lg"
+              aria-label="Recherche sur le site"
+            />
+            <svg class="absolute left-5 top-1/2 transform -translate-y-1/2 w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chiffres clés animés -->
+    <section class="section-padding bg-primary-800 dark:bg-primary-900 text-white" aria-label="Statistiques du ministère">
+      <div class="container-custom">
+        <div class="text-center mb-16 animate-on-scroll">
+          <h2 class="text-3xl lg:text-4xl font-bold mb-4">Le Ministère en chiffres</h2>
+          <p class="text-xl text-primary-100 dark:text-primary-200">Notre impact sur l'emploi et la fonction publique</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div *ngFor="let stat of statistiques; let i = index" 
+               class="text-center animate-on-scroll" 
+               role="group"
+               [attr.aria-label]="stat.libelle + ': ' + stat.valeur">
+            <div class="text-4xl lg:text-5xl font-bold mb-2 text-secondary-400 dark:text-secondary-300"
+                 #statElement
+                 [attr.data-target]="stat.targetValue"
+                 [attr.aria-label]="stat.valeur">
+              {{ stat.displayValue }}
             </div>
+            <div class="text-primary-100 dark:text-primary-200 text-lg">{{ stat.libelle }}</div>
+            <div class="text-primary-200 dark:text-primary-300 text-sm mt-2">{{ stat.description }}</div>
           </div>
         </div>
       </div>
@@ -424,12 +476,85 @@ import { AnimationService } from "../../shared/services/animation.service";
     `,
   ],
 })
-export class AccueilComponent implements OnInit, AfterViewInit {
+  currentSlide = 0;
+  slideInterval: any;
+  
+  slides = [
+    {
+      title: 'Concours de Recrutement 2024',
+      description: 'Inscriptions ouvertes pour 2000 postes dans la fonction publique. Candidatez dès maintenant !',
+      category: 'CONCOURS',
+      image: 'https://images.pexels.com/photos/3184317/pexels-photo-3184317.jpeg?auto=compress&cs=tinysrgb&w=800',
+      bgClass: 'from-secondary-800 to-secondary-900',
+      primaryText: 'Voir les concours',
+      secondaryText: 'S\'inscrire',
+      primaryLink: '/services',
+      secondaryLink: '/contact'
+    },
+    {
+      title: 'Nouveau Portail Emploi',
+      description: 'Découvrez notre plateforme digitale révolutionnaire pour faciliter votre recherche d\'emploi.',
+      category: 'EMPLOI',
+      image: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=800',
+      bgClass: 'from-primary-800 to-primary-900',
+      primaryText: 'Accéder au portail',
+      secondaryText: 'En savoir plus',
+      primaryLink: '/services',
+      secondaryLink: '/actualites'
+    },
+    {
+      title: 'Formation Professionnelle',
+      description: 'Programme de formation pour 10 000 jeunes. Développez vos compétences avec nos partenaires.',
+      category: 'FORMATION',
+      image: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800',
+      bgClass: 'from-accent-700 to-accent-800',
+      primaryText: 'Voir les formations',
+      secondaryText: 'S\'inscrire',
+      primaryLink: '/services',
+      secondaryLink: '/contact'
+    },
+    {
+      title: 'Services Numériques',
+      description: 'Simplifiez vos démarches administratives grâce à nos services en ligne disponibles 24h/24.',
+      category: 'SERVICES',
+      image: 'https://images.pexels.com/photos/3184302/pexels-photo-3184302.jpeg?auto=compress&cs=tinysrgb&w=800',
+      bgClass: 'from-primary-700 to-secondary-800',
+      primaryText: 'Nos services',
+      secondaryText: 'Aide',
+      primaryLink: '/services',
+      secondaryLink: '/contact'
+    }
+  ];
+  
   statistiques = [
-    { valeur: "156K", libelle: "Agents publics formés" },
-    { valeur: "2.5M", libelle: "Travailleurs protégés" },
-    { valeur: "45K", libelle: "Entreprises suivies" },
-    { valeur: "98%", libelle: "Taux de satisfaction" },
+    { 
+      valeur: "156K", 
+      displayValue: "0",
+      targetValue: 156000,
+      libelle: "Agents publics formés",
+      description: "Depuis 2016"
+    },
+    { 
+      valeur: "2.5M", 
+      displayValue: "0",
+      targetValue: 2500000,
+      libelle: "Travailleurs protégés",
+      description: "Couverture sociale"
+    },
+    { 
+      valeur: "45K", 
+      displayValue: "0",
+      targetValue: 45000,
+      libelle: "Entreprises suivies",
+      description: "Secteur privé"
+    },
+    { 
+      valeur: "12", 
+      displayValue: "0",
+      targetValue: 12,
+      libelle: "Concours en cours",
+      description: "Recrutements 2024"
+    },
   ];
 
   servicesEnLigne = [
@@ -537,7 +662,9 @@ export class AccueilComponent implements OnInit, AfterViewInit {
 
   constructor(private animationService: AnimationService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.startSlideShow();
+  }
 
   ngAfterViewInit() {
     setTimeout(() => {
@@ -545,20 +672,75 @@ export class AccueilComponent implements OnInit, AfterViewInit {
       this.animateCounters();
     }, 100);
   }
+  
+  ngOnDestroy() {
+    if (this.slideInterval) {
+      clearInterval(this.slideInterval);
+    }
+  }
+  
+  startSlideShow() {
+    this.slideInterval = setInterval(() => {
+      this.nextSlide();
+    }, 5000); // Change slide every 5 seconds
+  }
+  
+  nextSlide() {
+    this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+  }
+  
+  previousSlide() {
+    this.currentSlide = this.currentSlide === 0 ? this.slides.length - 1 : this.currentSlide - 1;
+  }
+  
+  goToSlide(index: number) {
+    this.currentSlide = index;
+  }
 
   private animateCounters() {
-    // Animation des compteurs de statistiques
-    const statElements = document.querySelectorAll("[data-stat]");
+    const statElements = document.querySelectorAll('[data-target]');
     statElements.forEach((element, index) => {
-      const targetValue = parseInt(
-        this.statistiques[index]?.valeur.replace(/[^\d]/g, "") || "0"
-      );
-      if (targetValue > 0) {
-        this.animationService.animateCountUp(
-          element as HTMLElement,
-          targetValue
-        );
+      const stat = this.statistiques[index];
+      if (stat) {
+        this.animateCounter(element as HTMLElement, stat, index);
       }
     });
+  }
+  
+  private animateCounter(element: HTMLElement, stat: any, index: number) {
+    const targetValue = stat.targetValue;
+    const duration = 2000;
+    const startTime = performance.now();
+    
+    const updateCounter = (currentTime: number) => {
+      const elapsedTime = currentTime - startTime;
+      const progress = Math.min(elapsedTime / duration, 1);
+      
+      const easedProgress = this.easeOutQuart(progress);
+      const currentValue = Math.floor(targetValue * easedProgress);
+      
+      // Format the number based on the original format
+      let displayValue = '';
+      if (stat.valeur.includes('K')) {
+        displayValue = (currentValue / 1000).toFixed(0) + 'K';
+      } else if (stat.valeur.includes('M')) {
+        displayValue = (currentValue / 1000000).toFixed(1) + 'M';
+      } else {
+        displayValue = currentValue.toLocaleString();
+      }
+      
+      element.textContent = displayValue;
+      stat.displayValue = displayValue;
+      
+      if (progress < 1) {
+        requestAnimationFrame(updateCounter);
+      }
+    };
+    
+    requestAnimationFrame(updateCounter);
+  }
+  
+  private easeOutQuart(t: number): number {
+    return 1 - (--t) * t * t * t;
   }
 }
