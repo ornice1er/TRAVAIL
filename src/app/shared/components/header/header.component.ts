@@ -165,6 +165,8 @@ import { ThemeService } from '../../services/theme.service';
   export class HeaderComponent implements OnInit {
     isScrolled = false;
     isMobileMenuOpen = false;
+    showMinistereMenu = false;
+    showMobileMinistereMenu = false;
     
     constructor(public themeService: ThemeService) {}
     
@@ -185,6 +187,9 @@ import { ThemeService } from '../../services/theme.service';
     onEscapeKey() {
       if (this.isMobileMenuOpen) {
         this.closeMobileMenu();
+      }
+      if (this.showMinistereMenu) {
+        this.showMinistereMenu = false;
       }
     }
     
@@ -209,6 +214,15 @@ import { ThemeService } from '../../services/theme.service';
     
     closeMobileMenu() {
       this.isMobileMenuOpen = false;
+      this.showMobileMinistereMenu = false;
+    }
+    
+    toggleMobileMinistereMenu() {
+      this.showMobileMinistereMenu = !this.showMobileMinistereMenu;
+    }
+    
+    isMinistereActive(): boolean {
+      return window.location.pathname.startsWith('/ministere');
     }
     
     toggleTheme() {
