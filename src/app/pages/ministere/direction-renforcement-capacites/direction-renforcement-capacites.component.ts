@@ -245,7 +245,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
                 </div>
                 <div class="text-left">
                   <p class="font-medium text-gray-900 dark:text-white">Email</p>
-                  <p class="text-gray-600 dark:text-gray-300">dgrce@travail.gouv.bj</p>
+                  <p class="text-gray-600 dark:text-gray-300">{{'dgrce@travail.gouv.bj'}}</p>
                 </div>
               </div>
               <div class="bg-secondary-50 dark:bg-secondary-900/20 rounded-lg p-4">
