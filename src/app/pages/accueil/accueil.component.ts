@@ -9,16 +9,15 @@ import { AnimationService } from "../../shared/services/animation.service";
   imports: [CommonModule, RouterModule],
   template: `
     <!-- Slider Hero Section -->
-    <section class="relative h-screen overflow-hidden" role="banner" aria-label="Slider principal du Ministère du Travail">
+    <section class="relative h-screen overflow-hidden" role="banner" aria-label="Slider des communiqués du Ministère du Travail">
       <div class="relative h-full">
         <!-- Slides -->
         <div class="absolute inset-0 transition-transform duration-700 ease-in-out" 
              [style.transform]="'translateX(' + (-currentSlide * 100) + '%)'">
           <div class="flex h-full">
-            <div *ngFor="let slide of slides; let i = index" 
+            <div *ngFor="let communique of communiques; let i = index" 
                  class="w-full h-full flex-shrink-0 relative">
-              <div class="absolute inset-0 bg-gradient-to-r" 
-                   [ngClass]="slide.bgClass">
+              <div class="absolute inset-0 bg-gradient-to-r from-primary-800 to-primary-900">
                 <div class="absolute inset-0 bg-black/30 dark:bg-black/50"></div>
               </div>
               <div class="relative h-full flex items-center">
@@ -26,26 +25,30 @@ import { AnimationService } from "../../shared/services/animation.service";
                   <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     <div class="text-white">
                       <div class="inline-block bg-white/20 dark:bg-white/10 px-4 py-2 rounded-full text-sm font-medium mb-4">
-                        {{ slide.category }}
+                        {{ communique.type }}
                       </div>
-                      <h1 class="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
-                        {{ slide.title }}
+                      <h1 class="text-3xl lg:text-5xl font-bold mb-6 leading-tight">
+                        {{ communique.titre }}
                       </h1>
-                      <p class="text-xl lg:text-2xl mb-8 text-white/90 font-light">
-                        {{ slide.description }}
+                      <p class="text-lg lg:text-xl mb-8 text-white/90 font-light">
+                        {{ communique.description }}
                       </p>
                       <div class="flex flex-col sm:flex-row gap-4">
-                        <a [routerLink]="slide.primaryLink" class="btn-primary bg-white text-primary-800 hover:bg-gray-100">
-                          {{ slide.primaryText }}
+                        <a href="#" class="btn-primary bg-white text-primary-800 hover:bg-gray-100">
+                          Lire le communiqué
                         </a>
-                        <a [routerLink]="slide.secondaryLink" class="btn-secondary border-white text-white hover:bg-white/10">
-                          {{ slide.secondaryText }}
+                        <a routerLink="/contact" class="btn-secondary border-white text-white hover:bg-white/10">
+                          Nous contacter
                         </a>
+                      </div>
+                      <div class="mt-6 text-sm text-white/80">
+                        <span class="mr-4">📅 {{ communique.date }}</span>
+                        <span>🏛️ {{ communique.source }}</span>
                       </div>
                     </div>
                     <div class="hidden lg:block">
-                      <img [src]="slide.image" 
-                           [alt]="slide.title" 
+                      <img [src]="communique.image" 
+                           [alt]="communique.titre" 
                            class="rounded-2xl shadow-2xl w-full max-w-lg mx-auto"
                            loading="lazy">
                     </div>
@@ -74,7 +77,7 @@ import { AnimationService } from "../../shared/services/animation.service";
         
         <!-- Dots indicator -->
         <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-10">
-          <button *ngFor="let slide of slides; let i = index"
+          <button *ngFor="let communique of communiques; let i = index"
                   (click)="goToSlide(i)"
                   [class]="i === currentSlide ? 'bg-white' : 'bg-white/50'"
                   class="w-3 h-3 rounded-full transition-all hover:bg-white/80"
@@ -308,7 +311,7 @@ import { AnimationService } from "../../shared/services/animation.service";
               </h3>
               <div class="space-y-6">
                 <div
-                  *ngFor="let communique of communiques"
+                  *ngFor="let communique of communiquesSidebar"
                   class="card p-6 hover:shadow-md transition-all duration-300"
                 >
                   <div class="flex items-start justify-between mb-3">
@@ -461,50 +464,46 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
   currentSlide = 0;
   slideInterval: any;
   
-  slides = [
+  communiques = [
     {
-      title: 'Concours de Recrutement 2024',
-      description: 'Inscriptions ouvertes pour 2000 postes dans la fonction publique. Candidatez dès maintenant !',
-      category: 'CONCOURS',
-      image: 'https://images.pexels.com/photos/3184317/pexels-photo-3184317.jpeg?auto=compress&cs=tinysrgb&w=800',
-      bgClass: 'from-secondary-800 to-secondary-900',
-      primaryText: 'Voir les concours',
-      secondaryText: 'S\'inscrire',
-      primaryLink: '/services',
-      secondaryLink: '/contact'
+      titre: "Avis de recrutement de 500 agents contractuels de l'Etat au profit du Ministère de l'Enseignement Supérieur",
+      description: "Le Ministère du Travail et de la Fonction Publique informe le public de l'ouverture d'un concours de recrutement de 500 agents contractuels. Les candidatures sont ouvertes du 25 janvier au 15 février 2024.",
+      type: "COMMUNIQUÉ",
+      date: "20 janvier 2024",
+      source: "Direction Générale de la Fonction Publique",
+      image: "https://images.pexels.com/photos/3184317/pexels-photo-3184317.jpeg?auto=compress&cs=tinysrgb&w=800"
     },
     {
-      title: 'Nouveau Portail Emploi',
-      description: 'Découvrez notre plateforme digitale révolutionnaire pour faciliter votre recherche d\'emploi.',
-      category: 'EMPLOI',
-      image: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=800',
-      bgClass: 'from-primary-800 to-primary-900',
-      primaryText: 'Accéder au portail',
-      secondaryText: 'En savoir plus',
-      primaryLink: '/services',
-      secondaryLink: '/actualites'
+      titre: "Communiqué relatif à la 2ème édition du concours d'entrée en première année du cycle de formation des Inspecteurs du Travail",
+      description: "Ouverture des inscriptions pour la formation des Inspecteurs du Travail. 50 places disponibles pour cette formation d'excellence de 24 mois.",
+      type: "COMMUNIQUÉ",
+      date: "18 janvier 2024", 
+      source: "Direction Générale du Travail",
+      image: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800"
     },
     {
-      title: 'Formation Professionnelle',
-      description: 'Programme de formation pour 10 000 jeunes. Développez vos compétences avec nos partenaires.',
-      category: 'FORMATION',
-      image: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800',
-      bgClass: 'from-accent-700 to-accent-800',
-      primaryText: 'Voir les formations',
-      secondaryText: 'S\'inscrire',
-      primaryLink: '/services',
-      secondaryLink: '/contact'
+      titre: "Avis de recrutement de 200 agents contractuels pour les services déconcentrés",
+      description: "Recrutement d'agents contractuels pour renforcer les directions départementales. Postes ouverts dans les 12 départements du Bénin.",
+      type: "COMMUNIQUÉ",
+      date: "15 janvier 2024",
+      source: "Secrétariat Général",
+      image: "https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=800"
     },
     {
-      title: 'Services Numériques',
-      description: 'Simplifiez vos démarches administratives grâce à nos services en ligne disponibles 24h/24.',
-      category: 'SERVICES',
-      image: 'https://images.pexels.com/photos/3184302/pexels-photo-3184302.jpeg?auto=compress&cs=tinysrgb&w=800',
-      bgClass: 'from-primary-700 to-secondary-800',
-      primaryText: 'Nos services',
-      secondaryText: 'Aide',
-      primaryLink: '/services',
-      secondaryLink: '/contact'
+      titre: "Publication des résultats du concours de recrutement des Contrôleurs du Travail",
+      description: "Les résultats du concours de recrutement des Contrôleurs du Travail sont disponibles. 150 candidats admis sur 2000 candidatures.",
+      type: "COMMUNIQUÉ",
+      date: "12 janvier 2024",
+      source: "Direction Générale du Travail", 
+      image: "https://images.pexels.com/photos/3184302/pexels-photo-3184302.jpeg?auto=compress&cs=tinysrgb&w=800"
+    },
+    {
+      titre: "Ouverture des inscriptions pour la formation professionnelle continue",
+      description: "Lancement du programme de formation continue 2024. Plus de 5000 places disponibles dans 15 filières prioritaires.",
+      type: "COMMUNIQUÉ", 
+      date: "10 janvier 2024",
+      source: "Direction Renforcement des Capacités",
+      image: "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800"
     }
   ];
   
@@ -599,36 +598,27 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
     },
   ];
 
-  communiques = [
+  communiquesSidebar = [
     {
       type: "COMMUNIQUE",
-      date: "20.01.2024",
-      titre:
-        "Avis de recrutement de 500 agents contractuels de l'Etat au profit du Ministère de l'Enseignement Supérieur",
+      date: "08.01.2024",
+      titre: "Mise en place du nouveau système de gestion des carrières",
+    },
+    {
+      type: "COMMUNIQUE", 
+      date: "05.01.2024",
+      titre: "Lancement du programme d'insertion des jeunes diplômés",
     },
     {
       type: "COMMUNIQUE",
-      date: "18.01.2024",
-      titre:
-        "Communiqué relatif à la 2ème édition du concours d'entrée en première année du cycle de formation des Inspecteurs du Travail",
+      date: "03.01.2024", 
+      titre: "Réforme du système de notation des agents publics",
     },
     {
       type: "COMMUNIQUE",
-      date: "15.01.2024",
-      titre:
-        "Avis de recrutement de 200 agents contractuels pour les services déconcentrés",
-    },
-    {
-      type: "COMMUNIQUE",
-      date: "12.01.2024",
-      titre:
-        "Publication des résultats du concours de recrutement des Contrôleurs du Travail",
-    },
-    // {
-    //   type: 'COMMUNIQUE',
-    //   date: '10.01.2024',
-    //   titre: 'Ouverture des inscriptions pour la formation professionnelle continue'
-    // }
+      date: "28.12.2023",
+      titre: "Bilan des activités 2023 du Ministère du Travail",
+    }
   ];
 
   liensUtiles = [
@@ -664,15 +654,15 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
   startSlideShow() {
     this.slideInterval = setInterval(() => {
       this.nextSlide();
-    }, 5000); // Change slide every 5 seconds
+    }, 8000); // Change slide every 8 seconds pour laisser le temps de lire
   }
   
   nextSlide() {
-    this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+    this.currentSlide = (this.currentSlide + 1) % this.communiques.length;
   }
   
   previousSlide() {
-    this.currentSlide = this.currentSlide === 0 ? this.slides.length - 1 : this.currentSlide - 1;
+    this.currentSlide = this.currentSlide === 0 ? this.communiques.length - 1 : this.currentSlide - 1;
   }
   
   goToSlide(index: number) {
