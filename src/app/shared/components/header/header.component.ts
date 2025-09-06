@@ -1,4 +1,4 @@
-  import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
   import { CommonModule } from '@angular/common';
   import { RouterModule } from '@angular/router';
 import { ThemeService } from '../../services/theme.service';
@@ -40,12 +40,93 @@ import { ThemeService } from '../../services/theme.service';
                    role="menuitem">
                   Accueil
                 </a>
-                <a routerLink="/ministere" 
-                   routerLinkActive="text-primary-800 dark:text-primary-400 font-semibold"
-                   class="text-gray-700 dark:text-gray-300 hover:text-primary-800 dark:hover:text-primary-400 transition-colors font-medium"
-                   role="menuitem">
-                  Le Ministère
-                </a>
+                
+                <!-- Menu Le Ministère avec dropdown -->
+                <div class="relative" 
+                     (mouseenter)="showMinistereMenu = true" 
+                     (mouseleave)="showMinistereMenu = false">
+                  <button class="text-gray-700 dark:text-gray-300 hover:text-primary-800 dark:hover:text-primary-400 transition-colors font-medium flex items-center"
+                          [class.text-primary-800]="isMinistereActive()"
+                          [class.dark:text-primary-400]="isMinistereActive()"
+                          [class.font-semibold]="isMinistereActive()"
+                          [attr.aria-expanded]="showMinistereMenu"
+                          aria-haspopup="true"
+                          role="menuitem">
+                    Le Ministère
+                    <svg class="w-4 h-4 ml-1 transition-transform duration-200" 
+                         [class.rotate-180]="showMinistereMenu"
+                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                  </button>
+                  
+                  <!-- Dropdown menu -->
+                  <div *ngIf="showMinistereMenu" 
+                       class="absolute top-full left-0 mt-2 w-80 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-2 z-50 animate-fade-in"
+                       role="menu">
+                    <a routerLink="/ministere/le-ministre" 
+                       class="block px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-800 dark:hover:text-primary-400 transition-colors"
+                       role="menuitem">
+                      Le Ministre
+                    </a>
+                    <a routerLink="/ministere/notre-vision" 
+                       class="block px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-800 dark:hover:text-primary-400 transition-colors"
+                       role="menuitem">
+                      Notre vision
+                    </a>
+                    <a routerLink="/ministere/secretariat-general" 
+                       class="block px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-800 dark:hover:text-primary-400 transition-colors"
+                       role="menuitem">
+                      Secrétariat Général du Ministère
+                    </a>
+                    <a routerLink="/ministere/inspection-generale" 
+                       class="block px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-800 dark:hover:text-primary-400 transition-colors"
+                       role="menuitem">
+                      Inspection Générale des Services et Emplois Publics
+                    </a>
+                    <a routerLink="/ministere/direction-planification" 
+                       class="block px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-800 dark:hover:text-primary-400 transition-colors"
+                       role="menuitem">
+                      Direction de la Planification de l'Administration et des Finances
+                    </a>
+                    <a routerLink="/ministere/direction-systemes-information" 
+                       class="block px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-800 dark:hover:text-primary-400 transition-colors"
+                       role="menuitem">
+                      Direction des Systèmes d'Information
+                    </a>
+                    <a routerLink="/ministere/direction-generale-travail" 
+                       class="block px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-800 dark:hover:text-primary-400 transition-colors"
+                       role="menuitem">
+                      Direction Générale du Travail
+                    </a>
+                    <a routerLink="/ministere/direction-generale-fonction-publique" 
+                       class="block px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-800 dark:hover:text-primary-400 transition-colors"
+                       role="menuitem">
+                      Direction Générale de la Fonction Publique
+                    </a>
+                    <a routerLink="/ministere/direction-renforcement-capacites" 
+                       class="block px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-800 dark:hover:text-primary-400 transition-colors"
+                       role="menuitem">
+                      Direction Générale du Renforcement des Capacités et de l'Employabilité
+                    </a>
+                    <a routerLink="/ministere/cellule-suivi-reformes" 
+                       class="block px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-800 dark:hover:text-primary-400 transition-colors"
+                       role="menuitem">
+                      Cellule de Suivi des Réformes
+                    </a>
+                    <a routerLink="/ministere/directions-departementales" 
+                       class="block px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-800 dark:hover:text-primary-400 transition-colors"
+                       role="menuitem">
+                      Directions Départementales
+                    </a>
+                    <a routerLink="/ministere/structures-sous-tutelle" 
+                       class="block px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-800 dark:hover:text-primary-400 transition-colors"
+                       role="menuitem">
+                      Structures sous tutelle
+                    </a>
+                  </div>
+                </div>
+                
                 <a routerLink="/services" 
                    routerLinkActive="text-primary-800 dark:text-primary-400 font-semibold"
                    class="text-gray-700 dark:text-gray-300 hover:text-primary-800 dark:hover:text-primary-400 transition-colors font-medium"
@@ -107,13 +188,100 @@ import { ThemeService } from '../../services/theme.service';
                    role="menuitem">
                   Accueil
                 </a>
-                <a routerLink="/ministere" 
-                   (click)="closeMobileMenu()"
-                   routerLinkActive="text-primary-800 dark:text-primary-400 font-semibold"
-                   class="text-gray-700 dark:text-gray-300 hover:text-primary-800 dark:hover:text-primary-400 transition-colors font-medium"
-                   role="menuitem">
-                  Le Ministère
-                </a>
+                
+                <!-- Menu Le Ministère mobile -->
+                <div>
+                  <button (click)="toggleMobileMinistereMenu()"
+                          class="w-full flex items-center justify-between text-gray-700 dark:text-gray-300 hover:text-primary-800 dark:hover:text-primary-400 transition-colors font-medium py-2"
+                          [class.text-primary-800]="isMinistereActive()"
+                          [class.dark:text-primary-400]="isMinistereActive()"
+                          [class.font-semibold]="isMinistereActive()"
+                          role="menuitem">
+                    Le Ministère
+                    <svg class="w-4 h-4 transition-transform duration-200" 
+                         [class.rotate-180]="showMobileMinistereMenu"
+                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                  </button>
+                  
+                  <!-- Sous-menu mobile -->
+                  <div *ngIf="showMobileMinistereMenu" class="ml-4 mt-2 space-y-2">
+                    <a routerLink="/ministere/le-ministre" 
+                       (click)="closeMobileMenu()"
+                       class="block text-gray-600 dark:text-gray-400 hover:text-primary-800 dark:hover:text-primary-400 transition-colors py-2 text-sm"
+                       role="menuitem">
+                      Le Ministre
+                    </a>
+                    <a routerLink="/ministere/notre-vision" 
+                       (click)="closeMobileMenu()"
+                       class="block text-gray-600 dark:text-gray-400 hover:text-primary-800 dark:hover:text-primary-400 transition-colors py-2 text-sm"
+                       role="menuitem">
+                      Notre vision
+                    </a>
+                    <a routerLink="/ministere/secretariat-general" 
+                       (click)="closeMobileMenu()"
+                       class="block text-gray-600 dark:text-gray-400 hover:text-primary-800 dark:hover:text-primary-400 transition-colors py-2 text-sm"
+                       role="menuitem">
+                      Secrétariat Général
+                    </a>
+                    <a routerLink="/ministere/inspection-generale" 
+                       (click)="closeMobileMenu()"
+                       class="block text-gray-600 dark:text-gray-400 hover:text-primary-800 dark:hover:text-primary-400 transition-colors py-2 text-sm"
+                       role="menuitem">
+                      Inspection Générale
+                    </a>
+                    <a routerLink="/ministere/direction-planification" 
+                       (click)="closeMobileMenu()"
+                       class="block text-gray-600 dark:text-gray-400 hover:text-primary-800 dark:hover:text-primary-400 transition-colors py-2 text-sm"
+                       role="menuitem">
+                      Direction Planification
+                    </a>
+                    <a routerLink="/ministere/direction-systemes-information" 
+                       (click)="closeMobileMenu()"
+                       class="block text-gray-600 dark:text-gray-400 hover:text-primary-800 dark:hover:text-primary-400 transition-colors py-2 text-sm"
+                       role="menuitem">
+                      Direction Systèmes Information
+                    </a>
+                    <a routerLink="/ministere/direction-generale-travail" 
+                       (click)="closeMobileMenu()"
+                       class="block text-gray-600 dark:text-gray-400 hover:text-primary-800 dark:hover:text-primary-400 transition-colors py-2 text-sm"
+                       role="menuitem">
+                      Direction Générale Travail
+                    </a>
+                    <a routerLink="/ministere/direction-generale-fonction-publique" 
+                       (click)="closeMobileMenu()"
+                       class="block text-gray-600 dark:text-gray-400 hover:text-primary-800 dark:hover:text-primary-400 transition-colors py-2 text-sm"
+                       role="menuitem">
+                      Direction Générale Fonction Publique
+                    </a>
+                    <a routerLink="/ministere/direction-renforcement-capacites" 
+                       (click)="closeMobileMenu()"
+                       class="block text-gray-600 dark:text-gray-400 hover:text-primary-800 dark:hover:text-primary-400 transition-colors py-2 text-sm"
+                       role="menuitem">
+                      Direction Renforcement Capacités
+                    </a>
+                    <a routerLink="/ministere/cellule-suivi-reformes" 
+                       (click)="closeMobileMenu()"
+                       class="block text-gray-600 dark:text-gray-400 hover:text-primary-800 dark:hover:text-primary-400 transition-colors py-2 text-sm"
+                       role="menuitem">
+                      Cellule Suivi Réformes
+                    </a>
+                    <a routerLink="/ministere/directions-departementales" 
+                       (click)="closeMobileMenu()"
+                       class="block text-gray-600 dark:text-gray-400 hover:text-primary-800 dark:hover:text-primary-400 transition-colors py-2 text-sm"
+                       role="menuitem">
+                      Directions Départementales
+                    </a>
+                    <a routerLink="/ministere/structures-sous-tutelle" 
+                       (click)="closeMobileMenu()"
+                       class="block text-gray-600 dark:text-gray-400 hover:text-primary-800 dark:hover:text-primary-400 transition-colors py-2 text-sm"
+                       role="menuitem">
+                      Structures sous tutelle
+                    </a>
+                  </div>
+                </div>
+                
                 <a routerLink="/services" 
                    (click)="closeMobileMenu()"
                    routerLinkActive="text-primary-800 dark:text-primary-400 font-semibold"

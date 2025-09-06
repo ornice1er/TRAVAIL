@@ -99,6 +99,10 @@
 }
 
 /* Animations personnalisées */
+.animate-fade-in {
+  animation: fadeIn 0.2s ease-out;
+}
+
 .animate-on-scroll {
   opacity: 0;
   transform: translateY(30px);
