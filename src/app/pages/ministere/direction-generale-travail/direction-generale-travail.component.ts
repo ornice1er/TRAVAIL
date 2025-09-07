@@ -121,60 +121,6 @@ import { AnimationService } from '../../../shared/services/animation.service';
       </div>
     </section>
 
-    <!-- Équipe dirigeante -->
-    <section class="section-padding bg-gray-50 dark:bg-gray-800">
-      <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
-          <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Équipe Dirigeante</h2>
-          <p class="text-xl text-gray-600 dark:text-gray-300">
-            Les responsables des différents départements
-          </p>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- AROUNA Ramanou -->
-          <div class="card p-6 text-center animate-on-scroll">
-            <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
-                 alt="AROUNA Ramanou" 
-                 class="w-32 h-40 object-cover rounded-lg shadow-md mx-auto mb-4">
-            <h3 class="text-lg font-bold text-secondary-800 dark:text-secondary-400 mb-2">AROUNA Ramanou</h3>
-            <p class="text-gray-600 dark:text-gray-300 text-sm">Chef Département des Normes et de la Statistique en Travail</p>
-          </div>
-          
-          <!-- OUENDO Wilfried K. Serge -->
-          <div class="card p-6 text-center animate-on-scroll">
-            <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
-                 alt="OUENDO Wilfried K. Serge" 
-                 class="w-32 h-40 object-cover rounded-lg shadow-md mx-auto mb-4">
-            <h3 class="text-lg font-bold text-secondary-800 dark:text-secondary-400 mb-2">OUENDO Wilfried K. Serge</h3>
-            <p class="text-gray-600 dark:text-gray-300 text-sm">Chef Département des Relations Professionnelles et du Dialogue Social</p>
-          </div>
-          
-          <!-- Dr DEDJI TOHOUN Lucile -->
-          <div class="card p-6 text-center animate-on-scroll">
-            <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
-                 alt="Dr DEDJI TOHOUN Lucile" 
-                 class="w-32 h-40 object-cover rounded-lg shadow-md mx-auto mb-4">
-            <h3 class="text-lg font-bold text-secondary-800 dark:text-secondary-400 mb-2">Dr DEDJI TOHOUN Lucile</h3>
-            <p class="text-gray-600 dark:text-gray-300 text-sm">Chef Département de la Sécurité Sociale de la Médecine et de la Santé au Travail</p>
-          </div>
-        </div>
-      </div>
-    </section>
-            <div class="bg-secondary-50 dark:bg-secondary-900/20 rounded-lg p-6">
-              <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">Directeur Général du Travail</h3>
-              <p class="text-secondary-800 dark:text-secondary-400 font-medium">M. [Nom du Directeur Général]</p>
-            </div>
-          </div>
-          <div class="animate-on-scroll">
-            <img src="https://images.pexels.com/photos/3184317/pexels-photo-3184317.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                 alt="Direction Générale du Travail" 
-                 class="rounded-2xl shadow-lg w-full">
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Missions -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
