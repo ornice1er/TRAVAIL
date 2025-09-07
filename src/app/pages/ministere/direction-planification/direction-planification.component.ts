@@ -24,16 +24,131 @@ import { AnimationService } from '../../../shared/services/animation.service';
       <div class="container-custom">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div class="animate-on-scroll">
-            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">La Direction DPAF</h2>
-            <p class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-              La Direction de la Planification de l'Administration et des Finances (DPAF) est l'organe central 
-              de planification stratégique, de programmation budgétaire et de gestion financière du ministère.
-            </p>
-            <p class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-              Elle assure la coordination entre les orientations politiques du ministère et leur traduction 
-              en programmes opérationnels, tout en veillant à l'optimisation de l'utilisation des ressources 
-              financières disponibles.
-            </p>
+            <div class="flex items-start space-x-6 mb-8">
+              <div class="flex-shrink-0">
+                <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
+                     alt="MALICK Abdoulaziz - Directeur" 
+                     class="w-32 h-40 object-cover rounded-lg shadow-md">
+                <div class="text-center mt-2">
+                  <p class="text-sm font-semibold text-gray-900 dark:text-white">MALICK Abdoulaziz</p>
+                  <p class="text-xs text-gray-600 dark:text-gray-400">Directeur</p>
+                </div>
+              </div>
+              <div class="flex-1">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Mission</h2>
+                <p class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+                  Conformément aux dispositions de l'article 31 du décret n° 2021-401 du 28 juillet 2021 fixant le 
+                  nouveau type des ministères, la Direction de la planification, de l'administration et des finances assure au 
+                  niveau du ministère, la programmation et la planification des activités, la gestion des ressources humaines, 
+                  matérielles et des moyens financiers, de concert avec les responsables de chaque structure.
+                </p>
+              </div>
+            </div>
+            
+            <div class="mb-8">
+              <div class="flex items-start space-x-6">
+                <div class="flex-shrink-0">
+                  <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
+                       alt="AYEGNON Léonard - Directeur Adjoint" 
+                       class="w-32 h-40 object-cover rounded-lg shadow-md">
+                  <div class="text-center mt-2">
+                    <p class="text-sm font-semibold text-gray-900 dark:text-white">AYEGNON Léonard</p>
+                    <p class="text-xs text-gray-600 dark:text-gray-400">Directeur Adjoint</p>
+                  </div>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Attributions</h3>
+                  <p class="text-gray-700 dark:text-gray-300 mb-4">À ce titre, elle est chargée :</p>
+                  <ul class="space-y-3 text-gray-700 dark:text-gray-300">
+                    <li class="flex items-start">
+                      <span class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                      <span>en matière de planification :</span>
+                    </li>
+                    <li class="flex items-start ml-6">
+                      <span class="w-2 h-2 bg-gray-400 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                      <span>de collecter et de diffuser toutes les informations nécessaires à une réflexion prospective</span>
+                    </li>
+                    <li class="flex items-start ml-6">
+                      <span class="w-2 h-2 bg-gray-400 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                      <span>d'assurer la programmation dans les domaines de compétence du ministère en liaison avec les structures compétentes du ministère en charge du développement</span>
+                    </li>
+                    <li class="flex items-start ml-6">
+                      <span class="w-2 h-2 bg-gray-400 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                      <span>d'animer les processus de planification, de la budgétisation et de consultations au sein du ministère</span>
+                    </li>
+                    <li class="flex items-start ml-6">
+                      <span class="w-2 h-2 bg-gray-400 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                      <span>d'élaborer, de suivre et d'évaluer les plans stratégiques du ministère en liaison avec les structures d'élaboration et de supervision des activités du ministère, à savoir le cabinet du secrétariat général du ministère</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Boutons PDF -->
+            <div class="flex flex-col sm:flex-row gap-4 mt-8">
+              <a href="#" class="inline-flex items-center px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors">
+                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                </svg>
+                Lire l'arrêté
+              </a>
+              <a href="#" class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors">
+                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                </svg>
+                Télécharger
+              </a>
+            </div>
+          </div>
+          <div class="animate-on-scroll">
+            <img src="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                 alt="Direction Planification" 
+                 class="rounded-2xl shadow-lg w-full">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Attributions détaillées -->
+    <section class="section-padding bg-gray-50 dark:bg-gray-800">
+      <div class="container-custom">
+        <div class="max-w-4xl mx-auto">
+          <div class="card p-8 animate-on-scroll">
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Attributions détaillées (suite)</h3>
+            <div class="space-y-6 text-gray-700 dark:text-gray-300">
+              <div>
+                <h4 class="font-semibold text-gray-900 dark:text-white mb-3">En matière de gestion des ressources humaines :</h4>
+                <ul class="space-y-2 ml-4">
+                  <li class="flex items-start">
+                    <span class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                    <span>de coordonner et de consolider les comptes rendus de gestion de l'exécution des responsabilités de chaque direction</span>
+                  </li>
+                  <li class="flex items-start">
+                    <span class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                    <span>d'élaborer et de mettre en œuvre la stratégie de modernisation de la gestion des ressources humaines</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <div>
+                <h4 class="font-semibold text-gray-900 dark:text-white mb-3">En matière de gestion des ressources financières :</h4>
+                <ul class="space-y-2 ml-4">
+                  <li class="flex items-start">
+                    <span class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                    <span>de coordonner et de consolider les comptes rendus de gestion de l'exécution des responsabilités</span>
+                  </li>
+                  <li class="flex items-start">
+                    <span class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                    <span>d'assurer la gestion des ressources financières</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
             <div class="bg-secondary-50 dark:bg-secondary-900/20 rounded-lg p-6">
               <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">Directeur DPAF</h3>
               <p class="text-secondary-800 dark:text-secondary-400 font-medium">M. [Nom du Directeur DPAF]</p>
