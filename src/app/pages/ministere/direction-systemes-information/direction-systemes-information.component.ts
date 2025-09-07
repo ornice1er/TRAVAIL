@@ -151,7 +151,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
       </div>
     </section>
-            <div class="bg-primary-50 dark:bg-primary-900/20 rounded-lg p-6">
+            <!-- <div class="bg-primary-50 dark:bg-primary-900/20 rounded-lg p-6">
               <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">Directeur DSI</h3>
               <p class="text-primary-800 dark:text-primary-400 font-medium">M. [Nom du Directeur DSI]</p>
             </div>
@@ -163,7 +163,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- Missions -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">

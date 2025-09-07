@@ -130,7 +130,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
       </div>
     </section>
-            <div class="bg-secondary-50 dark:bg-secondary-900/20 rounded-lg p-6">
+            <!-- <div class="bg-secondary-50 dark:bg-secondary-900/20 rounded-lg p-6">
               <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">Directeur Général DGRCE</h3>
               <p class="text-secondary-800 dark:text-secondary-400 font-medium">M. [Nom du Directeur Général]</p>
             </div>
@@ -142,7 +142,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- Missions -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
