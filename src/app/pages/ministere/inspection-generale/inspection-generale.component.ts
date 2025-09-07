@@ -24,19 +24,78 @@ import { AnimationService } from '../../../shared/services/animation.service';
       <div class="container-custom">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div class="animate-on-scroll">
+            <div class="relative">
+              <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
+                   alt="KANHOUNON Norbert Bocreace - Inspecteur Général des Services et Emplois Publics" 
+                   class="rounded-2xl shadow-lg w-full max-w-md mx-auto">
+              <div class="absolute -bottom-6 -right-6 w-24 h-24 bg-accent-700 rounded-full flex items-center justify-center">
+                <span class="text-white text-2xl">🇧🇯</span>
+              </div>
+            </div>
+            <div class="mt-8 text-center">
+              <h3 class="text-xl font-bold text-accent-800 dark:text-accent-400 mb-2">KANHOUNON Norbert Bocreace</h3>
+              <p class="text-gray-600 dark:text-gray-300">Inspecteur Général des Services et Emplois Publics</p>
+            </div>
+          </div>
+          <div class="animate-on-scroll">
             <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">L'Inspection Générale</h2>
+            
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Mission</h3>
             <p class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-              L'Inspection Générale des Services et Emplois Publics (IGSEP) est un organe de contrôle, 
-              d'audit et d'évaluation placé sous l'autorité directe du Ministre du Travail et de la Fonction Publique.
+              Conformément aux dispositions de l'article 4 du décret n° 2018-398 du 29 août 2018 portant statuts 
+              particuliers des corps de contrôle de l'ordre administratif en République du Bénin, l'inspection générale 
+              des services et emplois publics exerce une mission générale de contrôle, d'audit, d'étude et de conseil et 
+              d'évaluation dans les domaines administratif, déontologique et de gestion des ressources humaines pour 
+              l'ensemble des services centraux et déconcentrés de tous les ministères et institutions de l'État, des 
+              collectivités territoriales et des établissements et organismes publics.
             </p>
+            
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Attributions</h3>
             <p class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-              Elle a pour mission principale de veiller à la bonne application des lois, règlements et 
-              procédures dans l'administration publique, ainsi qu'au respect des normes de qualité 
-              dans la prestation des services publics.
+              L'inspection générale des services et emplois publics exerce ses attributions tant au niveau national que 
+              sectoriel.
             </p>
-            <div class="bg-accent-50 dark:bg-accent-900/20 rounded-lg p-6">
-              <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">Inspecteur Général</h3>
-              <p class="text-accent-700 dark:text-accent-400 font-medium">M. [Nom de l'Inspecteur Général]</p>
+            
+            <p class="text-lg text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+              Au niveau national, l'inspection générale des services et emplois publics a pour attributions:
+            </p>
+            <ul class="space-y-3 text-gray-700 dark:text-gray-300 mb-6">
+              <li class="flex items-start">
+                <span class="w-2 h-2 bg-accent-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                <span>de contrôler la gestion administrative et celle des ressources humaines;</span>
+              </li>
+              <li class="flex items-start">
+                <span class="w-2 h-2 bg-accent-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                <span>de contrôler l'organisation et le fonctionnement des services publics et des</span>
+              </li>
+              <li class="flex items-start">
+                <span class="w-2 h-2 bg-accent-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                <span>structures chargées de la gestion des agents publics; de contrôler l'application des règles de déontologie administrative, d'éthique, et</span>
+              </li>
+              <li class="flex items-start">
+                <span class="w-2 h-2 bg-accent-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                <span>santé et de sécurité au travail et ;</span>
+              </li>
+              <li class="flex items-start">
+                <span class="w-2 h-2 bg-accent-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                <span>d'apporter l'assistance conseil nécessaire dans les services de l'État, des collectivités territoriales décentralisées, des établissements et offices publics ou semi-publics ainsi que des organismes de toute nature utilisant des agents publics.</span>
+              </li>
+            </ul>
+            
+            <!-- Boutons de téléchargement -->
+            <div class="flex flex-col sm:flex-row gap-4 mt-8">
+              <a href="#" class="inline-flex items-center px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors">
+                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                </svg>
+                Lire l'arrêté
+              </a>
+              <a href="#" class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors">
+                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                </svg>
+                Télécharger
+              </a>
             </div>
           </div>
           <div class="animate-on-scroll">

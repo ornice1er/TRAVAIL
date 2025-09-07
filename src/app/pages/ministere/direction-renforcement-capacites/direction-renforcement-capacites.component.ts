@@ -24,16 +24,112 @@ import { AnimationService } from '../../../shared/services/animation.service';
       <div class="container-custom">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div class="animate-on-scroll">
-            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">La Direction DGRCE</h2>
-            <p class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-              La Direction Générale du Renforcement des Capacités et de l'Employabilité (DGRCE) est l'organe 
-              technique chargé de concevoir et mettre en œuvre les politiques de développement des compétences 
-              et d'amélioration de l'employabilité des citoyens béninois.
-            </p>
-            <p class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-              Elle coordonne les programmes de formation professionnelle, d'apprentissage et de développement 
-              des compétences en adéquation avec les besoins du marché du travail et les exigences de l'économie moderne.
-            </p>
+            <div class="space-y-8">
+              <!-- Directeur Général -->
+              <div class="flex items-start space-x-6">
+                <div class="flex-shrink-0">
+                  <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
+                       alt="AVALLA Omer W. Charles - Directeur Général" 
+                       class="w-32 h-40 object-cover rounded-lg shadow-md">
+                  <div class="text-center mt-2">
+                    <p class="text-sm font-semibold text-gray-900 dark:text-white">AVALLA Omer W. Charles</p>
+                    <p class="text-xs text-gray-600 dark:text-gray-400">Directeur Général</p>
+                  </div>
+                </div>
+                <div class="flex-1">
+                  <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Mission</h2>
+                  <p class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+                    Conformément aux dispositions de l'article 10 du décret n° 2021-562 du 03 novembre 2021 portant 
+                    attributions, organisation et fonctionnement du Ministère du Travail et de la Fonction Publique, la 
+                    direction générale du renforcement des capacités et de l'employabilité assure la mise en œuvre de la 
+                    politique de l'État en matière de formation et de valorisation des ressources humaines.
+                  </p>
+                </div>
+              </div>
+              
+              <!-- Directeur Général Adjoint -->
+              <div class="flex items-start space-x-6">
+                <div class="flex-shrink-0">
+                  <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
+                       alt="OHOSSA Saturnin Djiki - Directeur Général Adjoint" 
+                       class="w-32 h-40 object-cover rounded-lg shadow-md">
+                  <div class="text-center mt-2">
+                    <p class="text-sm font-semibold text-gray-900 dark:text-white">OHOSSA Saturnin Djiki</p>
+                    <p class="text-xs text-gray-600 dark:text-gray-400">Directeur Général Adjoint</p>
+                  </div>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Attributions</h3>
+                  <p class="text-gray-700 dark:text-gray-300 mb-4">À ce titre, elle est chargée, en liaison avec les structures techniques des autres ministères et institutions de l'État :</p>
+                  <ul class="space-y-3 text-gray-700 dark:text-gray-300">
+                    <li class="flex items-start">
+                      <span class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                      <span>de promouvoir l'employabilité et le développement de l'expertise des agents de l'État et de la main d'œuvre</span>
+                    </li>
+                    <li class="flex items-start">
+                      <span class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                      <span>d'assurer la réglementation et le contrôle du contrat d'apprentissage dans les corps de métiers, en collaboration avec les ministères compétents</span>
+                    </li>
+                    <li class="flex items-start">
+                      <span class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                      <span>d'accompagner les structures et organismes de formation professionnelle continue des agents de l'État et du secteur privé</span>
+                    </li>
+                    <li class="flex items-start">
+                      <span class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                      <span>d'agréer les centres de formation continue qualifiants des agents de l'État et du secteur privé</span>
+                    </li>
+                    <li class="flex items-start">
+                      <span class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                      <span>de contrôler l'application de la réglementation relative au fonctionnement des centres agréés de formation continue et du contenu de leurs programmes de formation en collaboration avec le ministère en charge de la formation technique et professionnelle</span>
+                    </li>
+                    <li class="flex items-start">
+                      <span class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                      <span>d'assurer le développement des ressources humaines et la programmation de la formation, notamment du personnel civil de l'État</span>
+                    </li>
+                    <li class="flex items-start">
+                      <span class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                      <span>de centraliser la documentation relative à la formation professionnelle continue des agents de l'État</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Directrice spécialisée -->
+            <div class="mt-12 text-center animate-on-scroll">
+              <div class="inline-block">
+                <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
+                     alt="GOUIDA Noëlchée Marylène Rékiath" 
+                     class="w-40 h-48 object-cover rounded-lg shadow-md mx-auto mb-4">
+                <h3 class="text-lg font-bold text-secondary-800 dark:text-secondary-400 mb-2">GOUIDA Noëlchée Marylène Rékiath</h3>
+                <p class="text-gray-600 dark:text-gray-300 text-sm">Directrice de la Formation Continue, des Bourses Pratiques, de la Planification TI et de Validation des Plans de Formation</p>
+              </div>
+            </div>
+            
+            <!-- Boutons PDF -->
+            <div class="flex flex-col sm:flex-row gap-4 mt-8 justify-center">
+              <a href="#" class="inline-flex items-center px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors">
+                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                </svg>
+                Lire l'arrêté
+              </a>
+              <a href="#" class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors">
+                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                </svg>
+                Télécharger
+              </a>
+            </div>
+          </div>
+          <div class="animate-on-scroll">
+            <img src="https://images.pexels.com/photos/3184317/pexels-photo-3184317.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                 alt="Direction Renforcement Capacités" 
+                 class="rounded-2xl shadow-lg w-full">
+          </div>
+        </div>
+      </div>
+    </section>
             <div class="bg-secondary-50 dark:bg-secondary-900/20 rounded-lg p-6">
               <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">Directeur Général DGRCE</h3>
               <p class="text-secondary-800 dark:text-secondary-400 font-medium">M. [Nom du Directeur Général]</p>

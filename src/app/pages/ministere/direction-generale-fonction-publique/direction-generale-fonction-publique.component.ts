@@ -24,16 +24,165 @@ import { AnimationService } from '../../../shared/services/animation.service';
       <div class="container-custom">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div class="animate-on-scroll">
-            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">La Direction Générale de la Fonction Publique</h2>
-            <p class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-              La Direction Générale de la Fonction Publique (DGFP) est l'organe central chargé de la gestion 
-              des ressources humaines de l'État et de la modernisation de l'administration publique béninoise.
-            </p>
-            <p class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-              Elle élabore et met en œuvre les politiques de gestion des agents publics, veille à l'application 
-              du statut général de la fonction publique et pilote les réformes administratives pour améliorer 
-              l'efficacité et la qualité des services publics.
-            </p>
+            <div class="space-y-8">
+              <!-- Directeur Général -->
+              <div class="flex items-start space-x-6">
+                <div class="flex-shrink-0">
+                  <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
+                       alt="AKAMMON C. Eric - Directeur Général" 
+                       class="w-32 h-40 object-cover rounded-lg shadow-md">
+                  <div class="text-center mt-2">
+                    <p class="text-sm font-semibold text-gray-900 dark:text-white">AKAMMON C. Eric</p>
+                    <p class="text-xs text-gray-600 dark:text-gray-400">Directeur Général</p>
+                  </div>
+                </div>
+                <div class="flex-1">
+                  <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Mission</h2>
+                  <p class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+                    Conformément aux dispositions de l'article 9 du décret n° 2021-562 du 03 novembre 2021 portant 
+                    attributions, organisation et fonctionnement du Ministère du Travail et de la Fonction Publique, la 
+                    direction générale de la fonction publique définit, suit et évalue la politique de l'État en matière de 
+                    fonction publique.
+                  </p>
+                </div>
+              </div>
+              
+              <!-- Directeur Général Adjoint -->
+              <div class="flex items-start space-x-6">
+                <div class="flex-shrink-0">
+                  <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
+                       alt="MIGAN Bolanle Regina Henriette Ayéfé - Directeur Général Adjoint" 
+                       class="w-32 h-40 object-cover rounded-lg shadow-md">
+                  <div class="text-center mt-2">
+                    <p class="text-sm font-semibold text-gray-900 dark:text-white">MIGAN Bolanle Regina</p>
+                    <p class="text-xs text-gray-600 dark:text-gray-400">Directeur Général Adjoint</p>
+                  </div>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Attributions</h3>
+                  <p class="text-gray-700 dark:text-gray-300 mb-4">À ce titre, elle est chargée :</p>
+                  <ul class="space-y-3 text-gray-700 dark:text-gray-300">
+                    <li class="flex items-start">
+                      <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                      <span>d'assurer la gestion prévisionnelle et la programmation des effectifs de fonction publique</span>
+                    </li>
+                    <li class="flex items-start">
+                      <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                      <span>d'organiser le recrutement des agents de l'État</span>
+                    </li>
+                    <li class="flex items-start">
+                      <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                      <span>de suivre la gestion des carrières des agents de l'État ; d'organiser la gestion des départs à la retraite</span>
+                    </li>
+                    <li class="flex items-start">
+                      <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                      <span>de conserver les archives du personnel de l'État ; d'élaborer les projets de textes législatifs et réglementaires en matière de fonction publique</span>
+                    </li>
+                    <li class="flex items-start">
+                      <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                      <span>de gérer les relations avec les juridictions en matière de contentieux administratif</span>
+                    </li>
+                    <li class="flex items-start">
+                      <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                      <span>d'organiser la discipline dans la fonction publique</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Boutons PDF -->
+            <div class="flex flex-col sm:flex-row gap-4 mt-8">
+              <a href="#" class="inline-flex items-center px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors">
+                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                </svg>
+                Lire l'arrêté
+              </a>
+              <a href="#" class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors">
+                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                </svg>
+                Télécharger
+              </a>
+            </div>
+          </div>
+          <div class="animate-on-scroll">
+            <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                 alt="Direction Générale Fonction Publique" 
+                 class="rounded-2xl shadow-lg w-full">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Équipe dirigeante -->
+    <section class="section-padding bg-white dark:bg-gray-900">
+      <div class="container-custom">
+        <div class="text-center mb-16 animate-on-scroll">
+          <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Équipe Dirigeante</h2>
+          <p class="text-xl text-gray-600 dark:text-gray-300">
+            Les responsables des différents départements
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- ZENONTIN Zita Emma épouse DOSSA DAHI -->
+          <div class="card p-6 text-center animate-on-scroll">
+            <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
+                 alt="ZENONTIN Zita Emma épouse DOSSA DAHI" 
+                 class="w-32 h-40 object-cover rounded-lg shadow-md mx-auto mb-4">
+            <h3 class="text-sm font-bold text-primary-800 dark:text-primary-400 mb-2">ZENONTIN Zita Emma épouse DOSSA DAHI</h3>
+            <p class="text-gray-600 dark:text-gray-300 text-xs">Chef du Département des Retraites et des Archives</p>
+          </div>
+          
+          <!-- MASSOU Siaka -->
+          <div class="card p-6 text-center animate-on-scroll">
+            <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
+                 alt="MASSOU Siaka" 
+                 class="w-32 h-40 object-cover rounded-lg shadow-md mx-auto mb-4">
+            <h3 class="text-sm font-bold text-primary-800 dark:text-primary-400 mb-2">MASSOU Siaka</h3>
+            <p class="text-gray-600 dark:text-gray-300 text-xs">Chef du Département du Recrutement des Agents de l'État</p>
+          </div>
+          
+          <!-- AHOUANDOGBO Gbosshgan Elodie -->
+          <div class="card p-6 text-center animate-on-scroll">
+            <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
+                 alt="AHOUANDOGBO Gbosshgan Elodie" 
+                 class="w-32 h-40 object-cover rounded-lg shadow-md mx-auto mb-4">
+            <h3 class="text-sm font-bold text-primary-800 dark:text-primary-400 mb-2">AHOUANDOGBO Gbosshgan Elodie</h3>
+            <p class="text-gray-600 dark:text-gray-300 text-xs">Chef du Département des Études, du Contentieux et du Régime Disciplinaire</p>
+          </div>
+          
+          <!-- IDOHOU Prosper -->
+          <div class="card p-6 text-center animate-on-scroll">
+            <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
+                 alt="IDOHOU Prosper" 
+                 class="w-32 h-40 object-cover rounded-lg shadow-md mx-auto mb-4">
+            <h3 class="text-sm font-bold text-primary-800 dark:text-primary-400 mb-2">IDOHOU Prosper</h3>
+            <p class="text-gray-600 dark:text-gray-300 text-xs">Chef de la Cellule de Gestion du Fichier Unique de Référence et de Programmation des Effectifs</p>
+          </div>
+        </div>
+        
+        <div class="text-center mt-12 animate-on-scroll">
+          <p class="text-lg text-gray-700 dark:text-gray-300 mb-4">Elle assure en outre, le secrétariat permanent :</p>
+          <ul class="space-y-2 text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
+            <li class="flex items-start">
+              <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+              <span>du comité consultatif paritaire de la fonction publique</span>
+            </li>
+            <li class="flex items-start">
+              <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+              <span>de la conférence des gestionnaires des ressources humaines</span>
+            </li>
+            <li class="flex items-start">
+              <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+              <span>du conseil national de discipline</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
             <div class="bg-primary-50 dark:bg-primary-900/20 rounded-lg p-6">
               <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">Directeur Général de la Fonction Publique</h3>
               <p class="text-primary-800 dark:text-primary-400 font-medium">M. [Nom du Directeur Général]</p>

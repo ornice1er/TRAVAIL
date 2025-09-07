@@ -24,26 +24,92 @@ import { AnimationService } from '../../../shared/services/animation.service';
       <div class="container-custom">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div class="animate-on-scroll">
-            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Le Secrétariat Général</h2>
-            <p class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-              Le Secrétariat Général constitue l'organe central de coordination, d'administration et de gestion 
-              du Ministère du Travail et de la Fonction Publique. Il assure la liaison entre le Cabinet du Ministre 
-              et les différentes directions techniques du ministère.
-            </p>
-            <p class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-              Placé sous l'autorité directe du Ministre, le Secrétariat Général veille à la mise en œuvre 
-              des orientations politiques et stratégiques définies par la tutelle, tout en assurant 
-              la coordination des activités de l'ensemble des services du ministère.
-            </p>
-            <div class="bg-primary-50 dark:bg-primary-900/20 rounded-lg p-6">
-              <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">Secrétaire Général</h3>
-              <p class="text-primary-800 dark:text-primary-400 font-medium">M. [Nom du Secrétaire Général]</p>
+            <div class="relative">
+              <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
+                   alt="ALOHON N. Germain - Secrétaire Général du Ministère" 
+                   class="rounded-2xl shadow-lg w-full max-w-md mx-auto">
+              <div class="absolute -bottom-6 -right-6 w-24 h-24 bg-primary-700 rounded-full flex items-center justify-center">
+                <span class="text-white text-2xl">🇧🇯</span>
+              </div>
+            </div>
+            <div class="mt-8 text-center">
+              <h3 class="text-xl font-bold text-primary-800 dark:text-primary-400 mb-2">ALOHON N. Germain</h3>
+              <p class="text-gray-600 dark:text-gray-300">Secrétaire Général du Ministère</p>
             </div>
           </div>
           <div class="animate-on-scroll">
-            <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                 alt="Secrétariat Général" 
-                 class="rounded-2xl shadow-lg w-full">
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Le Secrétariat Général</h2>
+            
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Mission</h3>
+            <p class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+              Conformément aux dispositions de l'article 39 du décret n° 2021-401 du 28 juillet 2021 fixant le 
+              nouveau type des ministères, le secrétariat général du Ministère du Travail et de la Fonction Publique est 
+              l'organe chargé de l'exécution correcte de la mission du ministère. Il veille à l'exécution des résultats et à la 
+              satisfaction des besoins des citoyens.
+            </p>
+            <p class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+              Il assure la continuité de l'administration du ministère.
+            </p>
+            
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Attributions</h3>
+            <p class="text-lg text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+              À ce titre et sous autorité du ministre,
+            </p>
+            <ul class="space-y-3 text-gray-700 dark:text-gray-300">
+              <li class="flex items-start">
+                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                <span>propose en collaboration avec le cabinet du ministre, les orientations stratégiques destinées à traduire la vision, les politiques et les stratégies du</span>
+              </li>
+              <li class="flex items-start">
+                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                <span>gouvernement dans les secteurs d'activités relevant du ministère</span>
+              </li>
+              <li class="flex items-start">
+                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                <span>veille à la mise en œuvre du Programme d'Actions du Gouvernement (PAG) et des orientations stratégiques du département en collaboration avec le cabinet du ministère</span>
+              </li>
+              <li class="flex items-start">
+                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                <span>veille à aligner toutes les directions centrales, techniques et départementales sur les orientations stratégiques du département et coordonne les actions de mise en œuvre du programme de renforcement du leadership des du ministère</span>
+              </li>
+              <li class="flex items-start">
+                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                <span>assure un rôle technique sur tous les dossiers relevant de l'Inspection du ministère</span>
+              </li>
+              <li class="flex items-start">
+                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                <span>assure avec l'appui technique du programme support, l'élaboration des rapports, l'évaluation et la capitalisation du plan d'amélioration de la performance</span>
+              </li>
+              <li class="flex items-start">
+                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                <span>globale du ministère, de ses politiques, de ses programmes et de ses projets</span>
+              </li>
+              <li class="flex items-start">
+                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                <span>coordonne les activités du personnel du ministère à l'effet de formuler des résultats, une exigence de performance et de qualité de service qui réponde aux besoins spécifiques des citoyens, optimise les ressources intrants et activités</span>
+              </li>
+              <li class="flex items-start">
+                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                <span>développe, en collaboration avec le cabinet du ministère et en liaison avec les autres départements ministériels, des partenariats, des réseaux et des coopérations avec le secteur privé, la société civile, les organisations, les partenaires techniques et financiers aux plans national et international</span>
+              </li>
+              <li class="flex items-start">
+                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                <span>assure la coordination de l'ensemble des activités du ministère en matière de gestion administrative et de gestion des finances publiques au sein du ministère, en liaison avec la direction de la planification, de l'administration et des finances, la direction des systèmes d'information et les directions techniques</span>
+              </li>
+              <li class="flex items-start">
+                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                <span>assure l'élaboration du rapport annuel de capitalisation des bonnes pratiques pour consolider les acquis et enrichir la culture administrative, exécute toutes autres tâches à lui confiées par le ministère dans le strict respect des lois et règlements.</span>
+              </li>
+            </ul>
+            
+            <div class="mt-8 bg-primary-50 dark:bg-primary-900/20 rounded-lg p-6">
+              <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                Le secrétaire général du ministère est dirigé par un secrétaire général assisté d'un secrétaire général adjoint.
+              </p>
+              <p class="text-gray-700 dark:text-gray-300 leading-relaxed mt-4">
+                Les directeurs centraux, les directeurs techniques, les directeurs départementaux et les responsables d'organismes sont intégrés sous l'autorité du secrétaire général du ministère.
+              </p>
+            </div>
           </div>
         </div>
       </div>
