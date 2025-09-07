@@ -183,19 +183,6 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
       </div>
     </section>
-            <div class="bg-primary-50 dark:bg-primary-900/20 rounded-lg p-6">
-              <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">Directeur Général de la Fonction Publique</h3>
-              <p class="text-primary-800 dark:text-primary-400 font-medium">M. [Nom du Directeur Général]</p>
-            </div>
-          </div>
-          <div class="animate-on-scroll">
-            <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                 alt="Direction Générale Fonction Publique" 
-                 class="rounded-2xl shadow-lg w-full">
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- Missions -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
