@@ -27,7 +27,7 @@ import { AnimationService } from "../../shared/services/animation.service";
                       <div class="inline-block bg-white/20 dark:bg-white/10 px-4 py-2 rounded-full text-sm font-medium mb-4">
                         {{ communique.type }}
                       </div>
-                      <h1 class="text-3xl lg:text-5xl font-bold mb-6 leading-tight">
+                      <h1 class="text-3xl lg:text-3xl font-bold mb-6 leading-tight">
                         {{ communique.titre }}
                       </h1>
                       <p class="text-lg lg:text-xl mb-8 text-white/90 font-light">
@@ -239,9 +239,9 @@ import { AnimationService } from "../../shared/services/animation.service";
     <!-- Actualités -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <!-- <div class="grid grid-cols-1 lg:grid-cols-3 gap-12"> -->
           <!-- Actualités principales -->
-          <div class="lg:col-span-2">
+          <!-- <div class=""> -->
             <div
               class="flex items-center justify-between mb-8 animate-on-scroll"
             >
@@ -256,7 +256,7 @@ import { AnimationService } from "../../shared/services/animation.service";
               </a>
             </div>
 
-            <div class="space-y-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-2 gap-6">
               <article
                 *ngFor="let actualite of actualitesRecentes"
                 class="card overflow-hidden animate-on-scroll hover:shadow-lg transition-all duration-300"
@@ -304,7 +304,7 @@ import { AnimationService } from "../../shared/services/animation.service";
           </div>
 
           <!-- Sidebar Communiqués -->
-          <div class="lg:col-span-1">
+          <!-- <div class="lg:col-span-1">
             <div class="animate-on-scroll">
               <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-8">
                 Communiqués
@@ -344,9 +344,9 @@ import { AnimationService } from "../../shared/services/animation.service";
                 </a>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
+          </div> -->
+        <!-- </div>
+      </div> -->
     </section>
 
     <!-- Appel à l'action -->
