@@ -25,15 +25,15 @@ import { AnimationService } from '../../../shared/services/animation.service';
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div class="animate-on-scroll">
             <div class="relative">
-              <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
+              <img src="https://www.travail.gouv.bj/storage/structures/respos/1708440169alokpo-n-germain.jpg" 
                    alt="KANHOUNON Norbert Bocreace - Inspecteur Général des Services et Emplois Publics" 
-                   class="rounded-2xl shadow-lg w-full max-w-md mx-auto">
-              <div class="absolute -bottom-6 -right-6 w-24 h-24 bg-accent-700 rounded-full flex items-center justify-center">
+                   class="rounded-2xl shadow-lg w-full max-w-2xs mx-auto">
+              <!-- <div class="absolute -bottom-6 -right-6 w-16 h-16 bg-accent-700 rounded-full flex items-center justify-center">
                 <span class="text-white text-2xl">🇧🇯</span>
-              </div>
+              </div> -->
             </div>
-            <div class="mt-8 text-center">
-              <h3 class="text-xl font-bold text-accent-800 dark:text-accent-400 mb-2">KANHOUNON Norbert Bocreace</h3>
+            <div class="mt-3 text-center">
+              <h3 class="text-xl font-bold text-accent-800 dark:text-accent-400 mb-0">KANHOUNON Norbert Bocreace</h3>
               <p class="text-gray-600 dark:text-gray-300">Inspecteur Général des Services et Emplois Publics</p>
             </div>
           </div>
