@@ -1,6 +1,7 @@
 @import 'tailwindcss';
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
 @config "../tailwind.config.js";
+@import 'mapbox-gl/dist/mapbox-gl.css';
 
 
 /* Styles personnalisés */
