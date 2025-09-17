@@ -51,7 +51,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
               <!-- Directeur Général -->
               <div class="text-center">
                 <div class="relative inline-block">
-                  <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
+                  <img src="https://www.travail.gouv.bj/storage/structures/respos/1709533437avalla-omer-w-charles.jpg" 
                        alt="AVALLA Omer W. Charles - Directeur Général" 
                        class="rounded-2xl shadow-lg w-full max-w-sm mx-auto">
                   <div class="absolute -bottom-6 -right-6 w-16 h-16 bg-secondary-700 rounded-full flex items-center justify-center">
@@ -67,7 +67,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
               <!-- Directeur Général Adjoint -->
               <div class="text-center">
                 <div class="relative inline-block">
-                  <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
+                  <img src="https://www.travail.gouv.bj/storage/teams/1677698988ohossa-sourou-djile.JPG" 
                        alt="OHOSSA Saturnin Djiki - Directeur Général Adjoint" 
                        class="rounded-2xl shadow-lg w-full max-w-sm mx-auto">
                 </div>
@@ -77,18 +77,6 @@ import { AnimationService } from '../../../shared/services/animation.service';
                 </div>
               </div>
               
-              <!-- Directrice spécialisée -->
-              <div class="text-center">
-                <div class="relative inline-block">
-                  <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
-                       alt="GOUIDA Noëlchée Marylène Rékiath" 
-                       class="rounded-2xl shadow-lg w-full max-w-sm mx-auto">
-                </div>
-                <div class="mt-6">
-                  <h3 class="text-lg font-bold text-secondary-800 dark:text-secondary-400 mb-2">GOUIDA Noëlchée Marylène Rékiath</h3>
-                  <p class="text-gray-600 dark:text-gray-300 text-sm">Directrice de la Formation Continue, des Bourses Pratiques, de la Planification TI et de Validation des Plans de Formation</p>
-                </div>
-              </div>
             </div>
           </div>
           
@@ -179,11 +167,11 @@ import { AnimationService } from '../../../shared/services/animation.service';
             </div>
             <h3 class="text-sm font-bold text-secondary-800 dark:text-secondary-400 mb-2">{{ directeur.nom }}</h3>
             <p class="text-gray-600 dark:text-gray-300 text-xs mb-3">{{ directeur.fonction }}</p>
-            <div class="space-y-2">
+            <!-- <div class="space-y-2">
               <div *ngFor="let responsabilite of directeur.responsabilites" class="text-xs text-gray-500 dark:text-gray-400">
                 • {{ responsabilite }}
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -354,35 +342,15 @@ export class DirectionRenforcementCapacitesComponent implements AfterViewInit {
   
   directeursTechniques = [
     {
-      nom: 'KOSSOU Marie-Claire',
-      fonction: 'Directrice Technique Formation',
-      photo: 'https://images.pexels.com/photos/3184317/pexels-photo-3184317.jpeg?auto=compress&cs=tinysrgb&w=200',
-      responsabilites: [
-        'Coordination des programmes de formation',
-        'Développement pédagogique',
-        'Évaluation des formations'
-      ]
+      nom: 'GOUDA Nodichao Marylène Rékiath',
+      fonction: 'Directrice de la Formation Continue, des Bonnes Pratiques, de la Planification Et de Validation des Plans de Formation',
+      photo: 'https://www.travail.gouv.bj/storage/teams/1677699129gouda-nodichao-marylene-rekiath.JPG',
+      // responsabilites: [
+      //   'Coordination des programmes de formation',
+      //   'Développement pédagogique',
+      //   'Évaluation des formations'
+      // ]
     },
-    {
-      nom: 'AGBESSI Jean-Claude',
-      fonction: 'Directeur Technique Employabilité',
-      photo: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=200',
-      responsabilites: [
-        'Programmes d\'insertion',
-        'Partenariats entreprises',
-        'Suivi de l\'employabilité'
-      ]
-    },
-    {
-      nom: 'DOSSOU Sylvain',
-      fonction: 'Directeur Technique Certification',
-      photo: 'https://images.pexels.com/photos/3184302/pexels-photo-3184302.jpeg?auto=compress&cs=tinysrgb&w=200',
-      responsabilites: [
-        'Certification des compétences',
-        'Validation des acquis',
-        'Normes de qualité'
-      ]
-    }
   ];
   
   fichesMetiers = [

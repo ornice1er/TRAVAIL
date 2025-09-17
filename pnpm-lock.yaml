@@ -35,12 +35,18 @@ importers:
       '@tailwindcss/typography':
         specifier: ^0.5.16
         version: 0.5.16(tailwindcss@4.1.11)
+      '@tailwindplus/elements':
+        specifier: ^1.0.13
+        version: 1.0.13
       autoprefixer:
         specifier: ^10.4.21
         version: 10.4.21(postcss@8.5.6)
       mapbox-gl:
         specifier: ^3.14.0
         version: 3.14.0
+      ngx-extended-pdf-viewer:
+        specifier: 25.6.0-alpha.3
+        version: 25.6.0-alpha.3(@angular/common@19.2.14(@angular/core@19.2.14(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@19.2.14(rxjs@7.8.2)(zone.js@0.15.1))
       rxjs:
         specifier: ^7.8.1
         version: 7.8.2
@@ -1149,6 +1155,9 @@ packages:
     peerDependencies:
       tailwindcss: '>=3.0.0 || insiders || >=4.0.0-alpha.20 || >=4.0.0-beta.1'
 
+  '@tailwindplus/elements@1.0.13':
+    resolution: {integrity: sha512-Y0K4D47rf/+Bnj2NLPl+AJykujDsEtcF+CL1DiVnE/qjmxA50+FSACNKmoyAPURq6RF/IrS0YIb8xUjtvstCSw==}
+
   '@tufjs/canonical-json@2.0.0':
     resolution: {integrity: sha512-yVtV8zsdo8qFHe+/3kw81dSLyF7D576A5cCFCi4X7B39tWT7SekaEFUnvnWJHz+9qO7qJTah1JbrDjWKqFtdWA==}
     engines: {node: ^16.14.0 || >=18.0.0}
@@ -1908,6 +1917,12 @@ packages:
   negotiator@1.0.0:
     resolution: {integrity: sha512-8Ofs/AUQh8MaEcrlq5xOX0CQ9ypTF5dl78mjlMNfOK08fzpgTHQRQPBxcPlEtIw0yRpws+Zo/3r+5WRby7u3Gg==}
     engines: {node: '>= 0.6'}
+
+  ngx-extended-pdf-viewer@25.6.0-alpha.3:
+    resolution: {integrity: sha512-9l1JJ0FQkdOgVpiQvGvWRXJ7XaLydsx/pgNgWO7CA5+Vn/kd0tsiBbMpmGA92Q3HSmjvQvPMRBlSQmoH6e4PAA==}
+    peerDependencies:
+      '@angular/common': '>=17.0.0 <21.0.0'
+      '@angular/core': '>=17.0.0 <21.0.0'
 
   node-addon-api@6.1.0:
     resolution: {integrity: sha512-+eawOlIgy680F0kBzPUNFhMZGtJ1YmqM6l4+Crf4IkImjYrO/mqPwRMh352g23uIaQKFItcQ64I7KMaJxHgAVA==}
@@ -3419,6 +3434,8 @@ snapshots:
       postcss-selector-parser: 6.0.10
       tailwindcss: 4.1.11
 
+  '@tailwindplus/elements@1.0.13': {}
+
   '@tufjs/canonical-json@2.0.0': {}
 
   '@tufjs/models@3.0.1':
@@ -4177,6 +4194,12 @@ snapshots:
   nanoid@3.3.11: {}
 
   negotiator@1.0.0: {}
+
+  ngx-extended-pdf-viewer@25.6.0-alpha.3(@angular/common@19.2.14(@angular/core@19.2.14(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@19.2.14(rxjs@7.8.2)(zone.js@0.15.1)):
+    dependencies:
+      '@angular/common': 19.2.14(@angular/core@19.2.14(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
+      '@angular/core': 19.2.14(rxjs@7.8.2)(zone.js@0.15.1)
+      tslib: 2.8.1
 
   node-addon-api@6.1.0:
     optional: true

@@ -45,11 +45,20 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Mission & Attribution -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div class="">
-            <img src="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                 alt="Directions Départementales" 
-                 class="rounded-2xl shadow-lg w-full">
+            <div class="relative">
+              <img src="/benin.jpg" 
+                   alt="Drapeau Bénin" 
+                   class="rounded-2xl shadow-lg w-full max-w-md mx-auto">
+              <!-- <div class="absolute -bottom-6 -right-6 w-16 h-16 bg-primary-700 rounded-full flex items-center justify-center">
+                <span class="text-white text-2xl">🇧🇯</span>
+              </div> -->
+            </div>
+            <!-- <div class="mt-6 text-center">
+              <h3 class="text-xl font-bold text-primary-800 dark:text-primary-400 mb-2">GANDAHO D. J. Wilfried</h3>
+              <p class="text-gray-600 dark:text-gray-300">Directeur</p>
+            </div> -->
           </div>
           
           <div class="">
@@ -57,43 +66,25 @@ import { AnimationService } from '../../../shared/services/animation.service';
             
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Mission</h3>
             <p class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-              Les Directions Départementales du Travail et de la Fonction Publique constituent le réseau 
-              territorial du ministère, assurant la mise en œuvre des politiques publiques au niveau local 
-              et le rapprochement des services de l'administration des citoyens.
+              Conformément aux dispositions de l'article 10 du décret n° 2021-562 du 3 novembre 2021 portant attributions, organisation et fonctionnement du Ministère du Travail et de la Fonction publique, les directions départementales du travail et de la fonction publique sont des démembrements territoriaux du ministère chargés de la gestion des plans d'action sectoriels, de l'assistance technique et de l'appui-consell aux communes, dans les domaines de compétence du ministère, conformément aux lois sur la décentralisation.
+
+
             </p>
             
-            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Attributions</h3>
-            <p class="text-gray-700 dark:text-gray-300 mb-4">Elles sont chargées :</p>
-            <ul class="space-y-3 text-gray-700 dark:text-gray-300">
-              <li class="flex items-start">
-                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                <span>de représenter le ministère au niveau départemental</span>
-              </li>
-              <li class="flex items-start">
-                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                <span>de décliner et mettre en œuvre les politiques nationales au niveau territorial</span>
-              </li>
-              <li class="flex items-start">
-                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                <span>d'offrir des services de proximité aux citoyens et aux entreprises</span>
-              </li>
-              <li class="flex items-start">
-                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                <span>d'assurer le contrôle de l'application de la législation du travail</span>
-              </li>
-              <li class="flex items-start">
-                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                <span>de collecter et transmettre les données statistiques locales</span>
-              </li>
-              <li class="flex items-start">
-                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                <span>de développer des initiatives locales de promotion de l'emploi</span>
-              </li>
-            </ul>
-            
-            <div class="bg-primary-50 dark:bg-primary-900/20 rounded-lg p-6 mt-6">
-              <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">Coordination Nationale</h3>
-              <p class="text-primary-800 dark:text-primary-400 font-medium">Direction de la Coordination Territoriale</p>
+            <!-- Boutons de téléchargement -->
+            <div class="flex flex-col sm:flex-row gap-4 mt-8">
+              <a href="#" class="inline-flex items-center px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors">
+                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                </svg>
+                Lire l'arrêté
+              </a>
+              <a href="#" class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors">
+                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                </svg>
+                Télécharger
+              </a>
             </div>
           </div>
         </div>
@@ -110,23 +101,24 @@ import { AnimationService } from '../../../shared/services/animation.service';
           </p>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div *ngFor="let departement of departements" class="card p-4 text-center ">
-            <div class="w-16 h-20 bg-gray-200 dark:bg-gray-700 rounded-lg mx-auto mb-3 overflow-hidden">
-              <div class="w-full h-full bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
-                <span class="text-xl text-primary-600 dark:text-primary-400">🏛️</span>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div *ngFor="let directeur of departements" class="card p-6 text-center ">
+            <div class="w-32 h-48 bg-gray-200 dark:bg-gray-700 rounded-lg mx-auto mb-4 overflow-hidden">
+              <img [src]="directeur.photo" 
+                   [alt]="directeur.nom" 
+                   class="w-full h-full object-cover"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+              <div class="w-full h-full bg-secondary-100 dark:bg-secondary-900/30 rounded-lg flex items-center justify-center" style="display: none;">
+                <span class="text-2xl text-secondary-600 dark:text-secondary-400">👤</span>
               </div>
             </div>
-            <h3 class="text-sm font-bold text-primary-800 dark:text-primary-400 mb-1">{{ departement.nom }}</h3>
-            <p class="text-gray-600 dark:text-gray-300 text-xs mb-2">{{ departement.chefLieu }}</p>
-            <div class="space-y-1 text-xs text-gray-500 dark:text-gray-400">
-              <div>{{ departement.population }} hab.</div>
-              <div>{{ departement.communes }} communes</div>
-              <div>{{ departement.agents }} agents</div>
-            </div>
-            <p class="text-xs text-primary-700 dark:text-primary-400 font-medium mt-2">
-              {{ departement.directeur }}
-            </p>
+            <h3 class="text-sm font-bold text-secondary-800 dark:text-secondary-400 mb-2">{{ directeur.directeur }}</h3>
+            <p class="text-gray-600 dark:text-gray-300 text-xs mb-3">{{ directeur.nom }}</p>
+            <!-- <div class="space-y-2">
+              <div *ngFor="let responsabilite of directeur.responsabilites" class="text-xs text-gray-500 dark:text-gray-400">
+                • {{ responsabilite }}
+              </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -297,100 +289,64 @@ export class DirectionsDepartementalesComponent implements AfterViewInit {
   
   departements = [
     {
-      nom: 'Alibori',
-      chefLieu: 'Kandi',
-      population: '867,463',
-      communes: '6',
-      agents: '45',
-      directeur: 'M. [Nom]'
+      nom: 'Direction Départementale Alibori',
+      directeur: 'M. COLLY Faustin Tiburce',
+      photo:'https://www.travail.gouv.bj/storage/structures/respos/faustin-tiburce-colly.jpg'
     },
     {
-      nom: 'Atacora',
-      chefLieu: 'Natitingou',
-      population: '772,262',
-      communes: '9',
-      agents: '52',
-      directeur: 'Mme [Nom]'
+      nom: 'Direction Départementale Atacora',
+      directeur: 'M. SEKE Jacques',
+      photo:'https://www.travail.gouv.bj/storage/structures/respos/seke-jacques.jpg'
     },
     {
-      nom: 'Atlantique',
-      chefLieu: 'Allada',
-      population: '1,398,229',
-      communes: '8',
-      agents: '68',
-      directeur: 'M. [Nom]'
+      nom: 'Direction Départementale Atlantique',
+      directeur: 'Mme ALASSANE OUASSAGARI Lamatou',
+      photo:'https://www.travail.gouv.bj/storage/structures/respos/alassane-ouassagari-lamatou.JPG'
     },
     {
-      nom: 'Borgou',
-      chefLieu: 'Parakou',
-      population: '1,214,249',
-      communes: '8',
-      agents: '62',
-      directeur: 'M. [Nom]'
+      nom: 'Direction Départementale Borgou',
+      directeur: 'M. TAHOUNGA Biwègnon Robert Bertrand',
+      photo:'https://www.travail.gouv.bj/storage/structures/respos/1733740668tahounga-biwegnon-robert-bertrand.jpg'
     },
     {
-      nom: 'Collines',
-      chefLieu: 'Savalou',
-      population: '716,558',
-      communes: '6',
-      agents: '38',
-      directeur: 'Mme [Nom]'
+      nom: 'Direction Départementale Collines',
+      directeur: 'Mme DAFIA YAROU Gniré',
+      photo:'https://www.travail.gouv.bj/storage/structures/respos/dafia-yarou-gnire.jpg'
     },
     {
-      nom: 'Couffo',
-      chefLieu: 'Aplahoué',
-      population: '741,895',
-      communes: '6',
-      agents: '35',
-      directeur: 'M. [Nom]'
+      nom: 'Direction Départementale Couffo',
+      directeur: 'M. ADOSSOU Jules Parfait Akpédjé',
+      photo:'https://www.travail.gouv.bj/storage/structures/respos/1678289709adossou-jules-parfait-akpedje.jpg'
     },
     {
-      nom: 'Donga',
-      chefLieu: 'Djougou',
-      population: '543,130',
-      communes: '4',
-      agents: '28',
-      directeur: 'M. [Nom]'
+      nom: 'Direction Départementale Donga',
+      directeur: 'Mme AMOUSSOU Valéry James',
+      photo:'https://www.travail.gouv.bj/storage/structures/respos/valery-james-amoussou.png'
     },
     {
-      nom: 'Littoral',
-      chefLieu: 'Cotonou',
-      population: '679,012',
-      communes: '1',
-      agents: '85',
-      directeur: 'Mme [Nom]'
+      nom: 'Direction Départementale Littoral',
+      directeur: 'Mme LEGBA ADANKON Constance',
+      photo:'https://www.travail.gouv.bj/storage/structures/respos/1708504919legba-adankon-constance.jpg'
     },
     {
-      nom: 'Mono',
-      chefLieu: 'Lokossa',
-      population: '497,243',
-      communes: '6',
-      agents: '32',
-      directeur: 'M. [Nom]'
+      nom: 'Direction Départementale Mono',
+      directeur: 'M. WHANNOU Kolawolé Sidoine Fred',
+      photo:'https://www.travail.gouv.bj/storage/structures/respos/whannou-kolawole-sidoine-fred.jpg'
     },
     {
-      nom: 'Ouémé',
-      chefLieu: 'Porto-Novo',
-      population: '1,096,850',
-      communes: '9',
-      agents: '58',
-      directeur: 'M. [Nom]'
+      nom: 'Direction Départementale Ouémé',
+      directeur: 'Mme AKOTENOU Edwige Sigan',
+      photo:'https://www.travail.gouv.bj/storage/structures/respos/akotenou-sigan-edwige.jpg'
     },
     {
-      nom: 'Plateau',
-      chefLieu: 'Pobè',
-      population: '624,146',
-      communes: '5',
-      agents: '35',
-      directeur: 'Mme [Nom]'
+      nom: 'Direction Départementale Plateau',
+      directeur: 'M. ZOUNMATOUN Raymond',
+      photo:'https://www.travail.gouv.bj/storage/structures/respos/1733740395zounmatoun-raymond.jpg'
     },
     {
-      nom: 'Zou',
-      chefLieu: 'Abomey',
-      population: '851,623',
-      communes: '9',
-      agents: '48',
-      directeur: 'M. [Nom]'
+      nom: 'Direction Départementale Zou',
+      directeur: 'M. TOKPO Houénagnon Gérard',
+      photo:'https://www.travail.gouv.bj/storage/structures/respos/tokpo-houenagnon-gerard.jpg'
     }
   ];
   

@@ -48,7 +48,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div class="">
             <div class="relative">
-              <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
+              <img src="https://www.travail.gouv.bj/storage/structures/respos/gandaho-wilfried.JPG" 
                    alt="GANDAHO D. J. Wilfried - Directeur" 
                    class="rounded-2xl shadow-lg w-full max-w-md mx-auto">
               <div class="absolute -bottom-6 -right-6 w-16 h-16 bg-primary-700 rounded-full flex items-center justify-center">
@@ -124,7 +124,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     </section>
 
     <!-- Présentation des directeurs techniques -->
-    <section class="section-padding bg-gray-50 dark:bg-gray-800">
+    <!-- <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
         <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Directeurs Techniques</h2>
@@ -154,7 +154,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- Fiches métiers -->
     <section class="section-padding bg-white dark:bg-gray-900">

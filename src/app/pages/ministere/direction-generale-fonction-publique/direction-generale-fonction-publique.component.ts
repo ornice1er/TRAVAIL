@@ -48,26 +48,26 @@ import { AnimationService } from '../../../shared/services/animation.service';
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div class="">
             <div class="relative">
-              <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
-                   alt="AKAMMON C. Eric - Directeur Général" 
+              <img src="https://www.travail.gouv.bj/storage/structures/respos/ainanmon-c-eric.JPG" 
+                   alt="AINANMON C. Eric - Directeur Général" 
                    class="rounded-2xl shadow-lg w-full max-w-md mx-auto">
               <div class="absolute -bottom-6 -right-6 w-16 h-16 bg-primary-700 rounded-full flex items-center justify-center">
                 <span class="text-white text-2xl">🇧🇯</span>
               </div>
             </div>
             <div class="mt-6 text-center">
-              <h3 class="text-xl font-bold text-primary-800 dark:text-primary-400 mb-2">AKAMMON C. Eric</h3>
+              <h3 class="text-xl font-bold text-primary-800 dark:text-primary-400 mb-2">AINANMON C. Eric</h3>
               <p class="text-gray-600 dark:text-gray-300">Directeur Général</p>
             </div>
             
             <div class="mt-8">
               <div class="relative">
-                <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
+                <img src="https://www.travail.gouv.bj/storage/teams/1677698519migan-rolande-regina-henriette-ayodele.JPG" 
                      alt="MIGAN Bolanle Regina Henriette Ayéfé - Directeur Général Adjoint" 
                      class="rounded-2xl shadow-lg w-full max-w-md mx-auto">
               </div>
               <div class="mt-6 text-center">
-                <h3 class="text-xl font-bold text-primary-800 dark:text-primary-400 mb-2">MIGAN Bolanle Regina Henriette Ayéfé</h3>
+                <h3 class="text-xl font-bold text-primary-800 dark:text-primary-400 mb-2">MIGAN Rolande Regina Henriette Ayodélé</h3>
                 <p class="text-gray-600 dark:text-gray-300">Directeur Général Adjoint</p>
               </div>
             </div>
@@ -176,11 +176,11 @@ import { AnimationService } from '../../../shared/services/animation.service';
             </div>
             <h3 class="text-sm font-bold text-primary-800 dark:text-primary-400 mb-2">{{ directeur.nom }}</h3>
             <p class="text-gray-600 dark:text-gray-300 text-xs mb-3">{{ directeur.fonction }}</p>
-            <div class="space-y-2">
+            <!-- <div class="space-y-2">
               <div *ngFor="let responsabilite of directeur.responsabilites" class="text-xs text-gray-500 dark:text-gray-400">
                 • {{ responsabilite }}
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -350,45 +350,26 @@ export class DirectionGeneraleFonctionPubliqueComponent implements AfterViewInit
   ];
   
   directeursTechniques = [
-    {
-      nom: 'ZENONTIN Zita Emma épouse DOSSA DAHI',
+   {
+      nom: 'ZENONTIN Zita Emma épouse DOSSA DAH',
       fonction: 'Chef du Département des Retraites et des Archives',
-      photo: 'https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg',
-      responsabilites: [
-        'Gestion des dossiers de retraite',
-        'Conservation des archives',
-        'Traitement des pensions'
-      ]
+      photo: 'https://www.travail.gouv.bj/storage/teams/1677698620zenontin-zita-emma-epouse-dossa-dah.JPG',
     },
     {
       nom: 'MASSOU Siaka',
-      fonction: 'Chef du Département du Recrutement des Agents de l\'État',
-      photo: 'https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg',
-      responsabilites: [
-        'Organisation des concours',
-        'Gestion des recrutements',
-        'Validation des candidatures'
-      ]
+      fonction: 'Chef du Département du Recrutement des Agents de l’Etat',
+      photo: 'https://www.travail.gouv.bj/storage/teams/1677698690massou-siaka.JPG',
     },
     {
-      nom: 'AHOUANDOGBO Gbosshgan Elodie',
-      fonction: 'Chef du Département des Études, du Contentieux et du Régime Disciplinaire',
-      photo: 'https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg',
-      responsabilites: [
-        'Gestion du contentieux',
-        'Procédures disciplinaires',
-        'Études juridiques'
-      ]
+      nom: 'AHOUANDOGBO Gbènakpon Elodie',
+      fonction: 'Chef du Département des Etudes, du Contentieux et du Régime Disciplinaire',
+      photo: 'https://www.travail.gouv.bj/storage/teams/1677698788ahouandogbo-gbenakpon-elodie.JPG',
+
     },
     {
       nom: 'IDOHOU Prosper',
-      fonction: 'Chef de la Cellule de Gestion du Fichier Unique de Référence et de Programmation des Effectifs',
-      photo: 'https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg',
-      responsabilites: [
-        'Gestion du fichier unique',
-        'Programmation des effectifs',
-        'Statistiques RH'
-      ]
+      fonction: 'Chef de la Cellule de Gestion du Fichier Unique de Référence et de la Programmation des Effectifs',
+      photo: 'https://www.travail.gouv.bj/storage/teams/1677698854idohou-prosper.JPG',
     }
   ];
   

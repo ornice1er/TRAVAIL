@@ -28,7 +28,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
             L'impact de l'action de la Direction Générale du Travail
           </p>
         </div>
-        
+
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div *ngFor="let chiffre of chiffres" class="text-center ">
             <div class="w-20 h-20 bg-white/20 dark:bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -51,8 +51,8 @@ import { AnimationService } from '../../../shared/services/animation.service';
               <!-- Directeur Général -->
               <div class="text-center">
                 <div class="relative inline-block">
-                  <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
-                       alt="DAIDOU Edgard - Directeur Général du Travail" 
+                  <img src="https://www.travail.gouv.bj/storage/structures/respos/1708505247dahoui-edgard.jpg"
+                       alt="DAIDOU Edgard - Directeur Général du Travail"
                        class="rounded-2xl shadow-lg w-full max-w-sm mx-auto">
                   <div class="absolute -bottom-6 -right-6 w-16 h-16 bg-secondary-700 rounded-full flex items-center justify-center">
                     <span class="text-white text-2xl">🇧🇯</span>
@@ -63,12 +63,12 @@ import { AnimationService } from '../../../shared/services/animation.service';
                   <p class="text-gray-600 dark:text-gray-300">Directeur Général du Travail</p>
                 </div>
               </div>
-              
+
               <!-- Directeur Général Adjoint -->
               <div class="text-center">
                 <div class="relative inline-block">
-                  <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
-                       alt="BEDJOKINDE Paul N. - Directeur Général Adjoint du Travail" 
+                  <img src="https://www.travail.gouv.bj/storage/teams/1680503358hedokingbe-paul-n.jpg"
+                       alt="BEDJOKINDE Paul N. - Directeur Général Adjoint du Travail"
                        class="rounded-2xl shadow-lg w-full max-w-sm mx-auto">
                 </div>
                 <div class="mt-6">
@@ -78,15 +78,15 @@ import { AnimationService } from '../../../shared/services/animation.service';
               </div>
             </div>
           </div>
-          
+
           <div class="">
             <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Mission & Attribution</h2>
-            
+
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Mission</h3>
             <p class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
               La Direction Générale du Travail assure la mise en œuvre de la politique de l'État en matière de travail.
             </p>
-            
+
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Attributions</h3>
             <p class="text-gray-700 dark:text-gray-300 mb-4">À ce titre, elle est chargée :</p>
             <ul class="space-y-3 text-gray-700 dark:text-gray-300">
@@ -119,7 +119,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
                 <span>de collecter et de publier conformément à la réglementation en vigueur, les statistiques sur le travail</span>
               </li>
             </ul>
-            
+
             <!-- Boutons de téléchargement -->
             <div class="flex flex-col sm:flex-row gap-4 mt-8">
               <a href="#" class="inline-flex items-center px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors">
@@ -149,12 +149,12 @@ import { AnimationService } from '../../../shared/services/animation.service';
             L'équipe technique de la Direction Générale du Travail
           </p>
         </div>
-        
+
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div *ngFor="let directeur of directeursTechniques" class="card p-6 text-center ">
             <div class="w-24 h-32 bg-gray-200 dark:bg-gray-700 rounded-lg mx-auto mb-4 overflow-hidden">
-              <img [src]="directeur.photo" 
-                   [alt]="directeur.nom" 
+              <img [src]="directeur.photo"
+                   [alt]="directeur.nom"
                    class="w-full h-full object-cover"
                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
               <div class="w-full h-full bg-secondary-100 dark:bg-secondary-900/30 rounded-lg flex items-center justify-center" style="display: none;">
@@ -163,11 +163,11 @@ import { AnimationService } from '../../../shared/services/animation.service';
             </div>
             <h3 class="text-sm font-bold text-secondary-800 dark:text-secondary-400 mb-2">{{ directeur.nom }}</h3>
             <p class="text-gray-600 dark:text-gray-300 text-xs mb-3">{{ directeur.fonction }}</p>
-            <div class="space-y-2">
+            <!-- <div class="space-y-2">
               <div *ngFor="let responsabilite of directeur.responsabilites" class="text-xs text-gray-500 dark:text-gray-400">
                 • {{ responsabilite }}
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -182,7 +182,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
             Les métiers et compétences de la Direction Générale du Travail
           </p>
         </div>
-        
+
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div *ngFor="let metier of fichesMetiers" class="card p-6 ">
             <div class="w-16 h-16 bg-secondary-100 dark:bg-secondary-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -190,7 +190,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
             </div>
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4 text-center">{{ metier.titre }}</h3>
             <p class="text-gray-600 dark:text-gray-300 mb-4 text-center">{{ metier.description }}</p>
-            
+
             <div class="space-y-4">
               <div>
                 <h4 class="font-semibold text-gray-900 dark:text-white mb-2 text-sm">Compétences requises :</h4>
@@ -201,7 +201,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
                   </li>
                 </ul>
               </div>
-              
+
               <div>
                 <h4 class="font-semibold text-gray-900 dark:text-white mb-2 text-sm">Missions principales :</h4>
                 <ul class="space-y-1">
@@ -211,7 +211,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
                   </li>
                 </ul>
               </div>
-              
+
               <div class="pt-3 border-t border-gray-200 dark:border-gray-600">
                 <div class="flex justify-between text-xs">
                   <span class="text-gray-500 dark:text-gray-400">Niveau requis</span>
@@ -237,7 +237,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
             Contactez directement les services spécialisés de la Direction Générale du Travail
           </p>
         </div>
-        
+
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div *ngFor="let contact of contactsSpecifiques" class="card p-6 text-center ">
             <div class="w-16 h-16 bg-secondary-100 dark:bg-secondary-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -245,7 +245,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
             </div>
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">{{ contact.service }}</h3>
             <p class="text-gray-600 dark:text-gray-300 mb-4">{{ contact.description }}</p>
-            
+
             <div class="space-y-3">
               <div class="flex items-center justify-center space-x-3">
                 <span class="text-secondary-600 dark:text-secondary-400">📞</span>
@@ -260,7 +260,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
                 <span class="text-gray-700 dark:text-gray-300 text-sm">{{ contact.horaires }}</span>
               </div>
             </div>
-            
+
             <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-600">
               <p class="text-xs text-secondary-700 dark:text-secondary-400 font-medium">
                 {{ contact.specialite }}
@@ -268,7 +268,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
             </div>
           </div>
         </div>
-        
+
         <!-- Contact général -->
         <div class="max-w-2xl mx-auto mt-16 ">
           <div class="card p-8 text-center">
@@ -308,7 +308,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
   `
 })
 export class DirectionGeneraleTravailComponent implements AfterViewInit {
-  
+
   chiffres = [
     {
       icone: '🏢',
@@ -335,40 +335,26 @@ export class DirectionGeneraleTravailComponent implements AfterViewInit {
       description: 'Taux de résolution des conflits'
     }
   ];
-  
+
   directeursTechniques = [
     {
       nom: 'AROUNA Ramanou',
-      fonction: 'Chef Département des Normes et de la Statistique en Travail',
-      photo: 'https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg',
-      responsabilites: [
-        'Élaboration des normes du travail',
-        'Production de statistiques',
-        'Veille réglementaire'
-      ]
+      fonction: 'Chef Département des Normes et de la Statistique au Travail',
+      photo: 'https://www.travail.gouv.bj/storage/teams/1733741844arouna-ramanou.jpg',
     },
     {
-      nom: 'OUENDO Wilfried K. Serge',
+      nom: 'OUENDO Wilfrid K. Serge',
       fonction: 'Chef Département des Relations Professionnelles et du Dialogue Social',
-      photo: 'https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg',
-      responsabilites: [
-        'Médiation des conflits',
-        'Promotion du dialogue social',
-        'Relations syndicales'
-      ]
+      photo: 'https://www.travail.gouv.bj/storage/teams/1677698329ouendo-wilfrid-k-serge.JPG',
     },
     {
-      nom: 'Dr DEDJI TOHOUN Lucile',
-      fonction: 'Chef Département de la Sécurité Sociale de la Mutualité et de la Santé au Travail',
-      photo: 'https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg',
-      responsabilites: [
-        'Sécurité sociale',
-        'Santé au travail',
-        'Prévention des risques'
-      ]
+      nom: 'Dr BEDIE TOÏHEN Lucile',
+      fonction: 'Chef Département de la Sécurité Sociale, de la Mutualité et de la Santé au Travail',
+      photo: 'https://www.travail.gouv.bj/storage/teams/1678289870dr-bedie-toihen-lucile.jpg',
+
     }
   ];
-  
+
   fichesMetiers = [
     {
       icone: '🔍',
@@ -485,7 +471,7 @@ export class DirectionGeneraleTravailComponent implements AfterViewInit {
       experience: '3 ans minimum'
     }
   ];
-  
+
   contactsSpecifiques = [
     {
       icone: '🔍',
@@ -542,9 +528,9 @@ export class DirectionGeneraleTravailComponent implements AfterViewInit {
       specialite: 'Information générale'
     }
   ];
-  
+
   constructor(private animationService: AnimationService) {}
-  
+
   ngAfterViewInit() {
     setTimeout(() => {
       this.animationService.initScrollAnimations();

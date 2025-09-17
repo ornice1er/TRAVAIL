@@ -48,16 +48,16 @@ import { AnimationService } from '../../../shared/services/animation.service';
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div class="">
             <div class="relative">
-              <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
+              <img src="https://www.travail.gouv.bj/storage/structures/respos/nobime-alfred-kocou.JPG" 
                    alt="Chef de la Cellule de Suivi des Réformes" 
                    class="rounded-2xl shadow-lg w-full max-w-md mx-auto">
-              <div class="absolute -bottom-6 -right-6 w-16 h-16 bg-accent-700 rounded-full flex items-center justify-center">
+              <!-- <div class="absolute -bottom-6 -right-6 w-16 h-16 bg-accent-700 rounded-full flex items-center justify-center">
                 <span class="text-white text-2xl">🇧🇯</span>
-              </div>
+              </div> -->
             </div>
             <div class="mt-6 text-center">
-              <h3 class="text-xl font-bold text-accent-800 dark:text-accent-400 mb-2">M. [Nom du Chef de Cellule]</h3>
-              <p class="text-gray-600 dark:text-gray-300">Chef de la Cellule de Suivi des Réformes</p>
+              <h3 class="text-xl font-bold text-accent-800 dark:text-accent-400 mb-2">NOBIME Alfred Kocou</h3>
+              <p class="text-gray-600 dark:text-gray-300">Directeur</p>
             </div>
           </div>
           
@@ -66,8 +66,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
             
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Mission</h3>
             <p class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-              La Cellule de Suivi des Réformes (CSR) est une structure technique spécialisée chargée du pilotage, 
-              du suivi et de l'évaluation de la mise en œuvre des réformes dans le secteur public béninois.
+            Conformément aux dispositions de l'article 5 du décret n° 2021-562 du 03 novembre 2021 portant attributions, organisation et fonctionnement du Ministère du Travail et de la Fonction Publique, la cellule de suivi des réformes administratives et institutionnelles assure le suivi des réformes administratives et institutionnelles, globales et sectorielles.
             </p>
             
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Attributions</h3>
@@ -75,27 +74,19 @@ import { AnimationService } from '../../../shared/services/animation.service';
             <ul class="space-y-3 text-gray-700 dark:text-gray-300">
               <li class="flex items-start">
                 <span class="w-2 h-2 bg-accent-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                <span>de coordonner et piloter la mise en œuvre des réformes sectorielles</span>
+                <span>d'assurer le suivi des réformes administratives et institutionnelles adoptées par le Gouvernement;</span>
               </li>
               <li class="flex items-start">
                 <span class="w-2 h-2 bg-accent-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                <span>d'assurer le suivi régulier des indicateurs de performance et l'évaluation des résultats</span>
+                <span>d'impulser et de coordonner les réformes concourant à une administration publique de développement;</span>
               </li>
               <li class="flex items-start">
                 <span class="w-2 h-2 bg-accent-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                <span>de produire des rapports périodiques sur l'avancement des réformes</span>
+                <span>d'appuyer les ministères sectoriels dans la conception des politiques et stratégies de réformes globales et sectorielles et de suivre leur application effective;</span>
               </li>
               <li class="flex items-start">
                 <span class="w-2 h-2 bg-accent-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                <span>de faciliter la coordination entre les différents acteurs impliqués</span>
-              </li>
-              <li class="flex items-start">
-                <span class="w-2 h-2 bg-accent-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                <span>de fournir une assistance technique aux structures de mise en œuvre</span>
-              </li>
-              <li class="flex items-start">
-                <span class="w-2 h-2 bg-accent-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                <span>d'accompagner le changement organisationnel et culturel</span>
+                <span>d'appuyer le ministère en charge du numérique dans la dématérialisation des services publics;</span>
               </li>
             </ul>
             
@@ -120,7 +111,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     </section>
 
     <!-- Présentation des directeurs techniques -->
-    <section class="section-padding bg-gray-50 dark:bg-gray-800">
+    <!-- <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
         <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Directeurs Techniques</h2>
@@ -150,7 +141,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- Fiches métiers -->
     <section class="section-padding bg-white dark:bg-gray-900">
