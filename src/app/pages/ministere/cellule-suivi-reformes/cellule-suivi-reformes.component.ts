@@ -147,55 +147,31 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
       </div>
     </section> -->
 
+
+
     <!-- Fiches métiers -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
         <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Fiches Métiers</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
-            Les métiers et compétences de la Cellule de Suivi des Réformes
+
           </p>
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div *ngFor="let metier of fichesMetiers" class="card p-6 ">
-            <div class="w-16 h-16 bg-accent-100 dark:bg-accent-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
-              <span class="text-3xl">{{ metier.icone }}</span>
-            </div>
+          <div *ngFor="let metier of fichesMetiers" class="card p-6 flex flex-col">
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4 text-center">{{ metier.titre }}</h3>
-            <p class="text-gray-600 dark:text-gray-300 mb-4 text-center">{{ metier.description }}</p>
+            <p class="text-gray-600 dark:text-gray-300 mb-4 text-center flex-grow">{{ metier.description }}</p>
             
-            <div class="space-y-4">
-              <div>
-                <h4 class="font-semibold text-gray-900 dark:text-white mb-2 text-sm">Compétences requises :</h4>
-                <ul class="space-y-1">
-                  <li *ngFor="let competence of metier.competences" class="flex items-start">
-                    <span class="w-1.5 h-1.5 bg-accent-600 rounded-full mr-2 mt-2 flex-shrink-0"></span>
-                    <span class="text-gray-700 dark:text-gray-300 text-xs">{{ competence }}</span>
-                  </li>
-                </ul>
-              </div>
-              
-              <div>
-                <h4 class="font-semibold text-gray-900 dark:text-white mb-2 text-sm">Missions principales :</h4>
-                <ul class="space-y-1">
-                  <li *ngFor="let mission of metier.missions" class="flex items-start">
-                    <span class="w-1.5 h-1.5 bg-accent-600 rounded-full mr-2 mt-2 flex-shrink-0"></span>
-                    <span class="text-gray-700 dark:text-gray-300 text-xs">{{ mission }}</span>
-                  </li>
-                </ul>
-              </div>
-              
-              <div class="pt-3 border-t border-gray-200 dark:border-gray-600">
-                <div class="flex justify-between text-xs">
-                  <span class="text-gray-500 dark:text-gray-400">Niveau requis</span>
-                  <span class="font-medium text-accent-700 dark:text-accent-400">{{ metier.niveauRequis }}</span>
-                </div>
-                <div class="flex justify-between text-xs mt-1">
-                  <span class="text-gray-500 dark:text-gray-400">Expérience</span>
-                  <span class="font-medium text-accent-700 dark:text-accent-400">{{ metier.experience }}</span>
-                </div>
-              </div>
+            <div class="mt-auto pt-4 border-t border-gray-200 dark:border-gray-600 flex justify-between items-center">
+              <a class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg font-medium text-sm opacity-50 cursor-not-allowed">
+                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                Télécharger
+              </a>
+              <a class="text-sm font-medium text-primary-600 opacity-50 cursor-not-allowed">
+                Lire plus
+              </a>
             </div>
           </div>
         </div>
