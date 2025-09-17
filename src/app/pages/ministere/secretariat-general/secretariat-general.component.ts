@@ -331,7 +331,7 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
           <button type="button" command="close" commandfor="dialog" class="inline-flex  justify-center rounded-md bg-red-600 px-4 py-2 text-sm font-semibold text-white shadow-xs hover:bg-red-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 dark:bg-red-500 dark:shadow-none dark:hover:bg-red-400 dark:focus-visible:outline-red-500">Fermer</button>
         </div>
         <div>
-         <ngx-extended-pdf-viewer [src]="'assets/download-data/aofs/aof-sgm.pdf'"></ngx-extended-pdf-viewer>
+         <ngx-extended-pdf-viewer [src]="'https://travail.gouv.bj/download-data/aofs/2301250210-628.pdf/aof'"></ngx-extended-pdf-viewer>
         </div>
         
       </el-dialog-panel>
