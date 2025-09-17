@@ -90,14 +90,14 @@ import { AnimationService } from "../../shared/services/animation.service";
     <!-- Chiffres clés animés -->
     <section class="py-16 bg-primary-800 dark:bg-primary-900 text-white" aria-label="Statistiques du ministère">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold mb-4">Le Ministère en chiffres</h2>
           <p class="text-xl text-primary-100 dark:text-primary-200">Notre impact sur l'emploi et la fonction publique</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div *ngFor="let stat of statistiques; let i = index" 
-               class="text-center animate-on-scroll" 
+               class="text-center " 
                role="group"
                [attr.aria-label]="stat.libelle + ': ' + stat.valeur">
             <div class="text-4xl lg:text-5xl font-bold mb-2 text-secondary-400 dark:text-secondary-300"
@@ -156,7 +156,7 @@ import { AnimationService } from "../../shared/services/animation.service";
       aria-label="Statistiques du ministère"
     >
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold mb-4">
             Le Ministère en chiffres
           </h2>
@@ -168,7 +168,7 @@ import { AnimationService } from "../../shared/services/animation.service";
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div
             *ngFor="let stat of statistiques"
-            class="text-center animate-on-scroll"
+            class="text-center "
             role="group"
             [attr.aria-label]="stat.libelle + ': ' + stat.valeur"
           >
@@ -190,7 +190,7 @@ import { AnimationService } from "../../shared/services/animation.service";
     <!-- Services en ligne -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800" aria-label="Services en ligne disponibles">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2
             class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4"
           >
@@ -205,7 +205,7 @@ import { AnimationService } from "../../shared/services/animation.service";
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" role="list">
           <div
             *ngFor="let service of servicesEnLigne"
-            class="card p-6 text-center animate-on-scroll hover:scale-105 transition-all duration-300"
+            class="card p-6 text-center  hover:scale-105 transition-all duration-300"
             role="listitem"
           >
             <div
@@ -228,7 +228,7 @@ import { AnimationService } from "../../shared/services/animation.service";
           </div>
         </div>
 
-        <div class="text-center mt-12 animate-on-scroll">
+        <div class="text-center mt-12 ">
           <a routerLink="/services" class="btn-secondary" aria-label="Voir tous nos services disponibles">
             Voir tous nos services
           </a>
@@ -243,7 +243,7 @@ import { AnimationService } from "../../shared/services/animation.service";
           <!-- Actualités principales -->
           <!-- <div class=""> -->
             <div
-              class="flex items-center justify-between mb-8 animate-on-scroll"
+              class="flex items-center justify-between mb-8 "
             >
               <h2 class="text-3xl font-bold text-gray-900 dark:text-white">
                 Actualités
@@ -259,7 +259,7 @@ import { AnimationService } from "../../shared/services/animation.service";
             <div class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-2 gap-6">
               <article
                 *ngFor="let actualite of actualitesRecentes"
-                class="card overflow-hidden animate-on-scroll hover:shadow-lg transition-all duration-300"
+                class="card overflow-hidden  hover:shadow-lg transition-all duration-300"
               >
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-0">
                   <div class="md:col-span-1">
@@ -305,7 +305,7 @@ import { AnimationService } from "../../shared/services/animation.service";
 
           <!-- Sidebar Communiqués -->
           <!-- <div class="lg:col-span-1">
-            <div class="animate-on-scroll">
+            <div class="">
               <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-8">
                 Communiqués
               </h3>
@@ -354,7 +354,7 @@ import { AnimationService } from "../../shared/services/animation.service";
       class="section-padding bg-gradient-to-r from-secondary-800 to-secondary-900 text-white"
     >
       <div class="container-custom">
-        <div class="text-center animate-on-scroll">
+        <div class="text-center ">
           <h2 class="text-3xl lg:text-4xl font-bold mb-6">
             Une question ? Besoin d'aide ?
           </h2>
@@ -385,7 +385,7 @@ import { AnimationService } from "../../shared/services/animation.service";
       class="section-padding bg-primary-800 dark:bg-primary-900 text-white"
     >
       <div class="container-custom">
-        <div class="text-center mb-12 animate-on-scroll">
+        <div class="text-center mb-12 ">
           <div
             class="w-12 h-12 bg-white/20 dark:bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4"
           >
@@ -409,7 +409,7 @@ import { AnimationService } from "../../shared/services/animation.service";
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div
             *ngFor="let lien of liensUtiles"
-            class="bg-white dark:bg-gray-800 rounded-lg p-6 flex items-center justify-between animate-on-scroll"
+            class="bg-white dark:bg-gray-800 rounded-lg p-6 flex items-center justify-between "
           >
             <span class="text-gray-900 dark:text-white font-medium">{{
               lien.nom
@@ -427,7 +427,7 @@ import { AnimationService } from "../../shared/services/animation.service";
     <!-- Newsletter -->
     <section class="bg-primary-900 dark:bg-gray-900 text-white py-12">
       <div class="container-custom">
-        <div class="text-center animate-on-scroll">
+        <div class="text-center ">
           <h3 class="text-lg font-bold mb-6">
             Abonnez-vous à notre newsletter :
           </h3>

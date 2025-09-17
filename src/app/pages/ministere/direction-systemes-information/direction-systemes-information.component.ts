@@ -10,7 +10,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Hero Section -->
     <div class="bg-gradient-to-r from-primary-800 to-primary-900 dark:from-primary-900 dark:to-primary-950 text-white pt-32 pb-16">
       <div class="container-custom">
-        <div class="text-center animate-on-scroll">
+        <div class="text-center ">
           <h1 class="text-4xl lg:text-5xl font-bold mb-6">Direction des Systèmes d'Information</h1>
           <p class="text-xl text-primary-100 dark:text-primary-200 max-w-3xl mx-auto">
             L'organe de transformation numérique et de gestion des systèmes d'information du ministère.
@@ -23,7 +23,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div class="animate-on-scroll">
+          <div class="">
             <div class="flex items-start space-x-6 mb-8">
               <div class="flex-shrink-0">
                 <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
@@ -92,7 +92,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
               </a>
             </div>
           </div>
-          <div class="animate-on-scroll">
+          <div class="">
             <img src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=800" 
                  alt="Direction Systèmes Information" 
                  class="rounded-2xl shadow-lg w-full">
@@ -105,7 +105,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
         <div class="max-w-4xl mx-auto">
-          <div class="card p-8 animate-on-scroll">
+          <div class="card p-8 ">
             <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Attributions détaillées (suite)</h3>
             <div class="space-y-6 text-gray-700 dark:text-gray-300">
               <ul class="space-y-3">
@@ -156,7 +156,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
               <p class="text-primary-800 dark:text-primary-400 font-medium">M. [Nom du Directeur DSI]</p>
             </div>
           </div>
-          <div class="animate-on-scroll">
+          <div class="">
             <img src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=800" 
                  alt="Direction Systèmes Information" 
                  class="rounded-2xl shadow-lg w-full">
@@ -168,7 +168,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Missions -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Missions Principales</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             Les domaines d'intervention de la DSI
@@ -176,7 +176,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div *ngFor="let mission of missions" class="card p-6 text-center animate-on-scroll">
+          <div *ngFor="let mission of missions" class="card p-6 text-center ">
             <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
               <span class="text-3xl">{{ mission.icone }}</span>
             </div>
@@ -190,7 +190,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Projets Numériques -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Projets Numériques</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             Les principales réalisations de la transformation numérique
@@ -198,7 +198,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div *ngFor="let projet of projets" class="card p-8 animate-on-scroll">
+          <div *ngFor="let projet of projets" class="card p-8 ">
             <div class="flex items-start space-x-6">
               <div class="flex-shrink-0">
                 <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center">
@@ -233,7 +233,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Services Techniques -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Services Techniques</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             Organisation des équipes techniques de la DSI
@@ -241,7 +241,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div *ngFor="let service of services" class="card p-8 animate-on-scroll">
+          <div *ngFor="let service of services" class="card p-8 ">
             <div class="flex items-start space-x-6">
               <div class="flex-shrink-0">
                 <div class="w-16 h-16 bg-secondary-100 dark:bg-secondary-900/30 rounded-full flex items-center justify-center">
@@ -267,7 +267,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Technologies -->
     <section class="section-padding bg-primary-800 dark:bg-primary-900 text-white">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold mb-4">Technologies Utilisées</h2>
           <p class="text-xl text-primary-100 dark:text-primary-200">
             Stack technologique et outils de développement
@@ -275,7 +275,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
-          <div *ngFor="let tech of technologies" class="text-center animate-on-scroll">
+          <div *ngFor="let tech of technologies" class="text-center ">
             <div class="w-16 h-16 bg-white/20 dark:bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4">
               <span class="text-2xl">{{ tech.icone }}</span>
             </div>
@@ -289,7 +289,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Sécurité -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Sécurité Informatique</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             Mesures de protection des systèmes d'information
@@ -297,7 +297,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div *ngFor="let mesure of mesuresSecurite" class="card p-6 text-center animate-on-scroll">
+          <div *ngFor="let mesure of mesuresSecurite" class="card p-6 text-center ">
             <div class="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
               <span class="text-3xl">{{ mesure.icone }}</span>
             </div>
@@ -311,7 +311,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Contact -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
-        <div class="max-w-2xl mx-auto text-center animate-on-scroll">
+        <div class="max-w-2xl mx-auto text-center ">
           <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Support Technique</h2>
           <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
             Besoin d'assistance technique ou de support informatique ?

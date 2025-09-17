@@ -10,7 +10,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Hero Section -->
     <div class="bg-gradient-to-r from-primary-800 to-primary-900 dark:from-primary-900 dark:to-primary-950 text-white pt-32 pb-16">
       <div class="container-custom">
-        <div class="text-center animate-on-scroll">
+        <div class="text-center ">
           <h1 class="text-4xl lg:text-5xl font-bold mb-6">Direction Générale de la Fonction Publique</h1>
           <p class="text-xl text-primary-100 dark:text-primary-200 max-w-3xl mx-auto">
             L'organe central de gestion et de modernisation de la fonction publique béninoise.
@@ -23,7 +23,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div class="animate-on-scroll">
+          <div class="">
             <div class="space-y-8">
               <!-- Directeur Général -->
               <div class="flex items-start space-x-6">
@@ -107,7 +107,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
               </a>
             </div>
           </div>
-          <div class="animate-on-scroll">
+          <div class="">
             <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800" 
                  alt="Direction Générale Fonction Publique" 
                  class="rounded-2xl shadow-lg w-full">
@@ -119,7 +119,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Équipe dirigeante -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Équipe Dirigeante</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             Les responsables des différents départements
@@ -128,7 +128,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <!-- ZENONTIN Zita Emma épouse DOSSA DAHI -->
-          <div class="card p-6 text-center animate-on-scroll">
+          <div class="card p-6 text-center ">
             <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
                  alt="ZENONTIN Zita Emma épouse DOSSA DAHI" 
                  class="w-32 h-40 object-cover rounded-lg shadow-md mx-auto mb-4">
@@ -137,7 +137,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
           </div>
           
           <!-- MASSOU Siaka -->
-          <div class="card p-6 text-center animate-on-scroll">
+          <div class="card p-6 text-center ">
             <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
                  alt="MASSOU Siaka" 
                  class="w-32 h-40 object-cover rounded-lg shadow-md mx-auto mb-4">
@@ -146,7 +146,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
           </div>
           
           <!-- AHOUANDOGBO Gbosshgan Elodie -->
-          <div class="card p-6 text-center animate-on-scroll">
+          <div class="card p-6 text-center ">
             <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
                  alt="AHOUANDOGBO Gbosshgan Elodie" 
                  class="w-32 h-40 object-cover rounded-lg shadow-md mx-auto mb-4">
@@ -155,7 +155,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
           </div>
           
           <!-- IDOHOU Prosper -->
-          <div class="card p-6 text-center animate-on-scroll">
+          <div class="card p-6 text-center ">
             <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
                  alt="IDOHOU Prosper" 
                  class="w-32 h-40 object-cover rounded-lg shadow-md mx-auto mb-4">
@@ -164,7 +164,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
           </div>
         </div>
         
-        <div class="text-center mt-12 animate-on-scroll">
+        <div class="text-center mt-12 ">
           <p class="text-lg text-gray-700 dark:text-gray-300 mb-4">Elle assure en outre, le secrétariat permanent :</p>
           <ul class="space-y-2 text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
             <li class="flex items-start">
@@ -187,7 +187,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Missions -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Missions Principales</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             Les domaines d'intervention de la DGFP
@@ -195,7 +195,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div *ngFor="let mission of missions" class="card p-6 text-center animate-on-scroll">
+          <div *ngFor="let mission of missions" class="card p-6 text-center ">
             <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
               <span class="text-3xl">{{ mission.icone }}</span>
             </div>
@@ -209,7 +209,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Directions Techniques -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Directions Techniques</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             Organisation des services techniques de la DGFP
@@ -217,7 +217,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div *ngFor="let direction of directions" class="card p-8 animate-on-scroll">
+          <div *ngFor="let direction of directions" class="card p-8 ">
             <div class="flex items-start space-x-6">
               <div class="flex-shrink-0">
                 <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center">
@@ -243,7 +243,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Concours et Recrutements -->
     <section class="section-padding bg-primary-800 dark:bg-primary-900 text-white">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold mb-4">Concours et Recrutements</h2>
           <p class="text-xl text-primary-100 dark:text-primary-200">
             Processus de recrutement dans la fonction publique
@@ -251,7 +251,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div *ngFor="let concours of concours" class="bg-white/10 dark:bg-white/5 rounded-lg p-6 animate-on-scroll">
+          <div *ngFor="let concours of concours" class="bg-white/10 dark:bg-white/5 rounded-lg p-6 ">
             <div class="w-16 h-16 bg-white/20 dark:bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6">
               <span class="text-3xl">{{ concours.icone }}</span>
             </div>
@@ -275,7 +275,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Réformes en Cours -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Réformes en Cours</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             Modernisation de l'administration publique
@@ -283,7 +283,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="space-y-8">
-          <div *ngFor="let reforme of reformes" class="card p-8 animate-on-scroll">
+          <div *ngFor="let reforme of reformes" class="card p-8 ">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
               <div class="lg:col-span-2">
                 <div class="flex items-start space-x-4 mb-4">
@@ -321,7 +321,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Statistiques -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">La Fonction Publique en Chiffres</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             Données clés sur les effectifs et la gestion
@@ -329,7 +329,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div *ngFor="let stat of statistiques" class="text-center animate-on-scroll">
+          <div *ngFor="let stat of statistiques" class="text-center ">
             <div class="w-20 h-20 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
               <span class="text-3xl">{{ stat.icone }}</span>
             </div>
@@ -344,7 +344,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Services aux Agents -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Services aux Agents Publics</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             Accompagnement tout au long de la carrière
@@ -352,7 +352,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div *ngFor="let service of servicesAgents" class="card p-6 text-center animate-on-scroll">
+          <div *ngFor="let service of servicesAgents" class="card p-6 text-center ">
             <div class="w-16 h-16 bg-secondary-100 dark:bg-secondary-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
               <span class="text-3xl">{{ service.icone }}</span>
             </div>
@@ -369,7 +369,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Contact -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
-        <div class="max-w-2xl mx-auto text-center animate-on-scroll">
+        <div class="max-w-2xl mx-auto text-center ">
           <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Contacter la DGFP</h2>
           <div class="card p-8">
             <div class="space-y-6">

@@ -10,7 +10,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Hero Section -->
     <div class="bg-gradient-to-r from-primary-800 to-primary-900 dark:from-primary-900 dark:to-primary-950 text-white pt-32 pb-16">
       <div class="container-custom">
-        <div class="text-center animate-on-scroll">
+        <div class="text-center ">
           <h1 class="text-4xl lg:text-5xl font-bold mb-6">Directions Départementales</h1>
           <p class="text-xl text-primary-100 dark:text-primary-200 max-w-3xl mx-auto">
             Le réseau territorial du Ministère du Travail et de la Fonction Publique sur l'ensemble du territoire béninois.
@@ -23,7 +23,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div class="animate-on-scroll">
+          <div class="">
             <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Réseau Territorial</h2>
             <p class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
               Les Directions Départementales du Travail et de la Fonction Publique constituent le réseau 
@@ -39,7 +39,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
               <p class="text-primary-800 dark:text-primary-400 font-medium">Direction de la Coordination Territoriale</p>
             </div>
           </div>
-          <div class="animate-on-scroll">
+          <div class="">
             <img src="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800" 
                  alt="Directions Départementales" 
                  class="rounded-2xl shadow-lg w-full">
@@ -51,7 +51,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Carte des Départements -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Implantation Territoriale</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             12 directions départementales pour couvrir l'ensemble du territoire
@@ -59,7 +59,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div *ngFor="let departement of departements" class="card p-6 animate-on-scroll hover:shadow-lg transition-all duration-300">
+          <div *ngFor="let departement of departements" class="card p-6  hover:shadow-lg transition-all duration-300">
             <div class="flex items-start space-x-4">
               <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center flex-shrink-0">
                 <span class="text-2xl">🏛️</span>
@@ -96,7 +96,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Missions -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Missions des Directions Départementales</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             Rôles et responsabilités au niveau territorial
@@ -104,7 +104,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div *ngFor="let mission of missions" class="card p-6 text-center animate-on-scroll">
+          <div *ngFor="let mission of missions" class="card p-6 text-center ">
             <div class="w-16 h-16 bg-secondary-100 dark:bg-secondary-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
               <span class="text-3xl">{{ mission.icone }}</span>
             </div>
@@ -118,7 +118,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Services Offerts -->
     <section class="section-padding bg-primary-800 dark:bg-primary-900 text-white">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold mb-4">Services Offerts</h2>
           <p class="text-xl text-primary-100 dark:text-primary-200">
             Services disponibles dans chaque direction départementale
@@ -126,7 +126,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div *ngFor="let service of services" class="bg-white/10 dark:bg-white/5 rounded-lg p-6 text-center animate-on-scroll">
+          <div *ngFor="let service of services" class="bg-white/10 dark:bg-white/5 rounded-lg p-6 text-center ">
             <div class="w-16 h-16 bg-white/20 dark:bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6">
               <span class="text-3xl">{{ service.icone }}</span>
             </div>
@@ -143,7 +143,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Organisation Type -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Organisation Type</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             Structure organisationnelle d'une direction départementale
@@ -152,7 +152,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         
         <div class="max-w-4xl mx-auto">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div *ngFor="let service of servicesInternes" class="card p-6 animate-on-scroll">
+            <div *ngFor="let service of servicesInternes" class="card p-6 ">
               <div class="flex items-start space-x-4">
                 <div class="w-12 h-12 bg-secondary-100 dark:bg-secondary-900/30 rounded-full flex items-center justify-center flex-shrink-0">
                   <span class="text-2xl">{{ service.icone }}</span>
@@ -177,7 +177,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Statistiques -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Impact Territorial</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             Résultats de l'action des directions départementales
@@ -185,7 +185,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div *ngFor="let stat of statistiques" class="text-center animate-on-scroll">
+          <div *ngFor="let stat of statistiques" class="text-center ">
             <div class="w-20 h-20 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
               <span class="text-3xl">{{ stat.icone }}</span>
             </div>
@@ -200,7 +200,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Coordination et Communication -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Coordination et Communication</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             Mécanismes de coordination entre le niveau central et territorial
@@ -208,7 +208,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div *ngFor="let mecanisme of mecanismes" class="card p-6 text-center animate-on-scroll">
+          <div *ngFor="let mecanisme of mecanismes" class="card p-6 text-center ">
             <div class="w-16 h-16 bg-accent-100 dark:bg-accent-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
               <span class="text-3xl">{{ mecanisme.icone }}</span>
             </div>
@@ -226,7 +226,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Contact -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
-        <div class="max-w-2xl mx-auto text-center animate-on-scroll">
+        <div class="max-w-2xl mx-auto text-center ">
           <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Trouver votre Direction Départementale</h2>
           <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
             Contactez la direction départementale de votre région pour bénéficier de nos services.

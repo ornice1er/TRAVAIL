@@ -10,7 +10,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Hero Section -->
     <div class="bg-gradient-to-r from-secondary-800 to-secondary-900 dark:from-secondary-900 dark:to-secondary-950 text-white pt-32 pb-16">
       <div class="container-custom">
-        <div class="text-center animate-on-scroll">
+        <div class="text-center ">
           <h1 class="text-4xl lg:text-5xl font-bold mb-6">Structures sous Tutelle</h1>
           <p class="text-xl text-secondary-100 dark:text-secondary-200 max-w-3xl mx-auto">
             Les organismes et institutions spécialisés placés sous la tutelle du Ministère du Travail et de la Fonction Publique.
@@ -23,7 +23,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div class="animate-on-scroll">
+          <div class="">
             <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Écosystème Institutionnel</h2>
             <p class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
               Le Ministère du Travail et de la Fonction Publique exerce sa tutelle sur plusieurs structures 
@@ -40,7 +40,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
               <p class="text-secondary-800 dark:text-secondary-400 font-medium">Direction de la Tutelle et du Contrôle</p>
             </div>
           </div>
-          <div class="animate-on-scroll">
+          <div class="">
             <img src="https://images.pexels.com/photos/3184317/pexels-photo-3184317.jpeg?auto=compress&cs=tinysrgb&w=800" 
                  alt="Structures sous Tutelle" 
                  class="rounded-2xl shadow-lg w-full">
@@ -52,7 +52,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Structures Principales -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Structures Principales</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             Les organismes clés sous tutelle du ministère
@@ -60,7 +60,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="space-y-8">
-          <div *ngFor="let structure of structures" class="card p-8 animate-on-scroll">
+          <div *ngFor="let structure of structures" class="card p-8 ">
             <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
               <div class="lg:col-span-3">
                 <div class="flex items-start space-x-6">
@@ -134,7 +134,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Types de Tutelle -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Types de Tutelle</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             Modalités d'exercice de la tutelle ministérielle
@@ -142,7 +142,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div *ngFor="let type of typesTutelle" class="card p-6 text-center animate-on-scroll">
+          <div *ngFor="let type of typesTutelle" class="card p-6 text-center ">
             <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
               <span class="text-3xl">{{ type.icone }}</span>
             </div>
@@ -162,7 +162,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Gouvernance -->
     <section class="section-padding bg-secondary-800 dark:bg-secondary-900 text-white">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold mb-4">Gouvernance et Contrôle</h2>
           <p class="text-xl text-secondary-100 dark:text-secondary-200">
             Mécanismes de pilotage et de contrôle des structures sous tutelle
@@ -170,7 +170,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div *ngFor="let mecanisme of mecanismesGouvernance" class="text-center animate-on-scroll">
+          <div *ngFor="let mecanisme of mecanismesGouvernance" class="text-center ">
             <div class="w-16 h-16 bg-white/20 dark:bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6">
               <span class="text-3xl">{{ mecanisme.icone }}</span>
             </div>
@@ -187,7 +187,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Performance -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Performance Globale</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             Indicateurs de performance des structures sous tutelle
@@ -195,7 +195,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div *ngFor="let indicateur of indicateursPerformance" class="text-center animate-on-scroll">
+          <div *ngFor="let indicateur of indicateursPerformance" class="text-center ">
             <div class="w-20 h-20 bg-secondary-100 dark:bg-secondary-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
               <span class="text-3xl">{{ indicateur.icone }}</span>
             </div>
@@ -210,7 +210,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Partenariats -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Partenariats Stratégiques</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             Collaborations avec les partenaires nationaux et internationaux
@@ -218,7 +218,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div *ngFor="let partenariat of partenariats" class="card p-6 text-center animate-on-scroll">
+          <div *ngFor="let partenariat of partenariats" class="card p-6 text-center ">
             <div class="w-16 h-16 bg-accent-100 dark:bg-accent-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
               <span class="text-3xl">{{ partenariat.icone }}</span>
             </div>
@@ -235,7 +235,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Contact -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
-        <div class="max-w-2xl mx-auto text-center animate-on-scroll">
+        <div class="max-w-2xl mx-auto text-center ">
           <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Direction de la Tutelle</h2>
           <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
             Pour toute information concernant les structures sous tutelle.

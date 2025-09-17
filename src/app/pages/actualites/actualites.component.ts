@@ -12,7 +12,7 @@ import { Actualite } from '../../shared/models/actualite.model';
     <!-- Hero Section -->
     <div class="bg-gradient-to-r from-primary-800 to-primary-900 dark:from-primary-900 dark:to-primary-950 text-white pt-32 pb-16">
       <div class="container-custom">
-        <div class="text-center animate-on-scroll">
+        <div class="text-center ">
           <h1 class="text-4xl lg:text-5xl font-bold mb-6">Actualités</h1>
           <p class="text-xl text-primary-100 dark:text-primary-200 max-w-3xl mx-auto">
             Restez informé des dernières nouvelles et initiatives du Ministère du Travail.
@@ -24,7 +24,7 @@ import { Actualite } from '../../shared/models/actualite.model';
     <!-- Actualité à la une -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
-        <div class="animate-on-scroll">
+        <div class="">
           <div class="card overflow-hidden">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-0">
               <div class="relative h-64 lg:h-auto">
@@ -59,7 +59,7 @@ import { Actualite } from '../../shared/models/actualite.model';
     <!-- Filtres -->
     <section class="py-8 bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700" aria-label="Filtres par catégorie">
       <div class="container-custom">
-        <div class="flex flex-wrap justify-center gap-4 animate-on-scroll" role="group" aria-label="Filtrer les actualités par catégorie">
+        <div class="flex flex-wrap justify-center gap-4 " role="group" aria-label="Filtrer les actualités par catégorie">
           <button 
             *ngFor="let categorie of categories"
             (click)="filtrerActualites(categorie.slug)"
@@ -78,7 +78,7 @@ import { Actualite } from '../../shared/models/actualite.model';
       <div class="container-custom">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" role="list">
           <article *ngFor="let actualite of actualitesFiltrees; trackBy: trackByActualiteId" 
-                   class="card overflow-hidden animate-on-scroll hover:shadow-lg transition-all duration-300"
+                   class="card overflow-hidden  hover:shadow-lg transition-all duration-300"
                    role="listitem">
             <div class="relative h-48 overflow-hidden">
               <img [src]="actualite.imageUrl" 
@@ -119,7 +119,7 @@ import { Actualite } from '../../shared/models/actualite.model';
         </div>
         
         <!-- Pagination -->
-        <nav class="flex justify-center mt-12 animate-on-scroll" aria-label="Navigation des pages">
+        <nav class="flex justify-center mt-12 " aria-label="Navigation des pages">
           <div class="flex space-x-2" role="group">
             <button class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors" aria-label="Page précédente">
               Précédent
@@ -138,7 +138,7 @@ import { Actualite } from '../../shared/models/actualite.model';
     <!-- Newsletter -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
-        <div class="card p-8 lg:p-12 text-center animate-on-scroll">
+        <div class="card p-8 lg:p-12 text-center ">
           <h3 class="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-4">
             Restez informé de nos actualités
           </h3>

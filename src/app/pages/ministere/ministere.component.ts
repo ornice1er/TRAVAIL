@@ -10,7 +10,7 @@ import { AnimationService } from '../../shared/services/animation.service';
     <!-- Hero Section -->
     <div class="bg-gradient-to-r from-primary-800 to-primary-900 dark:from-primary-900 dark:to-primary-950 text-white pt-32 pb-16">
       <div class="container-custom">
-        <div class="text-center animate-on-scroll">
+        <div class="text-center ">
           <h1 class="text-4xl lg:text-5xl font-bold mb-6">Le Ministère du Travail</h1>
           <p class="text-xl text-primary-100 dark:text-primary-200 max-w-3xl mx-auto">
             Découvrez notre organisation, nos missions et notre engagement pour le développement de l'emploi au Bénin.
@@ -23,7 +23,7 @@ import { AnimationService } from '../../shared/services/animation.service';
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <div class="animate-on-scroll">
+          <div class="">
             <div class="relative">
               <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
                    alt="Ministre du Travail" 
@@ -33,7 +33,7 @@ import { AnimationService } from '../../shared/services/animation.service';
               </div>
             </div>
           </div>
-          <div class="animate-on-scroll">
+          <div class="">
             <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Le Ministre</h2>
             <h3 class="text-2xl font-semibold text-primary-800 dark:text-primary-400 mb-4">Adidjatou A. MATHYS</h3>
             <p class="text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
@@ -61,7 +61,7 @@ import { AnimationService } from '../../shared/services/animation.service';
     <!-- Missions -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Nos Missions</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             Le Ministère du Travail et de la Fonction Publique agit sur plusieurs axes stratégiques 
@@ -70,7 +70,7 @@ import { AnimationService } from '../../shared/services/animation.service';
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div *ngFor="let mission of missions" class="card p-8 text-center animate-on-scroll">
+          <div *ngFor="let mission of missions" class="card p-8 text-center ">
             <div class="w-16 h-16 bg-secondary-100 dark:bg-secondary-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
               <span class="text-3xl">{{ mission.icone }}</span>
             </div>
@@ -84,14 +84,14 @@ import { AnimationService } from '../../shared/services/animation.service';
     <!-- Organigramme -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Organisation</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">Structure organisationnelle du Ministère</p>
         </div>
         
         <div class="max-w-4xl mx-auto">
           <!-- Ministre -->
-          <div class="text-center mb-8 animate-on-scroll">
+          <div class="text-center mb-8 ">
             <div class="inline-block bg-primary-800 dark:bg-primary-700 text-white rounded-lg p-6 shadow-lg">
               <h3 class="text-lg font-semibold">Ministre</h3>
               <p class="text-sm opacity-90">Dr. Adidjatou MATHYS</p>
@@ -99,7 +99,7 @@ import { AnimationService } from '../../shared/services/animation.service';
           </div>
           
           <!-- Cabinet -->
-          <div class="text-center mb-12 animate-on-scroll">
+          <div class="text-center mb-12 ">
             <div class="inline-block bg-primary-700 dark:bg-primary-600 text-white rounded-lg p-4 shadow-md">
               <h4 class="font-semibold">Cabinet du Ministre</h4>
             </div>
@@ -107,7 +107,7 @@ import { AnimationService } from '../../shared/services/animation.service';
           
           <!-- Directions -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div *ngFor="let direction of directions" class="card p-6 animate-on-scroll">
+            <div *ngFor="let direction of directions" class="card p-6 ">
               <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">{{ direction.nom }}</h4>
               <p class="text-gray-600 dark:text-gray-300 mb-4">{{ direction.description }}</p>
               <div class="space-y-2">
@@ -124,13 +124,13 @@ import { AnimationService } from '../../shared/services/animation.service';
     <!-- Chiffres clés -->
     <!-- <section class="section-padding bg-primary-800 dark:bg-primary-900 text-white">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold mb-4">Le Ministère en chiffres</h2>
           <p class="text-xl text-primary-100 dark:text-primary-200">Notre impact sur l'emploi et la fonction publique</p>
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div *ngFor="let chiffre of chiffres" class="text-center animate-on-scroll">
+          <div *ngFor="let chiffre of chiffres" class="text-center ">
             <div class="text-4xl font-bold mb-2">{{ chiffre.valeur }}</div>
             <div class="text-primary-100 dark:text-primary-200">{{ chiffre.libelle }}</div>
           </div>

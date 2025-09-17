@@ -10,7 +10,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Hero Section -->
     <div class="bg-gradient-to-r from-secondary-800 to-secondary-900 dark:from-secondary-900 dark:to-secondary-950 text-white pt-32 pb-16">
       <div class="container-custom">
-        <div class="text-center animate-on-scroll">
+        <div class="text-center ">
           <h1 class="text-4xl lg:text-5xl font-bold mb-6">Direction Générale du Renforcement des Capacités et de l'Employabilité</h1>
           <p class="text-xl text-secondary-100 dark:text-secondary-200 max-w-3xl mx-auto">
             L'organe central de développement des compétences et d'amélioration de l'employabilité au Bénin.
@@ -23,7 +23,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div class="animate-on-scroll">
+          <div class="">
             <div class="space-y-8">
               <!-- Directeur Général -->
               <div class="flex items-start space-x-6">
@@ -96,7 +96,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
             </div>
             
             <!-- Directrice spécialisée -->
-            <div class="mt-12 text-center animate-on-scroll">
+            <div class="mt-12 text-center ">
               <div class="inline-block">
                 <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
                      alt="GOUIDA Noëlchée Marylène Rékiath" 
@@ -122,7 +122,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
               </a>
             </div>
           </div>
-          <div class="animate-on-scroll">
+          <div class="">
             <img src="https://images.pexels.com/photos/3184317/pexels-photo-3184317.jpeg?auto=compress&cs=tinysrgb&w=800" 
                  alt="Direction Renforcement Capacités" 
                  class="rounded-2xl shadow-lg w-full">
@@ -135,7 +135,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
               <p class="text-secondary-800 dark:text-secondary-400 font-medium">M. [Nom du Directeur Général]</p>
             </div>
           </div>
-          <div class="animate-on-scroll">
+          <div class="">
             <img src="https://images.pexels.com/photos/3184317/pexels-photo-3184317.jpeg?auto=compress&cs=tinysrgb&w=800" 
                  alt="Direction Renforcement Capacités" 
                  class="rounded-2xl shadow-lg w-full">
@@ -147,7 +147,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Missions -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Missions Principales</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             Les domaines d'intervention de la DGRCE
@@ -155,7 +155,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div *ngFor="let mission of missions" class="card p-6 text-center animate-on-scroll">
+          <div *ngFor="let mission of missions" class="card p-6 text-center ">
             <div class="w-16 h-16 bg-secondary-100 dark:bg-secondary-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
               <span class="text-3xl">{{ mission.icone }}</span>
             </div>
@@ -169,7 +169,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Programmes de Formation -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Programmes de Formation</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             Offre de formation adaptée aux besoins du marché
@@ -177,7 +177,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div *ngFor="let programme of programmes" class="card p-8 animate-on-scroll">
+          <div *ngFor="let programme of programmes" class="card p-8 ">
             <div class="flex items-start space-x-6">
               <div class="flex-shrink-0">
                 <div class="w-16 h-16 bg-secondary-100 dark:bg-secondary-900/30 rounded-full flex items-center justify-center">
@@ -211,7 +211,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Secteurs de Formation -->
     <section class="section-padding bg-secondary-800 dark:bg-secondary-900 text-white">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold mb-4">Secteurs de Formation</h2>
           <p class="text-xl text-secondary-100 dark:text-secondary-200">
             Domaines prioritaires de développement des compétences
@@ -219,7 +219,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div *ngFor="let secteur of secteurs" class="text-center animate-on-scroll">
+          <div *ngFor="let secteur of secteurs" class="text-center ">
             <div class="w-20 h-20 bg-white/20 dark:bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6">
               <span class="text-3xl">{{ secteur.icone }}</span>
             </div>
@@ -235,7 +235,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Partenariats -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Partenariats Stratégiques</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             Collaboration avec les acteurs clés du développement
@@ -243,7 +243,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div *ngFor="let partenaire of partenaires" class="card p-6 text-center animate-on-scroll">
+          <div *ngFor="let partenaire of partenaires" class="card p-6 text-center ">
             <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
               <span class="text-3xl">{{ partenaire.icone }}</span>
             </div>
@@ -260,7 +260,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Centres de Formation -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Réseau de Formation</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             Infrastructure de formation sur l'ensemble du territoire
@@ -268,7 +268,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div *ngFor="let centre of centres" class="card p-6 animate-on-scroll">
+          <div *ngFor="let centre of centres" class="card p-6 ">
             <div class="flex items-start space-x-4">
               <div class="w-12 h-12 bg-secondary-100 dark:bg-secondary-900/30 rounded-full flex items-center justify-center flex-shrink-0">
                 <span class="text-2xl">{{ centre.icone }}</span>
@@ -296,7 +296,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Résultats et Impact -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Résultats et Impact</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             L'impact de nos programmes de renforcement des capacités
@@ -304,7 +304,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div *ngFor="let resultat of resultats" class="text-center animate-on-scroll">
+          <div *ngFor="let resultat of resultats" class="text-center ">
             <div class="w-20 h-20 bg-secondary-100 dark:bg-secondary-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
               <span class="text-3xl">{{ resultat.icone }}</span>
             </div>
@@ -319,7 +319,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Contact -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
-        <div class="max-w-2xl mx-auto text-center animate-on-scroll">
+        <div class="max-w-2xl mx-auto text-center ">
           <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Contacter la DGRCE</h2>
           <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
             Intéressé par nos programmes de formation ? Contactez-nous pour plus d'informations.

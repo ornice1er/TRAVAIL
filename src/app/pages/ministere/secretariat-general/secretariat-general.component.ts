@@ -12,7 +12,7 @@ import { AnimationService } from "../../../shared/services/animation.service";
       class="bg-gradient-to-r from-primary-800 to-primary-900 dark:from-primary-900 dark:to-primary-950 text-white pt-32 pb-16"
     >
       <div class="container-custom">
-        <div class="text-center animate-on-scroll">
+        <div class="text-center ">
           <h1 class="text-4xl lg:text-5xl font-bold mb-6">
             Secrétariat Général du Ministère
           </h1>
@@ -31,7 +31,7 @@ import { AnimationService } from "../../../shared/services/animation.service";
       <div class="container-custom">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div class="flex flex-col items-center gap-8">
-            <div class="animate-on-scroll">
+            <div class="">
               <div class="relative">
                 <img
                   src="https://www.travail.gouv.bj/storage/structures/respos/1708440238kanhounon-norbert.jpg"
@@ -55,7 +55,7 @@ import { AnimationService } from "../../../shared/services/animation.service";
                 </p>
               </div>
             </div>
-            <div class="animate-on-scroll">
+            <div class="">
               <div class="relative">
                 <img
                   src="https://www.travail.gouv.bj/storage/teams/1708594357estelle-honfo-akpovo.jpg"
@@ -79,7 +79,7 @@ import { AnimationService } from "../../../shared/services/animation.service";
                 </p>
               </div>
             </div>
-            <div class="animate-on-scroll">
+            <div class="">
               <div class="relative">
                 <img
                   src="https://www.travail.gouv.bj/storage/teams/1714985419vissoh-ahissin-g-mahoutondji-fredy.jpg"
@@ -100,7 +100,7 @@ import { AnimationService } from "../../../shared/services/animation.service";
               </div>
             </div>
           </div>
-          <div class="animate-on-scroll">
+          <div class="">
             <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">
               Le Secrétariat Général
             </h2>
@@ -278,7 +278,7 @@ import { AnimationService } from "../../../shared/services/animation.service";
     <!-- Missions -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2
             class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4"
           >
@@ -292,7 +292,7 @@ import { AnimationService } from "../../../shared/services/animation.service";
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div
             *ngFor="let mission of missions"
-            class="card p-6 text-center animate-on-scroll"
+            class="card p-6 text-center "
           >
             <div
               class="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-6"
@@ -315,7 +315,7 @@ import { AnimationService } from "../../../shared/services/animation.service";
     <!-- Organisation -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2
             class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4"
           >
@@ -330,7 +330,7 @@ import { AnimationService } from "../../../shared/services/animation.service";
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div
               *ngFor="let service of services"
-              class="card p-6 animate-on-scroll"
+              class="card p-6 "
             >
               <div class="flex items-start space-x-4">
                 <div
@@ -373,7 +373,7 @@ import { AnimationService } from "../../../shared/services/animation.service";
       class="section-padding bg-primary-800 dark:bg-primary-900 text-white"
     >
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold mb-4">
             Processus de Coordination
           </h2>
@@ -386,7 +386,7 @@ import { AnimationService } from "../../../shared/services/animation.service";
           <div class="space-y-8">
             <div
               *ngFor="let etape of processus; let i = index"
-              class="flex items-start space-x-6 animate-on-scroll"
+              class="flex items-start space-x-6 "
             >
               <div class="flex-shrink-0">
                 <div
@@ -410,7 +410,7 @@ import { AnimationService } from "../../../shared/services/animation.service";
     <!-- Contact -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
-        <div class="max-w-2xl mx-auto text-center animate-on-scroll">
+        <div class="max-w-2xl mx-auto text-center ">
           <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">
             Contacter le Secrétariat Général
           </h2>

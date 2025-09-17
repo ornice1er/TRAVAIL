@@ -10,7 +10,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Hero Section -->
     <div class="bg-gradient-to-r from-accent-700 to-accent-800 dark:from-accent-800 dark:to-accent-900 text-white pt-32 pb-16">
       <div class="container-custom">
-        <div class="text-center animate-on-scroll">
+        <div class="text-center ">
           <h1 class="text-4xl lg:text-5xl font-bold mb-6">Inspection Générale des Services et Emplois Publics</h1>
           <p class="text-xl text-accent-100 dark:text-accent-200 max-w-3xl mx-auto">
             L'organe de contrôle, d'audit et d'évaluation des services publics et de l'emploi au Bénin.
@@ -23,7 +23,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div class="animate-on-scroll">
+          <div class="">
             <div class="relative">
               <img src="https://www.travail.gouv.bj/storage/structures/respos/1708440169alokpo-n-germain.jpg" 
                    alt="KANHOUNON Norbert Bocreace - Inspecteur Général des Services et Emplois Publics" 
@@ -37,10 +37,10 @@ import { AnimationService } from '../../../shared/services/animation.service';
               <p class="text-gray-600 dark:text-gray-300">Inspecteur Général des Services et Emplois Publics</p>
             </div>
           </div>
-          <div class="animate-on-scroll">
+          <div class="">
             <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">L'Inspection Générale</h2>
             
-            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Mission</h3>
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Mission & Attribution</h3>
             <p class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
               Conformément aux dispositions de l'article 4 du décret n° 2018-398 du 29 août 2018 portant statuts 
               particuliers des corps de contrôle de l'ordre administratif en République du Bénin, l'inspection générale 
@@ -98,11 +98,6 @@ import { AnimationService } from '../../../shared/services/animation.service';
               </a>
             </div>
           </div>
-          <div class="animate-on-scroll">
-            <img src="https://images.pexels.com/photos/3184302/pexels-photo-3184302.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                 alt="Inspection Générale" 
-                 class="rounded-2xl shadow-lg w-full">
-          </div>
         </div>
       </div>
     </section>
@@ -110,7 +105,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Missions -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Missions et Attributions</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             Les domaines d'intervention de l'Inspection Générale
@@ -118,7 +113,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div *ngFor="let mission of missions" class="card p-6 text-center animate-on-scroll">
+          <div *ngFor="let mission of missions" class="card p-6 text-center ">
             <div class="w-16 h-16 bg-accent-100 dark:bg-accent-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
               <span class="text-3xl">{{ mission.icone }}</span>
             </div>
@@ -132,7 +127,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Types d'Inspection -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Types d'Inspection</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             Les différentes modalités d'intervention de l'IGSEP
@@ -140,7 +135,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div *ngFor="let type of typesInspection" class="card p-8 animate-on-scroll">
+          <div *ngFor="let type of typesInspection" class="card p-8 ">
             <div class="flex items-start space-x-6">
               <div class="flex-shrink-0">
                 <div class="w-16 h-16 bg-accent-100 dark:bg-accent-900/30 rounded-full flex items-center justify-center">
@@ -166,7 +161,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Processus d'Inspection -->
     <section class="section-padding bg-accent-800 dark:bg-accent-900 text-white">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold mb-4">Processus d'Inspection</h2>
           <p class="text-xl text-accent-100 dark:text-accent-200">
             Les étapes d'une mission d'inspection
@@ -175,7 +170,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         
         <div class="max-w-4xl mx-auto">
           <div class="space-y-8">
-            <div *ngFor="let etape of processusInspection; let i = index" class="flex items-start space-x-6 animate-on-scroll">
+            <div *ngFor="let etape of processusInspection; let i = index" class="flex items-start space-x-6 ">
               <div class="flex-shrink-0">
                 <div class="w-12 h-12 bg-white/20 dark:bg-white/10 rounded-full flex items-center justify-center font-bold text-lg">
                   {{ i + 1 }}
@@ -197,7 +192,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Résultats et Impact -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Résultats et Impact</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             L'impact de l'action de l'Inspection Générale
@@ -205,7 +200,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div *ngFor="let resultat of resultats" class="text-center animate-on-scroll">
+          <div *ngFor="let resultat of resultats" class="text-center ">
             <div class="w-20 h-20 bg-accent-100 dark:bg-accent-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
               <span class="text-3xl">{{ resultat.icone }}</span>
             </div>
@@ -220,7 +215,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Contact -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
-        <div class="max-w-2xl mx-auto text-center animate-on-scroll">
+        <div class="max-w-2xl mx-auto text-center ">
           <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Signaler un Dysfonctionnement</h2>
           <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
             Vous pouvez signaler tout dysfonctionnement dans l'administration publique à l'Inspection Générale.

@@ -33,7 +33,7 @@ export const environment = {
       class="bg-gradient-to-r from-secondary-800 to-secondary-900 dark:from-secondary-900 dark:to-secondary-950 text-white pt-32 pb-16"
     >
       <div class="container-custom">
-        <div class="text-center animate-on-scroll">
+        <div class="text-center ">
           <h1 class="text-4xl lg:text-5xl font-bold mb-6">Contactez-nous</h1>
           <p
             class="text-xl text-secondary-100 dark:text-secondary-200 max-w-3xl mx-auto"
@@ -51,7 +51,7 @@ export const environment = {
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-16">
           <div
             *ngFor="let contact of informationsContact"
-            class="text-center animate-on-scroll card p-8"
+            class="text-center  card p-8"
           >
             <div
               class="w-16 h-16 bg-secondary-100 dark:bg-secondary-900/30 rounded-full flex items-center justify-center mx-auto mb-6"
@@ -80,7 +80,7 @@ export const environment = {
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
         <div class="max-w-4xl mx-auto">
-          <div class="text-center mb-12 animate-on-scroll">
+          <div class="text-center mb-12 ">
             <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               Envoyez-nous un message
             </h2>
@@ -89,7 +89,7 @@ export const environment = {
             </p>
           </div>
 
-          <div class="card p-8 animate-on-scroll">
+          <div class="card p-8 ">
             <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
@@ -359,7 +359,7 @@ export const environment = {
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div class="animate-on-scroll">
+          <div class="">
             <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">
               Nos horaires d'ouverture
             </h3>
@@ -391,7 +391,7 @@ export const environment = {
             </div>
           </div>
 
-          <div class="animate-on-scroll">
+          <div class="">
             <!-- Placeholder pour la carte -->
             <div
               class="bg-gray-200 dark:bg-gray-700 rounded-2xl h-96 flex items-center justify-center"

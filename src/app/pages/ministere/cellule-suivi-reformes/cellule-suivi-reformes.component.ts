@@ -10,7 +10,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Hero Section -->
     <div class="bg-gradient-to-r from-accent-700 to-accent-800 dark:from-accent-800 dark:to-accent-900 text-white pt-32 pb-16">
       <div class="container-custom">
-        <div class="text-center animate-on-scroll">
+        <div class="text-center ">
           <h1 class="text-4xl lg:text-5xl font-bold mb-6">Cellule de Suivi des Réformes</h1>
           <p class="text-xl text-accent-100 dark:text-accent-200 max-w-3xl mx-auto">
             L'organe de pilotage et de suivi de la mise en œuvre des réformes du secteur public au Bénin.
@@ -23,7 +23,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div class="animate-on-scroll">
+          <div class="">
             <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">La Cellule de Suivi des Réformes</h2>
             <p class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
               La Cellule de Suivi des Réformes (CSR) est une structure technique spécialisée chargée du pilotage, 
@@ -38,7 +38,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
               <p class="text-accent-700 dark:text-accent-400 font-medium">M. [Nom du Chef de Cellule]</p>
             </div>
           </div>
-          <div class="animate-on-scroll">
+          <div class="">
             <img src="https://images.pexels.com/photos/3184302/pexels-photo-3184302.jpeg?auto=compress&cs=tinysrgb&w=800" 
                  alt="Cellule Suivi Réformes" 
                  class="rounded-2xl shadow-lg w-full">
@@ -50,7 +50,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Missions -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Missions Principales</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             Les domaines d'intervention de la CSR
@@ -58,7 +58,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div *ngFor="let mission of missions" class="card p-6 text-center animate-on-scroll">
+          <div *ngFor="let mission of missions" class="card p-6 text-center ">
             <div class="w-16 h-16 bg-accent-100 dark:bg-accent-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
               <span class="text-3xl">{{ mission.icone }}</span>
             </div>
@@ -72,7 +72,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Réformes en Cours -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Réformes en Cours</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             État d'avancement des principales réformes
@@ -80,7 +80,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="space-y-8">
-          <div *ngFor="let reforme of reformes" class="card p-8 animate-on-scroll">
+          <div *ngFor="let reforme of reformes" class="card p-8 ">
             <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 items-center">
               <div class="lg:col-span-3">
                 <div class="flex items-start space-x-4 mb-4">
@@ -118,7 +118,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Méthodologie -->
     <section class="section-padding bg-accent-800 dark:bg-accent-900 text-white">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold mb-4">Méthodologie de Suivi</h2>
           <p class="text-xl text-accent-100 dark:text-accent-200">
             Approche structurée pour le pilotage des réformes
@@ -127,7 +127,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         
         <div class="max-w-4xl mx-auto">
           <div class="space-y-8">
-            <div *ngFor="let etape of methodologie; let i = index" class="flex items-start space-x-6 animate-on-scroll">
+            <div *ngFor="let etape of methodologie; let i = index" class="flex items-start space-x-6 ">
               <div class="flex-shrink-0">
                 <div class="w-12 h-12 bg-white/20 dark:bg-white/10 rounded-full flex items-center justify-center font-bold text-lg">
                   {{ i + 1 }}
@@ -149,7 +149,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Indicateurs de Performance -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Indicateurs de Performance</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             Mesure de l'efficacité des réformes
@@ -157,7 +157,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div *ngFor="let indicateur of indicateurs" class="text-center animate-on-scroll">
+          <div *ngFor="let indicateur of indicateurs" class="text-center ">
             <div class="w-20 h-20 bg-accent-100 dark:bg-accent-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
               <span class="text-3xl">{{ indicateur.icone }}</span>
             </div>
@@ -172,7 +172,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Outils et Ressources -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Outils et Ressources</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             Instruments de pilotage et de suivi des réformes
@@ -180,7 +180,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div *ngFor="let outil of outils" class="card p-6 text-center animate-on-scroll">
+          <div *ngFor="let outil of outils" class="card p-6 text-center ">
             <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
               <span class="text-3xl">{{ outil.icone }}</span>
             </div>
@@ -197,7 +197,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Rapports et Publications -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Rapports et Publications</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             Documentation et suivi des réformes
@@ -205,7 +205,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div *ngFor="let rapport of rapports" class="card p-6 animate-on-scroll">
+          <div *ngFor="let rapport of rapports" class="card p-6 ">
             <div class="flex items-start space-x-4">
               <div class="w-12 h-12 bg-accent-100 dark:bg-accent-900/30 rounded-full flex items-center justify-center flex-shrink-0">
                 <span class="text-2xl">{{ rapport.icone }}</span>
@@ -229,7 +229,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Contact -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
-        <div class="max-w-2xl mx-auto text-center animate-on-scroll">
+        <div class="max-w-2xl mx-auto text-center ">
           <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Contacter la CSR</h2>
           <div class="card p-8">
             <div class="space-y-6">

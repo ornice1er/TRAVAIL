@@ -11,7 +11,7 @@ import { Service } from '../../shared/models/actualite.model';
     <!-- Hero Section -->
     <div class="bg-gradient-to-r from-secondary-800 to-secondary-900 dark:from-secondary-900 dark:to-secondary-950 text-white pt-32 pb-16">
       <div class="container-custom">
-        <div class="text-center animate-on-scroll">
+        <div class="text-center ">
           <h1 class="text-4xl lg:text-5xl font-bold mb-6">Services en ligne</h1>
           <p class="text-xl text-secondary-100 dark:text-secondary-200 max-w-3xl mx-auto">
             Simplifiez vos démarches administratives grâce à nos services numériques accessibles 24h/24 et 7j/7.
@@ -23,7 +23,7 @@ import { Service } from '../../shared/models/actualite.model';
     <!-- Filtres -->
     <section class="py-8 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
       <div class="container-custom">
-        <div class="flex flex-wrap justify-center gap-4 animate-on-scroll">
+        <div class="flex flex-wrap justify-center gap-4 ">
           <button 
             *ngFor="let categorie of categories"
             (click)="filtrerServices(categorie.slug)"
@@ -40,7 +40,7 @@ import { Service } from '../../shared/models/actualite.model';
       <div class="container-custom">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div *ngFor="let service of servicesFiltres; trackBy: trackByServiceId" 
-               class="card p-6 animate-on-scroll hover:scale-105 transition-all duration-300"
+               class="card p-6  hover:scale-105 transition-all duration-300"
                [attr.aria-label]="'Service: ' + service.nom">
             <div class="flex items-start justify-between mb-4">
               <div class="w-12 h-12 bg-secondary-100 dark:bg-secondary-900/30 rounded-lg flex items-center justify-center" aria-hidden="true">
@@ -83,7 +83,7 @@ import { Service } from '../../shared/models/actualite.model';
     <!-- Guide d'utilisation -->
     <section class="section-padding bg-white dark:bg-gray-900" aria-label="Guide d'utilisation des services">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Comment utiliser nos services ?</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto text-content">
             Suivez ces étapes simples pour accéder à nos services en ligne.
@@ -92,7 +92,7 @@ import { Service } from '../../shared/models/actualite.model';
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8" role="list">
           <div *ngFor="let etape of etapesUtilisation; let i = index" 
-               class="text-center animate-on-scroll"
+               class="text-center "
                role="listitem">
             <div class="w-16 h-16 bg-primary-800 dark:bg-primary-700 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6">
               {{ i + 1 }}
@@ -107,7 +107,7 @@ import { Service } from '../../shared/models/actualite.model';
     <!-- Support -->
     <section class="py-16 bg-primary-50 dark:bg-primary-900/20" aria-label="Support et aide">
       <div class="container-custom">
-        <div class="card p-8 text-center animate-on-scroll">
+        <div class="card p-8 text-center ">
           <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Besoin d'aide ?</h3>
           <p class="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto text-content">
             Notre équipe support est disponible pour vous accompagner dans l'utilisation de nos services en ligne.

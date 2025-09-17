@@ -11,7 +11,7 @@ import { Document } from '../../shared/models/actualite.model';
     <!-- Hero Section -->
     <div class="bg-gradient-to-r from-accent-700 to-accent-800 dark:from-accent-800 dark:to-accent-900 text-white pt-32 pb-16">
       <div class="container-custom">
-        <div class="text-center animate-on-scroll">
+        <div class="text-center ">
           <h1 class="text-4xl lg:text-5xl font-bold mb-6">Textes & Lois</h1>
           <p class="text-xl text-accent-100 dark:text-accent-200 max-w-3xl mx-auto">
             Consultez l'ensemble des textes juridiques, lois, décrets et arrêtés régissant le monde du travail au Bénin.
@@ -23,7 +23,7 @@ import { Document } from '../../shared/models/actualite.model';
     <!-- Filtres -->
     <section class="py-8 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
       <div class="container-custom">
-        <div class="flex flex-wrap justify-center gap-4 animate-on-scroll">
+        <div class="flex flex-wrap justify-center gap-4 ">
           <button 
             *ngFor="let type of typesDocuments"
             (click)="filtrerDocuments(type.slug)"
@@ -40,7 +40,7 @@ import { Document } from '../../shared/models/actualite.model';
       <div class="container-custom">
         <div class="space-y-6">
           <div *ngFor="let document of documentsFiltres; trackBy: trackByDocumentId" 
-               class="card p-6 animate-on-scroll hover:shadow-lg transition-all duration-300">
+               class="card p-6  hover:shadow-lg transition-all duration-300">
             <div class="flex items-start justify-between">
               <div class="flex-1">
                 <div class="flex items-center mb-3">
@@ -78,7 +78,7 @@ import { Document } from '../../shared/models/actualite.model';
         </div>
         
         <!-- Pagination -->
-        <div class="flex justify-center mt-12 animate-on-scroll">
+        <div class="flex justify-center mt-12 ">
           <div class="flex space-x-2">
             <button class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
               Précédent
@@ -98,7 +98,7 @@ import { Document } from '../../shared/models/actualite.model';
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div class="animate-on-scroll">
+          <div class="">
             <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Besoin d'aide juridique ?</h2>
             <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
               Nos conseillers juridiques sont à votre disposition pour vous aider à comprendre 
@@ -134,7 +134,7 @@ import { Document } from '../../shared/models/actualite.model';
               </div>
             </div>
           </div>
-          <div class="animate-on-scroll">
+          <div class="">
             <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800" 
                  alt="Consultation juridique" 
                  class="rounded-2xl shadow-lg w-full">

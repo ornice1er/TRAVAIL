@@ -10,7 +10,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Hero Section -->
     <div class="bg-gradient-to-r from-secondary-800 to-secondary-900 dark:from-secondary-900 dark:to-secondary-950 text-white pt-32 pb-16">
       <div class="container-custom">
-        <div class="text-center animate-on-scroll">
+        <div class="text-center ">
           <h1 class="text-4xl lg:text-5xl font-bold mb-6">Direction Générale du Travail</h1>
           <p class="text-xl text-secondary-100 dark:text-secondary-200 max-w-3xl mx-auto">
             L'organe central de régulation du marché du travail et de promotion de l'emploi au Bénin.
@@ -23,7 +23,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div class="animate-on-scroll">
+          <div class="">
             <div class="space-y-8">
               <!-- Directeur Général -->
               <div class="flex items-start space-x-6">
@@ -112,7 +112,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
               </a>
             </div>
           </div>
-          <div class="animate-on-scroll">
+          <div class="">
             <img src="https://images.pexels.com/photos/3184317/pexels-photo-3184317.jpeg?auto=compress&cs=tinysrgb&w=800" 
                  alt="Direction Générale du Travail" 
                  class="rounded-2xl shadow-lg w-full">
@@ -124,7 +124,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Missions -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Missions Principales</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             Les domaines d'intervention de la DGT
@@ -132,7 +132,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div *ngFor="let mission of missions" class="card p-6 text-center animate-on-scroll">
+          <div *ngFor="let mission of missions" class="card p-6 text-center ">
             <div class="w-16 h-16 bg-secondary-100 dark:bg-secondary-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
               <span class="text-3xl">{{ mission.icone }}</span>
             </div>
@@ -146,7 +146,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Directions Techniques -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Directions Techniques</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             Organisation des services techniques de la DGT
@@ -154,7 +154,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div *ngFor="let direction of directions" class="card p-8 animate-on-scroll">
+          <div *ngFor="let direction of directions" class="card p-8 ">
             <div class="flex items-start space-x-6">
               <div class="flex-shrink-0">
                 <div class="w-16 h-16 bg-secondary-100 dark:bg-secondary-900/30 rounded-full flex items-center justify-center">
@@ -180,7 +180,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Services aux Entreprises -->
     <section class="section-padding bg-secondary-800 dark:bg-secondary-900 text-white">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold mb-4">Services aux Entreprises</h2>
           <p class="text-xl text-secondary-100 dark:text-secondary-200">
             Accompagnement des entreprises dans leurs obligations sociales
@@ -188,7 +188,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div *ngFor="let service of servicesEntreprises" class="bg-white/10 dark:bg-white/5 rounded-lg p-6 text-center animate-on-scroll">
+          <div *ngFor="let service of servicesEntreprises" class="bg-white/10 dark:bg-white/5 rounded-lg p-6 text-center ">
             <div class="w-16 h-16 bg-white/20 dark:bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6">
               <span class="text-3xl">{{ service.icone }}</span>
             </div>
@@ -205,7 +205,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Inspection du Travail -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Inspection du Travail</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             Contrôle de l'application de la législation du travail
@@ -213,7 +213,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div class="animate-on-scroll">
+          <div class="">
             <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Rôle des Inspecteurs</h3>
             <div class="space-y-4">
               <div *ngFor="let role of rolesInspecteurs" class="flex items-start space-x-4">
@@ -227,7 +227,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
               </div>
             </div>
           </div>
-          <div class="animate-on-scroll">
+          <div class="">
             <div class="card p-8">
               <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-6">Statistiques d'Inspection</h3>
               <div class="space-y-6">
@@ -245,7 +245,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Programmes Emploi -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
-        <div class="text-center mb-16 animate-on-scroll">
+        <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Programmes d'Emploi</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             Initiatives pour la promotion de l'emploi et l'insertion professionnelle
@@ -253,7 +253,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div *ngFor="let programme of programmesEmploi" class="card p-6 animate-on-scroll">
+          <div *ngFor="let programme of programmesEmploi" class="card p-6 ">
             <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
               <span class="text-3xl">{{ programme.icone }}</span>
             </div>
@@ -277,7 +277,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     <!-- Contact -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
-        <div class="max-w-2xl mx-auto text-center animate-on-scroll">
+        <div class="max-w-2xl mx-auto text-center ">
           <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Contacter la DGT</h2>
           <div class="card p-8">
             <div class="space-y-6">
