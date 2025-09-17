@@ -23,7 +23,7 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
     </div>
 
     <!-- Direction en chiffres -->
-    <section class="section-padding bg-primary-800 dark:bg-primary-900 text-white">
+    <section class="section-padding bg-secondary-800 dark:bg-secondary-900 text-white">
       <div class="container-custom">
         <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold mb-4">Le Secrétariat Général en chiffres</h2>
