@@ -45,110 +45,108 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
       </div>
     </section>
 
-    <!-- Mission & Attribution avec photo du responsable -->
+    <!-- Mission & Attribution -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <div class="">
-            <div class="space-y-8">
-              <!-- Secrétaire Général -->
-              <div class="text-center">
-                <div class="relative inline-block">
-                  <img src="https://www.travail.gouv.bj/storage/structures/respos/1708440238kanhounon-norbert.jpg" 
-                       alt="ALOHON N. Germain - Secrétaire Général du Ministère" 
-                       class="rounded-2xl shadow-lg w-full max-w-2xs mx-auto">
-                  <!-- <div class="absolute -bottom-6 -right-6 w-16 h-16 bg-primary-700 rounded-full flex items-center justify-center">
-                    <span class="text-white text-2xl">🇧🇯</span>
-                  </div> -->
-                </div>
-                <div class="mt-6">
-                  <h3 class="text-xl font-bold text-primary-800 dark:text-primary-400 mb-2">ALOHON N. Germain</h3>
-                  <p class="text-gray-600 dark:text-gray-300">Secrétaire Général du Ministère</p>
-                </div>
-              </div>
-              
-              <!-- Secrétaire Général Adjoint -->
-              <div class="text-center">
-                <div class="relative inline-block">
-                  <img src="https://www.travail.gouv.bj/storage/teams/1708594357estelle-honfo-akpovo.jpg" 
-                       alt="Estelle HONFO AKPOVO - Secrétaire Générale Adjointe du Ministère" 
-                       class="rounded-2xl shadow-lg w-full max-w-2xs mx-auto">
-                </div>
-                <div class="mt-6">
-                  <h3 class="text-xl font-bold text-primary-800 dark:text-primary-400 mb-2">Estelle HONFO AKPOVO</h3>
-                  <p class="text-gray-600 dark:text-gray-300">Secrétaire Générale Adjointe du Ministère</p>
-                </div>
-              </div>
-              
-              <!-- Assistant -->
-              <div class="text-center">
-                <div class="relative inline-block">
-                  <img src="https://www.travail.gouv.bj/storage/teams/1714985419vissoh-ahissin-g-mahoutondji-fredy.jpg" 
-                       alt="VISSOH AHISSIN G. Mahoutondji Frédy - Assistant du Secrétaire Général du Ministère" 
-                       class="rounded-2xl shadow-lg w-full max-w-2xs mx-auto">
-                </div>
-                <div class="mt-6">
-                  <h3 class="text-xl font-bold text-primary-800 dark:text-primary-400 mb-2">VISSOH AHISSIN G. Mahoutondji Frédy</h3>
-                  <p class="text-gray-600 dark:text-gray-300">Assistant du Secrétaire Général du Ministère</p>
-                </div>
-              </div>
+        <div class="text-center mb-16">
+          <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Mission & Attribution</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-center mb-12">
+          <div class="md:col-span-1 text-center">
+            <div class="relative inline-block">
+              <img src="https://www.travail.gouv.bj/storage/structures/respos/1708440238kanhounon-norbert.jpg"
+                   alt="ALOHON N. Germain - Secrétaire Général du Ministère"
+                   class="rounded-2xl shadow-lg w-full max-w-xs mx-auto">
+            </div>
+            <div class="mt-6">
+              <h3 class="text-xl font-bold text-primary-800 dark:text-primary-400 mb-2">ALOHON N. Germain</h3>
+              <p class="text-gray-600 dark:text-gray-300">Secrétaire Général du Ministère</p>
             </div>
           </div>
-          
-          <div class="">
-            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Mission & Attribution</h2>
-            
-            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Mission</h3>
+          <div class="md:col-span-2">
+            <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Mission</h3>
             <p class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
               Conformément aux dispositions de l'article 39 du décret n° 2021-401 du 28 juillet 2021 fixant le 
               nouveau type des ministères, le secrétariat général du Ministère du Travail et de la Fonction 
               Publique est l'organe chargé de l'exécution correcte de la mission du ministère. Il veille à l'exécution des résultats et à la 
               satisfaction des besoins des citoyens.
             </p>
-            
-            <p class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+            <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
               Il assure la continuité de l'administration du ministère.
             </p>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Attributions</h3>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">À ce titre et sous autorité du ministre :</p>
+          <ul class="space-y-3 text-gray-700 dark:text-gray-300">
+            <li class="flex items-start">
+              <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+              <span>propose en collaboration avec le cabinet du ministre, les orientations stratégiques destinées à traduire la vision, les politiques et les stratégies du gouvernement dans les secteurs d'activités relevant du ministère</span>
+            </li>
+            <li class="flex items-start">
+              <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+              <span>veille à la mise en œuvre du Programme d'Actions du Gouvernement (PAG) et des orientations stratégiques du département en collaboration avec le cabinet du ministère</span>
+            </li>
+            <li class="flex items-start">
+              <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+              <span>veille à aligner toutes les directions centrales, techniques et départementales sur les orientations stratégiques du département et coordonne les actions de mise en œuvre du programme de renforcement du leadership du ministère</span>
+            </li>
+            <li class="flex items-start">
+              <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+              <span>assure un rôle technique sur tous les dossiers relevant de l'Inspection du ministère</span>
+            </li>
+            <li class="flex items-start">
+              <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+              <span>assure avec l'appui technique du programme support, l'élaboration des rapports, l'évaluation et la capitalisation du plan d'amélioration de la performance globale du ministère, de ses politiques, de ses programmes et de ses projets</span>
+            </li>
+          </ul>
+
+          <!-- Boutons de téléchargement -->
+          <div class="flex flex-col sm:flex-row gap-4 mt-8">
+            <button type="button" command="show-modal" commandfor="dialog" class="inline-flex items-center px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors">
+              <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
+              </svg>
+              Lire l'arrêté
+            </button>
+            <a href="https://travail.gouv.bj/download-data/aofs/2301250210-628.pdf/aof" download="https://travail.gouv.bj/download-data/aofs/2301250210-628.pdf/aof" class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors">
+              <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
+              </svg>
+              Télécharger
+            </a>
+          </div>
+        </div>
+
+        <div class="mt-16 pt-12 border-t border-gray-200 dark:border-gray-700">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <!-- Secrétaire Général Adjoint -->
+            <div class="text-center">
+              <div class="relative inline-block">
+                <img src="https://www.travail.gouv.bj/storage/teams/1708594357estelle-honfo-akpovo.jpg"
+                     alt="Estelle HONFO AKPOVO - Secrétaire Générale Adjointe du Ministère"
+                     class="rounded-2xl shadow-lg w-full max-w-xs mx-auto">
+              </div>
+              <div class="mt-6">
+                <h3 class="text-xl font-bold text-primary-800 dark:text-primary-400 mb-2">Estelle HONFO AKPOVO</h3>
+                <p class="text-gray-600 dark:text-gray-300">Secrétaire Générale Adjointe du Ministère</p>
+              </div>
+            </div>
             
-            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Attributions</h3>
-            <p class="text-gray-700 dark:text-gray-300 mb-4">À ce titre et sous autorité du ministre :</p>
-            <ul class="space-y-3 text-gray-700 dark:text-gray-300">
-              <li class="flex items-start">
-                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                <span>propose en collaboration avec le cabinet du ministre, les orientations stratégiques destinées à traduire la vision, les politiques et les stratégies du gouvernement dans les secteurs d'activités relevant du ministère</span>
-              </li>
-              <li class="flex items-start">
-                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                <span>veille à la mise en œuvre du Programme d'Actions du Gouvernement (PAG) et des orientations stratégiques du département en collaboration avec le cabinet du ministère</span>
-              </li>
-              <li class="flex items-start">
-                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                <span>veille à aligner toutes les directions centrales, techniques et départementales sur les orientations stratégiques du département et coordonne les actions de mise en œuvre du programme de renforcement du leadership du ministère</span>
-              </li>
-              <li class="flex items-start">
-                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                <span>assure un rôle technique sur tous les dossiers relevant de l'Inspection du ministère</span>
-              </li>
-              <li class="flex items-start">
-                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                <span>assure avec l'appui technique du programme support, l'élaboration des rapports, l'évaluation et la capitalisation du plan d'amélioration de la performance globale du ministère, de ses politiques, de ses programmes et de ses projets</span>
-              </li>
-            </ul>
-            
-            <!-- Boutons de téléchargement -->
-            <div class="flex flex-col sm:flex-row gap-4 mt-8">
-              <button type="button" command="show-modal" commandfor="dialog" class="inline-flex items-center px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors">
-                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                </svg>
-                Lire l'arrêté
-              </button>
-              <a href="https://travail.gouv.bj/download-data/aofs/2301250210-628.pdf/aof" download="https://travail.gouv.bj/download-data/aofs/2301250210-628.pdf/aof" class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors">
-                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                </svg>
-                Télécharger
-              </a>
+            <!-- Assistant -->
+            <div class="text-center">
+              <div class="relative inline-block">
+                <img src="https://www.travail.gouv.bj/storage/teams/1714985419vissoh-ahissin-g-mahoutondji-fredy.jpg"
+                     alt="VISSOH AHISSIN G. Mahoutondji Frédy - Assistant du Secrétaire Général du Ministère"
+                     class="rounded-2xl shadow-lg w-full max-w-xs mx-auto">
+              </div>
+              <div class="mt-6">
+                <h3 class="text-xl font-bold text-primary-800 dark:text-primary-400 mb-2">VISSOH AHISSIN G. Mahoutondji Frédy</h3>
+                <p class="text-gray-600 dark:text-gray-300">Assistant du Secrétaire Général du Ministère</p>
+              </div>
             </div>
           </div>
         </div>
@@ -237,60 +235,34 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
                   <span class="font-medium text-primary-700 dark:text-primary-400">{{ metier.experience }}</span>
                 </div>
               </div>
+
+              <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-600 flex justify-between items-center">
+                <a [href]="metier.file" download class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors text-sm">
+                  <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                  Télécharger
+                </a>
+                <a [href]="metier.readMoreLink" class="text-sm font-medium text-primary-600 hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-200">
+                  Lire plus
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Contacts spécifiques -->
+    <!-- Contact Général -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
         <div class="text-center mb-16 ">
-          <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Contacts Spécifiques</h2>
+          <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Contact Général</h2>
           <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
-            Contactez directement les services spécialisés du Secrétariat Général
+            Pour toute information concernant l'administration du ministère.
           </p>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div *ngFor="let contact of contactsSpecifiques" class="card p-6 text-center ">
-            <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
-              <span class="text-3xl">{{ contact.icone }}</span>
-            </div>
-            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">{{ contact.service }}</h3>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">{{ contact.description }}</p>
-            
-            <div class="space-y-3">
-              <div class="flex items-center justify-center space-x-3">
-                <span class="text-primary-600 dark:text-primary-400">📞</span>
-                <span class="text-gray-700 dark:text-gray-300 text-sm">{{ contact.telephone }}</span>
-              </div>
-              <div class="flex items-center justify-center space-x-3">
-                <span class="text-primary-600 dark:text-primary-400">✉️</span>
-                <span class="text-gray-700 dark:text-gray-300 text-sm">{{ contact.email }}</span>
-              </div>
-              <div class="flex items-center justify-center space-x-3">
-                <span class="text-primary-600 dark:text-primary-400">⏰</span>
-                <span class="text-gray-700 dark:text-gray-300 text-sm">{{ contact.horaires }}</span>
-              </div>
-            </div>
-            
-            <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-600">
-              <p class="text-xs text-primary-700 dark:text-primary-400 font-medium">
-                {{ contact.specialite }}
-              </p>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Contact général -->
-        <div class="max-w-2xl mx-auto mt-16 ">
+        <div class="max-w-2xl mx-auto">
           <div class="card p-8 text-center">
-            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Contact Général</h3>
-            <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
-              Pour toute information concernant l'administration du ministère.
-            </p>
             <div class="space-y-6">
               <div class="flex items-center justify-center space-x-4">
                 <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center">
@@ -420,7 +392,9 @@ export class SecretariatGeneralComponent implements AfterViewInit {
         'Pilotage stratégique'
       ],
       niveauRequis: 'Bac+5',
-      experience: '10 ans minimum'
+      experience: '10 ans minimum',
+      file: 'assets/download-data/fiches-metiers/coordinateur-general.pdf',
+      readMoreLink: '#'
     },
     {
       icone: '📋',
@@ -439,7 +413,9 @@ export class SecretariatGeneralComponent implements AfterViewInit {
         'Coordination de projets'
       ],
       niveauRequis: 'Bac+5',
-      experience: '5 ans minimum'
+      experience: '5 ans minimum',
+      file: 'assets/download-data/fiches-metiers/charge-de-mission.pdf',
+      readMoreLink: '#'
     },
     {
       icone: '📊',
@@ -458,7 +434,9 @@ export class SecretariatGeneralComponent implements AfterViewInit {
         'Tableaux de bord'
       ],
       niveauRequis: 'Bac+4',
-      experience: '4 ans minimum'
+      experience: '4 ans minimum',
+      file: 'assets/download-data/fiches-metiers/analyste-performance.pdf',
+      readMoreLink: '#'
     },
     {
       icone: '📝',
@@ -477,7 +455,9 @@ export class SecretariatGeneralComponent implements AfterViewInit {
         'Suivi du courrier'
       ],
       niveauRequis: 'Bac+2',
-      experience: '3 ans minimum'
+      experience: '3 ans minimum',
+      file: 'assets/download-data/fiches-metiers/secretaire-de-direction.pdf',
+      readMoreLink: '#'
     },
     {
       icone: '🤝',
@@ -496,7 +476,9 @@ export class SecretariatGeneralComponent implements AfterViewInit {
         'Suivi des conventions'
       ],
       niveauRequis: 'Bac+4',
-      experience: '4 ans minimum'
+      experience: '4 ans minimum',
+      file: 'assets/download-data/fiches-metiers/charge-de-relations.pdf',
+      readMoreLink: '#'
     },
     {
       icone: '📚',
@@ -515,67 +497,12 @@ export class SecretariatGeneralComponent implements AfterViewInit {
         'Conservation des données'
       ],
       niveauRequis: 'Bac+3',
-      experience: '2 ans minimum'
+      experience: '2 ans minimum',
+      file: 'assets/download-data/fiches-metiers/documentaliste.pdf',
+      readMoreLink: '#'
     }
   ];
   
-  contactsSpecifiques = [
-    {
-      icone: '🎯',
-      service: 'Service Coordination',
-      description: 'Coordination des activités du ministère.',
-      telephone: '+229 01 52 16 00 01',
-      email: 'coordination.sg@travail.gouv.bj',
-      horaires: 'Lun-Ven 8h-17h',
-      specialite: 'Coordination générale'
-    },
-    {
-      icone: '📊',
-      service: 'Service Suivi-Évaluation',
-      description: 'Suivi des performances et évaluation.',
-      telephone: '+229 01 52 16 00 02',
-      email: 'suivi.evaluation@travail.gouv.bj',
-      horaires: 'Lun-Ven 8h-16h',
-      specialite: 'Suivi et évaluation'
-    },
-    {
-      icone: '📋',
-      service: 'Service Affaires Générales',
-      description: 'Gestion administrative et affaires générales.',
-      telephone: '+229 01 52 16 00 03',
-      email: 'affaires.generales@travail.gouv.bj',
-      horaires: 'Lun-Ven 8h-16h',
-      specialite: 'Administration générale'
-    },
-    {
-      icone: '🤝',
-      service: 'Service Relations Institutionnelles',
-      description: 'Gestion des relations avec les partenaires.',
-      telephone: '+229 01 52 16 00 04',
-      email: 'relations.institutionnelles@travail.gouv.bj',
-      horaires: 'Lun-Ven 8h-17h',
-      specialite: 'Relations institutionnelles'
-    },
-    {
-      icone: '📚',
-      service: 'Service Documentation',
-      description: 'Gestion de la documentation et des archives.',
-      telephone: '+229 01 52 16 00 05',
-      email: 'documentation.sg@travail.gouv.bj',
-      horaires: 'Lun-Ven 8h-16h',
-      specialite: 'Documentation et archives'
-    },
-    {
-      icone: '📞',
-      service: 'Accueil et Information',
-      description: 'Information générale et orientation.',
-      telephone: '+229 01 52 16 00 00',
-      email: 'accueil.sg@travail.gouv.bj',
-      horaires: 'Lun-Ven 7h30-17h',
-      specialite: 'Information générale'
-    }
-  ];
-
   constructor(private animationService: AnimationService) {}
 
   ngAfterViewInit() {
