@@ -8,358 +8,230 @@ import { AnimationService } from "../../../shared/services/animation.service";
   imports: [CommonModule],
   template: `
     <!-- Hero Section -->
-    <div
-      class="bg-gradient-to-r from-primary-800 to-primary-900 dark:from-primary-900 dark:to-primary-950 text-white pt-32 pb-16"
-    >
+    <div class="bg-gradient-to-r from-primary-800 to-primary-900 dark:from-primary-900 dark:to-primary-950 text-white pt-32 pb-16">
       <div class="container-custom">
         <div class="text-center ">
-          <h1 class="text-4xl lg:text-5xl font-bold mb-6">
-            Secrétariat Général du Ministère
-          </h1>
-          <p
-            class="text-xl text-primary-100 dark:text-primary-200 max-w-3xl mx-auto"
-          >
-            L'organe central de coordination et d'administration du Ministère du
-            Travail et de la Fonction Publique.
+          <h1 class="text-4xl lg:text-5xl font-bold mb-6">Secrétariat Général du Ministère</h1>
+          <p class="text-xl text-primary-100 dark:text-primary-200 max-w-3xl mx-auto">
+            L'organe central de coordination et d'administration du Ministère du Travail et de la Fonction Publique.
           </p>
         </div>
       </div>
     </div>
 
-    <!-- Présentation -->
+    <!-- Direction en chiffres -->
+    <section class="section-padding bg-primary-800 dark:bg-primary-900 text-white">
+      <div class="container-custom">
+        <div class="text-center mb-16 ">
+          <h2 class="text-3xl lg:text-4xl font-bold mb-4">Le Secrétariat Général en chiffres</h2>
+          <p class="text-xl text-primary-100 dark:text-primary-200">
+            L'impact de l'action du Secrétariat Général du Ministère
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div *ngFor="let chiffre of chiffres" class="text-center ">
+            <div class="w-20 h-20 bg-white/20 dark:bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6">
+              <span class="text-3xl">{{ chiffre.icone }}</span>
+            </div>
+            <div class="text-3xl font-bold text-white mb-2">{{ chiffre.valeur }}</div>
+            <h3 class="text-lg font-semibold text-primary-100 dark:text-primary-200 mb-2">{{ chiffre.titre }}</h3>
+            <p class="text-primary-200 dark:text-primary-300 text-sm">{{ chiffre.description }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission & Attribution avec photo du responsable -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div class="flex flex-col items-center gap-8">
-            <div class="">
-              <div class="relative">
-                <img
-                  src="https://www.travail.gouv.bj/storage/structures/respos/1708440238kanhounon-norbert.jpg"
-                  alt="KANHOUNON N. Norbert - Secrétaire Général du Ministère"
-                  class="rounded-2xl shadow-lg w-full max-w-2xs mx-auto"
-                />
-                <div
-                  class="absolute -bottom-6 -right-6 w-16 h-16 bg-primary-700 rounded-full flex items-center justify-center"
-                >
-                  <span class="text-white text-2xl">🇧🇯</span>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <div class="">
+            <div class="space-y-8">
+              <!-- Secrétaire Général -->
+              <div class="text-center">
+                <div class="relative inline-block">
+                  <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
+                       alt="ALOHON N. Germain - Secrétaire Général du Ministère" 
+                       class="rounded-2xl shadow-lg w-full max-w-sm mx-auto">
+                  <div class="absolute -bottom-6 -right-6 w-16 h-16 bg-primary-700 rounded-full flex items-center justify-center">
+                    <span class="text-white text-2xl">🇧🇯</span>
+                  </div>
+                </div>
+                <div class="mt-6">
+                  <h3 class="text-xl font-bold text-primary-800 dark:text-primary-400 mb-2">ALOHON N. Germain</h3>
+                  <p class="text-gray-600 dark:text-gray-300">Secrétaire Général du Ministère</p>
                 </div>
               </div>
-              <div class="mt-3 text-center">
-                <h3
-                  class="text-xl font-bold text-primary-800 dark:text-primary-400 mb-0"
-                >
-                  ALOHON N. Germain
-                </h3>
-                <p class="text-gray-600 dark:text-gray-300">
-                  Secrétaire Général du Ministère
-                </p>
-              </div>
-            </div>
-            <div class="">
-              <div class="relative">
-                <img
-                  src="https://www.travail.gouv.bj/storage/teams/1708594357estelle-honfo-akpovo.jpg"
-                  alt="Estelle HONFO AKPOVO - Secrétaire Générale Adjointe du Ministère"
-                  class="rounded-2xl shadow-lg w-full max-w-2xs mx-auto"
-                />
-                <div
-                  class="absolute -bottom-6 -right-6 w-16 h-16 bg-primary-700 rounded-full flex items-center justify-center"
-                >
-                  <span class="text-white text-2xl">🇧🇯</span>
-                </div>
-              </div>
-              <div class="mt-3 text-center">
-                <h3
-                  class="text-xl font-bold text-primary-800 dark:text-primary-400 mb-0"
-                >
-                  Estelle HONFO AKPOVO
-                </h3>
-                <p class="text-gray-600 dark:text-gray-300">
-                Secrétaire Générale Adjointe du Ministère
-                </p>
-              </div>
-            </div>
-            <div class="">
-              <div class="relative">
-                <img
-                  src="https://www.travail.gouv.bj/storage/teams/1714985419vissoh-ahissin-g-mahoutondji-fredy.jpg"
-                  alt="VISSOH AHISSIN G. Mahoutondji Frédy - Assistant du Secrétaire Général du Ministère"
-                  class="rounded-2xl shadow-lg w-full max-w-2xs mx-auto"
-                />
               
+              <!-- Secrétaire Général Adjoint -->
+              <div class="text-center">
+                <div class="relative inline-block">
+                  <img src="https://www.travail.gouv.bj/storage/teams/1708594357estelle-honfo-akpovo.jpg" 
+                       alt="Estelle HONFO AKPOVO - Secrétaire Générale Adjointe du Ministère" 
+                       class="rounded-2xl shadow-lg w-full max-w-sm mx-auto">
+                </div>
+                <div class="mt-6">
+                  <h3 class="text-xl font-bold text-primary-800 dark:text-primary-400 mb-2">Estelle HONFO AKPOVO</h3>
+                  <p class="text-gray-600 dark:text-gray-300">Secrétaire Générale Adjointe du Ministère</p>
+                </div>
               </div>
-              <div class="mt-3 text-center">
-                <h3
-                  class="text-xl font-bold text-primary-800 dark:text-primary-400 mb-0"
-                >
-                  VISSOH AHISSIN G. Mahoutondji Frédy
-                </h3>
-                <p class="text-gray-600 dark:text-gray-300">
-                  Assistant du Secrétaire Général du Ministère
-                </p>
+              
+              <!-- Assistant -->
+              <div class="text-center">
+                <div class="relative inline-block">
+                  <img src="https://www.travail.gouv.bj/storage/teams/1714985419vissoh-ahissin-g-mahoutondji-fredy.jpg" 
+                       alt="VISSOH AHISSIN G. Mahoutondji Frédy - Assistant du Secrétaire Général du Ministère" 
+                       class="rounded-2xl shadow-lg w-full max-w-sm mx-auto">
+                </div>
+                <div class="mt-6">
+                  <h3 class="text-xl font-bold text-primary-800 dark:text-primary-400 mb-2">VISSOH AHISSIN G. Mahoutondji Frédy</h3>
+                  <p class="text-gray-600 dark:text-gray-300">Assistant du Secrétaire Général du Ministère</p>
+                </div>
               </div>
             </div>
           </div>
+          
           <div class="">
-            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">
-              Le Secrétariat Général
-            </h2>
-
-            <h3
-              class="text-xl font-semibold text-gray-900 dark:text-white mb-4"
-            >
-              Mission
-            </h3>
-            <p
-              class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed"
-            >
-              Conformément aux dispositions de l'article 39 du décret n°
-              2021-401 du 28 juillet 2021 fixant le nouveau type des ministères,
-              le secrétariat général du Ministère du Travail et de la Fonction
-              Publique est l'organe chargé de l'exécution correcte de la mission
-              du ministère. Il veille à l'exécution des résultats et à la
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Mission & Attribution</h2>
+            
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Mission</h3>
+            <p class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+              Conformément aux dispositions de l'article 39 du décret n° 2021-401 du 28 juillet 2021 fixant le 
+              nouveau type des ministères, le secrétariat général du Ministère du Travail et de la Fonction 
+              Publique est l'organe chargé de l'exécution correcte de la mission du ministère. Il veille à l'exécution des résultats et à la 
               satisfaction des besoins des citoyens.
             </p>
-            <p
-              class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed"
-            >
+            
+            <p class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
               Il assure la continuité de l'administration du ministère.
             </p>
-
-            <h3
-              class="text-xl font-semibold text-gray-900 dark:text-white mb-4"
-            >
-              Attributions
-            </h3>
-            <p
-              class="text-lg text-gray-700 dark:text-gray-300 mb-4 leading-relaxed"
-            >
-              À ce titre et sous autorité du ministre,
-            </p>
+            
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Attributions</h3>
+            <p class="text-gray-700 dark:text-gray-300 mb-4">À ce titre et sous autorité du ministre :</p>
             <ul class="space-y-3 text-gray-700 dark:text-gray-300">
               <li class="flex items-start">
-                <span
-                  class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                ></span>
-                <span
-                  >propose en collaboration avec le cabinet du ministre, les
-                  orientations stratégiques destinées à traduire la vision, les
-                  politiques et les stratégies du</span
-                >
+                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                <span>propose en collaboration avec le cabinet du ministre, les orientations stratégiques destinées à traduire la vision, les politiques et les stratégies du gouvernement dans les secteurs d'activités relevant du ministère</span>
               </li>
               <li class="flex items-start">
-                <span
-                  class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                ></span>
-                <span
-                  >gouvernement dans les secteurs d'activités relevant du
-                  ministère</span
-                >
+                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                <span>veille à la mise en œuvre du Programme d'Actions du Gouvernement (PAG) et des orientations stratégiques du département en collaboration avec le cabinet du ministère</span>
               </li>
               <li class="flex items-start">
-                <span
-                  class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                ></span>
-                <span
-                  >veille à la mise en œuvre du Programme d'Actions du
-                  Gouvernement (PAG) et des orientations stratégiques du
-                  département en collaboration avec le cabinet du
-                  ministère</span
-                >
+                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                <span>veille à aligner toutes les directions centrales, techniques et départementales sur les orientations stratégiques du département et coordonne les actions de mise en œuvre du programme de renforcement du leadership du ministère</span>
               </li>
               <li class="flex items-start">
-                <span
-                  class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                ></span>
-                <span
-                  >veille à aligner toutes les directions centrales, techniques
-                  et départementales sur les orientations stratégiques du
-                  département et coordonne les actions de mise en œuvre du
-                  programme de renforcement du leadership des du ministère</span
-                >
+                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                <span>assure un rôle technique sur tous les dossiers relevant de l'Inspection du ministère</span>
               </li>
               <li class="flex items-start">
-                <span
-                  class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                ></span>
-                <span
-                  >assure un rôle technique sur tous les dossiers relevant de
-                  l'Inspection du ministère</span
-                >
-              </li>
-              <li class="flex items-start">
-                <span
-                  class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                ></span>
-                <span
-                  >assure avec l'appui technique du programme support,
-                  l'élaboration des rapports, l'évaluation et la capitalisation
-                  du plan d'amélioration de la performance</span
-                >
-              </li>
-              <li class="flex items-start">
-                <span
-                  class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                ></span>
-                <span
-                  >globale du ministère, de ses politiques, de ses programmes et
-                  de ses projets</span
-                >
-              </li>
-              <li class="flex items-start">
-                <span
-                  class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                ></span>
-                <span
-                  >coordonne les activités du personnel du ministère à l'effet
-                  de formuler des résultats, une exigence de performance et de
-                  qualité de service qui réponde aux besoins spécifiques des
-                  citoyens, optimise les ressources intrants et activités</span
-                >
-              </li>
-              <li class="flex items-start">
-                <span
-                  class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                ></span>
-                <span
-                  >développe, en collaboration avec le cabinet du ministère et
-                  en liaison avec les autres départements ministériels, des
-                  partenariats, des réseaux et des coopérations avec le secteur
-                  privé, la société civile, les organisations, les partenaires
-                  techniques et financiers aux plans national et
-                  international</span
-                >
-              </li>
-              <li class="flex items-start">
-                <span
-                  class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                ></span>
-                <span
-                  >assure la coordination de l'ensemble des activités du
-                  ministère en matière de gestion administrative et de gestion
-                  des finances publiques au sein du ministère, en liaison avec
-                  la direction de la planification, de l'administration et des
-                  finances, la direction des systèmes d'information et les
-                  directions techniques</span
-                >
-              </li>
-              <li class="flex items-start">
-                <span
-                  class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                ></span>
-                <span
-                  >assure l'élaboration du rapport annuel de capitalisation des
-                  bonnes pratiques pour consolider les acquis et enrichir la
-                  culture administrative, exécute toutes autres tâches à lui
-                  confiées par le ministère dans le strict respect des lois et
-                  règlements.</span
-                >
+                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                <span>assure avec l'appui technique du programme support, l'élaboration des rapports, l'évaluation et la capitalisation du plan d'amélioration de la performance globale du ministère, de ses politiques, de ses programmes et de ses projets</span>
               </li>
             </ul>
-
-            <div
-              class="mt-8 bg-primary-50 dark:bg-primary-900/20 rounded-lg p-6"
-            >
-              <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-                Le secrétaire général du ministère est dirigé par un secrétaire
-                général assisté d'un secrétaire général adjoint.
-              </p>
-              <p class="text-gray-700 dark:text-gray-300 leading-relaxed mt-4">
-                Les directeurs centraux, les directeurs techniques, les
-                directeurs départementaux et les responsables d'organismes sont
-                intégrés sous l'autorité du secrétaire général du ministère.
-              </p>
+            
+            <!-- Boutons de téléchargement -->
+            <div class="flex flex-col sm:flex-row gap-4 mt-8">
+              <a href="#" class="inline-flex items-center px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors">
+                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                </svg>
+                Lire l'arrêté
+              </a>
+              <a href="#" class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors">
+                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                </svg>
+                Télécharger
+              </a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Missions -->
+    <!-- Présentation des directeurs techniques -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
         <div class="text-center mb-16 ">
-          <h2
-            class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4"
-          >
-            Missions Principales
-          </h2>
+          <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Directeurs Techniques</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
-            Les responsabilités clés du Secrétariat Général
+            L'équipe technique du Secrétariat Général
           </p>
         </div>
-
+        
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div
-            *ngFor="let mission of missions"
-            class="card p-6 text-center "
-          >
-            <div
-              class="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-6"
-            >
-              <span class="text-3xl">{{ mission.icone }}</span>
+          <div *ngFor="let directeur of directeursTechniques" class="card p-6 text-center ">
+            <div class="w-24 h-32 bg-gray-200 dark:bg-gray-700 rounded-lg mx-auto mb-4 overflow-hidden">
+              <img [src]="directeur.photo" 
+                   [alt]="directeur.nom" 
+                   class="w-full h-full object-cover"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+              <div class="w-full h-full bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center" style="display: none;">
+                <span class="text-2xl text-primary-600 dark:text-primary-400">👤</span>
+              </div>
             </div>
-            <h3
-              class="text-xl font-semibold text-gray-900 dark:text-white mb-4"
-            >
-              {{ mission.titre }}
-            </h3>
-            <p class="text-gray-600 dark:text-gray-300">
-              {{ mission.description }}
-            </p>
+            <h3 class="text-sm font-bold text-primary-800 dark:text-primary-400 mb-2">{{ directeur.nom }}</h3>
+            <p class="text-gray-600 dark:text-gray-300 text-xs mb-3">{{ directeur.fonction }}</p>
+            <div class="space-y-2">
+              <div *ngFor="let responsabilite of directeur.responsabilites" class="text-xs text-gray-500 dark:text-gray-400">
+                • {{ responsabilite }}
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Organisation -->
+    <!-- Fiches métiers -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
         <div class="text-center mb-16 ">
-          <h2
-            class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4"
-          >
-            Organisation
-          </h2>
+          <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Fiches Métiers</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
-            Structure organisationnelle du Secrétariat Général
+            Les métiers et compétences du Secrétariat Général
           </p>
         </div>
-
-        <div class="max-w-4xl mx-auto">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div
-              *ngFor="let service of services"
-              class="card p-6 "
-            >
-              <div class="flex items-start space-x-4">
-                <div
-                  class="w-12 h-12 bg-secondary-100 dark:bg-secondary-900/30 rounded-full flex items-center justify-center flex-shrink-0"
-                >
-                  <span class="text-2xl">{{ service.icone }}</span>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div *ngFor="let metier of fichesMetiers" class="card p-6 ">
+            <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
+              <span class="text-3xl">{{ metier.icone }}</span>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4 text-center">{{ metier.titre }}</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-4 text-center">{{ metier.description }}</p>
+            
+            <div class="space-y-4">
+              <div>
+                <h4 class="font-semibold text-gray-900 dark:text-white mb-2 text-sm">Compétences requises :</h4>
+                <ul class="space-y-1">
+                  <li *ngFor="let competence of metier.competences" class="flex items-start">
+                    <span class="w-1.5 h-1.5 bg-primary-600 rounded-full mr-2 mt-2 flex-shrink-0"></span>
+                    <span class="text-gray-700 dark:text-gray-300 text-xs">{{ competence }}</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <div>
+                <h4 class="font-semibold text-gray-900 dark:text-white mb-2 text-sm">Missions principales :</h4>
+                <ul class="space-y-1">
+                  <li *ngFor="let mission of metier.missions" class="flex items-start">
+                    <span class="w-1.5 h-1.5 bg-primary-600 rounded-full mr-2 mt-2 flex-shrink-0"></span>
+                    <span class="text-gray-700 dark:text-gray-300 text-xs">{{ mission }}</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <div class="pt-3 border-t border-gray-200 dark:border-gray-600">
+                <div class="flex justify-between text-xs">
+                  <span class="text-gray-500 dark:text-gray-400">Niveau requis</span>
+                  <span class="font-medium text-primary-700 dark:text-primary-400">{{ metier.niveauRequis }}</span>
                 </div>
-                <div class="flex-1">
-                  <h3
-                    class="text-lg font-semibold text-gray-900 dark:text-white mb-3"
-                  >
-                    {{ service.nom }}
-                  </h3>
-                  <p class="text-gray-600 dark:text-gray-300 mb-4">
-                    {{ service.description }}
-                  </p>
-                  <ul class="space-y-2">
-                    <li
-                      *ngFor="let attribution of service.attributions"
-                      class="flex items-start"
-                    >
-                      <span
-                        class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                      ></span>
-                      <span class="text-gray-700 dark:text-gray-300 text-sm">{{
-                        attribution
-                      }}</span>
-                    </li>
-                  </ul>
+                <div class="flex justify-between text-xs mt-1">
+                  <span class="text-gray-500 dark:text-gray-400">Expérience</span>
+                  <span class="font-medium text-primary-700 dark:text-primary-400">{{ metier.experience }}</span>
                 </div>
               </div>
             </div>
@@ -368,81 +240,77 @@ import { AnimationService } from "../../../shared/services/animation.service";
       </div>
     </section>
 
-    <!-- Processus -->
-    <section
-      class="section-padding bg-primary-800 dark:bg-primary-900 text-white"
-    >
+    <!-- Contacts spécifiques -->
+    <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
         <div class="text-center mb-16 ">
-          <h2 class="text-3xl lg:text-4xl font-bold mb-4">
-            Processus de Coordination
-          </h2>
-          <p class="text-xl text-primary-100 dark:text-primary-200">
-            Comment le Secrétariat Général coordonne les activités du ministère
+          <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Contacts Spécifiques</h2>
+          <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
+            Contactez directement les services spécialisés du Secrétariat Général
           </p>
         </div>
-
-        <div class="max-w-4xl mx-auto">
-          <div class="space-y-8">
-            <div
-              *ngFor="let etape of processus; let i = index"
-              class="flex items-start space-x-6 "
-            >
-              <div class="flex-shrink-0">
-                <div
-                  class="w-12 h-12 bg-white/20 dark:bg-white/10 rounded-full flex items-center justify-center font-bold text-lg"
-                >
-                  {{ i + 1 }}
-                </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div *ngFor="let contact of contactsSpecifiques" class="card p-6 text-center ">
+            <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
+              <span class="text-3xl">{{ contact.icone }}</span>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">{{ contact.service }}</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">{{ contact.description }}</p>
+            
+            <div class="space-y-3">
+              <div class="flex items-center justify-center space-x-3">
+                <span class="text-primary-600 dark:text-primary-400">📞</span>
+                <span class="text-gray-700 dark:text-gray-300 text-sm">{{ contact.telephone }}</span>
               </div>
-              <div class="flex-1">
-                <h3 class="text-xl font-semibold mb-3">{{ etape.titre }}</h3>
-                <p class="text-primary-100 dark:text-primary-200">
-                  {{ etape.description }}
-                </p>
+              <div class="flex items-center justify-center space-x-3">
+                <span class="text-primary-600 dark:text-primary-400">✉️</span>
+                <span class="text-gray-700 dark:text-gray-300 text-sm">{{ contact.email }}</span>
               </div>
+              <div class="flex items-center justify-center space-x-3">
+                <span class="text-primary-600 dark:text-primary-400">⏰</span>
+                <span class="text-gray-700 dark:text-gray-300 text-sm">{{ contact.horaires }}</span>
+              </div>
+            </div>
+            
+            <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-600">
+              <p class="text-xs text-primary-700 dark:text-primary-400 font-medium">
+                {{ contact.specialite }}
+              </p>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section class="section-padding bg-white dark:bg-gray-900">
-      <div class="container-custom">
-        <div class="max-w-2xl mx-auto text-center ">
-          <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">
-            Contacter le Secrétariat Général
-          </h2>
-          <div class="card p-8">
+        
+        <!-- Contact général -->
+        <div class="max-w-2xl mx-auto mt-16 ">
+          <div class="card p-8 text-center">
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Contact Général</h3>
+            <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
+              Pour toute information concernant l'administration du ministère.
+            </p>
             <div class="space-y-6">
               <div class="flex items-center justify-center space-x-4">
-                <div
-                  class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center"
-                >
+                <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center">
                   <span class="text-2xl">📞</span>
                 </div>
                 <div class="text-left">
-                  <p class="font-medium text-gray-900 dark:text-white">
-                    Téléphone
-                  </p>
-                  <p class="text-gray-600 dark:text-gray-300">
-                    +229 21 30 00 00
-                  </p>
+                  <p class="font-medium text-gray-900 dark:text-white">Téléphone</p>
+                  <p class="text-gray-600 dark:text-gray-300">+229 01 52 16 00 00</p>
                 </div>
               </div>
               <div class="flex items-center justify-center space-x-4">
-                <div
-                  class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center"
-                >
+                <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center">
                   <span class="text-2xl">✉️</span>
                 </div>
                 <div class="text-left">
                   <p class="font-medium text-gray-900 dark:text-white">Email</p>
-                  <p class="text-gray-600 dark:text-gray-300">
-                    {{ "secretariat.general@travail.gouv.bj" }}
-                  </p>
+                  <p class="text-gray-600 dark:text-gray-300">{{'secretariat.general@travail.gouv.bj'}}</p>
                 </div>
+              </div>
+              <div class="bg-primary-50 dark:bg-primary-900/20 rounded-lg p-4">
+                <p class="text-sm text-primary-700 dark:text-primary-400">
+                  <strong>Horaires :</strong> Du lundi au vendredi de 8h à 17h
+                </p>
               </div>
             </div>
           </div>
@@ -452,118 +320,239 @@ import { AnimationService } from "../../../shared/services/animation.service";
   `,
 })
 export class SecretariatGeneralComponent implements AfterViewInit {
-  missions = [
+  
+  chiffres = [
     {
-      icone: "🎯",
-      titre: "Coordination Générale",
-      description:
-        "Coordonner les activités de l'ensemble des directions et services du ministère.",
+      icone: '📊',
+      valeur: '25',
+      titre: 'Structures Coordonnées',
+      description: 'Directions et services sous coordination'
     },
     {
-      icone: "📋",
-      titre: "Gestion Administrative",
-      description:
-        "Assurer la gestion administrative et le suivi des dossiers transversaux.",
+      icone: '📋',
+      valeur: '1,200+',
+      titre: 'Dossiers Traités',
+      description: 'Dossiers administratifs par mois'
     },
     {
-      icone: "📊",
-      titre: "Planification Stratégique",
-      description:
-        "Participer à l'élaboration et au suivi des plans d'action du ministère.",
+      icone: '🎯',
+      valeur: '95%',
+      titre: 'Taux de Réalisation',
+      description: 'Objectifs du PAG atteints'
     },
     {
-      icone: "🤝",
-      titre: "Interface Institutionnelle",
-      description:
-        "Servir d'interface entre le Cabinet et les directions techniques.",
-    },
-    {
-      icone: "📈",
-      titre: "Suivi-Évaluation",
-      description:
-        "Assurer le suivi et l'évaluation des programmes et projets du ministère.",
-    },
-    {
-      icone: "📝",
-      titre: "Documentation",
-      description:
-        "Gérer la documentation officielle et les archives du ministère.",
-    },
+      icone: '⏱️',
+      valeur: '48h',
+      titre: 'Délai Moyen',
+      description: 'Traitement des dossiers urgents'
+    }
   ];
-
-  services = [
+  
+  directeursTechniques = [
     {
-      icone: "👥",
-      nom: "Service des Ressources Humaines",
-      description: "Gestion du personnel et développement des compétences.",
-      attributions: [
-        "Gestion des carrières du personnel",
-        "Formation et perfectionnement",
-        "Évaluation des performances",
-        "Gestion des congés et permissions",
-      ],
+      nom: 'KOUTON Marie-Claire',
+      fonction: 'Directrice Technique Coordination',
+      photo: 'https://images.pexels.com/photos/3184317/pexels-photo-3184317.jpeg?auto=compress&cs=tinysrgb&w=200',
+      responsabilites: [
+        'Coordination des directions',
+        'Suivi du PAG',
+        'Reporting ministériel'
+      ]
     },
     {
-      icone: "💰",
-      nom: "Service Financier et Comptable",
-      description: "Gestion financière et comptable du ministère.",
-      attributions: [
-        "Élaboration du budget",
-        "Suivi de l'exécution budgétaire",
-        "Gestion de la comptabilité",
-        "Contrôle des dépenses",
-      ],
+      nom: 'AGBESSI Jean-Paul',
+      fonction: 'Directeur Technique Administration',
+      photo: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=200',
+      responsabilites: [
+        'Gestion administrative',
+        'Procédures internes',
+        'Documentation officielle'
+      ]
     },
     {
-      icone: "🏢",
-      nom: "Service du Patrimoine et de la Logistique",
-      description: "Gestion du patrimoine mobilier et immobilier.",
-      attributions: [
-        "Gestion des bâtiments et équipements",
-        "Maintenance et entretien",
-        "Approvisionnement et stocks",
-        "Transport et véhicules",
-      ],
-    },
-    {
-      icone: "📋",
-      nom: "Service des Affaires Générales",
-      description: "Coordination des activités administratives générales.",
-      attributions: [
-        "Courrier et communication",
-        "Organisation des réunions",
-        "Protocole et cérémonies",
-        "Relations publiques",
-      ],
-    },
+      nom: 'DOSSOU Sylvie',
+      fonction: 'Directrice Technique Suivi-Évaluation',
+      photo: 'https://images.pexels.com/photos/3184302/pexels-photo-3184302.jpeg?auto=compress&cs=tinysrgb&w=200',
+      responsabilites: [
+        'Suivi des performances',
+        'Évaluation des programmes',
+        'Capitalisation des acquis'
+      ]
+    }
   ];
-
-  processus = [
+  
+  fichesMetiers = [
     {
-      titre: "Réception des Instructions",
-      description:
-        "Réception et analyse des instructions du Cabinet du Ministre pour définir les priorités d'action.",
+      icone: '🎯',
+      titre: 'Coordinateur Général',
+      description: 'Coordination des activités de l\'ensemble du ministère.',
+      competences: [
+        'Management public',
+        'Coordination intersectorielle',
+        'Planification stratégique',
+        'Leadership'
+      ],
+      missions: [
+        'Coordination générale',
+        'Suivi du PAG',
+        'Interface Cabinet-Directions',
+        'Pilotage stratégique'
+      ],
+      niveauRequis: 'Bac+5',
+      experience: '10 ans minimum'
     },
     {
-      titre: "Planification et Coordination",
-      description:
-        "Élaboration des plans d'action et coordination avec les différentes directions techniques.",
+      icone: '📋',
+      titre: 'Chargé de Mission',
+      description: 'Suivi de dossiers spéciaux et missions transversales.',
+      competences: [
+        'Gestion de projet',
+        'Analyse institutionnelle',
+        'Rédaction administrative',
+        'Coordination'
+      ],
+      missions: [
+        'Suivi de dossiers spéciaux',
+        'Missions transversales',
+        'Appui au Secrétaire Général',
+        'Coordination de projets'
+      ],
+      niveauRequis: 'Bac+5',
+      experience: '5 ans minimum'
     },
     {
-      titre: "Suivi de l'Exécution",
-      description:
-        "Suivi régulier de la mise en œuvre des activités et programmes par les services compétents.",
+      icone: '📊',
+      titre: 'Analyste Performance',
+      description: 'Suivi et évaluation des performances du ministère.',
+      competences: [
+        'Suivi-évaluation',
+        'Indicateurs de performance',
+        'Analyse de données',
+        'Reporting'
+      ],
+      missions: [
+        'Suivi des indicateurs',
+        'Évaluation des programmes',
+        'Production de rapports',
+        'Tableaux de bord'
+      ],
+      niveauRequis: 'Bac+4',
+      experience: '4 ans minimum'
     },
     {
-      titre: "Reporting et Évaluation",
-      description:
-        "Consolidation des rapports d'activités et évaluation des résultats obtenus.",
+      icone: '📝',
+      titre: 'Secrétaire de Direction',
+      description: 'Assistance administrative et gestion du secrétariat.',
+      competences: [
+        'Secrétariat de direction',
+        'Bureautique avancée',
+        'Organisation',
+        'Communication'
+      ],
+      missions: [
+        'Assistance au Secrétaire Général',
+        'Gestion de l\'agenda',
+        'Préparation de réunions',
+        'Suivi du courrier'
+      ],
+      niveauRequis: 'Bac+2',
+      experience: '3 ans minimum'
     },
     {
-      titre: "Communication et Feedback",
-      description:
-        "Communication des résultats au Cabinet et feedback pour l'amélioration continue.",
+      icone: '🤝',
+      titre: 'Chargé de Relations',
+      description: 'Gestion des relations institutionnelles et partenariats.',
+      competences: [
+        'Relations institutionnelles',
+        'Communication',
+        'Négociation',
+        'Protocole'
+      ],
+      missions: [
+        'Relations avec les partenaires',
+        'Coordination institutionnelle',
+        'Organisation d\'événements',
+        'Suivi des conventions'
+      ],
+      niveauRequis: 'Bac+4',
+      experience: '4 ans minimum'
     },
+    {
+      icone: '📚',
+      titre: 'Documentaliste',
+      description: 'Gestion de la documentation et des archives.',
+      competences: [
+        'Gestion documentaire',
+        'Archivage',
+        '',
+        'Recherche documentaire'
+      ],
+      missions: [
+        'Gestion des archives',
+        'Classification des documents',
+        'Recherche documentaire',
+        'Conservation des données'
+      ],
+      niveauRequis: 'Bac+3',
+      experience: '2 ans minimum'
+    }
+  ];
+  
+  contactsSpecifiques = [
+    {
+      icone: '🎯',
+      service: 'Service Coordination',
+      description: 'Coordination des activités du ministère.',
+      telephone: '+229 01 52 16 00 01',
+      email: 'coordination.sg@travail.gouv.bj',
+      horaires: 'Lun-Ven 8h-17h',
+      specialite: 'Coordination générale'
+    },
+    {
+      icone: '📊',
+      service: 'Service Suivi-Évaluation',
+      description: 'Suivi des performances et évaluation.',
+      telephone: '+229 01 52 16 00 02',
+      email: 'suivi.evaluation@travail.gouv.bj',
+      horaires: 'Lun-Ven 8h-16h',
+      specialite: 'Suivi et évaluation'
+    },
+    {
+      icone: '📋',
+      service: 'Service Affaires Générales',
+      description: 'Gestion administrative et affaires générales.',
+      telephone: '+229 01 52 16 00 03',
+      email: 'affaires.generales@travail.gouv.bj',
+      horaires: 'Lun-Ven 8h-16h',
+      specialite: 'Administration générale'
+    },
+    {
+      icone: '🤝',
+      service: 'Service Relations Institutionnelles',
+      description: 'Gestion des relations avec les partenaires.',
+      telephone: '+229 01 52 16 00 04',
+      email: 'relations.institutionnelles@travail.gouv.bj',
+      horaires: 'Lun-Ven 8h-17h',
+      specialite: 'Relations institutionnelles'
+    },
+    {
+      icone: '📚',
+      service: 'Service Documentation',
+      description: 'Gestion de la documentation et des archives.',
+      telephone: '+229 01 52 16 00 05',
+      email: 'documentation.sg@travail.gouv.bj',
+      horaires: 'Lun-Ven 8h-16h',
+      specialite: 'Documentation et archives'
+    },
+    {
+      icone: '📞',
+      service: 'Accueil et Information',
+      description: 'Information générale et orientation.',
+      telephone: '+229 01 52 16 00 00',
+      email: 'accueil.sg@travail.gouv.bj',
+      horaires: 'Lun-Ven 7h30-17h',
+      specialite: 'Information générale'
+    }
   ];
 
   constructor(private animationService: AnimationService) {}

@@ -19,79 +19,121 @@ import { AnimationService } from '../../../shared/services/animation.service';
       </div>
     </div>
 
-    <!-- Présentation -->
+    <!-- Direction en chiffres -->
+    <section class="section-padding bg-primary-800 dark:bg-primary-900 text-white">
+      <div class="container-custom">
+        <div class="text-center mb-16 ">
+          <h2 class="text-3xl lg:text-4xl font-bold mb-4">La Fonction Publique en chiffres</h2>
+          <p class="text-xl text-primary-100 dark:text-primary-200">
+            L'impact de l'action de la Direction Générale de la Fonction Publique
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div *ngFor="let chiffre of chiffres" class="text-center ">
+            <div class="w-20 h-20 bg-white/20 dark:bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6">
+              <span class="text-3xl">{{ chiffre.icone }}</span>
+            </div>
+            <div class="text-3xl font-bold text-white mb-2">{{ chiffre.valeur }}</div>
+            <h3 class="text-lg font-semibold text-primary-100 dark:text-primary-200 mb-2">{{ chiffre.titre }}</h3>
+            <p class="text-primary-200 dark:text-primary-300 text-sm">{{ chiffre.description }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission & Attribution avec photo du responsable -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div class="">
-            <div class="space-y-8">
-              <!-- Directeur Général -->
-              <div class="flex items-start space-x-6">
-                <div class="flex-shrink-0">
-                  <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
-                       alt="AKAMMON C. Eric - Directeur Général" 
-                       class="w-32 h-40 object-cover rounded-lg shadow-md">
-                  <div class="text-center mt-2">
-                    <p class="text-sm font-semibold text-gray-900 dark:text-white">AKAMMON C. Eric</p>
-                    <p class="text-xs text-gray-600 dark:text-gray-400">Directeur Général</p>
-                  </div>
-                </div>
-                <div class="flex-1">
-                  <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Mission</h2>
-                  <p class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-                    Conformément aux dispositions de l'article 9 du décret n° 2021-562 du 03 novembre 2021 portant 
-                    attributions, organisation et fonctionnement du Ministère du Travail et de la Fonction Publique, la 
-                    direction générale de la fonction publique définit, suit et évalue la politique de l'État en matière de 
-                    fonction publique.
-                  </p>
-                </div>
-              </div>
-              
-              <!-- Directeur Général Adjoint -->
-              <div class="flex items-start space-x-6">
-                <div class="flex-shrink-0">
-                  <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
-                       alt="MIGAN Bolanle Regina Henriette Ayéfé - Directeur Général Adjoint" 
-                       class="w-32 h-40 object-cover rounded-lg shadow-md">
-                  <div class="text-center mt-2">
-                    <p class="text-sm font-semibold text-gray-900 dark:text-white">MIGAN Bolanle Regina</p>
-                    <p class="text-xs text-gray-600 dark:text-gray-400">Directeur Général Adjoint</p>
-                  </div>
-                </div>
-                <div class="flex-1">
-                  <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Attributions</h3>
-                  <p class="text-gray-700 dark:text-gray-300 mb-4">À ce titre, elle est chargée :</p>
-                  <ul class="space-y-3 text-gray-700 dark:text-gray-300">
-                    <li class="flex items-start">
-                      <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                      <span>d'assurer la gestion prévisionnelle et la programmation des effectifs de fonction publique</span>
-                    </li>
-                    <li class="flex items-start">
-                      <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                      <span>d'organiser le recrutement des agents de l'État</span>
-                    </li>
-                    <li class="flex items-start">
-                      <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                      <span>de suivre la gestion des carrières des agents de l'État ; d'organiser la gestion des départs à la retraite</span>
-                    </li>
-                    <li class="flex items-start">
-                      <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                      <span>de conserver les archives du personnel de l'État ; d'élaborer les projets de textes législatifs et réglementaires en matière de fonction publique</span>
-                    </li>
-                    <li class="flex items-start">
-                      <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                      <span>de gérer les relations avec les juridictions en matière de contentieux administratif</span>
-                    </li>
-                    <li class="flex items-start">
-                      <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                      <span>d'organiser la discipline dans la fonction publique</span>
-                    </li>
-                  </ul>
-                </div>
+            <div class="relative">
+              <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
+                   alt="AKAMMON C. Eric - Directeur Général" 
+                   class="rounded-2xl shadow-lg w-full max-w-md mx-auto">
+              <div class="absolute -bottom-6 -right-6 w-16 h-16 bg-primary-700 rounded-full flex items-center justify-center">
+                <span class="text-white text-2xl">🇧🇯</span>
               </div>
             </div>
+            <div class="mt-6 text-center">
+              <h3 class="text-xl font-bold text-primary-800 dark:text-primary-400 mb-2">AKAMMON C. Eric</h3>
+              <p class="text-gray-600 dark:text-gray-300">Directeur Général</p>
+            </div>
             
-            <!-- Boutons PDF -->
+            <div class="mt-8">
+              <div class="relative">
+                <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
+                     alt="MIGAN Bolanle Regina Henriette Ayéfé - Directeur Général Adjoint" 
+                     class="rounded-2xl shadow-lg w-full max-w-md mx-auto">
+              </div>
+              <div class="mt-6 text-center">
+                <h3 class="text-xl font-bold text-primary-800 dark:text-primary-400 mb-2">MIGAN Bolanle Regina Henriette Ayéfé</h3>
+                <p class="text-gray-600 dark:text-gray-300">Directeur Général Adjoint</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="">
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Mission & Attribution</h2>
+            
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Mission</h3>
+            <p class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+              Conformément aux dispositions de l'article 9 du décret n° 2021-562 du 03 novembre 2021 portant 
+              attributions, organisation et fonctionnement du Ministère du Travail et de la Fonction Publique, la 
+              direction générale de la fonction publique définit, suit et évalue la politique de l'État en matière de 
+              fonction publique.
+            </p>
+            
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Attributions</h3>
+            <p class="text-gray-700 dark:text-gray-300 mb-4">À ce titre, elle est chargée :</p>
+            <ul class="space-y-3 text-gray-700 dark:text-gray-300">
+              <li class="flex items-start">
+                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                <span>d'assurer la gestion prévisionnelle et la programmation des effectifs de fonction publique</span>
+              </li>
+              <li class="flex items-start">
+                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                <span>d'organiser le recrutement des agents de l'État</span>
+              </li>
+              <li class="flex items-start">
+                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                <span>de suivre la gestion des carrières des agents de l'État ; d'organiser la gestion des départs à la retraite</span>
+              </li>
+              <li class="flex items-start">
+                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                <span>de conserver les archives du personnel de l'État ; d'élaborer les projets de textes législatifs et réglementaires en matière de fonction publique</span>
+              </li>
+              <li class="flex items-start">
+                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                <span>de gérer les relations avec les juridictions en matière de contentieux administratif</span>
+              </li>
+              <li class="flex items-start">
+                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                <span>d'organiser la discipline dans la fonction publique</span>
+              </li>
+            </ul>
+            
+            <div class="mt-6 bg-primary-50 dark:bg-primary-900/20 rounded-lg p-6">
+              <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                Elle assure en outre, le secrétariat permanent :
+              </p>
+              <ul class="space-y-2 text-gray-700 dark:text-gray-300 mt-3">
+                <li class="flex items-start">
+                  <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                  <span>du comité consultatif paritaire de la fonction publique</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                  <span>de la conférence des gestionnaires des ressources humaines</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                  <span>du conseil national de discipline</span>
+                </li>
+              </ul>
+            </div>
+            
+            <!-- Boutons de téléchargement -->
             <div class="flex flex-col sm:flex-row gap-4 mt-8">
               <a href="#" class="inline-flex items-center px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors">
                 <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
@@ -107,271 +149,146 @@ import { AnimationService } from '../../../shared/services/animation.service';
               </a>
             </div>
           </div>
-          <div class="">
-            <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                 alt="Direction Générale Fonction Publique" 
-                 class="rounded-2xl shadow-lg w-full">
-          </div>
         </div>
       </div>
     </section>
 
-    <!-- Équipe dirigeante -->
-    <section class="section-padding bg-white dark:bg-gray-900">
+    <!-- Présentation des directeurs techniques -->
+    <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
         <div class="text-center mb-16 ">
-          <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Équipe Dirigeante</h2>
+          <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Directeurs Techniques</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
-            Les responsables des différents départements
+            L'équipe technique de la Direction Générale de la Fonction Publique
           </p>
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <!-- ZENONTIN Zita Emma épouse DOSSA DAHI -->
-          <div class="card p-6 text-center ">
-            <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
-                 alt="ZENONTIN Zita Emma épouse DOSSA DAHI" 
-                 class="w-32 h-40 object-cover rounded-lg shadow-md mx-auto mb-4">
-            <h3 class="text-sm font-bold text-primary-800 dark:text-primary-400 mb-2">ZENONTIN Zita Emma épouse DOSSA DAHI</h3>
-            <p class="text-gray-600 dark:text-gray-300 text-xs">Chef du Département des Retraites et des Archives</p>
+          <div *ngFor="let directeur of directeursTechniques" class="card p-6 text-center ">
+            <div class="w-24 h-32 bg-gray-200 dark:bg-gray-700 rounded-lg mx-auto mb-4 overflow-hidden">
+              <img [src]="directeur.photo" 
+                   [alt]="directeur.nom" 
+                   class="w-full h-full object-cover"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+              <div class="w-full h-full bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center" style="display: none;">
+                <span class="text-2xl text-primary-600 dark:text-primary-400">👤</span>
+              </div>
+            </div>
+            <h3 class="text-sm font-bold text-primary-800 dark:text-primary-400 mb-2">{{ directeur.nom }}</h3>
+            <p class="text-gray-600 dark:text-gray-300 text-xs mb-3">{{ directeur.fonction }}</p>
+            <div class="space-y-2">
+              <div *ngFor="let responsabilite of directeur.responsabilites" class="text-xs text-gray-500 dark:text-gray-400">
+                • {{ responsabilite }}
+              </div>
+            </div>
           </div>
-          
-          <!-- MASSOU Siaka -->
-          <div class="card p-6 text-center ">
-            <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
-                 alt="MASSOU Siaka" 
-                 class="w-32 h-40 object-cover rounded-lg shadow-md mx-auto mb-4">
-            <h3 class="text-sm font-bold text-primary-800 dark:text-primary-400 mb-2">MASSOU Siaka</h3>
-            <p class="text-gray-600 dark:text-gray-300 text-xs">Chef du Département du Recrutement des Agents de l'État</p>
-          </div>
-          
-          <!-- AHOUANDOGBO Gbosshgan Elodie -->
-          <div class="card p-6 text-center ">
-            <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
-                 alt="AHOUANDOGBO Gbosshgan Elodie" 
-                 class="w-32 h-40 object-cover rounded-lg shadow-md mx-auto mb-4">
-            <h3 class="text-sm font-bold text-primary-800 dark:text-primary-400 mb-2">AHOUANDOGBO Gbosshgan Elodie</h3>
-            <p class="text-gray-600 dark:text-gray-300 text-xs">Chef du Département des Études, du Contentieux et du Régime Disciplinaire</p>
-          </div>
-          
-          <!-- IDOHOU Prosper -->
-          <div class="card p-6 text-center ">
-            <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
-                 alt="IDOHOU Prosper" 
-                 class="w-32 h-40 object-cover rounded-lg shadow-md mx-auto mb-4">
-            <h3 class="text-sm font-bold text-primary-800 dark:text-primary-400 mb-2">IDOHOU Prosper</h3>
-            <p class="text-gray-600 dark:text-gray-300 text-xs">Chef de la Cellule de Gestion du Fichier Unique de Référence et de Programmation des Effectifs</p>
-          </div>
-        </div>
-        
-        <div class="text-center mt-12 ">
-          <p class="text-lg text-gray-700 dark:text-gray-300 mb-4">Elle assure en outre, le secrétariat permanent :</p>
-          <ul class="space-y-2 text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
-            <li class="flex items-start">
-              <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-              <span>du comité consultatif paritaire de la fonction publique</span>
-            </li>
-            <li class="flex items-start">
-              <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-              <span>de la conférence des gestionnaires des ressources humaines</span>
-            </li>
-            <li class="flex items-start">
-              <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-              <span>du conseil national de discipline</span>
-            </li>
-          </ul>
         </div>
       </div>
     </section>
 
-    <!-- Missions -->
-    <section class="section-padding bg-gray-50 dark:bg-gray-800">
+    <!-- Fiches métiers -->
+    <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
         <div class="text-center mb-16 ">
-          <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Missions Principales</h2>
+          <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Fiches Métiers</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
-            Les domaines d'intervention de la DGFP
+            Les métiers et compétences de la Direction Générale de la Fonction Publique
           </p>
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div *ngFor="let mission of missions" class="card p-6 text-center ">
+          <div *ngFor="let metier of fichesMetiers" class="card p-6 ">
             <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
-              <span class="text-3xl">{{ mission.icone }}</span>
+              <span class="text-3xl">{{ metier.icone }}</span>
             </div>
-            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">{{ mission.titre }}</h3>
-            <p class="text-gray-600 dark:text-gray-300">{{ mission.description }}</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Directions Techniques -->
-    <section class="section-padding bg-white dark:bg-gray-900">
-      <div class="container-custom">
-        <div class="text-center mb-16 ">
-          <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Directions Techniques</h2>
-          <p class="text-xl text-gray-600 dark:text-gray-300">
-            Organisation des services techniques de la DGFP
-          </p>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div *ngFor="let direction of directions" class="card p-8 ">
-            <div class="flex items-start space-x-6">
-              <div class="flex-shrink-0">
-                <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center">
-                  <span class="text-3xl">{{ direction.icone }}</span>
-                </div>
-              </div>
-              <div class="flex-1">
-                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">{{ direction.nom }}</h3>
-                <p class="text-gray-600 dark:text-gray-300 mb-4">{{ direction.description }}</p>
-                <ul class="space-y-2">
-                  <li *ngFor="let attribution of direction.attributions" class="flex items-start">
-                    <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                    <span class="text-gray-700 dark:text-gray-300 text-sm">{{ attribution }}</span>
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4 text-center">{{ metier.titre }}</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-4 text-center">{{ metier.description }}</p>
+            
+            <div class="space-y-4">
+              <div>
+                <h4 class="font-semibold text-gray-900 dark:text-white mb-2 text-sm">Compétences requises :</h4>
+                <ul class="space-y-1">
+                  <li *ngFor="let competence of metier.competences" class="flex items-start">
+                    <span class="w-1.5 h-1.5 bg-primary-600 rounded-full mr-2 mt-2 flex-shrink-0"></span>
+                    <span class="text-gray-700 dark:text-gray-300 text-xs">{{ competence }}</span>
                   </li>
                 </ul>
               </div>
+              
+              <div>
+                <h4 class="font-semibold text-gray-900 dark:text-white mb-2 text-sm">Missions principales :</h4>
+                <ul class="space-y-1">
+                  <li *ngFor="let mission of metier.missions" class="flex items-start">
+                    <span class="w-1.5 h-1.5 bg-primary-600 rounded-full mr-2 mt-2 flex-shrink-0"></span>
+                    <span class="text-gray-700 dark:text-gray-300 text-xs">{{ mission }}</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <div class="pt-3 border-t border-gray-200 dark:border-gray-600">
+                <div class="flex justify-between text-xs">
+                  <span class="text-gray-500 dark:text-gray-400">Niveau requis</span>
+                  <span class="font-medium text-primary-700 dark:text-primary-400">{{ metier.niveauRequis }}</span>
+                </div>
+                <div class="flex justify-between text-xs mt-1">
+                  <span class="text-gray-500 dark:text-gray-400">Expérience</span>
+                  <span class="font-medium text-primary-700 dark:text-primary-400">{{ metier.experience }}</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Concours et Recrutements -->
-    <section class="section-padding bg-primary-800 dark:bg-primary-900 text-white">
+    <!-- Contacts spécifiques -->
+    <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
         <div class="text-center mb-16 ">
-          <h2 class="text-3xl lg:text-4xl font-bold mb-4">Concours et Recrutements</h2>
-          <p class="text-xl text-primary-100 dark:text-primary-200">
-            Processus de recrutement dans la fonction publique
+          <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Contacts Spécifiques</h2>
+          <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
+            Contactez directement les services spécialisés de la Direction Générale de la Fonction Publique
           </p>
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div *ngFor="let concours of concours" class="bg-white/10 dark:bg-white/5 rounded-lg p-6 ">
-            <div class="w-16 h-16 bg-white/20 dark:bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6">
-              <span class="text-3xl">{{ concours.icone }}</span>
+          <div *ngFor="let contact of contactsSpecifiques" class="card p-6 text-center ">
+            <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
+              <span class="text-3xl">{{ contact.icone }}</span>
             </div>
-            <h3 class="text-xl font-semibold mb-4">{{ concours.type }}</h3>
-            <p class="text-primary-100 dark:text-primary-200 mb-4">{{ concours.description }}</p>
-            <div class="space-y-2 text-sm">
-              <div class="flex justify-between">
-                <span class="text-primary-200 dark:text-primary-300">Postes disponibles</span>
-                <span class="font-medium">{{ concours.postes }}</span>
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">{{ contact.service }}</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">{{ contact.description }}</p>
+            
+            <div class="space-y-3">
+              <div class="flex items-center justify-center space-x-3">
+                <span class="text-primary-600 dark:text-primary-400">📞</span>
+                <span class="text-gray-700 dark:text-gray-300 text-sm">{{ contact.telephone }}</span>
               </div>
-              <div class="flex justify-between">
-                <span class="text-primary-200 dark:text-primary-300">Prochaine session</span>
-                <span class="font-medium">{{ concours.session }}</span>
+              <div class="flex items-center justify-center space-x-3">
+                <span class="text-primary-600 dark:text-primary-400">✉️</span>
+                <span class="text-gray-700 dark:text-gray-300 text-sm">{{ contact.email }}</span>
               </div>
+              <div class="flex items-center justify-center space-x-3">
+                <span class="text-primary-600 dark:text-primary-400">⏰</span>
+                <span class="text-gray-700 dark:text-gray-300 text-sm">{{ contact.horaires }}</span>
+              </div>
+            </div>
+            
+            <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-600">
+              <p class="text-xs text-primary-700 dark:text-primary-400 font-medium">
+                {{ contact.specialite }}
+              </p>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Réformes en Cours -->
-    <section class="section-padding bg-white dark:bg-gray-900">
-      <div class="container-custom">
-        <div class="text-center mb-16 ">
-          <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Réformes en Cours</h2>
-          <p class="text-xl text-gray-600 dark:text-gray-300">
-            Modernisation de l'administration publique
-          </p>
         </div>
         
-        <div class="space-y-8">
-          <div *ngFor="let reforme of reformes" class="card p-8 ">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-              <div class="lg:col-span-2">
-                <div class="flex items-start space-x-4 mb-4">
-                  <div class="w-12 h-12 bg-secondary-100 dark:bg-secondary-900/30 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span class="text-2xl">{{ reforme.icone }}</span>
-                  </div>
-                  <div>
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">{{ reforme.nom }}</h3>
-                    <p class="text-gray-600 dark:text-gray-300">{{ reforme.description }}</p>
-                  </div>
-                </div>
-                <div class="ml-16">
-                  <ul class="space-y-2">
-                    <li *ngFor="let objectif of reforme.objectifs" class="flex items-start">
-                      <span class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                      <span class="text-gray-700 dark:text-gray-300 text-sm">{{ objectif }}</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="text-center">
-                <div class="text-3xl font-bold text-secondary-700 dark:text-secondary-400 mb-2">{{ reforme.avancement }}%</div>
-                <div class="text-sm text-gray-500 dark:text-gray-400 mb-4">Avancement</div>
-                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                  <div class="bg-secondary-600 h-2 rounded-full transition-all duration-300" 
-                       [style.width.%]="reforme.avancement"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Statistiques -->
-    <section class="section-padding bg-gray-50 dark:bg-gray-800">
-      <div class="container-custom">
-        <div class="text-center mb-16 ">
-          <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">La Fonction Publique en Chiffres</h2>
-          <p class="text-xl text-gray-600 dark:text-gray-300">
-            Données clés sur les effectifs et la gestion
-          </p>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div *ngFor="let stat of statistiques" class="text-center ">
-            <div class="w-20 h-20 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
-              <span class="text-3xl">{{ stat.icone }}</span>
-            </div>
-            <div class="text-3xl font-bold text-primary-700 dark:text-primary-400 mb-2">{{ stat.valeur }}</div>
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">{{ stat.titre }}</h3>
-            <p class="text-gray-600 dark:text-gray-300 text-sm">{{ stat.description }}</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Services aux Agents -->
-    <section class="section-padding bg-white dark:bg-gray-900">
-      <div class="container-custom">
-        <div class="text-center mb-16 ">
-          <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Services aux Agents Publics</h2>
-          <p class="text-xl text-gray-600 dark:text-gray-300">
-            Accompagnement tout au long de la carrière
-          </p>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div *ngFor="let service of servicesAgents" class="card p-6 text-center ">
-            <div class="w-16 h-16 bg-secondary-100 dark:bg-secondary-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
-              <span class="text-3xl">{{ service.icone }}</span>
-            </div>
-            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">{{ service.nom }}</h3>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">{{ service.description }}</p>
-            <div class="text-sm text-secondary-700 dark:text-secondary-400 font-medium">
-              Délai : {{ service.delai }}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section class="section-padding bg-gray-50 dark:bg-gray-800">
-      <div class="container-custom">
-        <div class="max-w-2xl mx-auto text-center ">
-          <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Contacter la DGFP</h2>
-          <div class="card p-8">
+        <!-- Contact général -->
+        <div class="max-w-2xl mx-auto mt-16 ">
+          <div class="card p-8 text-center">
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Contact Général</h3>
+            <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
+              Pour toute information concernant la fonction publique.
+            </p>
             <div class="space-y-6">
               <div class="flex items-center justify-center space-x-4">
                 <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center">
@@ -405,150 +322,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
 })
 export class DirectionGeneraleFonctionPubliqueComponent implements AfterViewInit {
   
-  missions = [
-    {
-      icone: '👥',
-      titre: 'Gestion des Carrières',
-      description: 'Gestion des carrières des agents publics, promotions et mutations.'
-    },
-    {
-      icone: '📋',
-      titre: 'Recrutement et Concours',
-      description: 'Organisation des concours de recrutement dans la fonction publique.'
-    },
-    {
-      icone: '🎓',
-      titre: 'Formation des Agents',
-      description: 'Développement des compétences et formation continue des agents publics.'
-    },
-    {
-      icone: '⚖️',
-      titre: 'Discipline et Contentieux',
-      description: 'Gestion des procédures disciplinaires et du contentieux administratif.'
-    },
-    {
-      icone: '🔄',
-      titre: 'Réformes Administratives',
-      description: 'Pilotage des réformes de modernisation de l\'administration publique.'
-    },
-    {
-      icone: '📊',
-      titre: 'Études et Statistiques',
-      description: 'Production d\'études et de statistiques sur la fonction publique.'
-    }
-  ];
-  
-  directions = [
-    {
-      icone: '👥',
-      nom: 'Direction de la Gestion des Carrières',
-      description: 'Gestion des parcours professionnels des agents publics.',
-      attributions: [
-        'Recrutement et intégration',
-        'Promotions et avancements',
-        'Mutations et détachements',
-        'Cessation de service'
-      ]
-    },
-    {
-      icone: '🎓',
-      nom: 'Direction de la Formation',
-      description: 'Développement des compétences des agents publics.',
-      attributions: [
-        'Formation initiale et continue',
-        'Perfectionnement professionnel',
-        'Bourses d\'études',
-        'Évaluation des formations'
-      ]
-    },
-    {
-      icone: '⚖️',
-      nom: 'Direction des Affaires Juridiques',
-      description: 'Gestion du contentieux et de la discipline.',
-      attributions: [
-        'Procédures disciplinaires',
-        'Contentieux administratif',
-        'Conseil juridique',
-        'Élaboration des textes'
-      ]
-    },
-    {
-      icone: '📊',
-      nom: 'Direction des Études et de la Documentation',
-      description: 'Études prospectives et gestion documentaire.',
-      attributions: [
-        'Études sectorielles',
-        'Statistiques RH',
-        'Veille réglementaire',
-        'Documentation administrative'
-      ]
-    }
-  ];
-  
-  concours = [
-    {
-      icone: '🎓',
-      type: 'Concours Directs',
-      description: 'Recrutement de nouveaux agents par voie de concours.',
-      postes: '2,000',
-      session: 'Mars 2024'
-    },
-    {
-      icone: '📈',
-      type: 'Concours Professionnels',
-      description: 'Promotion interne des agents en activité.',
-      postes: '1,500',
-      session: 'Mai 2024'
-    },
-    {
-      icone: '🏆',
-      type: 'Concours Exceptionnels',
-      description: 'Recrutements spécialisés pour postes techniques.',
-      postes: '500',
-      session: 'Juillet 2024'
-    }
-  ];
-  
-  reformes = [
-    {
-      icone: '💻',
-      nom: 'Digitalisation de la GRH',
-      description: 'Mise en place d\'un système intégré de gestion des ressources humaines.',
-      avancement: 75,
-      objectifs: [
-        'Dématérialisation des dossiers agents',
-        'Automatisation des processus RH',
-        'Portail agent en ligne',
-        'Tableau de bord décisionnel'
-      ]
-    },
-    {
-      icone: '📊',
-      nom: 'Réforme du Système d\'Évaluation',
-      description: 'Modernisation du système d\'évaluation des performances.',
-      avancement: 60,
-      objectifs: [
-        'Nouveaux critères d\'évaluation',
-        'Formation des évaluateurs',
-        'Système de notation harmonisé',
-        'Lien performance-carrière'
-      ]
-    },
-    {
-      icone: '🎯',
-      nom: 'Gestion Prévisionnelle des Emplois',
-      description: 'Mise en place d\'une GPEC dans l\'administration.',
-      avancement: 45,
-      objectifs: [
-        'Cartographie des métiers',
-        'Identification des besoins futurs',
-        'Plans de formation ciblés',
-        'Mobilité professionnelle'
-      ]
-    }
-  ];
-  
-  statistiques = [
+  chiffres = [
     {
       icone: '👥',
       valeur: '156K',
@@ -575,42 +349,220 @@ export class DirectionGeneraleFonctionPubliqueComponent implements AfterViewInit
     }
   ];
   
-  servicesAgents = [
+  directeursTechniques = [
     {
-      icone: '📄',
-      nom: 'Actes de Carrière',
-      description: 'Délivrance d\'attestations et certificats de service.',
-      delai: '48h'
+      nom: 'ZENONTIN Zita Emma épouse DOSSA DAHI',
+      fonction: 'Chef du Département des Retraites et des Archives',
+      photo: 'https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg',
+      responsabilites: [
+        'Gestion des dossiers de retraite',
+        'Conservation des archives',
+        'Traitement des pensions'
+      ]
+    },
+    {
+      nom: 'MASSOU Siaka',
+      fonction: 'Chef du Département du Recrutement des Agents de l\'État',
+      photo: 'https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg',
+      responsabilites: [
+        'Organisation des concours',
+        'Gestion des recrutements',
+        'Validation des candidatures'
+      ]
+    },
+    {
+      nom: 'AHOUANDOGBO Gbosshgan Elodie',
+      fonction: 'Chef du Département des Études, du Contentieux et du Régime Disciplinaire',
+      photo: 'https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg',
+      responsabilites: [
+        'Gestion du contentieux',
+        'Procédures disciplinaires',
+        'Études juridiques'
+      ]
+    },
+    {
+      nom: 'IDOHOU Prosper',
+      fonction: 'Chef de la Cellule de Gestion du Fichier Unique de Référence et de Programmation des Effectifs',
+      photo: 'https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg',
+      responsabilites: [
+        'Gestion du fichier unique',
+        'Programmation des effectifs',
+        'Statistiques RH'
+      ]
+    }
+  ];
+  
+  fichesMetiers = [
+    {
+      icone: '👥',
+      titre: 'Gestionnaire des Carrières',
+      description: 'Gestion des parcours professionnels des agents publics.',
+      competences: [
+        'Droit de la fonction publique',
+        'Gestion des ressources humaines',
+        'Procédures administratives',
+        'Systèmes d\'information RH'
+      ],
+      missions: [
+        'Suivi des carrières',
+        'Gestion des promotions',
+        'Traitement des mutations',
+        'Conseil aux agents'
+      ],
+      niveauRequis: 'Bac+4',
+      experience: '3 ans minimum'
+    },
+    {
+      icone: '📋',
+      titre: 'Chargé de Recrutement',
+      description: 'Organisation et gestion des concours de recrutement.',
+      competences: [
+        'Organisation d\'événements',
+        'Évaluation des candidats',
+        'Procédures de sélection',
+        'Communication'
+      ],
+      missions: [
+        'Organisation des concours',
+        'Évaluation des candidatures',
+        'Gestion des jurys',
+        'Publication des résultats'
+      ],
+      niveauRequis: 'Bac+3',
+      experience: '2 ans minimum'
+    },
+    {
+      icone: '⚖️',
+      titre: 'Conseiller Juridique',
+      description: 'Gestion du contentieux et des affaires disciplinaires.',
+      competences: [
+        'Droit administratif',
+        'Procédures disciplinaires',
+        'Contentieux administratif',
+        'Rédaction juridique'
+      ],
+      missions: [
+        'Traitement du contentieux',
+        'Procédures disciplinaires',
+        'Conseil juridique',
+        'Rédaction d\'actes'
+      ],
+      niveauRequis: 'Bac+5',
+      experience: '5 ans minimum'
+    },
+    {
+      icone: '📊',
+      titre: 'Analyste RH',
+      description: 'Analyse des données et statistiques de la fonction publique.',
+      competences: [
+        'Analyse statistique',
+        'Systèmes d\'information',
+        'Reporting',
+        'Tableaux de bord'
+      ],
+      missions: [
+        'Analyse des effectifs',
+        'Production de statistiques',
+        'Études prospectives',
+        'Tableaux de bord RH'
+      ],
+      niveauRequis: 'Bac+4',
+      experience: '3 ans minimum'
+    },
+    {
+      icone: '🎓',
+      titre: 'Responsable Formation',
+      description: 'Coordination des programmes de formation des agents.',
+      competences: [
+        'Ingénierie de formation',
+        'Gestion de projet',
+        'Évaluation pédagogique',
+        'Partenariats'
+      ],
+      missions: [
+        'Conception de formations',
+        'Coordination des programmes',
+        'Évaluation des formations',
+        'Gestion des partenaires'
+      ],
+      niveauRequis: 'Bac+5',
+      experience: '4 ans minimum'
     },
     {
       icone: '💰',
-      nom: 'Gestion de la Solde',
-      description: 'Traitement des dossiers de solde et indemnités.',
-      delai: '15 jours'
+      titre: 'Gestionnaire de la Solde',
+      description: 'Gestion de la paie et des indemnités des agents publics.',
+      competences: [
+        'Gestion de la paie',
+        'Réglementation salariale',
+        'Systèmes de paie',
+        'Contrôle financier'
+      ],
+      missions: [
+        'Traitement de la paie',
+        'Calcul des indemnités',
+        'Contrôle des soldes',
+        'Régularisations'
+      ],
+      niveauRequis: 'Bac+3',
+      experience: '2 ans minimum'
+    }
+  ];
+  
+  contactsSpecifiques = [
+    {
+      icone: '👥',
+      service: 'Service Gestion des Carrières',
+      description: 'Gestion des parcours professionnels et promotions.',
+      telephone: '+229 21 30 40 01',
+      email: 'carrieres.dgfp@travail.gouv.bj',
+      horaires: 'Lun-Ven 8h-16h',
+      specialite: 'Carrières et promotions'
     },
     {
-      icone: '🏥',
-      nom: 'Couverture Médicale',
-      description: 'Gestion de l\'assurance maladie des agents.',
-      delai: '7 jours'
+      icone: '📋',
+      service: 'Service Recrutement',
+      description: 'Organisation des concours et recrutements.',
+      telephone: '+229 21 30 40 02',
+      email: 'recrutement.dgfp@travail.gouv.bj',
+      horaires: 'Lun-Ven 8h-16h',
+      specialite: 'Concours et recrutements'
     },
     {
-      icone: '🏠',
-      nom: 'Logement de Fonction',
-      description: 'Attribution et gestion des logements administratifs.',
-      delai: '30 jours'
+      icone: '⚖️',
+      service: 'Service Contentieux',
+      description: 'Gestion des affaires disciplinaires et contentieux.',
+      telephone: '+229 21 30 40 03',
+      email: 'contentieux.dgfp@travail.gouv.bj',
+      horaires: 'Lun-Ven 8h-17h',
+      specialite: 'Discipline et contentieux'
     },
     {
-      icone: '✈️',
-      nom: 'Congés et Permissions',
-      description: 'Traitement des demandes de congés et permissions.',
-      delai: '5 jours'
+      icone: '🎓',
+      service: 'Service Formation',
+      description: 'Coordination des programmes de formation continue.',
+      telephone: '+229 21 30 40 04',
+      email: 'formation.dgfp@travail.gouv.bj',
+      horaires: 'Lun-Ven 8h-16h',
+      specialite: 'Formation des agents'
     },
     {
-      icone: '🎯',
-      nom: 'Orientation de Carrière',
-      description: 'Conseil et orientation pour l\'évolution professionnelle.',
-      delai: '10 jours'
+      icone: '💰',
+      service: 'Service Solde et Pensions',
+      description: 'Gestion de la paie et des pensions de retraite.',
+      telephone: '+229 21 30 40 05',
+      email: 'solde.dgfp@travail.gouv.bj',
+      horaires: 'Lun-Ven 8h-16h',
+      specialite: 'Paie et pensions'
+    },
+    {
+      icone: '📞',
+      service: 'Accueil et Information',
+      description: 'Information générale sur la fonction publique.',
+      telephone: '+229 21 30 40 00',
+      email: 'info.dgfp@travail.gouv.bj',
+      horaires: 'Lun-Ven 7h30-17h',
+      specialite: 'Information générale'
     }
   ];
   
