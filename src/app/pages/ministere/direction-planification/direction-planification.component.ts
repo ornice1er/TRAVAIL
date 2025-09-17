@@ -1,11 +1,14 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AnimationService } from '../../../shared/services/animation.service';
+import '@tailwindplus/elements';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 @Component({
   selector: 'app-direction-planification',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NgxExtendedPdfViewerModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: `
     <!-- Hero Section -->
     <div class="bg-gradient-to-r from-secondary-800 to-secondary-900 dark:from-secondary-900 dark:to-secondary-950 text-white pt-32 pb-16">
@@ -118,20 +121,21 @@ import { AnimationService } from '../../../shared/services/animation.service';
             </div>
             
             <!-- Boutons de téléchargement -->
-            <div class="flex flex-col sm:flex-row gap-4 mt-8">
-              <a href="#" class="inline-flex items-center px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors">
-                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                </svg>
-                Lire l'arrêté
-              </a>
-              <a href="#" class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors">
-                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                </svg>
-                Télécharger
-              </a>
-            </div>
+             <!-- Boutons de téléchargement -->
+          <div class="flex flex-col sm:flex-row gap-4 mt-8">
+            <button type="button" command="show-modal" commandfor="dialog" class="inline-flex items-center px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors">
+              <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
+              </svg>
+              Lire l'arrêté
+            </button>
+            <a href="https://travail.gouv.bj/download-data/aofs/2301250210-628.pdf/aof" download="https://travail.gouv.bj/download-data/aofs/2301250210-628.pdf/aof" class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors">
+              <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
+              </svg>
+              Télécharger
+            </a>
+          </div>
           </div>
         </div>
       </div>
@@ -302,6 +306,24 @@ import { AnimationService } from '../../../shared/services/animation.service';
         </div>
       </div>
     </section>
+
+    <el-dialog>
+  <dialog id="dialog" aria-labelledby="dialog-title" class="fixed inset-0 size-auto max-h-none max-w-none overflow-y-auto bg-transparent backdrop:bg-transparent">
+    <el-dialog-backdrop class="fixed inset-0 bg-gray-500/75 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in dark:bg-gray-900/50"></el-dialog-backdrop>
+
+    <div tabindex="0" class="flex min-h-full items-end justify-center text-center focus:outline-none sm:items-center p-0 relative">
+      <el-dialog-panel class="transform overflow-hidden absolute inset-0 bg-white px-4 pt-5 pb-4 text-left  transition-all data-closed:translate-y-4 data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in sm:my-8 sm:w-full sm:max-w-full sm:p-6 data-closed:sm:translate-y-0 data-closed:sm:scale-95 dark:bg-gray-800 dark:outline dark:-outline-offset-1 dark:outline-white/10">
+        <div class="flex justify-end items-center w-full">
+          <button type="button" command="close" commandfor="dialog" class="inline-flex  justify-center rounded-md bg-red-600 px-4 py-2 text-sm font-semibold text-white shadow-xs hover:bg-red-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 dark:bg-red-500 dark:shadow-none dark:hover:bg-red-400 dark:focus-visible:outline-red-500">Fermer</button>
+        </div>
+        <div>
+         <ngx-extended-pdf-viewer [src]="'assets/download-data/aofs/aof-sgm.pdf'"></ngx-extended-pdf-viewer>
+        </div>
+        
+      </el-dialog-panel>
+    </div>
+  </dialog>
+</el-dialog>
   `
 })
 export class DirectionPlanificationComponent implements AfterViewInit {

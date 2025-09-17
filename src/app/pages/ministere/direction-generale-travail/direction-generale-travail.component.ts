@@ -1,11 +1,13 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AnimationService } from '../../../shared/services/animation.service';
+import '@tailwindplus/elements';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 @Component({
   selector: 'app-direction-generale-travail',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NgxExtendedPdfViewerModule],
   template: `
     <!-- Hero Section -->
     <div class="bg-gradient-to-r from-secondary-800 to-secondary-900 dark:from-secondary-900 dark:to-secondary-950 text-white pt-32 pb-16">
@@ -121,20 +123,21 @@ import { AnimationService } from '../../../shared/services/animation.service';
             </ul>
 
             <!-- Boutons de téléchargement -->
-            <div class="flex flex-col sm:flex-row gap-4 mt-8">
-              <a href="#" class="inline-flex items-center px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors">
-                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                </svg>
-                Lire l'arrêté
-              </a>
-              <a href="#" class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors">
-                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                </svg>
-                Télécharger
-              </a>
-            </div>
+            <!-- Boutons de téléchargement -->
+          <div class="flex flex-col sm:flex-row gap-4 mt-8">
+            <button type="button" command="show-modal" commandfor="dialog" class="inline-flex items-center px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors">
+              <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
+              </svg>
+              Lire l'arrêté
+            </button>
+            <a href="https://travail.gouv.bj/download-data/aofs/2301250210-628.pdf/aof" download="https://travail.gouv.bj/download-data/aofs/2301250210-628.pdf/aof" class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors">
+              <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
+              </svg>
+              Télécharger
+            </a>
+          </div>
           </div>
         </div>
       </div>
