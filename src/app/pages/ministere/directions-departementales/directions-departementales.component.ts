@@ -135,7 +135,6 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
         <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Fiches Métiers</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
-            </p>
           </p>
         </div>
         
