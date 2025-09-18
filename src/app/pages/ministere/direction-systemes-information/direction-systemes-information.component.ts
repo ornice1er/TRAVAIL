@@ -191,62 +191,26 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
       </div>
     </section>
 
-    <!-- Contacts spécifiques -->
+     <!-- Contact Général -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
         <div class="text-center mb-16 ">
-          <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Contacts Spécifiques</h2>
+          <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Contact Général</h2>
           <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
-            Contactez directement les services spécialisés de la Direction des Systèmes d'Information
+            Pour toute information concernant l'administration du ministère.
           </p>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div *ngFor="let contact of contactsSpecifiques" class="card p-6 text-center ">
-            <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
-              <span class="text-3xl">{{ contact.icone }}</span>
-            </div>
-            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">{{ contact.service }}</h3>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">{{ contact.description }}</p>
-            
-            <div class="space-y-3">
-              <div class="flex items-center justify-center space-x-3">
-                <span class="text-primary-600 dark:text-primary-400">📞</span>
-                <span class="text-gray-700 dark:text-gray-300 text-sm">{{ contact.telephone }}</span>
-              </div>
-              <div class="flex items-center justify-center space-x-3">
-                <span class="text-primary-600 dark:text-primary-400">✉️</span>
-                <span class="text-gray-700 dark:text-gray-300 text-sm">{{ contact.email }}</span>
-              </div>
-              <div class="flex items-center justify-center space-x-3">
-                <span class="text-primary-600 dark:text-primary-400">⏰</span>
-                <span class="text-gray-700 dark:text-gray-300 text-sm">{{ contact.horaires }}</span>
-              </div>
-            </div>
-            
-            <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-600">
-              <p class="text-xs text-primary-700 dark:text-primary-400 font-medium">
-                {{ contact.specialite }}
-              </p>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Contact général -->
-        <div class="max-w-2xl mx-auto mt-16 ">
+        <div class="max-w-2xl mx-auto">
           <div class="card p-8 text-center">
-            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Support Technique</h3>
-            <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
-              Besoin d'assistance technique ou de support informatique ?
-            </p>
             <div class="space-y-6">
               <div class="flex items-center justify-center space-x-4">
                 <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center">
-                  <span class="text-2xl">🛠️</span>
+                  <span class="text-2xl">📞</span>
                 </div>
                 <div class="text-left">
-                  <p class="font-medium text-gray-900 dark:text-white">Support Technique</p>
-                  <p class="text-gray-600 dark:text-gray-300">+229 21 30 25 00</p>
+                  <p class="font-medium text-gray-900 dark:text-white">Téléphone</p>
+                  <p class="text-gray-600 dark:text-gray-300">+229 01 52 16 00 00</p>
                 </div>
               </div>
               <div class="flex items-center justify-center space-x-4">
@@ -255,12 +219,12 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
                 </div>
                 <div class="text-left">
                   <p class="font-medium text-gray-900 dark:text-white">Email</p>
-                  <p class="text-gray-600 dark:text-gray-300">{{'dsi@travail.gouv.bj'}}</p>
+                  <p class="text-gray-600 dark:text-gray-300">{{'secretariat.general@travail.gouv.bj'}}</p>
                 </div>
               </div>
               <div class="bg-primary-50 dark:bg-primary-900/20 rounded-lg p-4">
                 <p class="text-sm text-primary-700 dark:text-primary-400">
-                  <strong>Horaires :</strong> Support disponible du lundi au vendredi de 8h à 17h
+                  <strong>Horaires :</strong> Du lundi au vendredi de 8h à 17h
                 </p>
               </div>
             </div>
