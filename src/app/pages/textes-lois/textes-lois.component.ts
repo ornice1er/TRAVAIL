@@ -2,11 +2,12 @@ import { Component, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AnimationService } from '../../shared/services/animation.service';
 import { Document } from '../../shared/models/actualite.model';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-textes-lois',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   template: `
     <!-- Hero Section -->
     <div class="bg-gradient-to-r from-accent-700 to-accent-800 dark:from-accent-800 dark:to-accent-900 text-white pt-32 pb-16">
@@ -23,14 +24,30 @@ import { Document } from '../../shared/models/actualite.model';
     <!-- Filtres -->
     <section class="py-8 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
       <div class="container-custom">
-        <div class="flex flex-wrap justify-center gap-4 ">
-          <button 
-            *ngFor="let type of typesDocuments"
-            (click)="filtrerDocuments(type.slug)"
-            [class]="typeActif === type.slug ? 'btn-primary' : 'btn-secondary'"
-            class="px-6 py-2 rounded-full text-sm font-medium transition-all">
-            {{ type.nom }}
-          </button>
+        <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+          <!-- Filtres par type -->
+          <div class="flex flex-wrap justify-center gap-4">
+            <button
+              *ngFor="let type of typesDocuments"
+              (click)="filtrerDocuments(type.slug)"
+              [class]="typeActif === type.slug ? 'btn-primary' : 'btn-secondary'"
+              class="px-6 py-2 rounded-full text-sm font-medium transition-all">
+              {{ type.nom }}
+            </button>
+          </div>
+          <!-- Barre de recherche -->
+          <div class="relative w-full md:w-auto">
+            <input
+              type="text"
+              [(ngModel)]="termeRecherche"
+              (ngModelChange)="appliquerFiltres()"
+              placeholder="Rechercher par titre ou description..."
+              class="form-input w-full md:w-72 pl-10"
+            />
+            <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </div>
         </div>
       </div>
     </section>
@@ -147,6 +164,7 @@ import { Document } from '../../shared/models/actualite.model';
 export class TextesLoisComponent implements AfterViewInit {
   
   typeActif = 'tous';
+  termeRecherche = '';
   
   typesDocuments = [
     { nom: 'Tous', slug: 'tous' },
@@ -219,11 +237,27 @@ export class TextesLoisComponent implements AfterViewInit {
   
   filtrerDocuments(type: string) {
     this.typeActif = type;
-    if (type === 'tous') {
-      this.documentsFiltres = [...this.documents];
-    } else {
-      this.documentsFiltres = this.documents.filter(doc => doc.type === type);
+    this.appliquerFiltres();
+  }
+
+  appliquerFiltres() {
+    let documents = [...this.documents];
+
+    // Filtrage par type
+    if (this.typeActif !== 'tous') {
+      documents = documents.filter(doc => doc.type === this.typeActif);
     }
+
+    // Filtrage par terme de recherche
+    const terme = this.termeRecherche.toLowerCase().trim();
+    if (terme) {
+      documents = documents.filter(doc =>
+        doc.titre.toLowerCase().includes(terme) ||
+        doc.description.toLowerCase().includes(terme)
+      );
+    }
+
+    this.documentsFiltres = documents;
   }
   
   getTypeClass(type: string): string {

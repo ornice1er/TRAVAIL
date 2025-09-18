@@ -1,13 +1,14 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AnimationService } from '../../shared/services/animation.service';
 import { Actualite } from '../../shared/models/actualite.model';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-actualites',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FormsModule],
   template: `
     <!-- Hero Section -->
     <div class="bg-gradient-to-r from-primary-800 to-primary-900 dark:from-primary-900 dark:to-primary-950 text-white pt-32 pb-16">
@@ -59,16 +60,30 @@ import { Actualite } from '../../shared/models/actualite.model';
     <!-- Filtres -->
     <section class="py-8 bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700" aria-label="Filtres par catégorie">
       <div class="container-custom">
-        <div class="flex flex-wrap justify-center gap-4 " role="group" aria-label="Filtrer les actualités par catégorie">
-          <button 
-            *ngFor="let categorie of categories"
-            (click)="filtrerActualites(categorie.slug)"
-            [class]="categorieActive === categorie.slug ? 'btn-primary' : 'btn-secondary'"
-            class="px-6 py-2 rounded-full text-sm font-medium transition-all"
-            [attr.aria-pressed]="categorieActive === categorie.slug"
-            [attr.aria-label]="'Filtrer par ' + categorie.nom">
-            {{ categorie.nom }}
-          </button>
+        <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+          <!-- Filtres par catégorie -->
+          <div class="flex flex-wrap justify-center gap-4" role="group" aria-label="Filtrer les actualités par catégorie">
+            <button
+              *ngFor="let categorie of categories"
+              (click)="filtrerParCategorie(categorie.slug)"
+              [class]="categorieActive === categorie.slug ? 'btn-primary' : 'btn-secondary'"
+              class="px-6 py-2 rounded-full text-sm font-medium transition-all"
+              [attr.aria-pressed]="categorieActive === categorie.slug"
+              [attr.aria-label]="'Filtrer par ' + categorie.nom">
+              {{ categorie.nom }}
+            </button>
+          </div>
+          <!-- Filtre par structure -->
+          <div class="relative w-full md:w-auto">
+            <select
+              [(ngModel)]="structureActive"
+              (ngModelChange)="appliquerFiltres()"
+              class="form-select w-full md:w-64"
+              aria-label="Filtrer par structure">
+              <option value="toutes">Toutes les structures</option>
+              <option *ngFor="let structure of structures" [value]="structure">{{ structure }}</option>
+            </select>
+          </div>
         </div>
       </div>
     </section>
@@ -179,9 +194,10 @@ import { Actualite } from '../../shared/models/actualite.model';
     }
   `]
 })
-export class ActualitesComponent implements AfterViewInit {
+export class ActualitesComponent implements OnInit, AfterViewInit {
   
   categorieActive = 'toutes';
+  structureActive = 'toutes';
   
   categories = [
     { nom: 'Toutes', slug: 'toutes' },
@@ -191,6 +207,8 @@ export class ActualitesComponent implements AfterViewInit {
     { nom: 'Événements', slug: 'evenements' }
   ];
   
+  structures: string[] = [];
+
   actualiteUne: Actualite = {
     id: '1',
     titre: 'Lancement du nouveau portail numérique de l\'emploi',
@@ -265,21 +283,35 @@ export class ActualitesComponent implements AfterViewInit {
   
   constructor(private animationService: AnimationService) {}
   
+  ngOnInit() {
+    this.structures = [...new Set(this.actualites.map(a => a.auteur))];
+  }
+
   ngAfterViewInit() {
     setTimeout(() => {
       this.animationService.initScrollAnimations();
     }, 100);
   }
   
-  filtrerActualites(categorie: string) {
+  filtrerParCategorie(categorie: string) {
     this.categorieActive = categorie;
-    if (categorie === 'toutes') {
-      this.actualitesFiltrees = [...this.actualites];
-    } else {
-      this.actualitesFiltrees = this.actualites.filter(actualite => 
-        actualite.categorie.toLowerCase() === categorie.toLowerCase()
-      );
+    this.appliquerFiltres();
+  }
+
+  appliquerFiltres() {
+    let actualites = [...this.actualites];
+
+    // Filtrage par catégorie
+    if (this.categorieActive !== 'toutes') {
+      actualites = actualites.filter(a => a.categorie.toLowerCase() === this.categorieActive.toLowerCase());
     }
+
+    // Filtrage par structure
+    if (this.structureActive !== 'toutes') {
+      actualites = actualites.filter(a => a.auteur === this.structureActive);
+    }
+
+    this.actualitesFiltrees = actualites;
   }
   
   trackByActualiteId(index: number, actualite: Actualite): string {
