@@ -132,7 +132,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
     </section>
 
     <!-- Types de Tutelle -->
-    <section class="section-padding bg-white dark:bg-gray-900">
+    <!-- <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
         <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Types de Tutelle</h2>
@@ -157,10 +157,10 @@ import { AnimationService } from '../../../shared/services/animation.service';
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- Gouvernance -->
-    <section class="section-padding bg-secondary-800 dark:bg-secondary-900 text-white">
+    <!-- <section class="section-padding bg-secondary-800 dark:bg-secondary-900 text-white">
       <div class="container-custom">
         <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold mb-4">Gouvernance et Contrôle</h2>
@@ -182,10 +182,10 @@ import { AnimationService } from '../../../shared/services/animation.service';
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- Performance -->
-    <section class="section-padding bg-white dark:bg-gray-900">
+    <!-- <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
         <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Performance Globale</h2>
@@ -205,10 +205,10 @@ import { AnimationService } from '../../../shared/services/animation.service';
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- Partenariats -->
-    <section class="section-padding bg-gray-50 dark:bg-gray-800">
+    <!-- <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
         <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Partenariats Stratégiques</h2>
@@ -230,7 +230,7 @@ import { AnimationService } from '../../../shared/services/animation.service';
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- Contact -->
     <section class="section-padding bg-white dark:bg-gray-900">
@@ -271,26 +271,6 @@ export class StructuresSousTutelleComponent implements AfterViewInit {
   
   structures = [
     {
-      nom: 'Agence Nationale Pour l\'Emploi',
-      sigle: 'ANPE',
-      icone: '💼',
-      description: 'L\'ANPE est l\'organisme public chargé de la promotion de l\'emploi, du placement des demandeurs d\'emploi et de l\'accompagnement des entreprises dans leurs besoins en ressources humaines.',
-      missions: [
-        'Placement et orientation professionnelle',
-        'Intermédiation sur le marché du travail',
-        'Programmes d\'insertion professionnelle',
-        'Observatoire de l\'emploi et des métiers'
-      ],
-      creation: '1995',
-      siege: 'Cotonou',
-      personnel: '450 agents',
-      budget: '8 milliards FCFA',
-      statut: 'Opérationnel',
-      directeur: 'M. [Nom du DG]',
-      logo: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=100',
-      siteWeb: 'https://anpe.bj'
-    },
-    {
       nom: 'Caisse Nationale de Sécurité Sociale',
       sigle: 'CNSS',
       icone: '🏥',
@@ -310,86 +290,6 @@ export class StructuresSousTutelleComponent implements AfterViewInit {
       logo: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=100',
       siteWeb: 'https://cnss.bj'
     },
-    {
-      nom: 'Fonds National de Promotion de l\'Entreprise et de l\'Emploi des Jeunes',
-      sigle: 'FNPEEJ',
-      icone: '🚀',
-      description: 'Le FNPEEJ accompagne les jeunes entrepreneurs dans la création et le développement de leurs entreprises à travers des financements et un accompagnement technique.',
-      missions: [
-        'Financement des projets de jeunes entrepreneurs',
-        'Accompagnement technique et formation',
-        'Promotion de l\'entrepreneuriat jeune',
-        'Développement de l\'écosystème entrepreneurial'
-      ],
-      creation: '2016',
-      siege: 'Cotonou',
-      personnel: '120 agents',
-      budget: '15 milliards FCFA',
-      statut: 'Opérationnel',
-      directeur: 'M. [Nom du DG]',
-      logo: 'https://images.pexels.com/photos/3184317/pexels-photo-3184317.jpeg?auto=compress&cs=tinysrgb&w=100',
-      siteWeb: 'https://fnpeej.bj'
-    },
-    {
-      nom: 'Institut National de Formation Professionnelle',
-      sigle: 'INFP',
-      icone: '🎓',
-      description: 'L\'INFP est chargé de la formation professionnelle initiale et continue, de la recherche appliquée et de l\'innovation pédagogique dans le domaine de la formation.',
-      missions: [
-        'Formation professionnelle initiale',
-        'Formation continue des travailleurs',
-        'Recherche et innovation pédagogique',
-        'Certification des compétences professionnelles'
-      ],
-      creation: '1985',
-      siege: 'Porto-Novo',
-      personnel: '300 agents',
-      budget: '5 milliards FCFA',
-      statut: 'Opérationnel',
-      directeur: 'M. [Nom du DG]',
-      logo: 'https://images.pexels.com/photos/3184302/pexels-photo-3184302.jpeg?auto=compress&cs=tinysrgb&w=100',
-      siteWeb: 'https://infp.bj'
-    },
-    {
-      nom: 'Observatoire National de l\'Emploi et de la Formation',
-      sigle: 'ONEF',
-      icone: '📊',
-      description: 'L\'ONEF produit des analyses et des statistiques sur l\'emploi, le marché du travail et la formation professionnelle pour éclairer les politiques publiques.',
-      missions: [
-        'Études et analyses du marché du travail',
-        'Production de statistiques de l\'emploi',
-        'Observatoire des métiers et qualifications',
-        'Appui à la décision politique'
-      ],
-      creation: '2010',
-      siege: 'Cotonou',
-      personnel: '45 agents',
-      budget: '1.5 milliard FCFA',
-      statut: 'Opérationnel',
-      directeur: 'Mme [Nom du DG]',
-      logo: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=100',
-      siteWeb: 'https://onef.bj'
-    },
-    {
-      nom: 'Centre National de Médiation du Travail',
-      sigle: 'CNMT',
-      icone: '⚖️',
-      description: 'Le CNMT est spécialisé dans la prévention et la résolution des conflits collectifs de travail par la médiation et l\'arbitrage.',
-      missions: [
-        'Médiation des conflits collectifs',
-        'Arbitrage des différends sociaux',
-        'Promotion du dialogue social',
-        'Formation en relations sociales'
-      ],
-      creation: '2018',
-      siege: 'Cotonou',
-      personnel: '25 agents',
-      budget: '800 millions FCFA',
-      statut: 'En développement',
-      directeur: 'M. [Nom du DG]',
-      logo: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=100',
-      siteWeb: 'https://cnmt.bj'
-    }
   ];
   
   typesTutelle = [
