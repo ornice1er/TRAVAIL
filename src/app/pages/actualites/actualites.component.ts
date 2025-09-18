@@ -78,7 +78,7 @@ import { FormsModule } from '@angular/forms';
             <select
               [(ngModel)]="structureActive"
               (ngModelChange)="appliquerFiltres()"
-              class="form-select w-full md:w-64"
+              class="form-select w-full md:w-64 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
               aria-label="Filtrer par structure">
               <option value="toutes">Toutes les structures</option>
               <option *ngFor="let structure of structures" [value]="structure">{{ structure }}</option>
