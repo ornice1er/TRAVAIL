@@ -87,8 +87,8 @@ import { AnimationService } from "../../shared/services/animation.service";
       </div>
     </section>
 
-    <!-- Chiffres clés animés -->
-    <section class="py-16 bg-primary-800 dark:bg-primary-900 text-white" aria-label="Statistiques du ministère">
+    <!-- Section Statistiques -->
+    <section class="section-padding bg-primary-800 dark:bg-primary-900 text-white" aria-label="Statistiques du ministère">
       <div class="container-custom">
         <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold mb-4">Le Ministère en chiffres</h2>
@@ -247,43 +247,6 @@ import { AnimationService } from "../../shared/services/animation.service";
       </div>
     </section>
 
-    <!-- Section Statistiques -->
-    <!-- <section
-      class="section-padding bg-primary-800 dark:bg-primary-900 text-white"
-      aria-label="Statistiques du ministère"
-    >
-      <div class="container-custom">
-        <div class="text-center mb-16 ">
-          <h2 class="text-3xl lg:text-4xl font-bold mb-4">
-            Le Ministère en chiffres
-          </h2>
-          <p class="text-xl text-primary-100 dark:text-primary-200">
-            Notre impact sur l'emploi et la fonction publique
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div
-            *ngFor="let stat of statistiques"
-            class="text-center "
-            role="group"
-            [attr.aria-label]="stat.libelle + ': ' + stat.valeur"
-          >
-            <div
-              class="text-4xl lg:text-5xl font-bold mb-2 text-secondary-400 dark:text-secondary-300"
-              #statElement
-              [attr.aria-label]="stat.valeur"
-            >
-              {{ stat.valeur }}
-            </div>
-            <div class="text-primary-100 dark:text-primary-200 text-lg">
-              {{ stat.libelle }}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section> -->
-
     <!-- Services en ligne -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800" aria-label="Services en ligne disponibles">
       <div class="container-custom">
@@ -333,53 +296,58 @@ import { AnimationService } from "../../shared/services/animation.service";
       </div>
     </section>
 
-    <!-- Section Événements déclencheurs -->
-    <section class="section-padding bg-white dark:bg-gray-900" aria-label="Événements déclencheurs">
+    <!-- Section Fiches métiers -->
+    <section class="section-padding bg-white dark:bg-gray-900" aria-label="Fiches métiers par structure">
       <div class="container-custom">
         <div class="text-center mb-16">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Événements déclencheurs
+            Fiches Métiers
           </h2>
           <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Trouvez rapidement les services et informations selon votre situation
+            Découvrez les métiers et opportunités de carrière dans nos différentes structures
           </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div *ngFor="let evenement of evenementsDeClencheurs" class="card p-8 hover:shadow-lg transition-all duration-300">
+          <div *ngFor="let structure of structuresMetiers" class="card p-6 hover:shadow-lg transition-all duration-300">
             <div class="text-center mb-6">
-              <div class="w-20 h-20 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span class="text-4xl">{{ evenement.icone }}</span>
+              <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span class="text-3xl">{{ structure.icone }}</span>
               </div>
-              <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                {{ evenement.titre }}
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                {{ structure.nom }}
               </h3>
-              <p class="text-gray-600 dark:text-gray-300 text-sm mb-6">
-                {{ evenement.description }}
+              <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">
+                {{ structure.description }}
               </p>
             </div>
             
-            <div class="space-y-3">
-              <div *ngFor="let service of evenement.services" class="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors">
-                <span class="text-sm font-medium text-gray-900 dark:text-white">{{ service.nom }}</span>
-                <div class="flex items-center space-x-2">
-                  <span [class]="service.type === 'FM' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400' : 
-                                service.type === 'eServices' ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400' :
-                                service.type === 'Plateforme' ? 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400' :
-                                'bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-400'"
-                        class="px-2 py-1 rounded-full text-xs font-medium">
-                    {{ service.type }}
-                  </span>
-                  <a [href]="service.url" 
-                     [class]="service.disponible ? 'text-primary-800 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300' : 'text-gray-400 dark:text-gray-500 cursor-not-allowed'"
-                     class="text-xs font-medium"
-                     [attr.aria-label]="service.disponible ? 'Accéder à ' + service.nom : service.nom + ' prochainement disponible'">
-                    {{ service.disponible ? 'Accéder' : 'Bientôt' }}
-                  </a>
-                </div>
+            <div class="space-y-3 mb-6">
+              <h4 class="font-semibold text-gray-900 dark:text-white text-sm">Métiers principaux :</h4>
+              <div class="flex flex-wrap gap-2">
+                <span *ngFor="let metier of structure.metiersPhares" 
+                      class="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full text-xs">
+                  {{ metier }}
+                </span>
               </div>
             </div>
+            
+            <div class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+              <span class="text-sm text-gray-500 dark:text-gray-400">
+                {{ structure.nombreMetiers }} métiers
+              </span>
+              <a [routerLink]="structure.lienDetail" 
+                 class="text-primary-800 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300 font-medium text-sm">
+                Découvrir →
+              </a>
+            </div>
           </div>
+        </div>
+
+        <div class="text-center mt-12">
+          <a routerLink="/fiches-metiers" class="btn-secondary">
+            Voir toutes les fiches métiers
+          </a>
         </div>
       </div>
     </section>
@@ -497,58 +465,55 @@ import { AnimationService } from "../../shared/services/animation.service";
       </div> -->
     </section>
 
-    <!-- Section Fiches métiers -->
-    <section class="section-padding bg-gray-50 dark:bg-gray-800" aria-label="Fiches métiers par structure">
+    <!-- Section Événements déclencheurs -->
+    <section class="section-padding bg-gray-50 dark:bg-gray-800" aria-label="Événements déclencheurs">
       <div class="container-custom">
         <div class="text-center mb-16">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Fiches Métiers
+            Événements déclencheurs
           </h2>
           <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Découvrez les métiers et opportunités de carrière dans nos différentes structures
+            Trouvez rapidement les services et informations selon votre situation
           </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div *ngFor="let structure of structuresMetiers" class="card p-6 hover:shadow-lg transition-all duration-300">
+          <div *ngFor="let evenement of evenementsDeClencheurs" class="card p-8 hover:shadow-lg transition-all duration-300">
             <div class="text-center mb-6">
-              <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span class="text-3xl">{{ structure.icone }}</span>
+              <div class="w-20 h-20 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span class="text-4xl">{{ evenement.icone }}</span>
               </div>
-              <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                {{ structure.nom }}
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+                {{ evenement.titre }}
               </h3>
-              <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">
-                {{ structure.description }}
+              <p class="text-gray-600 dark:text-gray-300 text-sm mb-6">
+                {{ evenement.description }}
               </p>
             </div>
             
-            <div class="space-y-3 mb-6">
-              <h4 class="font-semibold text-gray-900 dark:text-white text-sm">Métiers principaux :</h4>
-              <div class="flex flex-wrap gap-2">
-                <span *ngFor="let metier of structure.metiersPhares" 
-                      class="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full text-xs">
-                  {{ metier }}
-                </span>
+            <div class="space-y-3">
+              <div *ngFor="let service of evenement.services" class="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors">
+                <span class="text-sm font-medium text-gray-900 dark:text-white">{{ service.nom }}</span>
+                <div class="flex items-center space-x-2">
+                  <span [class]="service.type === 'FM' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400' : 
+                                service.type === 'eServices' ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400' :
+                                service.type === 'Plateforme' ? 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400' :
+                                service.type === 'Communiqués' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400' :
+                                service.type === 'WECHE' ? 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400' :
+                                'bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-400'"
+                        class="px-2 py-1 rounded-full text-xs font-medium">
+                    {{ service.type }}
+                  </span>
+                  <a [href]="service.url" 
+                     [class]="service.disponible ? 'text-primary-800 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300' : 'text-gray-400 dark:text-gray-500 cursor-not-allowed'"
+                     class="text-xs font-medium"
+                     [attr.aria-label]="service.disponible ? 'Accéder à ' + service.nom : service.nom + ' prochainement disponible'">
+                    {{ service.disponible ? 'Accéder' : 'Bientôt' }}
+                  </a>
+                </div>
               </div>
             </div>
-            
-            <div class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
-              <span class="text-sm text-gray-500 dark:text-gray-400">
-                {{ structure.nombreMetiers }} métiers
-              </span>
-              <a [routerLink]="structure.lienDetail" 
-                 class="text-primary-800 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300 font-medium text-sm">
-                Découvrir →
-              </a>
-            </div>
           </div>
-        </div>
-
-        <div class="text-center mt-12">
-          <a routerLink="/fiches-metiers" class="btn-secondary">
-            Voir toutes les fiches métiers
-          </a>
         </div>
       </div>
     </section>
@@ -759,11 +724,11 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
       ]
     },
     {
-      titre: "JE SUIS EMPLOYÉ PRIVÉ",
+      titre: "JE SUIS EMPLOYÉ DANS LE SECTEUR PRIVÉ",
       description: "Vous travaillez dans le secteur privé et voulez connaître vos droits",
       icone: "👨‍💼",
       services: [
-        { nom: "Mes droits et obligations", type: "FM", url: "/fiches-metiers", disponible: true },
+        { nom: "Mes droits et obligatoires", type: "FM", url: "/fiches-metiers", disponible: true },
         { nom: "Sécurité sociale", type: "FM", url: "/fiches-metiers", disponible: true },
         { nom: "Résolution de conflits", type: "FM", url: "/fiches-metiers", disponible: true }
       ]
