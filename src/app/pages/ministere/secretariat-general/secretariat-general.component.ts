@@ -60,7 +60,7 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
                    class="rounded-2xl shadow-lg w-full max-w-xs mx-auto">
             </div>
             <div class="mt-6">
-              <h3 class="text-xl font-bold text-primary-800 dark:text-primary-400 mb-2">ALOHON N. Germain</h3>
+              <h3 class="text-xl font-bold text-primary-800 dark:text-primary-400 mb-2">ALOKPO N. Germain</h3>
               <p class="text-gray-600 dark:text-gray-300">Secrétaire Général du Ministère</p>
             </div>
           </div>
@@ -157,7 +157,7 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
     <!-- <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
         <div class="text-center mb-16 ">
-          <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Directeurs Techniques</h2>
+          <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Départements</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             L'équipe technique du Secrétariat Général
           </p>
@@ -187,7 +187,7 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
     </section> -->
 
     <!-- Fiches métiers -->
-    <section class="section-padding bg-white dark:bg-gray-900">
+    <!-- <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
         <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Fiches Métiers</h2>
@@ -213,7 +213,7 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- Contact Général -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">

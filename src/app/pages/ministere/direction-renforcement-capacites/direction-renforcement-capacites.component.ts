@@ -282,7 +282,7 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
           <h2
             class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4"
           >
-            Directeurs Techniques
+            Départements
           </h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             L'équipe technique de la Direction du Renforcement des Capacités

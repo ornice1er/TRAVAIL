@@ -65,10 +65,10 @@ import { ThemeService } from '../../services/theme.service';
           <div class="container-custom">
             <div class="flex justify-between items-center py-4">
               <!-- Logo -->
-              <div class="flex items-center space-x-4">
+              <a routerLink="/" class="flex items-center space-x-4">
                 <img src="assets/logo-mtfp.png" *ngIf="!themeService.isDarkMode" alt="Logo du Ministère du Travail et de la Fonction Publique du Bénin" class="h-14">
                 <img src="assets/logo-mtfp-benin1.png" *ngIf="themeService.isDarkMode" alt="Logo du Ministère du Travail et de la Fonction Publique du Bénin" class="h-14">
-              </div>
+              </a>
               
               <!-- Menu desktop -->
               <div class="hidden lg:flex items-center space-x-8" role="menubar">

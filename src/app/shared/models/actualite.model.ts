@@ -1,5 +1,5 @@
 export interface Actualite {
-  id: string;
+  id: number;
   titre: string;
   resume: string;
   contenu: string;
@@ -7,6 +7,7 @@ export interface Actualite {
   datePublication: Date;
   auteur: string;
   categorie: string;
+  slug: string;
   tags: string[];
 }
 

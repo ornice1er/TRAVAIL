@@ -131,8 +131,8 @@ export class ServicesComponent implements AfterViewInit {
   
   categories = [
     { nom: 'Tous', slug: 'tous' },
-    { nom: 'Emploi', slug: 'emploi' },
-    { nom: 'Entreprise', slug: 'entreprise' },
+    // { nom: 'Emploi', slug: 'emploi' },
+    // { nom: 'Entreprise', slug: 'entreprise' },
     { nom: 'Fonction Publique', slug: 'fonction-publique' },
     { nom: 'Formation', slug: 'formation' }
   ];

@@ -35,7 +35,7 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
       <div class="container-custom">
         <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold mb-4">
-            La Direction du Travail en chiffres
+            La Direction Générale du Travail en chiffres
           </h2>
           <p class="text-xl text-secondary-100 dark:text-secondary-200">
             L'impact de l'action de la Direction Générale du Travail
@@ -263,7 +263,7 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
           <h2
             class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4"
           >
-            Directeurs Techniques
+            Départements
           </h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             L'équipe technique de la Direction Générale du Travail

@@ -82,11 +82,11 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
                 alt="KANHOUNON Norbert Bocreace - Inspecteur Général des Services et Emplois Publics"
                 class="rounded-2xl shadow-lg w-full max-w-md mx-auto"
               />
-              <div
+              <!-- <div
                 class="absolute -bottom-6 -right-6 w-16 h-16 bg-accent-700 rounded-full flex items-center justify-center"
               >
                 <span class="text-white text-2xl">🇧🇯</span>
-              </div>
+              </div> -->
             </div>
             <div class="mt-6 text-center">
               <h3
@@ -234,13 +234,13 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
     </section>
 
     <!-- Présentation des directeurs techniques -->
-    <section class="section-padding bg-gray-50 dark:bg-gray-800">
+    <!-- <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
         <div class="text-center mb-16 ">
           <h2
             class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4"
           >
-            Directeurs Techniques
+            Départements
           </h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             L'équipe technique de l'Inspection Générale
@@ -289,7 +289,7 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- Fiches métiers -->
     <section class="section-padding bg-white dark:bg-gray-900">

@@ -77,7 +77,7 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
           <div class="">
             <div class="space-y-8">
               <!-- Directeur -->
-              <div class="text-center">
+              <!-- <div class="text-center">
                 <div class="relative inline-block">
                   <img
                     src="https://www.travail.gouv.bj/storage/structures/respos/malick-abdoulazize.JPG"
@@ -98,7 +98,7 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
                   </h3>
                   <p class="text-gray-600 dark:text-gray-300">Directeur</p>
                 </div>
-              </div>
+              </div> -->
 
               <!-- Directeur Adjoint -->
               <div class="text-center">
@@ -116,7 +116,7 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
                     AYEGNON Léonard
                   </h3>
                   <p class="text-gray-600 dark:text-gray-300">
-                    Directeur Adjoint
+                    Directeur
                   </p>
                 </div>
               </div>
@@ -253,7 +253,7 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
     <!-- <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
         <div class="text-center mb-16 ">
-          <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Directeurs Techniques</h2>
+          <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Départements</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             L'équipe technique de la Direction de la Planification
           </p>
@@ -283,7 +283,7 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
     </section> -->
 
     <!-- Fiches métiers -->
-    <section class="section-padding bg-white dark:bg-gray-900">
+    <!-- <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
         <div class="text-center mb-16 ">
           <h2
@@ -338,7 +338,7 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- Contacts spécifiques -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
