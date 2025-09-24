@@ -37,14 +37,14 @@ import { AnimationService } from "../../shared/services/animation.service";
                         <a href="#" class="btn-primary bg-white text-primary-800 hover:bg-gray-100">
                           Lire le communiqué
                         </a>
-                        <a routerLink="/contact" class="btn-secondary border-white text-white hover:bg-white/10">
+                        <!-- <a routerLink="/contact" class="btn-secondary border-white text-white hover:bg-white/10">
                           Nous contacter
-                        </a>
+                        </a> -->
                       </div>
-                      <div class="mt-6 text-sm text-white/80">
+                      <!-- <div class="mt-6 text-sm text-white/80">
                         <span class="mr-4">📅 {{ communique.date }}</span>
                         <span>🏛️ {{ communique.source }}</span>
-                      </div>
+                      </div> -->
                     </div>
                     <div class="hidden lg:block">
                       <img [src]="communique.image" 
@@ -466,44 +466,36 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
   
   communiques = [
     {
-      titre: "Avis de recrutement de 500 agents contractuels de l'Etat au profit du Ministère de l'Enseignement Supérieur",
-      description: "Le Ministère du Travail et de la Fonction Publique informe le public de l'ouverture d'un concours de recrutement de 500 agents contractuels. Les candidatures sont ouvertes du 25 janvier au 15 février 2024.",
+      titre: "Session extraordinaire de la Commission Nationale de Concertation, de Consultation et de Négociations Collectives",
+      description: "Le gouvernement et les partenaires sociaux évaluent les préparatifs pour une bonne rentrée scolaire 2025-2026",
       type: "COMMUNIQUÉ",
       date: "20 janvier 2024",
-      source: "Direction Générale de la Fonction Publique",
-      image: "https://images.pexels.com/photos/3184317/pexels-photo-3184317.jpeg?auto=compress&cs=tinysrgb&w=800"
+      // source: "Direction Générale de la Fonction Publique",
+      image: "https://www.travail.gouv.bj/storage/actualites/big/session-extraordinaire-de-la-commission-nationale-de-concertation-de-consultation-et-de-negociations-collectives-big.JPG"
     },
     {
-      titre: "Communiqué relatif à la 2ème édition du concours d'entrée en première année du cycle de formation des Inspecteurs du Travail",
-      description: "Ouverture des inscriptions pour la formation des Inspecteurs du Travail. 50 places disponibles pour cette formation d'excellence de 24 mois.",
+      titre: "Suivi de la mise en œuvre des projets du portefeuille « État de droit, démocratie, gouvernance et cohésion sociale »",
+      description: "Le Bénin et le PNUD passent en revue les actions du premier semestre 2025",
       type: "COMMUNIQUÉ",
       date: "18 janvier 2024", 
-      source: "Direction Générale du Travail",
-      image: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800"
+      // source: "Direction Générale du Travail",
+      image: "https://www.travail.gouv.bj/storage/actualites/big/suivi-de-la-mise-en-oeuvre-des-projets-du-portefeuille-etat-de-droit-democratie-gouvernance-et-cohesion-sociale-big.jpeg"
     },
     {
-      titre: "Avis de recrutement de 200 agents contractuels pour les services déconcentrés",
-      description: "Recrutement d'agents contractuels pour renforcer les directions départementales. Postes ouverts dans les 12 départements du Bénin.",
+      titre: "Lutte contre les pires formes de travail des enfants dans la Donga",
+      description: "Des enfants retirés et des auteurs poursuivis",
       type: "COMMUNIQUÉ",
       date: "15 janvier 2024",
-      source: "Secrétariat Général",
-      image: "https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=800"
+      // source: "Secrétariat Général",
+      image: "https://www.travail.gouv.bj/storage/actualites/big/lutte-contre-les-pires-formes-de-travail-des-enfants-dans-la-donga-big.jpeg"
     },
     {
-      titre: "Publication des résultats du concours de recrutement des Contrôleurs du Travail",
-      description: "Les résultats du concours de recrutement des Contrôleurs du Travail sont disponibles. 150 candidats admis sur 2000 candidatures.",
+      titre: "Renforcement des capacités des acteurs des Ressources humaines en matière de GRH basée sur les compétences",
+      description: "Un pas vers une Administration publique performante au service de l’intérêt général",
       type: "COMMUNIQUÉ",
       date: "12 janvier 2024",
-      source: "Direction Générale du Travail", 
-      image: "https://images.pexels.com/photos/3184302/pexels-photo-3184302.jpeg?auto=compress&cs=tinysrgb&w=800"
-    },
-    {
-      titre: "Ouverture des inscriptions pour la formation professionnelle continue",
-      description: "Lancement du programme de formation continue 2024. Plus de 5000 places disponibles dans 15 filières prioritaires.",
-      type: "COMMUNIQUÉ", 
-      date: "10 janvier 2024",
-      source: "Direction Renforcement des Capacités",
-      image: "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800"
+      // source: "Direction Générale du Travail",
+      image: "https://www.travail.gouv.bj/storage/actualites/big/renforcement-des-capacites-des-acteurs-des-ressources-humaines-en-matiere-de-grh-basee-sur-les-competences-big.jpg"
     }
   ];
   
