@@ -155,7 +155,6 @@ export class FichesMetiersComponent implements AfterViewInit {
     { nom: 'Direction Systèmes Information', slug: 'dsi' },
     { nom: 'Inspection Générale', slug: 'ig' },
     { nom: 'Directions Départementales', slug: 'dd' },
-    { nom: 'Secrétariat Général', slug: 'sg' },
     { nom: 'Cellule Suivi Réformes', slug: 'csr' }
   ];
   
@@ -347,7 +346,7 @@ export class FichesMetiersComponent implements AfterViewInit {
       description: 'Coordination des activités de l\'ensemble du ministère.',
       icone: '🎯',
       structure: 'Secrétariat Général',
-      structureSlug: 'sg',
+      structureSlug: 'dgt',
       competences: ['Coordination institutionnelle', 'Management stratégique', 'Communication', 'Gestion de projet'],
       missions: ['Coordination des directions', 'Suivi du PAG', 'Reporting ministériel', 'Relations institutionnelles'],
       niveauRequis: 'Bac+5',
@@ -359,7 +358,7 @@ export class FichesMetiersComponent implements AfterViewInit {
       description: 'Suivi de dossiers spéciaux et missions transversales du ministère.',
       icone: '📋',
       structure: 'Secrétariat Général',
-      structureSlug: 'sg',
+      structureSlug: 'dgt',
       competences: ['Gestion de projet', 'Analyse stratégique', 'Communication', 'Coordination'],
       missions: ['Suivi de dossiers spéciaux', 'Missions transversales', 'Appui au Secrétaire Général', 'Coordination inter-directions'],
       niveauRequis: 'Bac+4',
