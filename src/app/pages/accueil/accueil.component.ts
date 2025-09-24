@@ -120,11 +120,11 @@ import { AnimationService } from "../../shared/services/animation.service";
           Accès rapide
         </h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-          <a href="/services" class="group flex flex-col items-center p-6 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" aria-label="Offres d'emploi">
+          <a href="/actualites" class="group flex flex-col items-center p-6 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" aria-label="Communiqués">
             <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary-200 dark:group-hover:bg-primary-800/50 transition-colors">
-              <span class="text-2xl" aria-hidden="true">💼</span>
+              <span class="text-2xl" aria-hidden="true">📢</span>
             </div>
-            <span class="text-sm font-medium text-gray-900 dark:text-white text-center">Offres d'emploi</span>
+            <span class="text-sm font-medium text-gray-900 dark:text-white text-center">Communiqués</span>
           </a>
           
           <a href="/services" class="group flex flex-col items-center p-6 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" aria-label="Concours publics">
@@ -134,22 +134,119 @@ import { AnimationService } from "../../shared/services/animation.service";
             <span class="text-sm font-medium text-gray-900 dark:text-white text-center">Concours</span>
           </a>
           
-          <a href="/services" class="group flex flex-col items-center p-6 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" aria-label="Démarches administratives">
+          <a href="/services" class="group flex flex-col items-center p-6 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" aria-label="Démarches Administratives">
             <div class="w-16 h-16 bg-accent-100 dark:bg-accent-900/30 rounded-full flex items-center justify-center mb-4 group-hover:bg-accent-200 dark:group-hover:bg-accent-800/50 transition-colors">
               <span class="text-2xl" aria-hidden="true">📋</span>
             </div>
-            <span class="text-sm font-medium text-gray-900 dark:text-white text-center">Démarches</span>
+            <span class="text-sm font-medium text-gray-900 dark:text-white text-center">Démarches Administratives</span>
           </a>
           
           <a href="/contact" class="group flex flex-col items-center p-6 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" aria-label="Nous contacter">
             <div class="w-16 h-16 bg-yellow-100 dark:bg-yellow-900/30 rounded-full flex items-center justify-center mb-4 group-hover:bg-yellow-200 dark:group-hover:bg-yellow-800/50 transition-colors">
-              <span class="text-2xl" aria-hidden="true">📞</span>
+              <span class="text-2xl" aria-hidden="true">❓</span>
             </div>
-            <span class="text-sm font-medium text-gray-900 dark:text-white text-center">Contact</span>
+            <span class="text-sm font-medium text-gray-900 dark:text-white text-center">Préoccupations</span>
+          </a>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-1 gap-6 mt-6">
+          <a href="#" class="group flex flex-col items-center p-6 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" aria-label="Suivi des réformes administratives et institutionnelles">
+            <div class="w-16 h-16 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center mb-4 group-hover:bg-purple-200 dark:group-hover:bg-purple-800/50 transition-colors">
+              <span class="text-2xl" aria-hidden="true">🔄</span>
+            </div>
+            <span class="text-sm font-medium text-gray-900 dark:text-white text-center">Suivi des réformes administratives et institutionnelles<br><small class="text-xs text-gray-500">(Espace public sur la plateforme eReformes)</small></span>
           </a>
         </div>
       </div>
     </section>
+
+    <!-- Section Communiqués -->
+    <section class="section-padding bg-gray-50 dark:bg-gray-800" aria-label="Communiqués officiels">
+      <div class="container-custom">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            Communiqués
+          </h2>
+          <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            Retrouvez tous les communiqués officiels du Ministère du Travail et de la Fonction Publique
+          </p>
+        </div>
+
+        <!-- Onglets -->
+        <div class="flex justify-center mb-8">
+          <div class="bg-white dark:bg-gray-700 rounded-lg p-1 shadow-sm">
+            <button
+              (click)="activeTabCommunique = 'concours'"
+              [class]="activeTabCommunique === 'concours' ? 'bg-primary-800 text-white' : 'text-gray-700 dark:text-gray-300'"
+              class="px-6 py-3 rounded-md font-medium transition-all duration-200">
+              Communiqués Concours
+            </button>
+            <button
+              (click)="activeTabCommunique = 'autres'"
+              [class]="activeTabCommunique === 'autres' ? 'bg-primary-800 text-white' : 'text-gray-700 dark:text-gray-300'"
+              class="px-6 py-3 rounded-md font-medium transition-all duration-200">
+              Autres Communiqués
+            </button>
+          </div>
+        </div>
+
+        <!-- Contenu des onglets -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Communiqués Concours -->
+          <div *ngIf="activeTabCommunique === 'concours'" class="col-span-full">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div *ngFor="let communique of communiquesConcours" class="card p-6 hover:shadow-lg transition-all duration-300">
+                <div class="flex items-start justify-between mb-4">
+                  <span class="bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-400 px-3 py-1 rounded-full text-xs font-medium">
+                    CONCOURS
+                  </span>
+                  <span class="text-xs text-gray-500 dark:text-gray-400">{{ communique.date }}</span>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3 line-clamp-2">
+                  {{ communique.titre }}
+                </h3>
+                <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm line-clamp-3">
+                  {{ communique.description }}
+                </p>
+                <a href="#" class="text-primary-800 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300 font-medium text-sm">
+                  Lire le communiqué →
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Autres Communiqués -->
+          <div *ngIf="activeTabCommunique === 'autres'" class="col-span-full">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div *ngFor="let communique of autresCommuniques" class="card p-6 hover:shadow-lg transition-all duration-300">
+                <div class="flex items-start justify-between mb-4">
+                  <span class="bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-400 px-3 py-1 rounded-full text-xs font-medium">
+                    {{ communique.type }}
+                  </span>
+                  <span class="text-xs text-gray-500 dark:text-gray-400">{{ communique.date }}</span>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3 line-clamp-2">
+                  {{ communique.titre }}
+                </h3>
+                <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm line-clamp-3">
+                  {{ communique.description }}
+                </p>
+                <a href="#" class="text-primary-800 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300 font-medium text-sm">
+                  Lire le communiqué →
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-8">
+          <a href="/actualites" class="btn-secondary">
+            Voir tous les communiqués
+          </a>
+        </div>
+      </div>
+    </section>
+
     <!-- Section Statistiques -->
     <!-- <section
       class="section-padding bg-primary-800 dark:bg-primary-900 text-white"
@@ -231,6 +328,62 @@ import { AnimationService } from "../../shared/services/animation.service";
         <div class="text-center mt-12 ">
           <a routerLink="/services" class="btn-secondary" aria-label="Voir tous nos services disponibles">
             Voir tous nos services
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Fiches métiers -->
+    <section class="section-padding bg-white dark:bg-gray-900" aria-label="Fiches métiers par structure">
+      <div class="container-custom">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            Fiches Métiers
+          </h2>
+          <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            Découvrez les métiers et opportunités de carrière dans nos différentes structures
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div *ngFor="let structure of structuresMetiers" class="card p-6 hover:shadow-lg transition-all duration-300">
+            <div class="text-center mb-6">
+              <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span class="text-3xl">{{ structure.icone }}</span>
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                {{ structure.nom }}
+              </h3>
+              <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">
+                {{ structure.description }}
+              </p>
+            </div>
+            
+            <div class="space-y-3 mb-6">
+              <h4 class="font-semibold text-gray-900 dark:text-white text-sm">Métiers principaux :</h4>
+              <div class="flex flex-wrap gap-2">
+                <span *ngFor="let metier of structure.metiersPhares" 
+                      class="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full text-xs">
+                  {{ metier }}
+                </span>
+              </div>
+            </div>
+            
+            <div class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+              <span class="text-sm text-gray-500 dark:text-gray-400">
+                {{ structure.nombreMetiers }} métiers
+              </span>
+              <a [routerLink]="structure.lienDetail" 
+                 class="text-primary-800 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300 font-medium text-sm">
+                Découvrir →
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-12">
+          <a href="/services" class="btn-secondary">
+            Voir toutes les fiches métiers
           </a>
         </div>
       </div>
@@ -424,30 +577,6 @@ import { AnimationService } from "../../shared/services/animation.service";
       </div>
     </section>
 
-    <!-- Newsletter -->
-    <section class="bg-primary-900 dark:bg-gray-900 text-white py-12">
-      <div class="container-custom">
-        <div class="text-center ">
-          <h3 class="text-lg font-bold mb-6">
-            Abonnez-vous à notre newsletter :
-          </h3>
-          <div class="max-w-md mx-auto">
-            <div class="flex">
-              <input
-                type="email"
-                placeholder="Votre adresse email"
-                class="flex-1 px-4 py-3 rounded-l-lg text-gray-900 dark:text-white dark:bg-gray-800 focus:outline-none"
-              />
-              <button
-                class="bg-yellow-400 dark:bg-yellow-500 text-black px-6 py-3 rounded-r-lg font-medium hover:bg-yellow-500 dark:hover:bg-yellow-600 transition-colors"
-              >
-                S'abonner
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
   `,
   styles: [
     `
@@ -463,6 +592,7 @@ import { AnimationService } from "../../shared/services/animation.service";
 export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
   currentSlide = 0;
   slideInterval: any;
+  activeTabCommunique = 'concours';
   
   communiques = [
     {
@@ -499,6 +629,99 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   ];
   
+  communiquesConcours = [
+    {
+      titre: "Concours de recrutement de 500 Inspecteurs du Travail",
+      description: "Ouverture des inscriptions pour le concours de recrutement d'Inspecteurs du Travail. Dossiers à déposer avant le 15 mars 2024.",
+      date: "20 janvier 2024",
+      type: "CONCOURS"
+    },
+    {
+      titre: "Concours d'entrée à l'École Nationale d'Administration",
+      description: "Recrutement de 200 élèves administrateurs pour la promotion 2024-2026. Inscription en ligne obligatoire.",
+      date: "18 janvier 2024",
+      type: "CONCOURS"
+    },
+    {
+      titre: "Concours de recrutement de Conseillers en Emploi",
+      description: "150 postes de Conseillers en Emploi à pourvoir dans les directions départementales. Niveau Bac+4 requis.",
+      date: "15 janvier 2024",
+      type: "CONCOURS"
+    }
+  ];
+
+  autresCommuniques = [
+    {
+      titre: "Mise en place du nouveau système de gestion des carrières",
+      description: "Le ministère annonce la mise en service d'un nouveau système informatisé pour la gestion des carrières des agents publics.",
+      date: "22 janvier 2024",
+      type: "INFORMATION"
+    },
+    {
+      titre: "Suspension temporaire des services de visa de contrat",
+      description: "En raison de la maintenance du système informatique, les services de visa de contrat seront suspendus du 25 au 27 janvier 2024.",
+      date: "20 janvier 2024",
+      type: "AVIS"
+    },
+    {
+      titre: "Nouvelle réglementation sur le télétravail",
+      description: "Publication du décret encadrant le télétravail dans l'administration publique béninoise. Entrée en vigueur le 1er février 2024.",
+      date: "18 janvier 2024",
+      type: "RÉGLEMENTATION"
+    }
+  ];
+
+  structuresMetiers = [
+    {
+      nom: "Direction Générale du Travail",
+      description: "Régulation du marché du travail et promotion de l'emploi",
+      icone: "💼",
+      nombreMetiers: 8,
+      metiersPhares: ["Inspecteur du Travail", "Médiateur Social", "Conseiller Emploi"],
+      lienDetail: "/ministere/direction-generale-travail"
+    },
+    {
+      nom: "Direction Générale de la Fonction Publique",
+      description: "Gestion et modernisation de la fonction publique",
+      icone: "🏛️",
+      nombreMetiers: 12,
+      metiersPhares: ["Gestionnaire RH", "Conseiller Juridique", "Analyste Carrières"],
+      lienDetail: "/ministere/direction-generale-fonction-publique"
+    },
+    {
+      nom: "Direction Renforcement des Capacités",
+      description: "Formation et développement des compétences",
+      icone: "🎓",
+      nombreMetiers: 10,
+      metiersPhares: ["Ingénieur Formation", "Conseiller Employabilité", "Formateur"],
+      lienDetail: "/ministere/direction-renforcement-capacites"
+    },
+    {
+      nom: "Direction des Systèmes d'Information",
+      description: "Transformation numérique et gestion IT",
+      icone: "💻",
+      nombreMetiers: 6,
+      metiersPhares: ["Développeur", "Administrateur Systèmes", "Chef de Projet IT"],
+      lienDetail: "/ministere/direction-systemes-information"
+    },
+    {
+      nom: "Inspection Générale",
+      description: "Contrôle et audit des services publics",
+      icone: "🔍",
+      nombreMetiers: 7,
+      metiersPhares: ["Inspecteur Services", "Auditeur Interne", "Contrôleur Gestion"],
+      lienDetail: "/ministere/inspection-generale"
+    },
+    {
+      nom: "Directions Départementales",
+      description: "Représentation territoriale du ministère",
+      icone: "🗺️",
+      nombreMetiers: 9,
+      metiersPhares: ["Directeur Départemental", "Agent Territorial", "Médiateur Local"],
+      lienDetail: "/ministere/directions-departementales"
+    }
+  ];
+
   statistiques = [
     { 
       valeur: "156K", 
