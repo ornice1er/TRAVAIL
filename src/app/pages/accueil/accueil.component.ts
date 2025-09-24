@@ -333,58 +333,53 @@ import { AnimationService } from "../../shared/services/animation.service";
       </div>
     </section>
 
-    <!-- Section Fiches métiers -->
-    <section class="section-padding bg-white dark:bg-gray-900" aria-label="Fiches métiers par structure">
+    <!-- Section Événements déclencheurs -->
+    <section class="section-padding bg-white dark:bg-gray-900" aria-label="Événements déclencheurs">
       <div class="container-custom">
         <div class="text-center mb-16">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Fiches Métiers
+            Événements déclencheurs
           </h2>
           <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Découvrez les métiers et opportunités de carrière dans nos différentes structures
+            Trouvez rapidement les services et informations selon votre situation
           </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div *ngFor="let structure of structuresMetiers" class="card p-6 hover:shadow-lg transition-all duration-300">
+          <div *ngFor="let evenement of evenementsDeClencheurs" class="card p-8 hover:shadow-lg transition-all duration-300">
             <div class="text-center mb-6">
-              <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span class="text-3xl">{{ structure.icone }}</span>
+              <div class="w-20 h-20 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span class="text-4xl">{{ evenement.icone }}</span>
               </div>
-              <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                {{ structure.nom }}
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+                {{ evenement.titre }}
               </h3>
-              <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">
-                {{ structure.description }}
+              <p class="text-gray-600 dark:text-gray-300 text-sm mb-6">
+                {{ evenement.description }}
               </p>
             </div>
             
-            <div class="space-y-3 mb-6">
-              <h4 class="font-semibold text-gray-900 dark:text-white text-sm">Métiers principaux :</h4>
-              <div class="flex flex-wrap gap-2">
-                <span *ngFor="let metier of structure.metiersPhares" 
-                      class="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full text-xs">
-                  {{ metier }}
-                </span>
+            <div class="space-y-3">
+              <div *ngFor="let service of evenement.services" class="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors">
+                <span class="text-sm font-medium text-gray-900 dark:text-white">{{ service.nom }}</span>
+                <div class="flex items-center space-x-2">
+                  <span [class]="service.type === 'FM' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400' : 
+                                service.type === 'eServices' ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400' :
+                                service.type === 'Plateforme' ? 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400' :
+                                'bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-400'"
+                        class="px-2 py-1 rounded-full text-xs font-medium">
+                    {{ service.type }}
+                  </span>
+                  <a [href]="service.url" 
+                     [class]="service.disponible ? 'text-primary-800 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300' : 'text-gray-400 dark:text-gray-500 cursor-not-allowed'"
+                     class="text-xs font-medium"
+                     [attr.aria-label]="service.disponible ? 'Accéder à ' + service.nom : service.nom + ' prochainement disponible'">
+                    {{ service.disponible ? 'Accéder' : 'Bientôt' }}
+                  </a>
+                </div>
               </div>
             </div>
-            
-            <div class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
-              <span class="text-sm text-gray-500 dark:text-gray-400">
-                {{ structure.nombreMetiers }} métiers
-              </span>
-              <a [routerLink]="structure.lienDetail" 
-                 class="text-primary-800 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300 font-medium text-sm">
-                Découvrir →
-              </a>
-            </div>
           </div>
-        </div>
-
-        <div class="text-center mt-12">
-          <a href="/services" class="btn-secondary">
-            Voir toutes les fiches métiers
-          </a>
         </div>
       </div>
     </section>
@@ -500,6 +495,62 @@ import { AnimationService } from "../../shared/services/animation.service";
           </div> -->
         <!-- </div>
       </div> -->
+    </section>
+
+    <!-- Section Fiches métiers -->
+    <section class="section-padding bg-gray-50 dark:bg-gray-800" aria-label="Fiches métiers par structure">
+      <div class="container-custom">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            Fiches Métiers
+          </h2>
+          <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            Découvrez les métiers et opportunités de carrière dans nos différentes structures
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div *ngFor="let structure of structuresMetiers" class="card p-6 hover:shadow-lg transition-all duration-300">
+            <div class="text-center mb-6">
+              <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span class="text-3xl">{{ structure.icone }}</span>
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                {{ structure.nom }}
+              </h3>
+              <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">
+                {{ structure.description }}
+              </p>
+            </div>
+            
+            <div class="space-y-3 mb-6">
+              <h4 class="font-semibold text-gray-900 dark:text-white text-sm">Métiers principaux :</h4>
+              <div class="flex flex-wrap gap-2">
+                <span *ngFor="let metier of structure.metiersPhares" 
+                      class="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full text-xs">
+                  {{ metier }}
+                </span>
+              </div>
+            </div>
+            
+            <div class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+              <span class="text-sm text-gray-500 dark:text-gray-400">
+                {{ structure.nombreMetiers }} métiers
+              </span>
+              <a [routerLink]="structure.lienDetail" 
+                 class="text-primary-800 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300 font-medium text-sm">
+                Découvrir →
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-12">
+          <a routerLink="/fiches-metiers" class="btn-secondary">
+            Voir toutes les fiches métiers
+          </a>
+        </div>
+      </div>
     </section>
 
     <!-- Appel à l'action -->
@@ -621,7 +672,7 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
     },
     {
       titre: "Renforcement des capacités des acteurs des Ressources humaines en matière de GRH basée sur les compétences",
-      description: "Un pas vers une Administration publique performante au service de l’intérêt général",
+      description: "Un pas vers une Administration publique performante au service de l'intérêt général",
       type: "COMMUNIQUÉ",
       date: "12 janvier 2024",
       // source: "Direction Générale du Travail",
@@ -668,6 +719,65 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
       description: "Publication du décret encadrant le télétravail dans l'administration publique béninoise. Entrée en vigueur le 1er février 2024.",
       date: "18 janvier 2024",
       type: "RÉGLEMENTATION"
+    }
+  ];
+
+  evenementsDeClencheurs = [
+    {
+      titre: "JE VEUX SERVIR L'ÉTAT",
+      description: "Vous souhaitez intégrer la fonction publique béninoise",
+      icone: "🔍",
+      services: [
+        { nom: "Communiqués concours", type: "Communiqués", url: "/actualites", disponible: true },
+        { nom: "Candidater pour un concours", type: "Plateforme", url: "#", disponible: false },
+        { nom: "C'est quoi être fonctionnaire", type: "FM", url: "/fiches-metiers", disponible: true }
+      ]
+    },
+    {
+      titre: "JE SUIS FONCTIONNAIRE",
+      description: "Vous êtes agent de l'État et cherchez des informations sur votre carrière",
+      icone: "💼",
+      services: [
+        { nom: "Mon Espace Carrière", type: "WECHE", url: "#", disponible: false },
+        { nom: "Éthique du fonctionnaire", type: "FM", url: "/fiches-metiers", disponible: true },
+        { nom: "Formation Continue", type: "eServices", url: "/services", disponible: true },
+        { nom: "Rémunération & Avantages", type: "FM", url: "/fiches-metiers", disponible: true },
+        { nom: "Discipline et sanction", type: "FM", url: "/fiches-metiers", disponible: true },
+        { nom: "Retraite", type: "FM", url: "/fiches-metiers", disponible: true }
+      ]
+    },
+    {
+      titre: "JE SUIS EMPLOYEUR PRIVÉ",
+      description: "Vous dirigez une entreprise et avez des obligations légales",
+      icone: "🏢",
+      services: [
+        { nom: "Déclarations Obligatoires", type: "FM", url: "/fiches-metiers", disponible: true },
+        { nom: "Relations Sociales", type: "FM", url: "/fiches-metiers", disponible: true },
+        { nom: "Sécurité au Travail", type: "FM", url: "/fiches-metiers", disponible: true },
+        { nom: "Formation des Salariés", type: "FM", url: "/fiches-metiers", disponible: true },
+        { nom: "Contentieux Social", type: "FM", url: "/fiches-metiers", disponible: true }
+      ]
+    },
+    {
+      titre: "JE SUIS EMPLOYÉ PRIVÉ",
+      description: "Vous travaillez dans le secteur privé et voulez connaître vos droits",
+      icone: "👨‍💼",
+      services: [
+        { nom: "Mes droits et obligations", type: "FM", url: "/fiches-metiers", disponible: true },
+        { nom: "Sécurité sociale", type: "FM", url: "/fiches-metiers", disponible: true },
+        { nom: "Résolution de conflits", type: "FM", url: "/fiches-metiers", disponible: true }
+      ]
+    },
+    {
+      titre: "JE SUIS ÉTUDIANT/JEUNE",
+      description: "Vous êtes étudiant ou jeune diplômé en recherche d'opportunités",
+      icone: "🎓",
+      services: [
+        { nom: "Stages", type: "FM", url: "/fiches-metiers", disponible: true },
+        { nom: "Premier emploi", type: "FM", url: "/fiches-metiers", disponible: true },
+        { nom: "Formation professionnelle", type: "eServices", url: "/services", disponible: true },
+        { nom: "Entrepreneuriat", type: "FM", url: "/fiches-metiers", disponible: true }
+      ]
     }
   ];
 

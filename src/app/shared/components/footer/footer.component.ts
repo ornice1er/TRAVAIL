@@ -50,6 +50,7 @@ import { RouterModule } from '@angular/router';
                 <li><a routerLink="/services" class="text-gray-300 hover:text-white transition-colors">Services en ligne</a></li>
                 <li><a routerLink="/textes-lois" class="text-gray-300 hover:text-white transition-colors">Textes & Lois</a></li>
                 <li><a routerLink="/actualites" class="text-gray-300 hover:text-white transition-colors">Actualités</a></li>
+                <li><a routerLink="/fiches-metiers" class="text-gray-300 hover:text-white transition-colors">Fiches Métiers</a></li>
                 <li><a routerLink="/contact" class="text-gray-300 hover:text-white transition-colors">Contact</a></li>
               </ul>
             </div>

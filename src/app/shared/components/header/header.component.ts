@@ -151,6 +151,12 @@ import { ThemeService } from '../../services/theme.service';
                    role="menuitem">
                   Contact
                 </a>
+                <a routerLink="/fiches-metiers" 
+                   routerLinkActive="text-primary-800 dark:text-primary-400 font-semibold"
+                   class="text-gray-700 dark:text-gray-300 hover:text-primary-800 dark:hover:text-primary-400 transition-colors font-medium"
+                   role="menuitem">
+                   Fiches Métiers
+                </a>
                 
                 <!-- Toggle Dark Mode -->
                 <button (click)="toggleTheme()" 
@@ -309,6 +315,13 @@ import { ThemeService } from '../../services/theme.service';
                    class="text-gray-700 dark:text-gray-300 hover:text-primary-800 dark:hover:text-primary-400 transition-colors font-medium"
                    role="menuitem">
                   Contact
+                </a>
+                <a routerLink="/fiches-metiers" 
+                   (click)="closeMobileMenu()"
+                   routerLinkActive="text-primary-800 dark:text-primary-400 font-semibold"
+                   class="text-gray-700 dark:text-gray-300 hover:text-primary-800 dark:hover:text-primary-400 transition-colors font-medium"
+                   role="menuitem">
+                   Fiches Métiers
                 </a>
                 
                 <!-- Toggle Dark Mode Mobile -->
