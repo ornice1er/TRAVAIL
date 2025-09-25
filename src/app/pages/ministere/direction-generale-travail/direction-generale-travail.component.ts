@@ -76,20 +76,20 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
                 <div class="relative inline-block">
                   <img
                     src="https://www.travail.gouv.bj/storage/structures/respos/1708505247dahoui-edgard.jpg"
-                    alt="DAIDOU Edgard - Directeur Général du Travail"
-                    class="rounded-2xl shadow-lg w-full max-w-sm mx-auto"
+                    alt="DAHOUI Edgard - Directeur Général du Travail"
+                    class="rounded-2xl shadow-lg w-full max-w-sm h-72 mx-auto"
                   />
-                  <div
+                  <!-- <div
                     class="absolute -bottom-6 -right-6 w-16 h-16 bg-secondary-700 rounded-full flex items-center justify-center"
                   >
                     <span class="text-white text-2xl">🇧🇯</span>
-                  </div>
+                  </div> -->
                 </div>
                 <div class="mt-6">
                   <h3
                     class="text-xl font-bold text-secondary-800 dark:text-secondary-400 mb-2"
                   >
-                    DAIDOU Edgard
+                    DAHOUI Edgard
                   </h3>
                   <p class="text-gray-600 dark:text-gray-300">
                     Directeur Général du Travail
@@ -102,15 +102,15 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
                 <div class="relative inline-block">
                   <img
                     src="https://www.travail.gouv.bj/storage/teams/1680503358hedokingbe-paul-n.jpg"
-                    alt="BEDJOKINDE Paul N. - Directeur Général Adjoint du Travail"
-                    class="rounded-2xl shadow-lg w-full max-w-sm mx-auto"
+                    alt="HEDOKINGBE Paul N. - Directeur Général Adjoint du Travail"
+                    class="rounded-2xl shadow-lg w-98 h-72  object-scale-down object-top mx-auto"
                   />
                 </div>
                 <div class="mt-6">
                   <h3
                     class="text-xl font-bold text-secondary-800 dark:text-secondary-400 mb-2"
                   >
-                    BEDJOKINDE Paul N.
+                    HEDOKINGBE Paul N.
                   </h3>
                   <p class="text-gray-600 dark:text-gray-300">
                     Directeur Général Adjoint du Travail

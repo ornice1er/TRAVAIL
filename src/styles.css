@@ -57,7 +57,7 @@
   }
   
   .container-custom {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply max-w-7xl 2xl:max-w-9xl mx-auto px-4 sm:px-6 lg:px-8 2xl:px-0;
   }
   
   /* Amélioration de la lisibilité */
