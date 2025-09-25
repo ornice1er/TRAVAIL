@@ -11,7 +11,7 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: `
     <!-- Hero Section -->
-    <div class="bg-gradient-to-r from-secondary-800 to-secondary-900 dark:from-secondary-900 dark:to-secondary-950 text-white pt-32 pb-16">
+    <div class="bg-gradient-to-r from-secondary-800 to-primary-800 dark:from-secondary-900 dark:to-secondary-950 text-white pt-32 pb-16">
       <div class="container-custom">
         <div class="text-center ">
           <h1 class="text-4xl lg:text-5xl font-bold mb-6">VISION / MISSIONS</h1>
@@ -34,7 +34,7 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
                   <button (click)="openPdf()" class="w-full bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors">
                       Lire le document
                   </button>
-                  <a href="assets/download-data/aofs/aof-sgm.pdf" download="Vision_et_Missions_MTFP.pdf" class="w-full bg-secondary-600 text-white px-6 py-3 rounded-lg hover:bg-secondary-700 transition-colors">
+                  <a href="https://travail.gouv.bj/download-data/aofs/1660762537-2208175537-523.pdf/aof" download="Vision_et_Missions_MTFP.pdf" class="w-full bg-secondary-600 text-white px-6 py-3 rounded-lg hover:bg-secondary-700 transition-colors">
                       Télécharger
                   </a>
                 </div>
@@ -45,12 +45,12 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
             <div class="prose dark:prose-invert max-w-none">
               <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Vision</h2>
               <p>
-                Bâtir à l'horizon 2026, une administration moderne et performante pour un service public de qualité et un travail décent.
+                Bâtir à l’horizon 2026, une administration moderne et performante pour un service public de qualité et un travail décent
               </p>
 
               <h2 class="text-3xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Mission</h2>
               <p>
-                Le Ministère du Travail et de la Fonction Publique a pour mission, la définition, l'élaboration et le suivi-évaluation de la politique générale de l'Etat en matière de travail et de fonction publique. Il veille également à la modernisation de l'administration, à la promotion des lois et règlements du secteur.
+               Le Ministère du Travail et de la Fonction Publique a pour mission, la définition, l'élaboration et le suivi-évaluation de la politique de l'État en matière de travail et de fonction publique ainsi que le suivi des réformes administratives et institutionnelles conformément aux lois et règlements en vigueur.
               </p>
 
               <h2 class="text-3xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Attributions</h2>
@@ -58,27 +58,28 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
               <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mt-6 mb-3">En matière de promotion du travail :</h3>
               <ul class="list-disc list-inside space-y-2">
-                <li>d'élaborer et de veiller à appliquer la législation du travail et de la sécurité sociale, de définir et de suivre la mise en œuvre des politiques de promotion du travail décent dans tous les secteurs, en collaboration avec les autres ministères concernés;</li>
-                <li>de définir et de suivre la mise en œuvre de la politique de lutte contre le travail des enfants, y compris les violences, abus et harcèlement, l'exploitation et la traite des personnes à des fins de travail, notamment sous ses pires formes, l'inspection du travail et la promotion du dialogue social;</li>
+                <li>d'élaborer, de suivre et de contrôler la législation du travail et de la sécurité sociale  de définir et de suivre la mise en œuvre des politiques de promotion du travail décent dans tous les secteurs, en collaboration avec les autres ministères sectoriels;</li>
+                <li>de définir et de suivre la mise en œuvre de la politique de sécurité sociale des travailleurs de l'économie formelle et informelle;</li>
+                <li>de définir et de suivre la mise en œuvre de la politique de lutte contre le travail des enfants.</li>
               </ul>
 
-              <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mt-6 mb-3">En matière de fonction publique :</h3>
+              <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mt-6 mb-3">En matière de Fonction publique :</h3>
               <ul class="list-disc list-inside space-y-2">
-                <li>de définir, de suivre et d'évaluer, en collaboration avec les autres ministères sectoriels, les politiques et stratégies de gestion des ressources humaines de l'Etat et leur mise en œuvre;</li>
-                <li>d'élaborer, de suivre et d'adapter, selon les besoins, les textes régissant la fonction publique d'Etat et la fonction publique territoriale, et de veiller à l'application et de la modernisation;</li>
-                <li>de suivre et d'évaluer les politiques de formation et de renforcement des capacités des agents de l'Etat, en lien avec les ministères concernés;</li>
-                <li>de définir et de suivre la mise en œuvre de la politique de formation continue et d'évaluation des performances des agents de l'Etat;</li>
-                <li>de gérer les effectifs des agents de l'Etat et de la masse salariale de l'Etat, incluant un système d'information statistique performant en relation avec le ministère en charge des Finances.</li>
+                <li>de définir, de suivre et d'évaluer, en collaboration avec les autres ministères sectoriels, les politiques et stratégies de gestion prévisionnelle des ressources humaines de l'État;</li>
+                <li>d'élaborer, de suivre et d'adapter, selon les besoins, les textes régissant la fonction publique d'État et la fonction publique territoriale, aux exigences du progrès et de la modernisation;</li>
+                <li>de concevoir et de suivre la mise en œuvre d'un système intégré de gestion des ressources humaines de l'État ;</li>
+                <li>de définir et de suivre la mise en œuvre de la politique de formation continue et d'évaluation des performances des agents de l'État ;</li>
+                <li>de gérer les éléments servant de base à la rémunération des agents de l'État, incluant un système d'information statistique performant en relation avec le ministère en charge des Finances.</li>
               </ul>
 
               <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mt-6 mb-3">En matière de suivi des réformes administratives et institutionnelles :</h3>
               <ul class="list-disc list-inside space-y-2">
-                <li>de proposer et de suivre la mise en œuvre des réformes institutionnelles adoptées par le Gouvernement ;</li>
-                <li>d'accompagner les ministères et institutions dans la mise en œuvre des réformes administratives et institutionnelles ;</li>
-                <li>d'appuyer les ministères sectoriels dans la conception des politiques et stratégies de réformes globales et sectorielles en lien avec le Secrétariat Général du Gouvernement ;</li>
-                <li>de suivre les délibérations, assister le ministère en charge du Numérique en matière de dématérialisation des services publics ;</li>
-                <li>de définir et de proposer des mesures de nature à améliorer l'image de l'administration de l'Etat et à assurer une conduite efficace des réformes administratives et institutionnelles ;</li>
-                <li>de lutter contre la corruption et les antivaleurs, de promouvoir au sein de l'intérêt général, la culture du travail bien fait, le sens du bien commun, de la responsabilité et du patriotisme.</li>
+                <li>d'assurer le suivi des réformes administratives et institutionnelles adoptées par le Gouvernement ;</li>
+                <li>d'impulser et de coordonner les réformes concourant à une administration publique de développement ;</li>
+                <li>d'appuyer les ministères sectoriels dans la conception des politiques et stratégies de réformes globales et sectorielles et de suivre leur application effective ;</li>
+                <li>de fournir les informations utiles au ministère en charge du Numérique en matière de dématérialisation des services publics ;</li>
+                <li>d'identifier et de proposer les mesures et actions de renforcement des capacités des agents de l'État en matière de conduite efficace des réformes administratives et institutionnelles ;</li>
+                <li>de promouvoir les valeurs morales et éthiques fondées sur la primauté de l'intérêt général, la culture du travail bien fait, le sens du bien commun, de la responsabilité et du patriotisme.</li>
               </ul>
 
             </div>
