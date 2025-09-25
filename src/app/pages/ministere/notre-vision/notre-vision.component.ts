@@ -14,257 +14,99 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
     <div class="bg-gradient-to-r from-secondary-800 to-secondary-900 dark:from-secondary-900 dark:to-secondary-950 text-white pt-32 pb-16">
       <div class="container-custom">
         <div class="text-center ">
-          <h1 class="text-4xl lg:text-5xl font-bold mb-6">Notre Vision</h1>
-          <p class="text-xl text-secondary-100 dark:text-secondary-200 max-w-3xl mx-auto">
-            Découvrez la vision stratégique du Ministère du Travail et de la Fonction Publique pour le développement du Bénin.
-          </p>
+          <h1 class="text-4xl lg:text-5xl font-bold mb-6">VISION / MISSIONS</h1>
         </div>
       </div>
     </div>
 
-    <!-- Vision Principale -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
-        <div class="text-center mb-16 ">
-          <div class="w-20 h-20 bg-secondary-100 dark:bg-secondary-900/30 rounded-full flex items-center justify-center mx-auto mb-8">
-            <span class="text-4xl">🎯</span>
-          </div>
-          <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-8">Notre Vision Stratégique</h2>
-          <blockquote class="text-2xl font-light text-gray-700 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed italic">
-            "Faire du Ministère du Travail et de la Fonction Publique un acteur de référence dans la promotion 
-            de l'emploi décent, la modernisation de l'administration publique et le développement du capital humain au Bénin."
-          </blockquote>
-        </div>
-      </div>
-    </section>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
 
-    <!-- Axes Stratégiques -->
-    <section class="section-padding bg-gray-50 dark:bg-gray-800">
-      <div class="container-custom">
-        <div class="text-center mb-16 ">
-          <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Nos Axes Stratégiques</h2>
-          <p class="text-xl text-gray-600 dark:text-gray-300">
-            Quatre piliers fondamentaux pour atteindre notre vision
-          </p>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div *ngFor="let axe of axesStrategiques" class="card p-8 ">
-            <div class="flex items-start space-x-6">
-              <div class="flex-shrink-0">
-                <div class="w-16 h-16 bg-secondary-100 dark:bg-secondary-900/30 rounded-full flex items-center justify-center">
-                  <span class="text-3xl">{{ axe.icone }}</span>
+          <div class="lg:col-span-1 lg:sticky top-28">
+            <div class="p-6 border border-gray-200 dark:border-gray-700 rounded-lg text-center">
+                <svg class="mx-auto mb-4 w-24 h-24 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Document Officiel</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Consultez le document présentant notre vision et nos missions.</p>
+                <div class="flex flex-col space-y-3">
+                  <button (click)="openPdf()" class="w-full bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors">
+                      Lire le document
+                  </button>
+                  <a href="assets/download-data/aofs/aof-sgm.pdf" download="Vision_et_Missions_MTFP.pdf" class="w-full bg-secondary-600 text-white px-6 py-3 rounded-lg hover:bg-secondary-700 transition-colors">
+                      Télécharger
+                  </a>
                 </div>
-              </div>
-              <div class="flex-1">
-                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">{{ axe.titre }}</h3>
-                <p class="text-gray-600 dark:text-gray-300 mb-4">{{ axe.description }}</p>
-                <ul class="space-y-2">
-                  <li *ngFor="let objectif of axe.objectifs" class="flex items-start">
-                    <span class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                    <span class="text-gray-700 dark:text-gray-300">{{ objectif }}</span>
-                  </li>
-                </ul>
-              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- Objectifs 2030 -->
-    <section class="section-padding bg-white dark:bg-gray-900">
-      <div class="container-custom">
-        <div class="text-center mb-16 ">
-          <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Objectifs Horizon 2030</h2>
-          <p class="text-xl text-gray-600 dark:text-gray-300">
-            Nos ambitions chiffrées pour la décennie
-          </p>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div *ngFor="let objectif of objectifs2030" class="text-center ">
-            <div class="w-20 h-20 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
-              <span class="text-3xl">{{ objectif.icone }}</span>
+          <div class="lg:col-span-2">
+            <div class="prose dark:prose-invert max-w-none">
+              <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Vision</h2>
+              <p>
+                Bâtir à l'horizon 2026, une administration moderne et performante pour un service public de qualité et un travail décent.
+              </p>
+
+              <h2 class="text-3xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Mission</h2>
+              <p>
+                Le Ministère du Travail et de la Fonction Publique a pour mission, la définition, l'élaboration et le suivi-évaluation de la politique générale de l'Etat en matière de travail et de fonction publique. Il veille également à la modernisation de l'administration, à la promotion des lois et règlements du secteur.
+              </p>
+
+              <h2 class="text-3xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Attributions</h2>
+              <p>Le MTFP est chargé de :</p>
+
+              <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mt-6 mb-3">En matière de promotion du travail :</h3>
+              <ul class="list-disc list-inside space-y-2">
+                <li>d'élaborer et de veiller à appliquer la législation du travail et de la sécurité sociale, de définir et de suivre la mise en œuvre des politiques de promotion du travail décent dans tous les secteurs, en collaboration avec les autres ministères concernés;</li>
+                <li>de définir et de suivre la mise en œuvre de la politique de lutte contre le travail des enfants, y compris les violences, abus et harcèlement, l'exploitation et la traite des personnes à des fins de travail, notamment sous ses pires formes, l'inspection du travail et la promotion du dialogue social;</li>
+              </ul>
+
+              <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mt-6 mb-3">En matière de fonction publique :</h3>
+              <ul class="list-disc list-inside space-y-2">
+                <li>de définir, de suivre et d'évaluer, en collaboration avec les autres ministères sectoriels, les politiques et stratégies de gestion des ressources humaines de l'Etat et leur mise en œuvre;</li>
+                <li>d'élaborer, de suivre et d'adapter, selon les besoins, les textes régissant la fonction publique d'Etat et la fonction publique territoriale, et de veiller à l'application et de la modernisation;</li>
+                <li>de suivre et d'évaluer les politiques de formation et de renforcement des capacités des agents de l'Etat, en lien avec les ministères concernés;</li>
+                <li>de définir et de suivre la mise en œuvre de la politique de formation continue et d'évaluation des performances des agents de l'Etat;</li>
+                <li>de gérer les effectifs des agents de l'Etat et de la masse salariale de l'Etat, incluant un système d'information statistique performant en relation avec le ministère en charge des Finances.</li>
+              </ul>
+
+              <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mt-6 mb-3">En matière de suivi des réformes administratives et institutionnelles :</h3>
+              <ul class="list-disc list-inside space-y-2">
+                <li>de proposer et de suivre la mise en œuvre des réformes institutionnelles adoptées par le Gouvernement ;</li>
+                <li>d'accompagner les ministères et institutions dans la mise en œuvre des réformes administratives et institutionnelles ;</li>
+                <li>d'appuyer les ministères sectoriels dans la conception des politiques et stratégies de réformes globales et sectorielles en lien avec le Secrétariat Général du Gouvernement ;</li>
+                <li>de suivre les délibérations, assister le ministère en charge du Numérique en matière de dématérialisation des services publics ;</li>
+                <li>de définir et de proposer des mesures de nature à améliorer l'image de l'administration de l'Etat et à assurer une conduite efficace des réformes administratives et institutionnelles ;</li>
+                <li>de lutter contre la corruption et les antivaleurs, de promouvoir au sein de l'intérêt général, la culture du travail bien fait, le sens du bien commun, de la responsabilité et du patriotisme.</li>
+              </ul>
+
             </div>
-            <div class="text-3xl font-bold text-primary-800 dark:text-primary-400 mb-2">{{ objectif.chiffre }}</div>
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">{{ objectif.titre }}</h3>
-            <p class="text-gray-600 dark:text-gray-300 text-sm">{{ objectif.description }}</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Valeurs -->
-    <section class="section-padding bg-secondary-800 dark:bg-secondary-900 text-white">
-      <div class="container-custom">
-        <div class="text-center mb-16 ">
-          <h2 class="text-3xl lg:text-4xl font-bold mb-4">Nos Valeurs</h2>
-          <p class="text-xl text-secondary-100 dark:text-secondary-200">
-            Les principes qui guident notre action quotidienne
-          </p>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div *ngFor="let valeur of valeurs" class="text-center ">
-            <div class="w-16 h-16 bg-white/20 dark:bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6">
-              <span class="text-3xl">{{ valeur.icone }}</span>
-            </div>
-            <h3 class="text-xl font-semibold mb-4">{{ valeur.nom }}</h3>
-            <p class="text-secondary-100 dark:text-secondary-200">{{ valeur.description }}</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Engagement -->
-    <section class="section-padding bg-white dark:bg-gray-900">
-      <div class="container-custom">
-        <div class="max-w-4xl mx-auto text-center ">
-          <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-8">Notre Engagement</h2>
-          <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
-            Le Ministère du Travail et de la Fonction Publique s'engage à être un partenaire de confiance 
-            pour tous les acteurs du monde du travail. Nous œuvrons quotidiennement pour créer un environnement 
-            propice à l'épanouissement professionnel, à l'innovation administrative et au développement économique durable.
-          </p>
-          <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8">
-            <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Ensemble, construisons l'avenir du travail au Bénin</h3>
-            <p class="text-gray-600 dark:text-gray-300">
-              Notre vision ne peut se réaliser qu'avec la participation active de tous : citoyens, entreprises, 
-              partenaires sociaux et institutions. Rejoignez-nous dans cette démarche de transformation positive.
-            </p>
           </div>
         </div>
       </div>
     </section>
 
     <el-dialog>
-  <dialog id="dialog" aria-labelledby="dialog-title" class="fixed inset-0 size-auto max-h-none max-w-none overflow-y-auto bg-transparent backdrop:bg-transparent">
-    <el-dialog-backdrop class="fixed inset-0 bg-gray-500/75 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in dark:bg-gray-900/50"></el-dialog-backdrop>
+      <dialog id="dialog" aria-labelledby="dialog-title" class="fixed inset-0 z-50 size-auto max-h-none max-w-none overflow-y-auto bg-transparent backdrop:bg-transparent">
+        <el-dialog-backdrop class="fixed inset-0 bg-gray-500/75 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in dark:bg-gray-900/50"></el-dialog-backdrop>
 
-    <div tabindex="0" class="flex min-h-full items-end justify-center text-center focus:outline-none sm:items-center p-0 relative">
-      <el-dialog-panel class="transform overflow-hidden absolute inset-0 bg-white px-4 pt-5 pb-4 text-left  transition-all data-closed:translate-y-4 data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in sm:my-8 sm:w-full sm:max-w-full sm:p-6 data-closed:sm:translate-y-0 data-closed:sm:scale-95 dark:bg-gray-800 dark:outline dark:-outline-offset-1 dark:outline-white/10">
-        <div class="flex justify-end items-center w-full">
-          <button type="button" command="close" commandfor="dialog" class="inline-flex  justify-center rounded-md bg-red-600 px-4 py-2 text-sm font-semibold text-white shadow-xs hover:bg-red-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 dark:bg-red-500 dark:shadow-none dark:hover:bg-red-400 dark:focus-visible:outline-red-500">Fermer</button>
+        <div tabindex="0" class="flex min-h-full items-end justify-center text-center focus:outline-none sm:items-center p-0 relative">
+          <el-dialog-panel class="transform overflow-hidden absolute inset-0 bg-white px-4 pt-5 pb-4 text-left  transition-all data-closed:translate-y-4 data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in sm:my-8 sm:w-full sm:max-w-7xl sm:p-6 data-closed:sm:translate-y-0 data-closed:sm:scale-95 dark:bg-gray-800 dark:outline dark:-outline-offset-1 dark:outline-white/10">
+            <div class="flex justify-end items-center w-full mb-4">
+              <button type="button" command="close" commandfor="dialog" class="inline-flex justify-center rounded-md bg-red-600 px-4 py-2 text-sm font-semibold text-white shadow-xs hover:bg-red-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 dark:bg-red-500 dark:shadow-none dark:hover:bg-red-400 dark:focus-visible:outline-red-500">Fermer</button>
+            </div>
+            <div class="h-[calc(100vh-10rem)]">
+             <ngx-extended-pdf-viewer [src]="'assets/download-data/aofs/aof-sgm.pdf'" [useBrowserLocale]="true" [textLayer]="true" [showHandToolButton]="true"></ngx-extended-pdf-viewer>
+            </div>
+
+          </el-dialog-panel>
         </div>
-        <div>
-         <ngx-extended-pdf-viewer [src]="'assets/download-data/aofs/aof-sgm.pdf'"></ngx-extended-pdf-viewer>
-        </div>
-        
-      </el-dialog-panel>
-    </div>
-  </dialog>
-</el-dialog>
+      </dialog>
+    </el-dialog>
   `
 })
 export class NotreVisionComponent implements AfterViewInit {
-  
-  axesStrategiques = [
-    {
-      icone: '💼',
-      titre: 'Promotion de l\'Emploi Décent',
-      description: 'Développer des politiques actives d\'emploi et faciliter l\'insertion professionnelle.',
-      objectifs: [
-        'Créer 500 000 emplois décents d\'ici 2030',
-        'Réduire le chômage des jeunes de 50%',
-        'Développer l\'entrepreneuriat et l\'auto-emploi',
-        'Renforcer les compétences professionnelles'
-      ]
-    },
-    {
-      icone: '🏛️',
-      titre: 'Modernisation Administrative',
-      description: 'Transformer l\'administration publique pour plus d\'efficacité et de transparence.',
-      objectifs: [
-        'Digitaliser 80% des services publics',
-        'Réduire les délais administratifs de 60%',
-        'Améliorer la qualité de service aux usagers',
-        'Renforcer les capacités des agents publics'
-      ]
-    },
-    {
-      icone: '⚖️',
-      titre: 'Dialogue Social Renforcé',
-      description: 'Promouvoir un dialogue constructif entre tous les acteurs du monde du travail.',
-      objectifs: [
-        'Moderniser le cadre juridique du travail',
-        'Renforcer les mécanismes de concertation',
-        'Améliorer les conditions de travail',
-        'Prévenir et résoudre les conflits sociaux'
-      ]
-    },
-    {
-      icone: '🎓',
-      titre: 'Développement du Capital Humain',
-      description: 'Investir dans la formation et le développement des compétences.',
-      objectifs: [
-        'Former 100 000 personnes par an',
-        'Adapter les formations aux besoins du marché',
-        'Développer la formation continue',
-        'Promouvoir l\'égalité des chances'
-      ]
-    }
-  ];
-  
-  objectifs2030 = [
-    {
-      icone: '👥',
-      chiffre: '500K',
-      titre: 'Emplois Créés',
-      description: 'Nouveaux emplois décents créés d\'ici 2030'
-    },
-    {
-      icone: '📱',
-      chiffre: '80%',
-      titre: 'Services Digitalisés',
-      description: 'Des services publics accessibles en ligne'
-    },
-    {
-      icone: '🎯',
-      chiffre: '15%',
-      titre: 'Taux de Chômage',
-      description: 'Objectif de réduction du chômage national'
-    },
-    {
-      icone: '⭐',
-      chiffre: '95%',
-      titre: 'Satisfaction Usagers',
-      description: 'Taux de satisfaction des services publics'
-    }
-  ];
-  
-  valeurs = [
-    {
-      icone: '🤝',
-      nom: 'Intégrité',
-      description: 'Nous agissons avec honnêteté, transparence et éthique dans toutes nos actions.'
-    },
-    {
-      icone: '🎯',
-      nom: 'Excellence',
-      description: 'Nous visons l\'excellence dans la qualité de nos services et de nos réalisations.'
-    },
-    {
-      icone: '🌟',
-      nom: 'Innovation',
-      description: 'Nous encourageons l\'innovation et l\'adaptation aux évolutions technologiques.'
-    },
-    {
-      icone: '⚖️',
-      nom: 'Équité',
-      description: 'Nous garantissons l\'égalité des chances et la justice sociale pour tous.'
-    },
-    {
-      icone: '🤲',
-      nom: 'Service Public',
-      description: 'Nous plaçons l\'intérêt général et le service aux citoyens au cœur de notre mission.'
-    },
-    {
-      icone: '🔄',
-      nom: 'Durabilité',
-      description: 'Nous œuvrons pour un développement durable et responsable.'
-    }
-  ];
   
   constructor(private animationService: AnimationService) {}
   
@@ -272,5 +114,12 @@ export class NotreVisionComponent implements AfterViewInit {
     setTimeout(() => {
       this.animationService.initScrollAnimations();
     }, 100);
+  }
+
+  openPdf() {
+    const dialog = document.getElementById('dialog') as any;
+    if (dialog) {
+      dialog.showModal();
+    }
   }
 }
