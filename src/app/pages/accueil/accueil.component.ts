@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit, OnDestroy } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { AnimationService } from "../../shared/services/animation.service";
+import { thematiques, metiers, structures } from "../../shared/models/datas";
 
 @Component({
   selector: "app-accueil",
@@ -9,7 +10,11 @@ import { AnimationService } from "../../shared/services/animation.service";
   imports: [CommonModule, RouterModule],
   template: `
     <!-- Slider Hero Section -->
-    <section class="relative h-screen overflow-hidden" role="banner" aria-label="Slider des communiqués du Ministère du Travail">
+    <section
+      class="relative h-screen overflow-hidden"
+      role="banner"
+      aria-label="Slider des communiqués du Ministère du Travail"
+    >
       <div class="relative h-full">
         <!-- Slides -->
         <div class="absolute inset-0 transition-transform duration-700 ease-in-out" 
@@ -310,8 +315,28 @@ import { AnimationService } from "../../shared/services/animation.service";
           </p>
         </div>
 
+        <div class="flex justify-center mb-8">
+          <div class="flex flex-wrap gap-2">
+            <button
+              (click)="filtrerParThematique('toutes')"
+              [class]="thematiqueActive === 'toutes' ? 'bg-primary-800 text-white' : 'bg-white hover:bg-gray-200 text-gray-700'"
+              class="px-4 py-2 rounded-full text-xs font-medium transition-all shadow-sm"
+            >
+              Toutes
+            </button>
+            <button
+              *ngFor="let thematique of thematiques"
+              (click)="filtrerParThematique(thematique.id)"
+              [class]="thematiqueActive === thematique.id ? 'bg-primary-800 text-white' : 'bg-white hover:bg-gray-200 text-gray-700'"
+              class="px-4 py-2 rounded-full text-xs font-medium transition-all shadow-sm"
+            >
+              {{ thematique.libelle }}
+            </button>
+          </div>
+        </div>
+
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div *ngFor="let structure of structuresMetiers" class="card p-6 hover:shadow-lg transition-all duration-300">
+          <div *ngFor="let structure of structuresMetiersFiltrees" class="card p-6 hover:shadow-lg transition-all duration-300">
             <div class="text-center mb-6">
               <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span class="text-3xl">{{ structure.icone }}</span>
@@ -610,24 +635,35 @@ import { AnimationService } from "../../shared/services/animation.service";
 export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
   currentSlide = 0;
   slideInterval: any;
-  activeTabCommunique = 'concours';
-  
+  activeTabCommunique = "concours";
+  thematiqueActive: any = "toutes";
+
+  thematiques = thematiques;
+  structuresMetiers: any[] = [];
+  structuresMetiersFiltrees: any[] = [];
+
   communiques = [
     {
-      titre: "Session extraordinaire de la Commission Nationale de Concertation, de Consultation et de Négociations Collectives",
-      description: "Le gouvernement et les partenaires sociaux évaluent les préparatifs pour une bonne rentrée scolaire 2025-2026",
+      titre:
+        "Session extraordinaire de la Commission Nationale de Concertation, de Consultation et de Négociations Collectives",
+      description:
+        "Le gouvernement et les partenaires sociaux évaluent les préparatifs pour une bonne rentrée scolaire 2025-2026",
       type: "COMMUNIQUÉ",
       date: "20 janvier 2024",
       // source: "Direction Générale de la Fonction Publique",
-      image: "https://www.travail.gouv.bj/storage/actualites/big/session-extraordinaire-de-la-commission-nationale-de-concertation-de-consultation-et-de-negociations-collectives-big.JPG"
+      image:
+        "https://www.travail.gouv.bj/storage/actualites/big/session-extraordinaire-de-la-commission-nationale-de-concertation-de-consultation-et-de-negociations-collectives-big.JPG",
     },
     {
-      titre: "Suivi de la mise en œuvre des projets du portefeuille « État de droit, démocratie, gouvernance et cohésion sociale »",
-      description: "Le Bénin et le PNUD passent en revue les actions du premier semestre 2025",
+      titre:
+        "Suivi de la mise en œuvre des projets du portefeuille « État de droit, démocratie, gouvernance et cohésion sociale »",
+      description:
+        "Le Bénin et le PNUD passent en revue les actions du premier semestre 2025",
       type: "COMMUNIQUÉ",
-      date: "18 janvier 2024", 
+      date: "18 janvier 2024",
       // source: "Direction Générale du Travail",
-      image: "https://www.travail.gouv.bj/storage/actualites/big/suivi-de-la-mise-en-oeuvre-des-projets-du-portefeuille-etat-de-droit-democratie-gouvernance-et-cohesion-sociale-big.jpeg"
+      image:
+        "https://www.travail.gouv.bj/storage/actualites/big/suivi-de-la-mise-en-oeuvre-des-projets-du-portefeuille-etat-de-droit-democratie-gouvernance-et-cohesion-sociale-big.jpeg",
     },
     {
       titre: "Lutte contre les pires formes de travail des enfants dans la Donga",
@@ -635,58 +671,68 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
       type: "COMMUNIQUÉ",
       date: "15 janvier 2024",
       // source: "Secrétariat Général",
-      image: "https://www.travail.gouv.bj/storage/actualites/big/lutte-contre-les-pires-formes-de-travail-des-enfants-dans-la-donga-big.jpeg"
+      image:
+        "https://www.travail.gouv.bj/storage/actualites/big/lutte-contre-les-pires-formes-de-travail-des-enfants-dans-la-donga-big.jpeg",
     },
     {
-      titre: "Renforcement des capacités des acteurs des Ressources humaines en matière de GRH basée sur les compétences",
-      description: "Un pas vers une Administration publique performante au service de l'intérêt général",
+      titre:
+        "Renforcement des capacités des acteurs des Ressources humaines en matière de GRH basée sur les compétences",
+      description:
+        "Un pas vers une Administration publique performante au service de l'intérêt général",
       type: "COMMUNIQUÉ",
       date: "12 janvier 2024",
       // source: "Direction Générale du Travail",
-      image: "https://www.travail.gouv.bj/storage/actualites/big/renforcement-des-capacites-des-acteurs-des-ressources-humaines-en-matiere-de-grh-basee-sur-les-competences-big.jpg"
-    }
+      image:
+        "https://www.travail.gouv.bj/storage/actualites/big/renforcement-des-capacites-des-acteurs-des-ressources-humaines-en-matiere-de-grh-basee-sur-les-competences-big.jpg",
+    },
   ];
-  
+
   communiquesConcours = [
     {
       titre: "Concours de recrutement de 500 Inspecteurs du Travail",
-      description: "Ouverture des inscriptions pour le concours de recrutement d'Inspecteurs du Travail. Dossiers à déposer avant le 15 mars 2024.",
+      description:
+        "Ouverture des inscriptions pour le concours de recrutement d'Inspecteurs du Travail. Dossiers à déposer avant le 15 mars 2024.",
       date: "20 janvier 2024",
-      type: "CONCOURS"
+      type: "CONCOURS",
     },
     {
       titre: "Concours d'entrée à l'École Nationale d'Administration",
-      description: "Recrutement de 200 élèves administrateurs pour la promotion 2024-2026. Inscription en ligne obligatoire.",
+      description:
+        "Recrutement de 200 élèves administrateurs pour la promotion 2024-2026. Inscription en ligne obligatoire.",
       date: "18 janvier 2024",
-      type: "CONCOURS"
+      type: "CONCOURS",
     },
     {
       titre: "Concours de recrutement de Conseillers en Emploi",
-      description: "150 postes de Conseillers en Emploi à pourvoir dans les directions départementales. Niveau Bac+4 requis.",
+      description:
+        "150 postes de Conseillers en Emploi à pourvoir dans les directions départementales. Niveau Bac+4 requis.",
       date: "15 janvier 2024",
-      type: "CONCOURS"
-    }
+      type: "CONCOURS",
+    },
   ];
 
   autresCommuniques = [
     {
       titre: "Mise en place du nouveau système de gestion des carrières",
-      description: "Le ministère annonce la mise en service d'un nouveau système informatisé pour la gestion des carrières des agents publics.",
+      description:
+        "Le ministère annonce la mise en service d'un nouveau système informatisé pour la gestion des carrières des agents publics.",
       date: "22 janvier 2024",
-      type: "INFORMATION"
+      type: "INFORMATION",
     },
     {
       titre: "Suspension temporaire des services de visa de contrat",
-      description: "En raison de la maintenance du système informatique, les services de visa de contrat seront suspendus du 25 au 27 janvier 2024.",
+      description:
+        "En raison de la maintenance du système informatique, les services de visa de contrat seront suspendus du 25 au 27 janvier 2024.",
       date: "20 janvier 2024",
-      type: "AVIS"
+      type: "AVIS",
     },
     {
       titre: "Nouvelle réglementation sur le télétravail",
-      description: "Publication du décret encadrant le télétravail dans l'administration publique béninoise. Entrée en vigueur le 1er février 2024.",
+      description:
+        "Publication du décret encadrant le télétravail dans l'administration publique béninoise. Entrée en vigueur le 1er février 2024.",
       date: "18 janvier 2024",
-      type: "RÉGLEMENTATION"
-    }
+      type: "RÉGLEMENTATION",
+    },
   ];
 
   evenementsDeClencheurs = [
@@ -695,138 +741,181 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
       description: "Vous souhaitez intégrer la fonction publique béninoise",
       icone: "🔍",
       services: [
-        { nom: "Communiqués concours", type: "Communiqués", url: "/actualites", disponible: true },
-        { nom: "Candidater pour un concours", type: "Plateforme", url: "#", disponible: false },
-        { nom: "C'est quoi être fonctionnaire", type: "FM", url: "/fiches-metiers", disponible: true }
-      ]
+        {
+          nom: "Communiqués concours",
+          type: "Communiqués",
+          url: "/actualites",
+          disponible: true,
+        },
+        {
+          nom: "Candidater pour un concours",
+          type: "Plateforme",
+          url: "#",
+          disponible: false,
+        },
+        {
+          nom: "C'est quoi être fonctionnaire",
+          type: "FM",
+          url: "/fiches-metiers",
+          disponible: true,
+        },
+      ],
     },
     {
       titre: "JE SUIS FONCTIONNAIRE",
-      description: "Vous êtes agent de l'État et cherchez des informations sur votre carrière",
+      description:
+        "Vous êtes agent de l'État et cherchez des informations sur votre carrière",
       icone: "💼",
       services: [
         { nom: "Mon Espace Carrière", type: "WECHE", url: "#", disponible: false },
-        { nom: "Éthique du fonctionnaire", type: "FM", url: "/fiches-metiers", disponible: true },
-        { nom: "Formation Continue", type: "eServices", url: "/services", disponible: true },
-        { nom: "Rémunération & Avantages", type: "FM", url: "/fiches-metiers", disponible: true },
-        { nom: "Discipline et sanction", type: "FM", url: "/fiches-metiers", disponible: true },
-        { nom: "Retraite", type: "FM", url: "/fiches-metiers", disponible: true }
-      ]
+        {
+          nom: "Éthique du fonctionnaire",
+          type: "FM",
+          url: "/fiches-metiers",
+          disponible: true,
+        },
+        {
+          nom: "Formation Continue",
+          type: "eServices",
+          url: "/services",
+          disponible: true,
+        },
+        {
+          nom: "Rémunération & Avantages",
+          type: "FM",
+          url: "/fiches-metiers",
+          disponible: true,
+        },
+        {
+          nom: "Discipline et sanction",
+          type: "FM",
+          url: "/fiches-metiers",
+          disponible: true,
+        },
+        { nom: "Retraite", type: "FM", url: "/fiches-metiers", disponible: true },
+      ],
     },
     {
       titre: "JE SUIS EMPLOYEUR PRIVÉ",
-      description: "Vous dirigez une entreprise et avez des obligations légales",
+      description:
+        "Vous dirigez une entreprise et avez des obligations légales",
       icone: "🏢",
       services: [
-        { nom: "Déclarations Obligatoires", type: "FM", url: "/fiches-metiers", disponible: true },
-        { nom: "Relations Sociales", type: "FM", url: "/fiches-metiers", disponible: true },
-        { nom: "Sécurité au Travail", type: "FM", url: "/fiches-metiers", disponible: true },
-        { nom: "Formation des Salariés", type: "FM", url: "/fiches-metiers", disponible: true },
-        { nom: "Contentieux Social", type: "FM", url: "/fiches-metiers", disponible: true }
-      ]
+        {
+          nom: "Déclarations Obligatoires",
+          type: "FM",
+          url: "/fiches-metiers",
+          disponible: true,
+        },
+        {
+          nom: "Relations Sociales",
+          type: "FM",
+          url: "/fiches-metiers",
+          disponible: true,
+        },
+        {
+          nom: "Sécurité au Travail",
+          type: "FM",
+          url: "/fiches-metiers",
+          disponible: true,
+        },
+        {
+          nom: "Formation des Salariés",
+          type: "FM",
+          url: "/fiches-metiers",
+          disponible: true,
+        },
+        {
+          nom: "Contentieux Social",
+          type: "FM",
+          url: "/fiches-metiers",
+          disponible: true,
+        },
+      ],
     },
     {
       titre: "JE SUIS EMPLOYÉ DANS LE SECTEUR PRIVÉ",
-      description: "Vous travaillez dans le secteur privé et voulez connaître vos droits",
+      description:
+        "Vous travaillez dans le secteur privé et voulez connaître vos droits",
       icone: "👨‍💼",
       services: [
-        { nom: "Mes droits et obligatoires", type: "FM", url: "/fiches-metiers", disponible: true },
-        { nom: "Sécurité sociale", type: "FM", url: "/fiches-metiers", disponible: true },
-        { nom: "Résolution de conflits", type: "FM", url: "/fiches-metiers", disponible: true }
-      ]
+        {
+          nom: "Mes droits et obligatoires",
+          type: "FM",
+          url: "/fiches-metiers",
+          disponible: true,
+        },
+        {
+          nom: "Sécurité sociale",
+          type: "FM",
+          url: "/fiches-metiers",
+          disponible: true,
+        },
+        {
+          nom: "Résolution de conflits",
+          type: "FM",
+          url: "/fiches-metiers",
+          disponible: true,
+        },
+      ],
     },
     {
       titre: "JE SUIS ÉTUDIANT/JEUNE",
-      description: "Vous êtes étudiant ou jeune diplômé en recherche d'opportunités",
+      description:
+        "Vous êtes étudiant ou jeune diplômé en recherche d'opportunités",
       icone: "🎓",
       services: [
         { nom: "Stages", type: "FM", url: "/fiches-metiers", disponible: true },
-        { nom: "Premier emploi", type: "FM", url: "/fiches-metiers", disponible: true },
-        { nom: "Formation professionnelle", type: "eServices", url: "/services", disponible: true },
-        { nom: "Entrepreneuriat", type: "FM", url: "/fiches-metiers", disponible: true }
-      ]
-    }
-  ];
-
-  structuresMetiers = [
-    {
-      nom: "Direction Générale du Travail",
-      description: "Régulation du marché du travail et promotion de l'emploi",
-      icone: "💼",
-      nombreMetiers: 8,
-      metiersPhares: ["Inspecteur du Travail", "Médiateur Social", "Conseiller Emploi"],
-      lienDetail: "/ministere/direction-generale-travail"
+        {
+          nom: "Premier emploi",
+          type: "FM",
+          url: "/fiches-metiers",
+          disponible: true,
+        },
+        {
+          nom: "Formation professionnelle",
+          type: "eServices",
+          url: "/services",
+          disponible: true,
+        },
+        {
+          nom: "Entrepreneuriat",
+          type: "FM",
+          url: "/fiches-metiers",
+          disponible: true,
+        },
+      ],
     },
-    {
-      nom: "Direction Générale de la Fonction Publique",
-      description: "Gestion et modernisation de la fonction publique",
-      icone: "🏛️",
-      nombreMetiers: 12,
-      metiersPhares: ["Gestionnaire RH", "Conseiller Juridique", "Analyste Carrières"],
-      lienDetail: "/ministere/direction-generale-fonction-publique"
-    },
-    {
-      nom: "Direction Renforcement des Capacités",
-      description: "Formation et développement des compétences",
-      icone: "🎓",
-      nombreMetiers: 10,
-      metiersPhares: ["Ingénieur Formation", "Conseiller Employabilité", "Formateur"],
-      lienDetail: "/ministere/direction-renforcement-capacites"
-    },
-    {
-      nom: "Direction des Systèmes d'Information",
-      description: "Transformation numérique et gestion IT",
-      icone: "💻",
-      nombreMetiers: 6,
-      metiersPhares: ["Développeur", "Administrateur Systèmes", "Chef de Projet IT"],
-      lienDetail: "/ministere/direction-systemes-information"
-    },
-    {
-      nom: "Inspection Générale",
-      description: "Contrôle et audit des services publics",
-      icone: "🔍",
-      nombreMetiers: 7,
-      metiersPhares: ["Inspecteur Services", "Auditeur Interne", "Contrôleur Gestion"],
-      lienDetail: "/ministere/inspection-generale"
-    },
-    {
-      nom: "Directions Départementales",
-      description: "Représentation territoriale du ministère",
-      icone: "🗺️",
-      nombreMetiers: 9,
-      metiersPhares: ["Directeur Départemental", "Agent Territorial", "Médiateur Local"],
-      lienDetail: "/ministere/directions-departementales"
-    }
   ];
 
   statistiques = [
-    { 
-      valeur: "156K", 
+    {
+      valeur: "156K",
       displayValue: "0",
       targetValue: 156000,
       libelle: "Agents publics formés",
-      description: "Depuis 2016"
+      description: "Depuis 2016",
     },
-    { 
-      valeur: "2.5M", 
+    {
+      valeur: "2.5M",
       displayValue: "0",
       targetValue: 2500000,
       libelle: "Travailleurs protégés",
-      description: "Couverture sociale"
+      description: "Couverture sociale",
     },
-    { 
-      valeur: "45K", 
+    {
+      valeur: "45K",
       displayValue: "0",
       targetValue: 45000,
       libelle: "Entreprises suivies",
-      description: "Secteur privé"
+      description: "Secteur privé",
     },
-    { 
-      valeur: "12", 
+    {
+      valeur: "12",
       displayValue: "0",
       targetValue: 12,
       libelle: "Concours en cours",
-      description: "Recrutements 2024"
+      description: "Recrutements 2024",
     },
   ];
 
@@ -858,14 +947,15 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
   ];
 
   actualitesRecentes = [
-{
+    {
       id: 4,
-      titre: "Concours de recrutement de 172 fonctionnaires de l'État au profit au profit du MEF",
+      titre:
+        "Concours de recrutement de 172 fonctionnaires de l'État au profit au profit du MEF",
       resume:
         "Reprise de la composition dans le corps des Ingénieurs de la Statistique et celui des Ingénieurs des Services Techniques des Travaux Publics option BTP, pour le samedi 15 novembre 2025",
-      contenu: "Reprise de la composition dans le corps des Ingénieurs de la Statistique et celui des Ingénieurs des Services Techniques des Travaux Publics option BTP, pour le samedi 15 novembre 2025",
-      imageUrl:
-        "https://www.travail.gouv.bj/assets/images/tour2.jpeg",
+      contenu:
+        "Reprise de la composition dans le corps des Ingénieurs de la Statistique et celui des Ingénieurs des Services Techniques des Travaux Publics option BTP, pour le samedi 15 novembre 2025",
+      imageUrl: "https://www.travail.gouv.bj/assets/images/tour2.jpeg",
       datePublication: new Date("2023-12-20"),
       auteur: "Cabinet du Ministre",
       categorie: "Communiqués",
@@ -874,7 +964,8 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
     },
     {
       id: 5,
-      titre: "Session extraordinaire de la Commission Nationale de Concertation, de Consultation et de Négociations Collectives",
+      titre:
+        "Session extraordinaire de la Commission Nationale de Concertation, de Consultation et de Négociations Collectives",
       resume:
         "Le gouvernement et les partenaires sociaux évaluent les préparatifs pour une bonne rentrée scolaire 2025-2026",
       contenu: `Une session extraordinaire de la Commission Nationale de Concertation, de Consultation et de Négociations Collectives s’est tenue ce mardi 09 septembre 2025 à la salle des fêtes des tours administratives. Objectif : faire le point sur la rentrée scolaire et universitaire à venir, dans un climat de dialogue entre gouvernement et syndicats. Présidée par le Ministre d’État chargé du Développement et de la Coordination de l’Action Gouvernementale, Abdoulaye BIO TCHANÉ, la cérémonie officielle d’ouverture de cette session s’est déroulée en présence d’une forte délégation ministérielle et de nombreux acteurs du secteur éducatif.
@@ -904,8 +995,8 @@ En conclusion, le Ministre d’État a renouvelé la reconnaissance du gouvernem
         "https://www.travail.gouv.bj/storage/actualites/big/session-extraordinaire-de-la-commission-nationale-de-concertation-de-consultation-et-de-negociations-collectives-big.JPG",
       datePublication: new Date("2025-09-09 18:44:48"),
       auteur: "Direction Générale du Travail",
-    categorie: "Comptes rendus",
-    slug: "comptes-rendus",
+      categorie: "Comptes rendus",
+      slug: "comptes-rendus",
       tags: ["télétravail", "réglementation", "flexibilité"],
     },
     {
@@ -932,20 +1023,20 @@ Les deux personnalités ont aussi abordé des points relatifs au fonctionnement 
       titre: "Mise en place du nouveau système de gestion des carrières",
     },
     {
-      type: "COMMUNIQUE", 
+      type: "COMMUNIQUE",
       date: "05.01.2024",
       titre: "Lancement du programme d'insertion des jeunes diplômés",
     },
     {
       type: "COMMUNIQUE",
-      date: "03.01.2024", 
+      date: "03.01.2024",
       titre: "Réforme du système de notation des agents publics",
     },
     {
       type: "COMMUNIQUE",
       date: "28.12.2023",
       titre: "Bilan des activités 2023 du Ministère du Travail",
-    }
+    },
   ];
 
   liensUtiles = [
@@ -963,6 +1054,17 @@ Les deux personnalités ont aussi abordé des points relatifs au fonctionnement 
 
   ngOnInit() {
     this.startSlideShow();
+    this.structuresMetiers = structures.map((structure) => {
+      const metiersDeLaStructure = metiers.filter(
+        (m) => m.structureId === structure.id
+      );
+      return {
+        ...structure,
+        nombreMetiers: metiersDeLaStructure.length,
+        metiersPhares: metiersDeLaStructure.slice(0, 3).map((m) => m.titre),
+      };
+    });
+    this.filtrerParThematique("toutes");
   }
 
   ngAfterViewInit() {
@@ -971,33 +1073,36 @@ Les deux personnalités ont aussi abordé des points relatifs au fonctionnement 
       this.animateCounters();
     }, 100);
   }
-  
+
   ngOnDestroy() {
     if (this.slideInterval) {
       clearInterval(this.slideInterval);
     }
   }
-  
+
   startSlideShow() {
     this.slideInterval = setInterval(() => {
       this.nextSlide();
     }, 8000); // Change slide every 8 seconds pour laisser le temps de lire
   }
-  
+
   nextSlide() {
     this.currentSlide = (this.currentSlide + 1) % this.communiques.length;
   }
-  
+
   previousSlide() {
-    this.currentSlide = this.currentSlide === 0 ? this.communiques.length - 1 : this.currentSlide - 1;
+    this.currentSlide =
+      this.currentSlide === 0
+        ? this.communiques.length - 1
+        : this.currentSlide - 1;
   }
-  
+
   goToSlide(index: number) {
     this.currentSlide = index;
   }
 
   private animateCounters() {
-    const statElements = document.querySelectorAll('[data-target]');
+    const statElements = document.querySelectorAll("[data-target]");
     statElements.forEach((element, index) => {
       const stat = this.statistiques[index];
       if (stat) {
@@ -1005,41 +1110,59 @@ Les deux personnalités ont aussi abordé des points relatifs au fonctionnement 
       }
     });
   }
-  
+
   private animateCounter(element: HTMLElement, stat: any, index: number) {
     const targetValue = stat.targetValue;
     const duration = 2000;
     const startTime = performance.now();
-    
+
     const updateCounter = (currentTime: number) => {
       const elapsedTime = currentTime - startTime;
       const progress = Math.min(elapsedTime / duration, 1);
-      
+
       const easedProgress = this.easeOutQuart(progress);
       const currentValue = Math.floor(targetValue * easedProgress);
-      
+
       // Format the number based on the original format
-      let displayValue = '';
-      if (stat.valeur.includes('K')) {
-        displayValue = (currentValue / 1000).toFixed(0) + 'K';
-      } else if (stat.valeur.includes('M')) {
-        displayValue = (currentValue / 1000000).toFixed(1) + 'M';
+      let displayValue = "";
+      if (stat.valeur.includes("K")) {
+        displayValue = (currentValue / 1000).toFixed(0) + "K";
+      } else if (stat.valeur.includes("M")) {
+        displayValue = (currentValue / 1000000).toFixed(1) + "M";
       } else {
         displayValue = currentValue.toLocaleString();
       }
-      
+
       element.textContent = displayValue;
       stat.displayValue = displayValue;
-      
+
       if (progress < 1) {
         requestAnimationFrame(updateCounter);
       }
     };
-    
+
     requestAnimationFrame(updateCounter);
   }
-  
+
   private easeOutQuart(t: number): number {
-    return 1 - (--t) * t * t * t;
+    return 1 - --t * t * t * t;
+  }
+
+  filtrerParThematique(thematiqueId: any) {
+    this.thematiqueActive = thematiqueId;
+    if (thematiqueId === "toutes") {
+      this.structuresMetiersFiltrees = this.structuresMetiers;
+    } else {
+      const structureSlugsWithMetier = [
+        ...new Set(
+          metiers
+            .filter((metier) => metier.thematiqueId === thematiqueId)
+            .map((metier) => metier.structureSlug)
+        ),
+      ];
+      this.structuresMetiersFiltrees = this.structuresMetiers.filter(
+        (structure) => structureSlugsWithMetier.includes(structure.slug)
+      );
+    }
   }
 }
