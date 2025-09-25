@@ -83,13 +83,13 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
                   <img
                     src="https://www.travail.gouv.bj/storage/structures/respos/1709533437avalla-omer-w-charles.jpg"
                     alt="AVALLA Omer W. Charles - Directeur Général"
-                    class="rounded-2xl shadow-lg w-full max-w-sm mx-auto"
+                    class="rounded-2xl shadow-lg w-full max-w-sm h-72 mx-auto"
                   />
-                  <div
+                  <!-- <div
                     class="absolute -bottom-6 -right-6 w-16 h-16 bg-secondary-700 rounded-full flex items-center justify-center"
                   >
                     <span class="text-white text-2xl">🇧🇯</span>
-                  </div>
+                  </div> -->
                 </div>
                 <div class="mt-6">
                   <h3
@@ -109,7 +109,7 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
                   <img
                     src="https://www.travail.gouv.bj/storage/teams/1677698988ohossa-sourou-djile.JPG"
                     alt="OHOSSA Saturnin Djiki - Directeur Général Adjoint"
-                    class="rounded-2xl shadow-lg w-full max-w-sm mx-auto"
+                    class="rounded-2xl shadow-lg w-full max-w-sm h-72 mx-auto"
                   />
                 </div>
                 <div class="mt-6">

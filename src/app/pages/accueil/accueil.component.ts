@@ -27,10 +27,10 @@ import { AnimationService } from "../../shared/services/animation.service";
                       <div class="inline-block bg-white/20 dark:bg-white/10 px-4 py-2 rounded-full text-sm font-medium mb-4">
                         {{ communique.type }}
                       </div>
-                      <h1 class="text-3xl lg:text-3xl font-bold mb-6 leading-tight">
+                      <h1 class="text-3xl lg:text-3xl 2xl:text-5xl font-bold mb-6 leading-tight">
                         {{ communique.titre }}
                       </h1>
-                      <p class="text-lg lg:text-xl mb-8 text-white/90 font-light">
+                      <p class="text-lg lg:text-xl 2xl:text-4xl mb-8 text-white/90 font-light">
                         {{ communique.description }}
                       </p>
                       <div class="flex flex-col sm:flex-row gap-4">
@@ -49,7 +49,7 @@ import { AnimationService } from "../../shared/services/animation.service";
                     <div class="hidden lg:block">
                       <img [src]="communique.image" 
                            [alt]="communique.titre" 
-                           class="rounded-2xl shadow-2xl w-full max-w-lg mx-auto"
+                           class="rounded-2xl shadow-2xl w-full max-w-3xl mx-auto"
                            loading="lazy">
                     </div>
                   </div>
@@ -122,7 +122,9 @@ import { AnimationService } from "../../shared/services/animation.service";
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
           <a href="/actualites" class="group flex flex-col items-center p-6 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" aria-label="Communiqués">
             <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary-200 dark:group-hover:bg-primary-800/50 transition-colors">
-              <span class="text-2xl" aria-hidden="true">📢</span>
+              <span class="text-2xl" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" class="size-8 text-primary-900" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M11 6a13 13 0 0 0 8.4-2.8A1 1 0 0 1 21 4v12a1 1 0 0 1-1.6.8A13 13 0 0 0 11 14H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/><path d="M6 14a12 12 0 0 0 2.4 7.2a2 2 0 0 0 3.2-2.4A8 8 0 0 1 10 14M8 6v8"/></g></svg>
+              </span>
             </div>
             <span class="text-sm font-medium text-gray-900 dark:text-white text-center">Communiqués</span>
           </a>
@@ -856,35 +858,70 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
   ];
 
   actualitesRecentes = [
-    {
-      id: "1",
-      titre: "Lancement du nouveau portail numérique de l'emploi",
+{
+      id: 4,
+      titre: "Concours de recrutement de 172 fonctionnaires de l'État au profit au profit du MEF",
       resume:
-        "Le Ministère du Travail dévoile sa nouvelle plateforme digitale révolutionnaire pour faciliter la recherche d'emploi.",
+        "Reprise de la composition dans le corps des Ingénieurs de la Statistique et celui des Ingénieurs des Services Techniques des Travaux Publics option BTP, pour le samedi 15 novembre 2025",
+      contenu: "Reprise de la composition dans le corps des Ingénieurs de la Statistique et celui des Ingénieurs des Services Techniques des Travaux Publics option BTP, pour le samedi 15 novembre 2025",
       imageUrl:
-        "https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=400",
-      datePublication: new Date("2024-01-15"),
-      categorie: "Digital",
+        "https://www.travail.gouv.bj/assets/images/tour2.jpeg",
+      datePublication: new Date("2023-12-20"),
+      auteur: "Cabinet du Ministre",
+      categorie: "Communiqués",
+      slug: "communiques",
+      tags: ["forum", "jeunes", "emploi", "entreprises"],
     },
     {
-      id: "2",
-      titre: "Augmentation du salaire minimum interprofessionnel",
+      id: 5,
+      titre: "Session extraordinaire de la Commission Nationale de Concertation, de Consultation et de Négociations Collectives",
       resume:
-        "Le gouvernement annonce une revalorisation du SMIG à partir du 1er mars 2024.",
+        "Le gouvernement et les partenaires sociaux évaluent les préparatifs pour une bonne rentrée scolaire 2025-2026",
+      contenu: `Une session extraordinaire de la Commission Nationale de Concertation, de Consultation et de Négociations Collectives s’est tenue ce mardi 09 septembre 2025 à la salle des fêtes des tours administratives. Objectif : faire le point sur la rentrée scolaire et universitaire à venir, dans un climat de dialogue entre gouvernement et syndicats. Présidée par le Ministre d’État chargé du Développement et de la Coordination de l’Action Gouvernementale, Abdoulaye BIO TCHANÉ, la cérémonie officielle d’ouverture de cette session s’est déroulée en présence d’une forte délégation ministérielle et de nombreux acteurs du secteur éducatif.
+
+Cette session a permis aux représentants syndicaux de soumettre leurs doléances et revendications aux autorités gouvernementales, dans une logique de concertation constructive. Il s’agissait notamment d’interpeller l’exécutif sur les conditions de travail des enseignants, la gestion des carrières, l’équité dans la répartition des ressources, et la nécessité d’un dialogue social plus structuré et permanent.
+
+Bilan positif, mais vigilance maintenue
+Dans son allocution, le Ministre d'État Abdoulaye BIO TCHANÉ a salué les efforts déployés collectivement au cours des dernières années, qui ont permis une nette amélioration des résultats aux examens nationaux : CEP : 89,81 % en 2025 contre 89,67 % en 2024 ; BEPC : 77,25 % contre 73,74 % ; Baccalauréat : 73,02 %, en forte progression par rapport aux 56,91 % enregistrés l’an passé.
+Ces résultats, a-t-il souligné, sont le fruit des réformes engagées, du professionnalisme des enseignants et du dialogue constant avec les partenaires sociaux.
+
+Maintenir le cap des réformes
+Toutefois, le ministre d’État a reconnu que des défis majeurs demeurent : amélioration des conditions de vie et de travail des enseignants, adaptation des curricula, répartition équitable des infrastructures, inclusion numérique, et réduction des inégalités d’accès à l’éducation.
+Le gouvernement, selon lui, reste engagé dans la réalisation de l’Objectif de Développement Durable n°4 qui est de garantir une éducation inclusive, équitable et de qualité. Il entend poursuivre les réformes, en comptant sur les ressources nationales comme les cantines scolaires et la formation technique, tout en renforçant la collaboration avec les partenaires au développement.
+
+Le gouvernement était représenté par plusieurs membres de premier plan, notamment :
+Adidjatou MATHYS (MTFP), Yvon DETCHENOU, (GS-MJL),  Salimane KARIMOU (MEMP), Véronique TOGNIFODE (MESTFP), Éléonore YAYI LADEKAN (MESRS), Rodrigue CHAOU, Directeur Général du Budget, représentant le Ministre de l’Économie et des Finances.
+
+Syndicats et patronat à la table des échanges
+Du côté des partenaires sociaux, on notait la présence des principales centrales syndicales du pays, notamment : la Confédération Syndicale des Travailleurs du Bénin (CSTB) ; la Confédération des Organisations Syndicales Indépendantes du Bénin (COSI-Bénin) ; la Confédération des Syndicats Autonomes du Bénin (CSA-Bénin).
+Les représentants du Conseil National du Patronat du Bénin (CNP-Bénin) et de la Confédération Nationale des Employeurs du Bénin (CONEB) ont également pris part aux travaux, marquant ainsi la diversité et l'inclusivité des parties prenantes impliquées dans la gouvernance du système éducatif.
+
+En termes de diligences, le Gouvernement a mis à disposition, une avance de trésorerie de plus d'un milliard cinq cents millions de FCFA. Les primes de rentrée pour les enseignants et les prestations des AME seront réglées dans la période du 20 au 25 septembre. Les avances de trésorerie pour les besoins de fonctionnement au 1er trimestre des établissements sont également disponibles.
+
+Un appel à l’unité et à la responsabilité
+En conclusion, le Ministre d’État a renouvelé la reconnaissance du gouvernement à l’endroit des partenaires sociaux, des enseignants, des parents d’élèves et des apprenants. Citant Kofi Annan, il a appelé à faire de l’éducation un pilier de paix, de justice sociale et de prospérité partagée.`,
       imageUrl:
-        "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=400",
-      datePublication: new Date("2024-01-10"),
-      categorie: "Réglementation",
+        "https://www.travail.gouv.bj/storage/actualites/big/session-extraordinaire-de-la-commission-nationale-de-concertation-de-consultation-et-de-negociations-collectives-big.JPG",
+      datePublication: new Date("2025-09-09 18:44:48"),
+      auteur: "Direction Générale du Travail",
+    categorie: "Comptes rendus",
+    slug: "comptes-rendus",
+      tags: ["télétravail", "réglementation", "flexibilité"],
     },
     {
-      id: "3",
-      titre: "Programme de formation pour 10 000 jeunes",
+      id: 6,
+      titre: "Audience au Cabinet du MTFP",
       resume:
-        "Lancement d'un vaste programme de formation professionnelle destiné aux jeunes diplômés.",
+        "Le Directeur Général du CRADAT reçu en audience par le Ministre Adidjatou MATHYS",
+      contenu: `Suite à la formation organisée par le Centre Régional d’Administration du Travail au profit des Inspecteurs du travail, des médecins du travail et des partenaires sociaux du 21 au 25 juillet 2025 à Cotonou, le Directeur Général du CRADAT, Arsène Armand HIEN est allé rendre compte dans la soirée du jeudi 24 juillet 2025, au Ministre Adidjatou MATHYS de son déroulement. Ladite formation a porté sur le thème : « Inspection du travail à l’ère de l’intelligence artificielle ». Elle s’inscrit dans le cadre de la mise en œuvre du programme d’activités 2025 : volet formation foraine dans les Etats membres de l’institution africaine. Le DG CRADAT se dit satisfait de la tenue de cette formation au Bénin et de la participation active des bénéficiaires. 
+Les deux personnalités ont aussi abordé des points relatifs au fonctionnement et à la dynamisation du CRADAT.`,
       imageUrl:
-        "https://images.pexels.com/photos/3184317/pexels-photo-3184317.jpeg?auto=compress&cs=tinysrgb&w=400",
-      datePublication: new Date("2024-01-05"),
-      categorie: "Formation",
+        "https://www.travail.gouv.bj/storage/actualites/big/audience-au-cabinet-du-mtfp-big.jpeg",
+      datePublication: new Date("2023-12-10"),
+      auteur: "Direction Générale de la Fonction Publique",
+      categorie: "Comptes rendus",
+      slug: "comptes-rendus",
+      tags: ["digitalisation", "fonction publique", "efficacité"],
     },
   ];
 

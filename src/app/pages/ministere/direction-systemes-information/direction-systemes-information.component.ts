@@ -51,12 +51,12 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div class="">
             <div class="relative">
-              <img src="https://www.travail.gouv.bj/storage/structures/respos/gandaho-wilfried.JPG" 
+              <img src="/dsi.jpeg" 
                    alt="GANDAHO D. J. Wilfried - Directeur" 
                    class="rounded-2xl shadow-lg w-full max-w-md mx-auto">
-              <div class="absolute -bottom-6 -right-6 w-16 h-16 bg-primary-700 rounded-full flex items-center justify-center">
+              <!-- <div class="absolute -bottom-6 -right-6 w-16 h-16 bg-primary-700 rounded-full flex items-center justify-center">
                 <span class="text-white text-2xl">🇧🇯</span>
-              </div>
+              </div> -->
             </div>
             <div class="mt-6 text-center">
               <h3 class="text-xl font-bold text-primary-800 dark:text-primary-400 mb-2">GANDAHO D. J. Wilfried</h3>

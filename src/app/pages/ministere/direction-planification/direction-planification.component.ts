@@ -105,7 +105,7 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
                 <div class="relative inline-block">
                   <img
                     src="https://www.travail.gouv.bj/storage/teams/1708959455ayegnon-fernand.jpg"
-                    alt="AYEGNON Léonard - Directeur Adjoint"
+                    alt="AYEGNON Fernand - Directeur"
                     class="rounded-2xl shadow-lg w-full max-w-sm mx-auto"
                   />
                 </div>
@@ -113,7 +113,7 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
                   <h3
                     class="text-xl font-bold text-secondary-800 dark:text-secondary-400 mb-2"
                   >
-                    AYEGNON Léonard
+                    AYEGNON Fernand
                   </h3>
                   <p class="text-gray-600 dark:text-gray-300">
                     Directeur
