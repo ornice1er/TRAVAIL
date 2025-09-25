@@ -90,13 +90,13 @@ export class LeMinistereComponent implements OnInit, AfterViewInit {
         "https://www.travail.gouv.bj/storage/teams/1678270873yaha-z-pascal.JPG",
       // email: 'expert.strategique@travail.gouv.bj'
     },
-    {
-      nom: "Léontine ATTOLOU",
-      fonction: "Experte en Fonction Publique / Chargée d'études",
-      photo:
-        "https://www.travail.gouv.bj/storage/teams/1679496007leontine-attolou.jpg",
-      // email: 'expert.fp@travail.gouv.bj'
-    },
+    // {
+    //   nom: "Léontine ATTOLOU",
+    //   fonction: "Experte en Fonction Publique / Chargée d'études",
+    //   photo:
+    //     "https://www.travail.gouv.bj/storage/teams/1679496007leontine-attolou.jpg",
+    //   // email: 'expert.fp@travail.gouv.bj'
+    // },
     {
       nom: "Ambroise AHOKOU",
       fonction: "Point Focal Communication",

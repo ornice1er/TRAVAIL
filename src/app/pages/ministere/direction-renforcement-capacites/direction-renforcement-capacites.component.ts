@@ -116,7 +116,7 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
                   <h3
                     class="text-xl font-bold text-secondary-800 dark:text-secondary-400 mb-2"
                   >
-                    OHOSSA Saturnin Djiki
+                    OHOSSA Sourou Djilé
                   </h3>
                   <p class="text-gray-600 dark:text-gray-300">
                     Directeur Général Adjoint
