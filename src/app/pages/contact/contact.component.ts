@@ -48,7 +48,7 @@ export const environment = {
     <!-- Informations de contact -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
-        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-16">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
           <div
             *ngFor="let contact of informationsContact"
             class="text-center  card p-8"
@@ -415,29 +415,34 @@ export class ContactComponent implements OnInit, AfterViewInit {
 
   informationsContact = [
     {
+      id: 1,
       icone: "📞",
       titre: "Téléphone",
-      informations: [
-        "+229 01 52 16 00 00",
-        "Standard : Lun-Ven 8h-17h",
-      ],
-    },
-     {
-      icone: "💬",
-      titre: "Whatsapp",
-      informations: [
-        "+229 01 52 16 00 00",
-      ],
+      informations: ["+229 01 52 16 00 00", "Standard : Lun-Ven 8h-17h"],
     },
     {
+      id: 2,
+      icone: "💬",
+      titre: "Whatsapp",
+      informations: ["+229 01 52 16 00 00"],
+    },
+    {
+      id: 3,
       icone: "✉️",
       titre: "Email",
       informations: ["mtfp.usager@gouv.bj"],
     },
     {
+      id: 4,
       icone: "🏢",
       titre: "Bureaux",
       informations: ["Route de l'Aéroport", "Face SONAPRA", "Cotonou, Bénin"],
+    },
+    {
+      id: 5,
+      icone: "🏢",
+      titre: "Portail des Démarches Administratives",
+      informations: ["https://pda.mtfp-ctd.bj/"],
     },
   ];
 
@@ -484,13 +489,14 @@ export class ContactComponent implements OnInit, AfterViewInit {
       zoom: 12,
       accessToken: environment.mapbox.accessToken,
     });
-     const marker = new mapboxgl.Marker({ color: "#ff0000" })
-            .setLngLat([2.3997338, 6.354602]).setPopup(
-              new mapboxgl.Popup({ offset: 25 }).setHTML(
-                `<h3 class="font-bold text-lg text-black">Ministère du Travail et de la Fonction Publique</h3><p class="text-gray-600">Route de l'Aéroport, face SONAPRA, Cotonou, Bénin</p>`
-              )
-            )
-            .addTo(this.map);
+    const marker = new mapboxgl.Marker({ color: "#ff0000" })
+      .setLngLat([2.3997338, 6.354602])
+      .setPopup(
+        new mapboxgl.Popup({ offset: 25 }).setHTML(
+          `<h3 class="font-bold text-lg text-black">Ministère du Travail et de la Fonction Publique</h3><p class="text-gray-600">Route de l'Aéroport, face SONAPRA, Cotonou, Bénin</p>`
+        )
+      )
+      .addTo(this.map);
   }
 
   onSubmit() {
