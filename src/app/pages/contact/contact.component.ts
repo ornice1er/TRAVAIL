@@ -64,12 +64,18 @@ export const environment = {
               {{ contact.titre }}
             </h3>
             <div class="space-y-2">
-              <p
+              <p [hidden]="contact.id === 5"
                 *ngFor="let info of contact.informations"
                 class="text-gray-600 dark:text-gray-300"
               >
-                {{ info }}
+              {{ info }}
               </p>
+               <a
+                  *ngIf="contact.id === 5"
+                  href="{{ contact.informations[0] }}"
+                  target="_blank"
+                  >{{ contact.informations[0] }}</a
+                >
             </div>
           </div>
         </div>
