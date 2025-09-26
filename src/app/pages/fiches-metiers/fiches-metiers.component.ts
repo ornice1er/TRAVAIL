@@ -21,7 +21,9 @@ import {
       <div class="container-custom">
         <div class="text-center">
           <h1 class="text-4xl lg:text-5xl font-bold mb-6">Fiches Métiers</h1>
-          <p class="text-xl text-primary-100 dark:text-primary-200 max-w-3xl mx-auto">
+          <p
+            class="text-xl text-primary-100 dark:text-primary-200 max-w-3xl mx-auto"
+          >
             Découvrez tous les métiers et opportunités de carrière dans les
             structures du Ministère du Travail et de la Fonction Publique
           </p>
@@ -112,35 +114,53 @@ import {
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div *ngFor="let metier of metiersFilters; trackBy: trackByMetierId" 
-               class="card p-6 hover:shadow-lg transition-all duration-300">
+          <div
+            *ngFor="let metier of metiersFilters; trackBy: trackByMetierId"
+            class="card p-6 hover:shadow-lg transition-all duration-300"
+          >
             <div class="flex items-start justify-between mb-4">
-              <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
+              <div
+                class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center"
+              >
                 <span class="text-2xl">{{ metier.icone }}</span>
               </div>
-              <span class="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full text-xs font-medium">
+              <span
+                class="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full text-xs font-medium"
+              >
                 {{ metier.structure }}
               </span>
             </div>
-            
-            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">{{ metier.titre }}</h3>
-            <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm">{{ metier.description }}</p>
-            
+
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+              {{ metier.titre }}
+            </h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm">
+              {{ metier.description }}
+            </p>
+
             <div class="space-y-3 mb-6">
               <div>
-                <h4 class="font-semibold text-gray-900 dark:text-white text-sm mb-2">Compétences requises :</h4>
+                <h4
+                  class="font-semibold text-gray-900 dark:text-white text-sm mb-2"
+                >
+                  Compétences requises :
+                </h4>
                 <div class="flex flex-wrap gap-1">
-                  <span *ngFor="let competence of metier.competences.slice(0, 3)" 
-                        class="bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-400 px-2 py-1 rounded text-xs">
+                  <span
+                    *ngFor="let competence of metier.competences.slice(0, 3)"
+                    class="bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-400 px-2 py-1 rounded text-xs"
+                  >
                     {{ competence }}
                   </span>
-                  <span *ngIf="metier.competences.length > 3" 
-                        class="text-xs text-gray-500 dark:text-gray-400">
+                  <span
+                    *ngIf="metier.competences.length > 3"
+                    class="text-xs text-gray-500 dark:text-gray-400"
+                  >
                     +{{ metier.competences.length - 3 }} autres
                   </span>
                 </div>
               </div>
-              
+
               <div class="flex items-center justify-between text-sm">
                 <span class="text-gray-500 dark:text-gray-400">
                   <strong>Niveau :</strong> {{ metier.niveauRequis }}
@@ -150,28 +170,48 @@ import {
                 </span>
               </div>
             </div>
-            
-            <div class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
-              <button class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium text-sm transition-colors opacity-50 cursor-not-allowed">
-                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
+
+            <div
+              class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700"
+            >
+              <button
+                class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium text-sm transition-colors opacity-50 cursor-not-allowed"
+              >
+                <svg
+                  class="w-4 h-4 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  />
                 </svg>
                 Télécharger
               </button>
-              <button class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:text-primary-800 dark:hover:text-primary-200 opacity-50 cursor-not-allowed">
+              <button
+                class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:text-primary-800 dark:hover:text-primary-200 opacity-50 cursor-not-allowed"
+              >
                 Détails
               </button>
             </div>
           </div>
         </div>
-        
+
         <!-- Message si aucun résultat -->
         <div *ngIf="metiersFilters.length === 0" class="text-center py-16">
-          <div class="w-16 h-16 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-4">
+          <div
+            class="w-16 h-16 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-4"
+          >
             <span class="text-2xl">🔍</span>
           </div>
-          <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Aucun métier trouvé</h3>
-          <p class="text-gray-600 dark:text-gray-300">Essayez de modifier vos critères de recherche.</p>
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+            Aucun métier trouvé
+          </h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            Essayez de modifier vos critères de recherche.
+          </p>
         </div>
       </div>
     </section>
@@ -182,21 +222,28 @@ import {
         <div class="text-center">
           <h2 class="text-3xl font-bold mb-6">Rejoignez-nous</h2>
           <p class="text-xl text-primary-100 dark:text-primary-200 mb-8 max-w-3xl mx-auto">
-            Le Ministère du Travail et de la Fonction Publique offre de nombreuses opportunités de carrière 
-            pour contribuer au développement du Bénin.
+            Le Ministère du Travail et de la Fonction Publique offre de
+            nombreuses opportunités de carrière pour contribuer au développement
+            du Bénin.
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a routerLink="/actualites" class="btn-primary bg-white text-primary-800 hover:bg-gray-100">
+            <a
+              routerLink="/actualites"
+              class="btn-primary bg-white text-primary-800 hover:bg-gray-100"
+            >
               Voir les concours
             </a>
-            <a routerLink="/contact" class="btn-secondary border-white text-white hover:bg-white/10">
+            <a
+              routerLink="/contact"
+              class="btn-secondary border-white text-white hover:bg-white/10"
+            >
               Nous contacter
             </a>
           </div>
         </div>
       </div>
     </section>
-  `
+  `,
 })
 export class FichesMetiersComponent implements AfterViewInit {
   structureActive: any = "toutes";
