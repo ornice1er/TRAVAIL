@@ -40,7 +40,7 @@ export const structures: any[] = [
     libelle: "Inspection Général des Services et Emplois Publics",
     sigle: "IGSEP",
     slug: "ig",
-    description: "Contrôle et audit des services publics",
+    description: "Contrôle et audit des services publics.",
     icone: "🔍",
     lienDetail: "/ministere/inspection-generale",
   },
@@ -105,7 +105,7 @@ export const structures: any[] = [
     libelle: "Direction des Systèmes d'Information",
     sigle: "DSI",
     slug: "dsi",
-    description: "Transformation numérique et gestion IT",
+    description: "Transformation numérique et gestion IT.",
     icone: "💻",
     lienDetail: "/ministere/direction-systemes-information",
   },
@@ -123,8 +123,8 @@ export const structures: any[] = [
     id: 23,
     libelle: "Direction Départementale: Cellule Travail et Fonction Publique",
     sigle: "DDCTFP",
-    slug: "ddctfp",
-    description: "Représentation territoriale du ministère",
+    slug: "dd", // this was 'dd' in fiches-metiers
+    description: "Représentation territoriale du ministère.",
     icone: "🗺️",
     lienDetail: "/ministere/directions-departementales",
   },
@@ -150,8 +150,8 @@ export const structures: any[] = [
     id: 58,
     libelle: "Direction de la Réglementation et du Suivi des Carrières",
     sigle: "DRSC",
-    slug: "dgfp",
-    description: "Gestion et modernisation de la fonction publique",
+    slug: "dgfp", // this was 'dgfp'
+    description: "Gestion et modernisation de la fonction publique.",
     icone: "🏛️",
     lienDetail: "/ministere/direction-generale-fonction-publique",
   },
@@ -178,7 +178,7 @@ export const structures: any[] = [
     libelle: "Direction Générale du Travail",
     sigle: "DGT",
     slug: "dgt",
-    description: "Régulation du marché du travail et promotion de l'emploi",
+    description: "Régulation du marché du travail et promotion de l'emploi.",
     icone: "💼",
     lienDetail: "/ministere/direction-generale-travail",
   },
@@ -188,7 +188,7 @@ export const structures: any[] = [
       "Direction Générale  du Renforcement des Capacités et de l'Employabilité",
     sigle: "DGRCE",
     slug: "drc",
-    description: "Formation et développement des compétences",
+    description: "Formation et développement des compétences.",
     icone: "🎓",
     lienDetail: "/ministere/direction-renforcement-capacites",
   },
@@ -250,7 +250,7 @@ export const structures: any[] = [
 ];
 
 export const metiers = [
-  // Direction Générale du Travail
+  // Direction Générale du Travail (id: 87)
   {
     id: '1',
     titre: 'Inspecteur du Travail',
@@ -259,7 +259,7 @@ export const metiers = [
     structure: 'Direction Générale du Travail',
     structureSlug: 'dgt',
     structureId: 87,
-    thematiqueId: 1,
+    thematiqueId: 1, // Carrière
     competences: ['Droit du travail', 'Techniques d\'inspection', 'Médiation sociale', 'Rédaction de rapports'],
     missions: ['Inspection des entreprises', 'Contrôle des conditions de travail', 'Médiation des conflits', 'Application des sanctions'],
     niveauRequis: 'Bac+5',
@@ -273,7 +273,7 @@ export const metiers = [
     structure: 'Direction Générale du Travail',
     structureSlug: 'dgt',
     structureId: 87,
-    thematiqueId: 2,
+    thematiqueId: 2, // Sécurité sociale
     competences: ['Techniques de médiation', 'Droit social', 'Communication', 'Négociation'],
     missions: ['Médiation des conflits', 'Facilitation du dialogue', 'Négociation collective', 'Prévention des grèves'],
     niveauRequis: 'Bac+4',
@@ -287,14 +287,14 @@ export const metiers = [
     structure: 'Direction Générale du Travail',
     structureSlug: 'dgt',
     structureId: 87,
-    thematiqueId: 1,
+    thematiqueId: 1, // Carrière
     competences: ['Politiques d\'emploi', 'Insertion professionnelle', 'Marché du travail', 'Accompagnement'],
     missions: ['Développement de l\'emploi', 'Insertion des jeunes', 'Partenariats entreprises', 'Programmes d\'emploi'],
     niveauRequis: 'Bac+4',
     experience: '3 ans minimum'
   },
 
-  // Direction Générale de la Fonction Publique
+  // Direction Générale de la Fonction Publique / Direction de la Réglementation et du Suivi des Carrières (id: 58)
   {
     id: '4',
     titre: 'Gestionnaire des Carrières',
@@ -303,42 +303,44 @@ export const metiers = [
     structure: 'Direction Générale Fonction Publique',
     structureSlug: 'dgfp',
     structureId: 58,
-    thematiqueId: 1,
+    thematiqueId: 1, // Carrière
     competences: ['Droit de la fonction publique', 'Gestion des ressources humaines', 'Procédures administratives', 'Systèmes d\'information RH'],
     missions: ['Suivi des carrières', 'Gestion des promotions', 'Traitement des mutations', 'Conseil aux agents'],
     niveauRequis: 'Bac+4',
     experience: '3 ans minimum'
   },
+  // Direction du Recrutement des Agents de l'Etat (id: 11)
   {
     id: '5',
     titre: 'Chargé de Recrutement',
     description: 'Organisation et gestion des concours de recrutement dans la fonction publique.',
     icone: '📋',
-    structure: 'Direction Générale Fonction Publique',
-    structureSlug: 'dgfp',
+    structure: 'Direction du Recrutement des Agents de l\'Etat',
+    structureSlug: 'drae',
     structureId: 11,
-    thematiqueId: 1,
+    thematiqueId: 1, // Carrière
     competences: ['Organisation d\'événements', 'Évaluation des candidats', 'Procédures de sélection', 'Communication'],
     missions: ['Organisation des concours', 'Évaluation des candidatures', 'Gestion des jurys', 'Publication des résultats'],
     niveauRequis: 'Bac+3',
     experience: '2 ans minimum'
   },
+  // Direction des Etudes du Contentieux et du Régime Disciplinaire (id: 70)
   {
     id: '6',
     titre: 'Conseiller Juridique',
     description: 'Gestion du contentieux administratif et des affaires disciplinaires.',
     icone: '⚖️',
-    structure: 'Direction Générale Fonction Publique',
-    structureSlug: 'dgfp',
+    structure: 'Direction des Etudes du Contentieux et du Régime Disciplinaire',
+    structureSlug: 'decrd',
     structureId: 70,
-    thematiqueId: 1,
+    thematiqueId: 1, // Carrière
     competences: ['Droit administratif', 'Procédures disciplinaires', 'Contentieux administratif', 'Rédaction juridique'],
     missions: ['Traitement du contentieux', 'Procédures disciplinaires', 'Conseil juridique', 'Rédaction d\'actes'],
     niveauRequis: 'Bac+5',
     experience: '5 ans minimum'
   },
 
-  // Direction Renforcement des Capacités
+  // Direction Générale  du Renforcement des Capacités et de l'Employabilité (id: 100)
   {
     id: '7',
     titre: 'Ingénieur de Formation',
@@ -347,7 +349,7 @@ export const metiers = [
     structure: 'Direction Renforcement Capacités',
     structureSlug: 'drc',
     structureId: 100,
-    thematiqueId: 3,
+    thematiqueId: 3, // Formation
     competences: ['Ingénierie pédagogique', 'Analyse des besoins', 'Conception de curricula', 'Évaluation pédagogique'],
     missions: ['Conception de formations', 'Développement pédagogique', 'Évaluation des programmes', 'Innovation pédagogique'],
     niveauRequis: 'Bac+5',
@@ -361,14 +363,14 @@ export const metiers = [
     structure: 'Direction Renforcement Capacités',
     structureSlug: 'drc',
     structureId: 100,
-    thematiqueId: 3,
+    thematiqueId: 3, // Formation
     competences: ['Techniques d\'insertion', 'Coaching professionnel', 'Marché du travail', 'Accompagnement individuel'],
     missions: ['Accompagnement individuel', 'Techniques de recherche d\'emploi', 'Mise en relation', 'Suivi post-formation'],
     niveauRequis: 'Bac+4',
     experience: '3 ans minimum'
   },
 
-  // Direction des Systèmes d'Information
+  // Direction des Systèmes d'Information (id: 18)
   {
     id: '9',
     titre: 'Développeur Full-Stack',
@@ -377,7 +379,7 @@ export const metiers = [
     structure: 'Direction Systèmes Information',
     structureSlug: 'dsi',
     structureId: 18,
-    thematiqueId: 122,
+    thematiqueId: 122, // Difficultés liées aux plateformes en ligne
     competences: ['Langages de programmation', 'Frameworks web', 'Bases de données', 'APIs et microservices'],
     missions: ['Développement d\'applications', 'Maintenance du code', 'Tests et débogage', 'Documentation technique'],
     niveauRequis: 'Bac+3',
@@ -391,14 +393,14 @@ export const metiers = [
     structure: 'Direction Systèmes Information',
     structureSlug: 'dsi',
     structureId: 18,
-    thematiqueId: 122,
+    thematiqueId: 122, // Difficultés liées aux plateformes en ligne
     competences: ['Administration serveurs', 'Réseaux informatiques', 'Virtualisation', 'Cloud computing'],
     missions: ['Administration serveurs', 'Gestion du réseau', 'Maintenance infrastructure', 'Monitoring systèmes'],
     niveauRequis: 'Bac+3',
     experience: '3 ans minimum'
   },
 
-  // Inspection Générale
+  // Inspection Général des Services et Emplois Publics (id: 2)
   {
     id: '11',
     titre: 'Inspecteur des Services Publics',
@@ -407,7 +409,7 @@ export const metiers = [
     structure: 'Inspection Générale',
     structureSlug: 'ig',
     structureId: 2,
-    thematiqueId: 5,
+    thematiqueId: 5, // Réforme
     competences: ['Droit administratif', 'Techniques d\'audit', 'Analyse organisationnelle', 'Rédaction de rapports'],
     missions: ['Inspection des services publics', 'Évaluation des procédures', 'Contrôle de conformité', 'Recommandations d\'amélioration'],
     niveauRequis: 'Bac+5',
@@ -421,14 +423,14 @@ export const metiers = [
     structure: 'Inspection Générale',
     structureSlug: 'ig',
     structureId: 2,
-    thematiqueId: 5,
+    thematiqueId: 5, // Réforme
     competences: ['Techniques d\'audit', 'Analyse financière', 'Systèmes d\'information', 'Gestion des risques'],
     missions: ['Audit des processus', 'Évaluation des risques', 'Contrôle interne', 'Amélioration continue'],
     niveauRequis: 'Bac+5',
     experience: '4 ans minimum'
   },
 
-  // Directions Départementales
+  // Direction Départementale (id: 23)
   {
     id: '13',
     titre: 'Directeur Départemental',
@@ -437,7 +439,7 @@ export const metiers = [
     structure: 'Directions Départementales',
     structureSlug: 'dd',
     structureId: 23,
-    thematiqueId: 1,
+    thematiqueId: 1, // Carrière
     competences: ['Management public', 'Coordination territoriale', 'Relations institutionnelles', 'Gestion d\'équipe'],
     missions: ['Direction de la structure', 'Coordination des services', 'Relations avec les autorités', 'Représentation du ministère'],
     niveauRequis: 'Bac+5',
@@ -451,14 +453,14 @@ export const metiers = [
     structure: 'Directions Départementales',
     structureSlug: 'dd',
     structureId: 23,
-    thematiqueId: 1,
+    thematiqueId: 4, // Autre
     competences: ['Procédures administratives', 'Accueil du public', 'Bureautique', 'Réglementation'],
     missions: ['Accueil des usagers', 'Traitement des dossiers', 'Délivrance d\'actes', 'Information du public'],
     niveauRequis: 'Bac+2',
     experience: '1 an minimum'
   },
 
-  // Secrétariat Général
+  // Secrétariat Général (id: 1)
   {
     id: '15',
     titre: 'Coordinateur Général',
@@ -467,7 +469,7 @@ export const metiers = [
     structure: 'Secrétariat Général',
     structureSlug: 'sgm',
     structureId: 1,
-    thematiqueId: 1,
+    thematiqueId: 4, // Autre
     competences: ['Coordination institutionnelle', 'Management stratégique', 'Communication', 'Gestion de projet'],
     missions: ['Coordination des directions', 'Suivi du PAG', 'Reporting ministériel', 'Relations institutionnelles'],
     niveauRequis: 'Bac+5',
@@ -481,14 +483,14 @@ export const metiers = [
     structure: 'Secrétariat Général',
     structureSlug: 'sgm',
     structureId: 1,
-    thematiqueId: 1,
+    thematiqueId: 4, // Autre
     competences: ['Gestion de projet', 'Analyse stratégique', 'Communication', 'Coordination'],
     missions: ['Suivi de dossiers spéciaux', 'Missions transversales', 'Appui au Secrétaire Général', 'Coordination inter-directions'],
     niveauRequis: 'Bac+4',
     experience: '3 ans minimum'
   },
 
-  // Cellule de Suivi des Réformes
+  // Cellule de Suivi des Réformes (id: 115)
   {
     id: '17',
     titre: 'Chargé de Suivi des Réformes',
@@ -497,7 +499,7 @@ export const metiers = [
     structure: 'Cellule Suivi Réformes',
     structureSlug: 'csr',
     structureId: 115,
-    thematiqueId: 5,
+    thematiqueId: 5, // Réforme
     competences: ['Gestion de projet', 'Suivi-évaluation', 'Analyse de données', 'Reporting'],
     missions: ['Suivi des indicateurs', 'Production de rapports', 'Coordination des acteurs', 'Appui technique'],
     niveauRequis: 'Bac+4',
@@ -511,7 +513,7 @@ export const metiers = [
     structure: 'Cellule Suivi Réformes',
     structureSlug: 'csr',
     structureId: 115,
-    thematiqueId: 5,
+    thematiqueId: 5, // Réforme
     competences: ['Analyse des politiques publiques', 'Méthodologie d\'évaluation', 'Recherche appliquée', 'Statistiques'],
     missions: ['Évaluation d\'impact', 'Analyse de politiques', 'Études prospectives', 'Recommandations stratégiques'],
     niveauRequis: 'Bac+5',

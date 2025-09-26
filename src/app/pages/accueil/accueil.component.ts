@@ -17,29 +17,46 @@ import { thematiques, metiers, structures } from "../../shared/models/datas";
     >
       <div class="relative h-full">
         <!-- Slides -->
-        <div class="absolute inset-0 transition-transform duration-700 ease-in-out" 
-             [style.transform]="'translateX(' + (-currentSlide * 100) + '%)'">
+        <div
+          class="absolute inset-0 transition-transform duration-700 ease-in-out"
+          [style.transform]="'translateX(' + -currentSlide * 100 + '%)'"
+        >
           <div class="flex h-full">
-            <div *ngFor="let communique of communiques; let i = index" 
-                 class="w-full h-full flex-shrink-0 relative">
-              <div class="absolute inset-0 bg-gradient-to-r from-primary-800 to-primary-900">
+            <div
+              *ngFor="let communique of communiques; let i = index"
+              class="w-full h-full flex-shrink-0 relative"
+            >
+              <div
+                class="absolute inset-0 bg-gradient-to-r from-primary-800 to-primary-900"
+              >
                 <div class="absolute inset-0 bg-black/30 dark:bg-black/50"></div>
               </div>
               <div class="relative h-full flex items-center">
                 <div class="container-custom">
-                  <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                  <div
+                    class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+                  >
                     <div class="text-white">
-                      <div class="inline-block bg-white/20 dark:bg-white/10 px-4 py-2 rounded-full text-sm font-medium mb-4">
+                      <div
+                        class="inline-block bg-white/20 dark:bg-white/10 px-4 py-2 rounded-full text-sm font-medium mb-4"
+                      >
                         {{ communique.type }}
                       </div>
-                      <h1 class="text-3xl lg:text-3xl 2xl:text-5xl font-bold mb-6 leading-tight">
+                      <h1
+                        class="text-3xl lg:text-3xl 2xl:text-5xl font-bold mb-6 leading-tight"
+                      >
                         {{ communique.titre }}
                       </h1>
-                      <p class="text-lg lg:text-xl 2xl:text-4xl mb-8 text-white/90 font-light">
+                      <p
+                        class="text-lg lg:text-xl 2xl:text-4xl mb-8 text-white/90 font-light"
+                      >
                         {{ communique.description }}
                       </p>
                       <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="#" class="btn-primary bg-white text-primary-800 hover:bg-gray-100">
+                        <a
+                          href="#"
+                          class="btn-primary bg-white text-primary-800 hover:bg-gray-100"
+                        >
                           Lire le communiqué
                         </a>
                         <!-- <a routerLink="/contact" class="btn-secondary border-white text-white hover:bg-white/10">
@@ -52,10 +69,12 @@ import { thematiques, metiers, structures } from "../../shared/models/datas";
                       </div> -->
                     </div>
                     <div class="hidden lg:block">
-                      <img [src]="communique.image" 
-                           [alt]="communique.titre" 
-                           class="rounded-2xl shadow-2xl w-full max-w-3xl mx-auto"
-                           loading="lazy">
+                      <img
+                        [src]="communique.image"
+                        [alt]="communique.titre"
+                        class="rounded-2xl shadow-2xl w-full max-w-3xl mx-auto"
+                        loading="lazy"
+                      />
                     </div>
                   </div>
                 </div>
@@ -63,119 +82,239 @@ import { thematiques, metiers, structures } from "../../shared/models/datas";
             </div>
           </div>
         </div>
-        
+
         <!-- Navigation arrows -->
-        <button (click)="previousSlide()" 
-                class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 dark:bg-white/10 hover:bg-white/30 dark:hover:bg-white/20 text-white p-3 rounded-full transition-all z-10"
-                aria-label="Slide précédent">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+        <button
+          (click)="previousSlide()"
+          class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 dark:bg-white/10 hover:bg-white/30 dark:hover:bg-white/20 text-white p-3 rounded-full transition-all z-10"
+          aria-label="Slide précédent"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 19l-7-7 7-7"
+            />
           </svg>
         </button>
-        <button (click)="nextSlide()" 
-                class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 dark:bg-white/10 hover:bg-white/30 dark:hover:bg-white/20 text-white p-3 rounded-full transition-all z-10"
-                aria-label="Slide suivant">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        <button
+          (click)="nextSlide()"
+          class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 dark:bg-white/10 hover:bg-white/30 dark:hover:bg-white/20 text-white p-3 rounded-full transition-all z-10"
+          aria-label="Slide suivant"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5l7 7-7 7"
+            />
           </svg>
         </button>
-        
+
         <!-- Dots indicator -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-10">
-          <button *ngFor="let communique of communiques; let i = index"
-                  (click)="goToSlide(i)"
-                  [class]="i === currentSlide ? 'bg-white' : 'bg-white/50'"
-                  class="w-3 h-3 rounded-full transition-all hover:bg-white/80"
-                  [attr.aria-label]="'Aller au slide ' + (i + 1)">
-          </button>
+        <div
+          class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-10"
+        >
+          <button
+            *ngFor="let communique of communiques; let i = index"
+            (click)="goToSlide(i)"
+            [class]="i === currentSlide ? 'bg-white' : 'bg-white/50'"
+            class="w-3 h-3 rounded-full transition-all hover:bg-white/80"
+            [attr.aria-label]="'Aller au slide ' + (i + 1)"
+          ></button>
         </div>
       </div>
     </section>
 
     <!-- Section Statistiques -->
-    <section class="section-padding bg-primary-800 dark:bg-primary-900 text-white" aria-label="Statistiques du ministère">
+    <section
+      class="section-padding bg-primary-800 dark:bg-primary-900 text-white"
+      aria-label="Statistiques du ministère"
+    >
       <div class="container-custom">
-        <div class="text-center mb-16 ">
-          <h2 class="text-3xl lg:text-4xl font-bold mb-4">Le Ministère en chiffres</h2>
-          <p class="text-xl text-primary-100 dark:text-primary-200">Notre impact sur l'emploi et la fonction publique</p>
+        <div class="text-center mb-16">
+          <h2 class="text-3xl lg:text-4xl font-bold mb-4">
+            Le Ministère en chiffres
+          </h2>
+          <p class="text-xl text-primary-100 dark:text-primary-200">
+            Notre impact sur l'emploi et la fonction publique
+          </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div *ngFor="let stat of statistiques; let i = index" 
-               class="text-center " 
-               role="group"
-               [attr.aria-label]="stat.libelle + ': ' + stat.valeur">
-            <div class="text-4xl lg:text-5xl font-bold mb-2 text-secondary-400 dark:text-secondary-300"
-                 #statElement
-                 [attr.data-target]="stat.targetValue"
-                 [attr.aria-label]="stat.valeur">
+          <div
+            *ngFor="let stat of statistiques; let i = index"
+            class="text-center"
+            role="group"
+            [attr.aria-label]="stat.libelle + ': ' + stat.valeur"
+          >
+            <div
+              class="text-4xl lg:text-5xl font-bold mb-2 text-secondary-400 dark:text-secondary-300"
+              #statElement
+              [attr.data-target]="stat.targetValue"
+              [attr.aria-label]="stat.valeur"
+            >
               {{ stat.displayValue }}
             </div>
-            <div class="text-primary-100 dark:text-primary-200 text-lg">{{ stat.libelle }}</div>
-            <div class="text-primary-200 dark:text-primary-300 text-sm mt-2">{{ stat.description }}</div>
+            <div class="text-primary-100 dark:text-primary-200 text-lg">
+              {{ stat.libelle }}
+            </div>
+            <div class="text-primary-200 dark:text-primary-300 text-sm mt-2">
+              {{ stat.description }}
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Accès rapide aux services essentiels -->
-    <section class="py-12 bg-white dark:bg-gray-900" aria-label="Accès rapide aux services">
+    <section
+      class="py-12 bg-white dark:bg-gray-900"
+      aria-label="Accès rapide aux services"
+    >
       <div class="container-custom">
-        <h2 class="text-2xl font-bold text-center text-gray-900 dark:text-white mb-8">
+        <h2
+          class="text-2xl font-bold text-center text-gray-900 dark:text-white mb-8"
+        >
           Accès rapide
         </h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-          <a href="/actualites" class="group flex flex-col items-center p-6 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" aria-label="Communiqués">
-            <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary-200 dark:group-hover:bg-primary-800/50 transition-colors">
+          <a
+            href="/actualites"
+            class="group flex flex-col items-center p-6 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+            aria-label="Communiqués"
+          >
+            <div
+              class="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary-200 dark:group-hover:bg-primary-800/50 transition-colors"
+            >
               <span class="text-2xl" aria-hidden="true">
-                <svg xmlns="http://www.w3.org/2000/svg" class="size-8 text-primary-900" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M11 6a13 13 0 0 0 8.4-2.8A1 1 0 0 1 21 4v12a1 1 0 0 1-1.6.8A13 13 0 0 0 11 14H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/><path d="M6 14a12 12 0 0 0 2.4 7.2a2 2 0 0 0 3.2-2.4A8 8 0 0 1 10 14M8 6v8"/></g></svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="size-8 text-primary-900"
+                  viewBox="0 0 24 24"
+                >
+                  <g
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M11 6a13 13 0 0 0 8.4-2.8A1 1 0 0 1 21 4v12a1 1 0 0 1-1.6.8A13 13 0 0 0 11 14H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"
+                    />
+                    <path
+                      d="M6 14a12 12 0 0 0 2.4 7.2a2 2 0 0 0 3.2-2.4A8 8 0 0 1 10 14M8 6v8"
+                    />
+                  </g>
+                </svg>
               </span>
             </div>
-            <span class="text-sm font-medium text-gray-900 dark:text-white text-center">Communiqués</span>
+            <span
+              class="text-sm font-medium text-gray-900 dark:text-white text-center"
+              >Communiqués</span
+            >
           </a>
-          
-          <a href="/services" class="group flex flex-col items-center p-6 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" aria-label="Concours publics">
-            <div class="w-16 h-16 bg-secondary-100 dark:bg-secondary-900/30 rounded-full flex items-center justify-center mb-4 group-hover:bg-secondary-200 dark:group-hover:bg-secondary-800/50 transition-colors">
+
+          <a
+            href="/services"
+            class="group flex flex-col items-center p-6 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+            aria-label="Concours publics"
+          >
+            <div
+              class="w-16 h-16 bg-secondary-100 dark:bg-secondary-900/30 rounded-full flex items-center justify-center mb-4 group-hover:bg-secondary-200 dark:group-hover:bg-secondary-800/50 transition-colors"
+            >
               <span class="text-2xl" aria-hidden="true">🏛️</span>
             </div>
-            <span class="text-sm font-medium text-gray-900 dark:text-white text-center">Concours</span>
+            <span
+              class="text-sm font-medium text-gray-900 dark:text-white text-center"
+              >Concours</span
+            >
           </a>
-          
-          <a href="/services" class="group flex flex-col items-center p-6 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" aria-label="Démarches Administratives">
-            <div class="w-16 h-16 bg-accent-100 dark:bg-accent-900/30 rounded-full flex items-center justify-center mb-4 group-hover:bg-accent-200 dark:group-hover:bg-accent-800/50 transition-colors">
+
+          <a
+            href="/services"
+            class="group flex flex-col items-center p-6 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+            aria-label="Démarches Administratives"
+          >
+            <div
+              class="w-16 h-16 bg-accent-100 dark:bg-accent-900/30 rounded-full flex items-center justify-center mb-4 group-hover:bg-accent-200 dark:group-hover:bg-accent-800/50 transition-colors"
+            >
               <span class="text-2xl" aria-hidden="true">📋</span>
             </div>
-            <span class="text-sm font-medium text-gray-900 dark:text-white text-center">Démarches Administratives</span>
+            <span
+              class="text-sm font-medium text-gray-900 dark:text-white text-center"
+              >Démarches Administratives</span
+            >
           </a>
-          
-          <a href="/contact" class="group flex flex-col items-center p-6 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" aria-label="Nous contacter">
-            <div class="w-16 h-16 bg-yellow-100 dark:bg-yellow-900/30 rounded-full flex items-center justify-center mb-4 group-hover:bg-yellow-200 dark:group-hover:bg-yellow-800/50 transition-colors">
+
+          <a
+            href="/contact"
+            class="group flex flex-col items-center p-6 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+            aria-label="Nous contacter"
+          >
+            <div
+              class="w-16 h-16 bg-yellow-100 dark:bg-yellow-900/30 rounded-full flex items-center justify-center mb-4 group-hover:bg-yellow-200 dark:group-hover:bg-yellow-800/50 transition-colors"
+            >
               <span class="text-2xl" aria-hidden="true">❓</span>
             </div>
-            <span class="text-sm font-medium text-gray-900 dark:text-white text-center">Préoccupations</span>
+            <span
+              class="text-sm font-medium text-gray-900 dark:text-white text-center"
+              >Préoccupations</span
+            >
           </a>
         </div>
-        
+
         <div class="grid grid-cols-1 md:grid-cols-1 gap-6 mt-6">
-          <a href="#" class="group flex flex-col items-center p-6 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" aria-label="Suivi des réformes administratives et institutionnelles">
-            <div class="w-16 h-16 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center mb-4 group-hover:bg-purple-200 dark:group-hover:bg-purple-800/50 transition-colors">
+          <a
+            href="#"
+            class="group flex flex-col items-center p-6 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+            aria-label="Suivi des réformes administratives et institutionnelles"
+          >
+            <div
+              class="w-16 h-16 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center mb-4 group-hover:bg-purple-200 dark:group-hover:bg-purple-800/50 transition-colors"
+            >
               <span class="text-2xl" aria-hidden="true">🔄</span>
             </div>
-            <span class="text-sm font-medium text-gray-900 dark:text-white text-center">Suivi des réformes administratives et institutionnelles<br><small class="text-xs text-gray-500">(Espace public sur la plateforme eReformes)</small></span>
+            <span
+              class="text-sm font-medium text-gray-900 dark:text-white text-center"
+              >Suivi des réformes administratives et institutionnelles<br /><small
+                class="text-xs text-gray-500"
+                >(Espace public sur la plateforme eReformes)</small
+              ></span
+            >
           </a>
         </div>
       </div>
     </section>
 
     <!-- Section Communiqués -->
-    <section class="section-padding bg-gray-50 dark:bg-gray-800" aria-label="Communiqués officiels">
+    <section
+      class="section-padding bg-gray-50 dark:bg-gray-800"
+      aria-label="Communiqués officiels"
+    >
       <div class="container-custom">
         <div class="text-center mb-16">
-          <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2
+            class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4"
+          >
             Communiqués
           </h2>
           <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Retrouvez tous les communiqués officiels du Ministère du Travail et de la Fonction Publique
+            Retrouvez tous les communiqués officiels du Ministère du Travail et
+            de la Fonction Publique
           </p>
         </div>
 
@@ -184,14 +323,24 @@ import { thematiques, metiers, structures } from "../../shared/models/datas";
           <div class="bg-white dark:bg-gray-700 rounded-lg p-1 shadow-sm">
             <button
               (click)="activeTabCommunique = 'concours'"
-              [class]="activeTabCommunique === 'concours' ? 'bg-primary-800 text-white' : 'text-gray-700 dark:text-gray-300'"
-              class="px-6 py-3 rounded-md font-medium transition-all duration-200">
+              [class]="
+                activeTabCommunique === 'concours'
+                  ? 'bg-primary-800 text-white'
+                  : 'text-gray-700 dark:text-gray-300'
+              "
+              class="px-6 py-3 rounded-md font-medium transition-all duration-200"
+            >
               Communiqués Concours
             </button>
             <button
               (click)="activeTabCommunique = 'autres'"
-              [class]="activeTabCommunique === 'autres' ? 'bg-primary-800 text-white' : 'text-gray-700 dark:text-gray-300'"
-              class="px-6 py-3 rounded-md font-medium transition-all duration-200">
+              [class]="
+                activeTabCommunique === 'autres'
+                  ? 'bg-primary-800 text-white'
+                  : 'text-gray-700 dark:text-gray-300'
+              "
+              class="px-6 py-3 rounded-md font-medium transition-all duration-200"
+            >
               Autres Communiqués
             </button>
           </div>
@@ -202,20 +351,34 @@ import { thematiques, metiers, structures } from "../../shared/models/datas";
           <!-- Communiqués Concours -->
           <div *ngIf="activeTabCommunique === 'concours'" class="col-span-full">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div *ngFor="let communique of communiquesConcours" class="card p-6 hover:shadow-lg transition-all duration-300">
+              <div
+                *ngFor="let communique of communiquesConcours"
+                class="card p-6 hover:shadow-lg transition-all duration-300"
+              >
                 <div class="flex items-start justify-between mb-4">
-                  <span class="bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-400 px-3 py-1 rounded-full text-xs font-medium">
+                  <span
+                    class="bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-400 px-3 py-1 rounded-full text-xs font-medium"
+                  >
                     CONCOURS
                   </span>
-                  <span class="text-xs text-gray-500 dark:text-gray-400">{{ communique.date }}</span>
+                  <span class="text-xs text-gray-500 dark:text-gray-400">{{
+                    communique.date
+                  }}</span>
                 </div>
-                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3 line-clamp-2">
+                <h3
+                  class="text-lg font-semibold text-gray-900 dark:text-white mb-3 line-clamp-2"
+                >
                   {{ communique.titre }}
                 </h3>
-                <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm line-clamp-3">
+                <p
+                  class="text-gray-600 dark:text-gray-300 mb-4 text-sm line-clamp-3"
+                >
                   {{ communique.description }}
                 </p>
-                <a href="#" class="text-primary-800 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300 font-medium text-sm">
+                <a
+                  href="#"
+                  class="text-primary-800 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300 font-medium text-sm"
+                >
                   Lire le communiqué →
                 </a>
               </div>
@@ -225,20 +388,34 @@ import { thematiques, metiers, structures } from "../../shared/models/datas";
           <!-- Autres Communiqués -->
           <div *ngIf="activeTabCommunique === 'autres'" class="col-span-full">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div *ngFor="let communique of autresCommuniques" class="card p-6 hover:shadow-lg transition-all duration-300">
+              <div
+                *ngFor="let communique of autresCommuniques"
+                class="card p-6 hover:shadow-lg transition-all duration-300"
+              >
                 <div class="flex items-start justify-between mb-4">
-                  <span class="bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-400 px-3 py-1 rounded-full text-xs font-medium">
+                  <span
+                    class="bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-400 px-3 py-1 rounded-full text-xs font-medium"
+                  >
                     {{ communique.type }}
                   </span>
-                  <span class="text-xs text-gray-500 dark:text-gray-400">{{ communique.date }}</span>
+                  <span class="text-xs text-gray-500 dark:text-gray-400">{{
+                    communique.date
+                  }}</span>
                 </div>
-                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3 line-clamp-2">
+                <h3
+                  class="text-lg font-semibold text-gray-900 dark:text-white mb-3 line-clamp-2"
+                >
                   {{ communique.titre }}
                 </h3>
-                <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm line-clamp-3">
+                <p
+                  class="text-gray-600 dark:text-gray-300 mb-4 text-sm line-clamp-3"
+                >
                   {{ communique.description }}
                 </p>
-                <a href="#" class="text-primary-800 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300 font-medium text-sm">
+                <a
+                  href="#"
+                  class="text-primary-800 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300 font-medium text-sm"
+                >
                   Lire le communiqué →
                 </a>
               </div>
@@ -255,9 +432,12 @@ import { thematiques, metiers, structures } from "../../shared/models/datas";
     </section>
 
     <!-- Services en ligne -->
-    <section class="section-padding bg-gray-50 dark:bg-gray-800" aria-label="Services en ligne disponibles">
+    <section
+      class="section-padding bg-gray-50 dark:bg-gray-800"
+      aria-label="Services en ligne disponibles"
+    >
       <div class="container-custom">
-        <div class="text-center mb-16 ">
+        <div class="text-center mb-16">
           <h2
             class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4"
           >
@@ -269,10 +449,13 @@ import { thematiques, metiers, structures } from "../../shared/models/datas";
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" role="list">
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+          role="list"
+        >
           <div
             *ngFor="let service of servicesEnLigne"
-            class="card p-6 text-center  hover:scale-105 transition-all duration-300"
+            class="card p-6 text-center hover:scale-105 transition-all duration-300"
             role="listitem"
           >
             <div
@@ -289,14 +472,22 @@ import { thematiques, metiers, structures } from "../../shared/models/datas";
             <p class="text-gray-600 dark:text-gray-300 mb-6">
               {{ service.description }}
             </p>
-            <a [href]="service.url" class="btn-primary text-sm" [attr.aria-label]="'Accéder au service: ' + service.nom">
+            <a
+              [href]="service.url"
+              class="btn-primary text-sm"
+              [attr.aria-label]="'Accéder au service: ' + service.nom"
+            >
               Accéder au service
             </a>
           </div>
         </div>
 
-        <div class="text-center mt-12 ">
-          <a routerLink="/services" class="btn-secondary" aria-label="Voir tous nos services disponibles">
+        <div class="text-center mt-12">
+          <a
+            routerLink="/services"
+            class="btn-secondary"
+            aria-label="Voir tous nos services disponibles"
+          >
             Voir tous nos services
           </a>
         </div>
@@ -304,14 +495,20 @@ import { thematiques, metiers, structures } from "../../shared/models/datas";
     </section>
 
     <!-- Section Fiches métiers -->
-    <section class="section-padding bg-white dark:bg-gray-900" aria-label="Fiches métiers par structure">
+    <section
+      class="section-padding bg-white dark:bg-gray-900"
+      aria-label="Fiches métiers par structure"
+    >
       <div class="container-custom">
         <div class="text-center mb-16">
-          <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2
+            class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4"
+          >
             Fiches Métiers
           </h2>
           <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Découvrez les métiers et opportunités de carrière dans nos différentes structures
+            Découvrez les métiers et opportunités de carrière dans nos
+            différentes structures
           </p>
         </div>
 
@@ -319,7 +516,11 @@ import { thematiques, metiers, structures } from "../../shared/models/datas";
           <div class="flex flex-wrap gap-2">
             <button
               (click)="filtrerParThematique('toutes')"
-              [class]="thematiqueActive === 'toutes' ? 'bg-primary-800 text-white' : 'bg-white hover:bg-gray-200 text-gray-700'"
+              [class]="
+                thematiqueActive === 'toutes'
+                  ? 'bg-primary-800 text-white'
+                  : 'bg-white hover:bg-gray-200 text-gray-700'
+              "
               class="px-4 py-2 rounded-full text-xs font-medium transition-all shadow-sm"
             >
               Toutes
@@ -327,7 +528,11 @@ import { thematiques, metiers, structures } from "../../shared/models/datas";
             <button
               *ngFor="let thematique of thematiques"
               (click)="filtrerParThematique(thematique.id)"
-              [class]="thematiqueActive === thematique.id ? 'bg-primary-800 text-white' : 'bg-white hover:bg-gray-200 text-gray-700'"
+              [class]="
+                thematiqueActive === thematique.id
+                  ? 'bg-primary-800 text-white'
+                  : 'bg-white hover:bg-gray-200 text-gray-700'
+              "
               class="px-4 py-2 rounded-full text-xs font-medium transition-all shadow-sm"
             >
               {{ thematique.libelle }}
@@ -336,35 +541,50 @@ import { thematiques, metiers, structures } from "../../shared/models/datas";
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div *ngFor="let structure of structuresMetiersFiltrees" class="card p-6 hover:shadow-lg transition-all duration-300">
+          <div
+            *ngFor="let structure of structuresMetiersFiltrees"
+            class="card p-6 hover:shadow-lg transition-all duration-300"
+          >
             <div class="text-center mb-6">
-              <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div
+                class="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-4"
+              >
                 <span class="text-3xl">{{ structure.icone }}</span>
               </div>
-              <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                {{ structure.nom }}
+              <h3
+                class="text-xl font-semibold text-gray-900 dark:text-white mb-2"
+              >
+                {{ structure.libelle }}
               </h3>
               <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">
                 {{ structure.description }}
               </p>
             </div>
-            
+
             <div class="space-y-3 mb-6">
-              <h4 class="font-semibold text-gray-900 dark:text-white text-sm">Métiers principaux :</h4>
+              <h4 class="font-semibold text-gray-900 dark:text-white text-sm">
+                Métiers principaux :
+              </h4>
               <div class="flex flex-wrap gap-2">
-                <span *ngFor="let metier of structure.metiersPhares" 
-                      class="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full text-xs">
+                <span
+                  *ngFor="let metier of structure.metiersPhares"
+                  class="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full text-xs"
+                >
                   {{ metier }}
                 </span>
               </div>
             </div>
-            
-            <div class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+
+            <div
+              class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700"
+            >
               <span class="text-sm text-gray-500 dark:text-gray-400">
                 {{ structure.nombreMetiers }} métiers
               </span>
-              <a [routerLink]="structure.lienDetail" 
-                 class="text-primary-800 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300 font-medium text-sm">
+              <a
+                [routerLink]="structure.lienDetail"
+                class="text-primary-800 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300 font-medium text-sm"
+              >
                 Découvrir →
               </a>
             </div>
@@ -383,71 +603,66 @@ import { thematiques, metiers, structures } from "../../shared/models/datas";
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
         <!-- <div class="grid grid-cols-1 lg:grid-cols-3 gap-12"> -->
-          <!-- Actualités principales -->
-          <!-- <div class=""> -->
-            <div
-              class="flex items-center justify-between mb-8 "
-            >
-              <h2 class="text-3xl font-bold text-gray-900 dark:text-white">
-                Actualités
-              </h2>
-              <a
-                routerLink="/actualites"
-                class="text-primary-800 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300 font-medium"
-              >
-                Voir toutes les actualités →
-              </a>
-            </div>
+        <!-- Actualités principales -->
+        <!-- <div class=""> -->
+        <div class="flex items-center justify-between mb-8">
+          <h2 class="text-3xl font-bold text-gray-900 dark:text-white">
+            Actualités
+          </h2>
+          <a
+            routerLink="/actualites"
+            class="text-primary-800 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300 font-medium"
+          >
+            Voir toutes les actualités →
+          </a>
+        </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-2 gap-6">
-              <article
-                *ngFor="let actualite of actualitesRecentes"
-                class="card overflow-hidden  hover:shadow-lg transition-all duration-300"
-              >
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-0">
-                  <div class="md:col-span-1">
-                    <img
-                      [src]="actualite.imageUrl"
-                      [alt]="actualite.titre"
-                      class="w-full h-48 md:h-full object-cover"
-                    />
-                  </div>
-                  <div class="md:col-span-2 p-6">
-                    <div class="flex items-center mb-3">
-                      <span
-                        class="bg-primary-800 dark:bg-primary-700 text-white px-3 py-1 rounded-full text-sm font-medium mr-3"
-                      >
-                        {{ actualite.categorie }}
-                      </span>
-                      <span class="text-sm text-gray-500 dark:text-gray-400">
-                        {{
-                          actualite.datePublication
-                            | date : "d MMMM yyyy" : "fr"
-                        }}
-                      </span>
-                    </div>
-                    <h3
-                      class="text-xl font-semibold text-gray-900 dark:text-white mb-3"
-                    >
-                      {{ actualite.titre }}
-                    </h3>
-                    <p class="text-gray-600 dark:text-gray-300 mb-4">
-                      {{ actualite.resume }}
-                    </p>
-                    <a
-                      [routerLink]="['/actualites', actualite.id]"
-                      class="text-primary-800 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300 font-medium"
-                    >
-                      Lire la suite →
-                    </a>
-                  </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-2 gap-6">
+          <article
+            *ngFor="let actualite of actualitesRecentes"
+            class="card overflow-hidden hover:shadow-lg transition-all duration-300"
+          >
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-0">
+              <div class="md:col-span-1">
+                <img
+                  [src]="actualite.imageUrl"
+                  [alt]="actualite.titre"
+                  class="w-full h-48 md:h-full object-cover"
+                />
+              </div>
+              <div class="md:col-span-2 p-6">
+                <div class="flex items-center mb-3">
+                  <span
+                    class="bg-primary-800 dark:bg-primary-700 text-white px-3 py-1 rounded-full text-sm font-medium mr-3"
+                  >
+                    {{ actualite.categorie }}
+                  </span>
+                  <span class="text-sm text-gray-500 dark:text-gray-400">
+                    {{ actualite.datePublication | date: "d MMMM yyyy":"fr" }}
+                  </span>
                 </div>
-              </article>
+                <h3
+                  class="text-xl font-semibold text-gray-900 dark:text-white mb-3"
+                >
+                  {{ actualite.titre }}
+                </h3>
+                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                  {{ actualite.resume }}
+                </p>
+                <a
+                  [routerLink]="['/actualites', actualite.id]"
+                  class="text-primary-800 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300 font-medium"
+                >
+                  Lire la suite →
+                </a>
+              </div>
             </div>
-          </div>
+          </article>
+        </div>
+      </div>
 
-          <!-- Sidebar Communiqués -->
-          <!-- <div class="lg:col-span-1">
+      <!-- Sidebar Communiqués -->
+      <!-- <div class="lg:col-span-1">
             <div class="">
               <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-8">
                 Communiqués
@@ -488,54 +703,91 @@ import { thematiques, metiers, structures } from "../../shared/models/datas";
               </div>
             </div>
           </div> -->
-        <!-- </div>
+      <!-- </div>
       </div> -->
     </section>
 
     <!-- Section Événements déclencheurs -->
-    <section class="section-padding bg-gray-50 dark:bg-gray-800" aria-label="Événements déclencheurs">
+    <section
+      class="section-padding bg-gray-50 dark:bg-gray-800"
+      aria-label="Événements déclencheurs"
+    >
       <div class="container-custom">
         <div class="text-center mb-16">
-          <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2
+            class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4"
+          >
             Événements déclencheurs
           </h2>
           <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Trouvez rapidement les services et informations selon votre situation
+            Trouvez rapidement les services et informations selon votre
+            situation
           </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div *ngFor="let evenement of evenementsDeClencheurs" class="card p-8 hover:shadow-lg transition-all duration-300">
+          <div
+            *ngFor="let evenement of evenementsDeClencheurs"
+            class="card p-8 hover:shadow-lg transition-all duration-300"
+          >
             <div class="text-center mb-6">
-              <div class="w-20 h-20 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div
+                class="w-20 h-20 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-4"
+              >
                 <span class="text-4xl">{{ evenement.icone }}</span>
               </div>
-              <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+              <h3
+                class="text-xl font-semibold text-gray-900 dark:text-white mb-3"
+              >
                 {{ evenement.titre }}
               </h3>
               <p class="text-gray-600 dark:text-gray-300 text-sm mb-6">
                 {{ evenement.description }}
               </p>
             </div>
-            
+
             <div class="space-y-3">
-              <div *ngFor="let service of evenement.services" class="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors">
-                <span class="text-sm font-medium text-gray-900 dark:text-white">{{ service.nom }}</span>
+              <div
+                *ngFor="let service of evenement.services"
+                class="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
+              >
+                <span class="text-sm font-medium text-gray-900 dark:text-white">{{
+                  service.nom
+                }}</span>
                 <div class="flex items-center space-x-2">
-                  <span [class]="service.type === 'FM' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400' : 
-                                service.type === 'eServices' ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400' :
-                                service.type === 'Plateforme' ? 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400' :
-                                service.type === 'Communiqués' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400' :
-                                service.type === 'WECHE' ? 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400' :
-                                'bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-400'"
-                        class="px-2 py-1 rounded-full text-xs font-medium">
+                  <span
+                    [class]="
+                      service.type === 'FM'
+                        ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400'
+                        : service.type === 'eServices'
+                        ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'
+                        : service.type === 'Plateforme'
+                        ? 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400'
+                        : service.type === 'Communiqués'
+                        ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400'
+                        : service.type === 'WECHE'
+                        ? 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400'
+                        : 'bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-400'
+                    "
+                    class="px-2 py-1 rounded-full text-xs font-medium"
+                  >
                     {{ service.type }}
                   </span>
-                  <a [href]="service.url" 
-                     [class]="service.disponible ? 'text-primary-800 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300' : 'text-gray-400 dark:text-gray-500 cursor-not-allowed'"
-                     class="text-xs font-medium"
-                     [attr.aria-label]="service.disponible ? 'Accéder à ' + service.nom : service.nom + ' prochainement disponible'">
-                    {{ service.disponible ? 'Accéder' : 'Bientôt' }}
+                  <a
+                    [href]="service.url"
+                    [class]="
+                      service.disponible
+                        ? 'text-primary-800 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300'
+                        : 'text-gray-400 dark:text-gray-500 cursor-not-allowed'
+                    "
+                    class="text-xs font-medium"
+                    [attr.aria-label]="
+                      service.disponible
+                        ? 'Accéder à ' + service.nom
+                        : service.nom + ' prochainement disponible'
+                    "
+                  >
+                    {{ service.disponible ? "Accéder" : "Bientôt" }}
                   </a>
                 </div>
               </div>
@@ -550,7 +802,7 @@ import { thematiques, metiers, structures } from "../../shared/models/datas";
       class="section-padding bg-gradient-to-r from-secondary-800 to-secondary-900 text-white"
     >
       <div class="container-custom">
-        <div class="text-center ">
+        <div class="text-center">
           <h2 class="text-3xl lg:text-4xl font-bold mb-6">
             Une question ? Besoin d'aide ?
           </h2>
@@ -581,7 +833,7 @@ import { thematiques, metiers, structures } from "../../shared/models/datas";
       class="section-padding bg-primary-800 dark:bg-primary-900 text-white"
     >
       <div class="container-custom">
-        <div class="text-center mb-12 ">
+        <div class="text-center mb-12">
           <div
             class="w-12 h-12 bg-white/20 dark:bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4"
           >
@@ -605,7 +857,7 @@ import { thematiques, metiers, structures } from "../../shared/models/datas";
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div
             *ngFor="let lien of liensUtiles"
-            class="bg-white dark:bg-gray-800 rounded-lg p-6 flex items-center justify-between "
+            class="bg-white dark:bg-gray-800 rounded-lg p-6 flex items-center justify-between"
           >
             <span class="text-gray-900 dark:text-white font-medium">{{
               lien.nom
@@ -619,7 +871,6 @@ import { thematiques, metiers, structures } from "../../shared/models/datas";
         </div>
       </div>
     </section>
-
   `,
   styles: [
     `
@@ -1153,15 +1404,15 @@ Les deux personnalités ont aussi abordé des points relatifs au fonctionnement 
     if (thematiqueId === "toutes") {
       this.structuresMetiersFiltrees = this.structuresMetiers;
     } else {
-      const structureSlugsWithMetier = [
+      const structureIdsWithMetier = [
         ...new Set(
           metiers
             .filter((metier) => metier.thematiqueId === thematiqueId)
-            .map((metier) => metier.structureSlug)
+            .map((metier) => metier.structureId)
         ),
       ];
       this.structuresMetiersFiltrees = this.structuresMetiers.filter(
-        (structure) => structureSlugsWithMetier.includes(structure.slug)
+        (structure) => structureIdsWithMetier.includes(structure.id)
       );
     }
   }
