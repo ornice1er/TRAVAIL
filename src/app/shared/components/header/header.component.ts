@@ -48,7 +48,7 @@ import { ThemeService } from '../../services/theme.service';
             <div class="flex justify-between items-center py-4">
               <!-- Logo -->
               <a routerLink="/" class="flex items-center space-x-4">
-                <img src="assets/logo-mtfp.png" *ngIf="!themeService.isDarkMode" alt="Logo du Ministère du Travail et de la Fonction Publique du Bénin" class="h-14">
+                <img src="/logo.png" *ngIf="!themeService.isDarkMode" alt="Logo du Ministère du Travail et de la Fonction Publique du Bénin" class="h-16">
                 <img src="assets/logo-mtfp-benin1.png" *ngIf="themeService.isDarkMode" alt="Logo du Ministère du Travail et de la Fonction Publique du Bénin" class="h-14">
               </a>
               
