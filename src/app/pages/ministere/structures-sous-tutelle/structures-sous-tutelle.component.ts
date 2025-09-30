@@ -19,36 +19,6 @@ import { AnimationService } from '../../../shared/services/animation.service';
       </div>
     </div>
 
-    <!-- Présentation -->
-    <section class="section-padding bg-white dark:bg-gray-900">
-      <div class="container-custom">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div class="">
-            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Écosystème Institutionnel</h2>
-            <p class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-              Le Ministère du Travail et de la Fonction Publique exerce sa tutelle sur plusieurs structures 
-              spécialisées qui contribuent à la mise en œuvre des politiques publiques dans les domaines 
-              de l'emploi, de la formation professionnelle et de la protection sociale.
-            </p>
-            <p class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-              Ces organismes bénéficient d'une autonomie de gestion tout en s'inscrivant dans la stratégie 
-              globale du ministère pour le développement du capital humain et l'amélioration des conditions 
-              de travail au Bénin.
-            </p>
-            <div class="bg-secondary-50 dark:bg-secondary-900/20 rounded-lg p-6">
-              <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">Coordination</h3>
-              <p class="text-secondary-800 dark:text-secondary-400 font-medium">Direction de la Tutelle et du Contrôle</p>
-            </div>
-          </div>
-          <div class="">
-            <img src="https://images.pexels.com/photos/3184317/pexels-photo-3184317.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                 alt="Structures sous Tutelle" 
-                 class="rounded-2xl shadow-lg w-full">
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Structures Principales -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
@@ -120,9 +90,9 @@ import { AnimationService } from '../../../shared/services/animation.service';
                   <a [href]="structure.siteWeb" target="_blank" class="btn-secondary text-sm w-full block">
                     Site Web
                   </a>
-                  <p class="text-xs text-gray-500 dark:text-gray-400">
+                  <!-- <p class="text-xs text-gray-500 dark:text-gray-400">
                     DG : {{ structure.directeur }}
-                  </p>
+                  </p> -->
                 </div>
               </div>
             </div>
@@ -287,7 +257,7 @@ export class StructuresSousTutelleComponent implements AfterViewInit {
       budget: '45 milliards FCFA',
       statut: 'Opérationnel',
       directeur: 'Mme [Nom du DG]',
-      logo: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=100',
+      logo: '/logo-cnss.png',
       siteWeb: 'https://cnss.bj'
     },
   ];

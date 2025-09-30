@@ -79,7 +79,7 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
             <div class="relative">
               <img
                 src="https://www.travail.gouv.bj/storage/structures/respos/1708440169alokpo-n-germain.jpg"
-                alt="KANHOUNON Norbert Bocreace - Inspecteur Général des Services et Emplois Publics"
+                alt="KANHOUNON Norbert Boccace - Inspecteur Général des Services et Emplois Publics"
                 class="rounded-2xl shadow-lg w-full max-w-md mx-auto"
               />
               <!-- <div
@@ -92,7 +92,7 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
               <h3
                 class="text-xl font-bold text-accent-800 dark:text-accent-400 mb-2"
               >
-                KANHOUNON Norbert Bocreace
+                KANHOUNON Norbert Boccace
               </h3>
               <p class="text-gray-600 dark:text-gray-300">
                 Inspecteur Général des Services et Emplois Publics
