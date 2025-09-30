@@ -1,7 +1,7 @@
 .angular
 node_modules
 .env
-dist
-./dist
-/dist
+#dist
+#./dist
+#/dist
 .DS_Store
