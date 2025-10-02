@@ -73,8 +73,8 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
     <!-- Mission & Attribution avec photo du responsable -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <div class="">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+          <div class="col-span-1">
             <div class="space-y-8">
               <!-- Directeur -->
               <!-- <div class="text-center">
@@ -115,15 +115,13 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
                   >
                     AYEGNON Fernand
                   </h3>
-                  <p class="text-gray-600 dark:text-gray-300">
-                    Directeur
-                  </p>
+                  <p class="text-gray-600 dark:text-gray-300">Directeur</p>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="">
+          <div class="col-span-2">
             <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">
               Mission & Attribution
             </h2>
@@ -136,13 +134,13 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
             <p
               class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed"
             >
-              Conformément aux dispositions de l'article 31 du décret n°
-              2021-401 du 28 juillet 2021 fixant le nouveau type des ministères,
-              la Direction de la planification, de l'administration et des
-              finances assure au niveau du ministère, la programmation et la
-              planification des activités, la gestion des ressources humaines,
-              matérielles et des moyens financiers, de concert avec les
-              responsables de chaque structure.
+              Conformément aux dispositions de l'article 51 du décret n°2021-401
+              du 28 juillet 2021 fixant la structure type des ministères, la
+              Direction de la planification, de l'administration et des finances
+              assure au niveau ministériel, le pilotage du processus de
+              planification et de gestion des ressources humaines, financières,
+              matérielles et des services généraux, de concert avec les
+              gestionnaires de crédit.
             </p>
 
             <h3
@@ -165,8 +163,11 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
                       class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"
                     ></span>
                     <span
-                      >de collecter et de diffuser toutes les informations
-                      nécessaires à une réflexion prospective</span
+                      >de collecter, de traiter et de diffuser toutes les
+                      informations nécessaires à une réflexion prospective et
+                      stratégique dans les domaines de compétence du ministère
+                      en liaison avec les structures compétentes du ministère en
+                      charge du développement ;</span
                     >
                   </li>
                   <li class="flex items-start">
@@ -174,19 +175,9 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
                       class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"
                     ></span>
                     <span
-                      >d'assurer la programmation dans les domaines de
-                      compétence du ministère en liaison avec les structures
-                      compétentes du ministère en charge du développement</span
-                    >
-                  </li>
-                  <li class="flex items-start">
-                    <span
-                      class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                    ></span>
-                    <span
-                      >d'animer les processus de planification, de la
-                      budgétisation et de consultations au sein du
-                      ministère</span
+                      >d'animer les processus de planification, du
+                      suivi-évaluation et de capitalisation au sein du ministère
+                      ;</span
                     >
                   </li>
                   <li class="flex items-start">
@@ -195,8 +186,88 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
                     ></span>
                     <span
                       >d'élaborer, de suivre et d'évaluer les plans stratégiques
-                      du ministère en liaison avec les structures d'élaboration
-                      et de supervision des activités du ministère</span
+                      du ministère en liaison avec les structures de
+                      coordination et de supervision des activités du ministère,
+                      à savoir le cabinet du ministre et le secrétariat général
+                      du ministère. A cet effet, il veille à la prise en compte
+                      des aspects liés au genre et aux changements climatiques,
+                      conformément à la politique nationale de gestion des
+                      changements climatiques et autres stratégies
+                      connexes.</span
+                    >
+                  </li>
+                  <li class="flex items-start">
+                    <span
+                      class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"
+                    ></span>
+                    <span
+                      >de mobiliser, en liaison avec les services compétents,
+                      les financements pour les programmes et projets de
+                      développement du ministère ;</span
+                    >
+                  </li>
+                  <li class="flex items-start">
+                    <span
+                      class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"
+                    ></span>
+                    <span
+                      >de mettre en place une base de données et un dispositif
+                      de collecte, de traitement et de synthèse des informations
+                      pour soutenir le processus de planification au sein du
+                      ministère ; d'élaborer, en lien avec les autres
+                      responsables de programmes, le document de programmation
+                      pluriannuelle des dépenses et autres outils de gestion du
+                      ministère ;</span
+                    >
+                  </li>
+                  <li class="flex items-start">
+                    <span
+                      class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"
+                    ></span>
+                    <span
+                      >de coordonner l'élaboration des projets et rapports
+                      annuels de performance prévus par la loi organique
+                      relative aux lois de Finances et d'en opérer la
+                      consolidation ;</span
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900 dark:text-white mb-3">
+                  en matière de gestion des ressources humaines :
+                </h4>
+                <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+                  <li class="flex items-start">
+                    <span
+                      class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"
+                    ></span>
+                    <span
+                      >d'élaborer, de mettre en œuvre et d'évaluer la stratégie de modernisation de la gestion des ressources humaines, notamment, les outils de gestion prévisionnelle des emplois et des compétences du ministère en liaison avec les structures compétentes du ministère en charge de la fonction publique ;</span
+                    >
+                  </li>
+                  <li class="flex items-start">
+                    <span
+                      class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"
+                    ></span>
+                    <span
+                      >de préparer, en lien avec les responsables de programmes, la prévision et la programmation des emplois et de la masse salariale ;</span
+                    >
+                  </li>
+                  <li class="flex items-start">
+                    <span
+                      class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"
+                    ></span>
+                    <span
+                      >d'informer et de former le personnel sur les enjeux de gouvernance, les principes, les bonnes pratiques et les procédures de gestion des ressources humaines ;</span
+                    >
+                  </li>
+                  <li class="flex items-start">
+                    <span
+                      class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"
+                    ></span>
+                    <span
+                      >de développer une capacité d'amélioration de la communication interne, de la qualité de l'accueil des agents, du dialogue social et du travail.</span
                     >
                   </li>
                 </ul>

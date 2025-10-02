@@ -98,7 +98,7 @@ export class LeMinistereComponent implements OnInit, AfterViewInit {
     //   // email: 'expert.fp@travail.gouv.bj'
     // },
     {
-      nom: "Ambroise AHOKOU",
+      nom: "AHOKOU Ambroise",
       fonction: "Point Focal Communication",
       photo:
         "https://www.travail.gouv.bj/storage/teams/1679496290ambroise-ahokou.jpg",

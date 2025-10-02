@@ -174,7 +174,7 @@ import {
             <div
               class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700"
             >
-              <button
+              <!-- <button
                 class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium text-sm transition-colors opacity-50 cursor-not-allowed"
               >
                 <svg
@@ -189,7 +189,7 @@ import {
                   />
                 </svg>
                 Télécharger
-              </button>
+              </button> -->
               <button
                 class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:text-primary-800 dark:hover:text-primary-200 opacity-50 cursor-not-allowed"
               >
