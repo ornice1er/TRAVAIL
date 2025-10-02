@@ -82,6 +82,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/fiches-metiers/fiches-metiers.component').then(m => m.FichesMetiersComponent)
   },
   {
+    path: 'fiches-metiers/:id',
+    loadComponent: () => import('./pages/fiches-metiers-detail/fiches-metiers-detail.component').then(m => m.FichesMetiersDetailComponent)
+  },
+  {
     path: '**',
     redirectTo: ''
   }

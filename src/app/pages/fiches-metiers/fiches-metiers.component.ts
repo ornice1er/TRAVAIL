@@ -190,11 +190,11 @@ import {
                 </svg>
                 Télécharger
               </button> -->
-              <button
-                class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:text-primary-800 dark:hover:text-primary-200 opacity-50 cursor-not-allowed"
+              <a [routerLink]="['/fiches-metiers', metier.id]"
+                class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:text-primary-800 dark:hover:text-primary-200"
               >
                 Détails
-              </button>
+              </a>
             </div>
           </div>
         </div>
