@@ -2,16 +2,19 @@ import {
   Component,
   AfterViewInit,
   CUSTOM_ELEMENTS_SCHEMA,
+  OnInit,
 } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { AnimationService } from "../../../shared/services/animation.service";
 import "@tailwindplus/elements";
 import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
+import { MetiersListComponent } from "../../../shared/components/metiers-list.component";
+import { metiers } from "../../../shared/models/datas";
 
 @Component({
   selector: "app-inspection-generale",
   standalone: true,
-  imports: [CommonModule, NgxExtendedPdfViewerModule],
+  imports: [CommonModule, NgxExtendedPdfViewerModule, MetiersListComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: `
     <!-- Hero Section -->
@@ -305,33 +308,7 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div
-            *ngFor="let metier of fichesMetiers"
-            class="card p-6 flex flex-col"
-          >
-            <h3
-              class="text-xl font-semibold text-gray-900 dark:text-white mb-4 text-center"
-            >
-              {{ metier.titre }}
-            </h3>
-            <p
-              class="text-gray-600 dark:text-gray-300 mb-4 text-center flex-grow"
-            >
-              {{ metier.description }}
-            </p>
-
-            <div
-              class="mt-auto pt-4 border-t border-gray-200 dark:border-gray-600 flex justify-between items-center"
-            >
-              <a
-                class="text-sm font-medium text-primary-600 opacity-50 cursor-not-allowed"
-              >
-                Lire plus
-              </a>
-            </div>
-          </div>
-        </div>
+        <app-metiers-list [metiers]="metiersDeLaStructure"></app-metiers-list>
       </div>
     </section>
 
@@ -427,7 +404,10 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
     </el-dialog>
   `,
 })
-export class InspectionGeneraleComponent implements AfterViewInit {
+export class InspectionGeneraleComponent implements AfterViewInit, OnInit {
+  metiersDeLaStructure: any[] = [];
+  private structureId = 2; // ID for Inspection Générale
+
   chiffres = [
     {
       icone: "📋",
@@ -491,128 +471,6 @@ export class InspectionGeneraleComponent implements AfterViewInit {
     },
   ];
 
-  fichesMetiers = [
-    {
-      icone: "🔍",
-      titre: "Inspecteur des Services Publics",
-      description:
-        "Contrôle et évaluation du fonctionnement des services administratifs.",
-      competences: [
-        "Maîtrise du droit administratif",
-        "Techniques d'audit et de contrôle",
-        "Analyse organisationnelle",
-        "Rédaction de rapports",
-      ],
-      missions: [
-        "Inspection des services publics",
-        "Évaluation des procédures",
-        "Contrôle de conformité",
-        "Recommandations d'amélioration",
-      ],
-      niveauRequis: "Bac+5",
-      experience: "5 ans minimum",
-    },
-    {
-      icone: "👥",
-      titre: "Inspecteur des Emplois Publics",
-      description:
-        "Contrôle de la gestion des ressources humaines dans l'administration.",
-      competences: [
-        "Gestion des ressources humaines",
-        "Droit de la fonction publique",
-        "Techniques d'évaluation",
-        "Gestion des carrières",
-      ],
-      missions: [
-        "Audit des dossiers RH",
-        "Contrôle des recrutements",
-        "Vérification des carrières",
-        "Évaluation des performances",
-      ],
-      niveauRequis: "Bac+4",
-      experience: "3 ans minimum",
-    },
-    {
-      icone: "⚖️",
-      titre: "Inspecteur Déontologie",
-      description:
-        "Veille au respect de l'éthique et de la déontologie administrative.",
-      competences: [
-        "Droit disciplinaire",
-        "Éthique administrative",
-        "Techniques d'enquête",
-        "Médiation et arbitrage",
-      ],
-      missions: [
-        "Enquêtes disciplinaires",
-        "Contrôle déontologique",
-        "Médiation de conflits",
-        "Formation à l'éthique",
-      ],
-      niveauRequis: "Bac+5",
-      experience: "7 ans minimum",
-    },
-    {
-      icone: "📊",
-      titre: "Auditeur Interne",
-      description: "Audit des processus et systèmes de gestion administrative.",
-      competences: [
-        "Techniques d'audit",
-        "Analyse financière",
-        "Systèmes d'information",
-        "Gestion des risques",
-      ],
-      missions: [
-        "Audit des processus",
-        "Évaluation des risques",
-        "Contrôle interne",
-        "Amélioration continue",
-      ],
-      niveauRequis: "Bac+5",
-      experience: "4 ans minimum",
-    },
-    {
-      icone: "📋",
-      titre: "Contrôleur de Gestion Publique",
-      description:
-        "Contrôle de l'efficacité et de l'efficience des services publics.",
-      competences: [
-        "Contrôle de gestion",
-        "Analyse budgétaire",
-        "Indicateurs de performance",
-        "Tableaux de bord",
-      ],
-      missions: [
-        "Contrôle budgétaire",
-        "Analyse des coûts",
-        "Mesure de performance",
-        "Optimisation des ressources",
-      ],
-      niveauRequis: "Bac+4",
-      experience: "3 ans minimum",
-    },
-    {
-      icone: "🎯",
-      titre: "Évaluateur de Politiques Publiques",
-      description:
-        "Évaluation de l'impact et de l'efficacité des politiques publiques.",
-      competences: [
-        "Méthodologie d'évaluation",
-        "Analyse statistique",
-        "Politiques publiques",
-        "Recherche appliquée",
-      ],
-      missions: [
-        "Évaluation d'impact",
-        "Analyse de politiques",
-        "Études prospectives",
-        "Recommandations stratégiques",
-      ],
-      niveauRequis: "Bac+5",
-      experience: "5 ans minimum",
-    },
-  ];
-
   contactsSpecifiques = [
     {
       icone: "🔍",
@@ -671,6 +529,10 @@ export class InspectionGeneraleComponent implements AfterViewInit {
   ];
 
   constructor(private animationService: AnimationService) {}
+
+  ngOnInit() {
+    this.metiersDeLaStructure = metiers.filter(m => m.structureId === this.structureId);
+  }
 
   ngAfterViewInit() {
     setTimeout(() => {

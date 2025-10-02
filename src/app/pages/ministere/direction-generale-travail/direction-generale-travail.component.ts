@@ -1,13 +1,15 @@
-import { Component, AfterViewInit } from "@angular/core";
+import { Component, AfterViewInit, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { AnimationService } from "../../../shared/services/animation.service";
 import "@tailwindplus/elements";
 import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
+import { MetiersListComponent } from "../../../shared/components/metiers-list.component";
+import { metiers } from "../../../shared/models/datas";
 
 @Component({
   selector: "app-direction-generale-travail",
   standalone: true,
-  imports: [CommonModule, NgxExtendedPdfViewerModule],
+  imports: [CommonModule, NgxExtendedPdfViewerModule, MetiersListComponent],
   template: `
     <!-- Hero Section -->
     <div
@@ -326,33 +328,7 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div
-            *ngFor="let metier of fichesMetiers"
-            class="card p-6 flex flex-col"
-          >
-            <h3
-              class="text-xl font-semibold text-gray-900 dark:text-white mb-4 text-center"
-            >
-              {{ metier.titre }}
-            </h3>
-            <p
-              class="text-gray-600 dark:text-gray-300 mb-4 text-center flex-grow"
-            >
-              {{ metier.description }}
-            </p>
-
-            <div
-              class="mt-auto pt-4 border-t border-gray-200 dark:border-gray-600 flex justify-between items-center"
-            >
-              <a
-                class="text-sm font-medium text-primary-600 opacity-50 cursor-not-allowed"
-              >
-                Lire plus
-              </a>
-            </div>
-          </div>
-        </div>
+        <app-metiers-list [metiers]="metiersDeLaStructure"></app-metiers-list>
       </div>
     </section>
 
@@ -412,7 +388,10 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
     </section>
   `,
 })
-export class DirectionGeneraleTravailComponent implements AfterViewInit {
+export class DirectionGeneraleTravailComponent implements AfterViewInit, OnInit {
+  metiersDeLaStructure: any[] = [];
+  private structureId = 87; // ID for Direction Générale du Travail
+
   chiffres = [
     {
       icone: "🏢",
@@ -460,123 +439,6 @@ export class DirectionGeneraleTravailComponent implements AfterViewInit {
         "Chef Département de la Sécurité Sociale, de la Mutualité et de la Santé au Travail",
       photo:
         "https://www.travail.gouv.bj/storage/teams/1678289870dr-bedie-toihen-lucile.jpg",
-    },
-  ];
-
-  fichesMetiers = [
-    {
-      icone: "🔍",
-      titre: "Inspecteur du Travail",
-      description: "Contrôle de l'application de la législation du travail.",
-      competences: [
-        "Droit du travail",
-        "Techniques d'inspection",
-        "Médiation sociale",
-        "Rédaction de rapports",
-      ],
-      missions: [
-        "Inspection des entreprises",
-        "Contrôle des conditions de travail",
-        "Médiation des conflits",
-        "Application des sanctions",
-      ],
-      niveauRequis: "Bac+5",
-      experience: "3 ans minimum",
-    },
-    {
-      icone: "⚖️",
-      titre: "Médiateur Social",
-      description: "Résolution des conflits collectifs de travail.",
-      competences: [
-        "Techniques de médiation",
-        "Droit social",
-        "Communication",
-        "Négociation",
-      ],
-      missions: [
-        "Médiation des conflits",
-        "Facilitation du dialogue",
-        "Négociation collective",
-        "Prévention des grèves",
-      ],
-      niveauRequis: "Bac+4",
-      experience: "5 ans minimum",
-    },
-    {
-      icone: "📊",
-      titre: "Statisticien du Travail",
-      description: "Production et analyse des statistiques de l'emploi.",
-      competences: [
-        "Statistiques",
-        "Analyse de données",
-        "Enquêtes",
-        "Reporting",
-      ],
-      missions: [
-        "Collecte de données",
-        "Analyse statistique",
-        "Production de rapports",
-        "Observatoire de l'emploi",
-      ],
-      niveauRequis: "Bac+4",
-      experience: "3 ans minimum",
-    },
-    {
-      icone: "🛡️",
-      titre: "Conseiller Sécurité au Travail",
-      description: "Prévention des risques professionnels et sécurité.",
-      competences: [
-        "Hygiène et sécurité",
-        "Prévention des risques",
-        "Réglementation SST",
-        "Formation sécurité",
-      ],
-      missions: [
-        "Évaluation des risques",
-        "Conseil en prévention",
-        "Formation sécurité",
-        "Audit sécurité",
-      ],
-      niveauRequis: "Bac+4",
-      experience: "4 ans minimum",
-    },
-    {
-      icone: "💼",
-      titre: "Conseiller Emploi",
-      description: "Promotion de l'emploi et insertion professionnelle.",
-      competences: [
-        "Politiques d'emploi",
-        "Insertion professionnelle",
-        "Marché du travail",
-        "Accompagnement",
-      ],
-      missions: [
-        "Développement de l'emploi",
-        "Insertion des jeunes",
-        "Partenariats entreprises",
-        "Programmes d'emploi",
-      ],
-      niveauRequis: "Bac+4",
-      experience: "3 ans minimum",
-    },
-    {
-      icone: "🏥",
-      titre: "Spécialiste Sécurité Sociale",
-      description: "Gestion et promotion de la sécurité sociale.",
-      competences: [
-        "Sécurité sociale",
-        "Protection sociale",
-        "Réglementation CNSS",
-        "Gestion des prestations",
-      ],
-      missions: [
-        "Promotion de la sécurité sociale",
-        "Contrôle des cotisations",
-        "Conseil aux entreprises",
-        "Suivi des prestations",
-      ],
-      niveauRequis: "Bac+4",
-      experience: "3 ans minimum",
     },
   ];
 
@@ -638,6 +500,10 @@ export class DirectionGeneraleTravailComponent implements AfterViewInit {
   ];
 
   constructor(private animationService: AnimationService) {}
+
+  ngOnInit() {
+    this.metiersDeLaStructure = metiers.filter(m => m.structureId === this.structureId);
+  }
 
   ngAfterViewInit() {
     setTimeout(() => {

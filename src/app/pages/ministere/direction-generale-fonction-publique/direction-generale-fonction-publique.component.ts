@@ -2,16 +2,19 @@ import {
   Component,
   AfterViewInit,
   CUSTOM_ELEMENTS_SCHEMA,
+  OnInit,
 } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { AnimationService } from "../../../shared/services/animation.service";
 import "@tailwindplus/elements";
 import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
+import { MetiersListComponent } from "../../../shared/components/metiers-list.component";
+import { metiers } from "../../../shared/models/datas";
 
 @Component({
   selector: "app-direction-generale-fonction-publique",
   standalone: true,
-  imports: [CommonModule, NgxExtendedPdfViewerModule],
+  imports: [CommonModule, NgxExtendedPdfViewerModule, MetiersListComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: `
     <!-- Hero Section -->
@@ -345,33 +348,7 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
           <p class="text-xl text-gray-600 dark:text-gray-300"></p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div
-            *ngFor="let metier of fichesMetiers"
-            class="card p-6 flex flex-col"
-          >
-            <h3
-              class="text-xl font-semibold text-gray-900 dark:text-white mb-4 text-center"
-            >
-              {{ metier.titre }}
-            </h3>
-            <p
-              class="text-gray-600 dark:text-gray-300 mb-4 text-center flex-grow"
-            >
-              {{ metier.description }}
-            </p>
-
-            <div
-              class="mt-auto pt-4 border-t border-gray-200 dark:border-gray-600 flex justify-between items-center"
-            >
-              <a
-                class="text-sm font-medium text-primary-600 opacity-50 cursor-not-allowed"
-              >
-                Lire plus
-              </a>
-            </div>
-          </div>
-        </div>
+        <app-metiers-list [metiers]="metiersDeLaStructure"></app-metiers-list>
       </div>
     </section>
 
@@ -467,8 +444,11 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
   `,
 })
 export class DirectionGeneraleFonctionPubliqueComponent
-  implements AfterViewInit
+  implements AfterViewInit, OnInit
 {
+  metiersDeLaStructure: any[] = [];
+  private structureId = 58; // ID for Direction Générale de la Fonction Publique
+
   chiffres = [
     {
       icone: "👥",
@@ -522,124 +502,6 @@ export class DirectionGeneraleFonctionPubliqueComponent
         "Chef de la Cellule de Gestion du Fichier Unique de Référence et de la Programmation des Effectifs",
       photo:
         "https://www.travail.gouv.bj/storage/teams/1677698854idohou-prosper.JPG",
-    },
-  ];
-
-  fichesMetiers = [
-    {
-      icone: "👥",
-      titre: "Gestionnaire des Carrières",
-      description: "Gestion des parcours professionnels des agents publics.",
-      competences: [
-        "Droit de la fonction publique",
-        "Gestion des ressources humaines",
-        "Procédures administratives",
-        "Systèmes d'information RH",
-      ],
-      missions: [
-        "Suivi des carrières",
-        "Gestion des promotions",
-        "Traitement des mutations",
-        "Conseil aux agents",
-      ],
-      niveauRequis: "Bac+4",
-      experience: "3 ans minimum",
-    },
-    {
-      icone: "📋",
-      titre: "Chargé de Recrutement",
-      description: "Organisation et gestion des concours de recrutement.",
-      competences: [
-        "Organisation d'événements",
-        "Évaluation des candidats",
-        "Procédures de sélection",
-        "Communication",
-      ],
-      missions: [
-        "Organisation des concours",
-        "Évaluation des candidatures",
-        "Gestion des jurys",
-        "Publication des résultats",
-      ],
-      niveauRequis: "Bac+3",
-      experience: "2 ans minimum",
-    },
-    {
-      icone: "⚖️",
-      titre: "Conseiller Juridique",
-      description: "Gestion du contentieux et des affaires disciplinaires.",
-      competences: [
-        "Droit administratif",
-        "Procédures disciplinaires",
-        "Contentieux administratif",
-        "Rédaction juridique",
-      ],
-      missions: [
-        "Traitement du contentieux",
-        "Procédures disciplinaires",
-        "Conseil juridique",
-        "Rédaction d'actes",
-      ],
-      niveauRequis: "Bac+5",
-      experience: "5 ans minimum",
-    },
-    {
-      icone: "📊",
-      titre: "Analyste RH",
-      description:
-        "Analyse des données et statistiques de la fonction publique.",
-      competences: [
-        "Analyse statistique",
-        "Systèmes d'information",
-        "Reporting",
-        "Tableaux de bord",
-      ],
-      missions: [
-        "Analyse des effectifs",
-        "Production de statistiques",
-        "Études prospectives",
-        "Tableaux de bord RH",
-      ],
-      niveauRequis: "Bac+4",
-      experience: "3 ans minimum",
-    },
-    {
-      icone: "🎓",
-      titre: "Responsable Formation",
-      description: "Coordination des programmes de formation des agents.",
-      competences: [
-        "Ingénierie de formation",
-        "Gestion de projet",
-        "Évaluation pédagogique",
-        "Partenariats",
-      ],
-      missions: [
-        "Conception de formations",
-        "Coordination des programmes",
-        "Évaluation des formations",
-        "Gestion des partenaires",
-      ],
-      niveauRequis: "Bac+5",
-      experience: "4 ans minimum",
-    },
-    {
-      icone: "💰",
-      titre: "Gestionnaire de la Solde",
-      description: "Gestion de la paie et des indemnités des agents publics.",
-      competences: [
-        "Gestion de la paie",
-        "Réglementation salariale",
-        "Systèmes de paie",
-        "Contrôle financier",
-      ],
-      missions: [
-        "Traitement de la paie",
-        "Calcul des indemnités",
-        "Contrôle des soldes",
-        "Régularisations",
-      ],
-      niveauRequis: "Bac+3",
-      experience: "2 ans minimum",
     },
   ];
 
@@ -701,6 +563,12 @@ export class DirectionGeneraleFonctionPubliqueComponent
   ];
 
   constructor(private animationService: AnimationService) {}
+
+  ngOnInit() {
+    this.metiersDeLaStructure = metiers.filter(
+      (m) => m.structureId === this.structureId
+    );
+  }
 
   ngAfterViewInit() {
     setTimeout(() => {

@@ -1,13 +1,15 @@
-import { Component, AfterViewInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, AfterViewInit, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AnimationService } from '../../../shared/services/animation.service';
 import '@tailwindplus/elements';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { MetiersListComponent } from '../../../shared/components/metiers-list.component';
+import { metiers } from '../../../shared/models/datas';
 
 @Component({
   selector: 'app-direction-systemes-information',
   standalone: true,
-  imports: [CommonModule, NgxExtendedPdfViewerModule],
+  imports: [CommonModule, NgxExtendedPdfViewerModule, MetiersListComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: `
     <!-- Hero Section -->
@@ -168,22 +170,11 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
         <div class="text-center mb-16 ">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Fiches Métiers</h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
-
+            Les métiers et compétences de la Direction des Systèmes d'Information
           </p>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div *ngFor="let metier of fichesMetiers" class="card p-6 flex flex-col">
-            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4 text-center">{{ metier.titre }}</h3>
-            <p class="text-gray-600 dark:text-gray-300 mb-4 text-center flex-grow">{{ metier.description }}</p>
-            
-            <div class="mt-auto pt-4 border-t border-gray-200 dark:border-gray-600 flex justify-between items-center">
-              <a class="text-sm font-medium text-primary-600 opacity-50 cursor-not-allowed">
-                Lire plus
-              </a>
-            </div>
-          </div>
-        </div>
+        <app-metiers-list [metiers]="metiersDeLaStructure"></app-metiers-list>
       </div>
     </section>
 
@@ -248,8 +239,10 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 </el-dialog>
   `
 })
-export class DirectionSystemesInformationComponent implements AfterViewInit {
-  
+export class DirectionSystemesInformationComponent implements AfterViewInit, OnInit {
+  metiersDeLaStructure: any[] = [];
+  private structureId = 18; // ID for Direction des Systèmes d'Information
+
   chiffres = [
     {
       icone: '💻',
@@ -307,123 +300,6 @@ export class DirectionSystemesInformationComponent implements AfterViewInit {
         'Business Intelligence',
         'Analyse des données'
       ]
-    }
-  ];
-  
-  fichesMetiers = [
-    {
-      icone: '💻',
-      titre: 'Développeur Full-Stack',
-      description: 'Développement d\'applications web et mobiles.',
-      competences: [
-        'Langages de programmation',
-        'Frameworks web',
-        'Bases de données',
-        'APIs et microservices'
-      ],
-      missions: [
-        'Développement d\'applications',
-        'Maintenance du code',
-        'Tests et débogage',
-        'Documentation technique'
-      ],
-      niveauRequis: 'Bac+3',
-      experience: '2 ans minimum'
-    },
-    {
-      icone: '🔧',
-      titre: 'Administrateur Systèmes',
-      description: 'Administration des serveurs et infrastructures réseau.',
-      competences: [
-        'Administration serveurs',
-        'Réseaux informatiques',
-        'Virtualisation',
-        'Cloud computing'
-      ],
-      missions: [
-        'Administration serveurs',
-        'Gestion du réseau',
-        'Maintenance infrastructure',
-        'Monitoring systèmes'
-      ],
-      niveauRequis: 'Bac+3',
-      experience: '3 ans minimum'
-    },
-    {
-      icone: '🛡️',
-      titre: 'Responsable Sécurité IT',
-      description: 'Sécurisation des systèmes et protection des données.',
-      competences: [
-        'Sécurité informatique',
-        'Audit de sécurité',
-        'Gestion des risques',
-        'Cryptographie'
-      ],
-      missions: [
-        'Audit de sécurité',
-        'Gestion des accès',
-        'Protection des données',
-        'Plan de continuité'
-      ],
-      niveauRequis: 'Bac+5',
-      experience: '5 ans minimum'
-    },
-    {
-      icone: '📊',
-      titre: 'Analyste de Données',
-      description: 'Analyse et exploitation des données ministérielles.',
-      competences: [
-        'Analyse de données',
-        'Business Intelligence',
-        'Statistiques',
-        'Outils de visualisation'
-      ],
-      missions: [
-        'Analyse des données',
-        'Création de tableaux de bord',
-        'Reporting automatisé',
-        'Aide à la décision'
-      ],
-      niveauRequis: 'Bac+4',
-      experience: '3 ans minimum'
-    },
-    {
-      icone: '🎯',
-      titre: 'Chef de Projet IT',
-      description: 'Pilotage des projets de transformation numérique.',
-      competences: [
-        'Gestion de projet',
-        'Méthodologies agiles',
-        'Coordination d\'équipes',
-        'Gestion des risques'
-      ],
-      missions: [
-        'Pilotage de projets',
-        'Coordination des équipes',
-        'Gestion des budgets',
-        'Suivi des livrables'
-      ],
-      niveauRequis: 'Bac+5',
-      experience: '5 ans minimum'
-    },
-    {
-      icone: '🎓',
-      titre: 'Formateur IT',
-      description: 'Formation des utilisateurs aux outils numériques.',
-      competences: [
-        'Pédagogie',
-        'Outils bureautiques',
-        'Systèmes d\'information',
-        'Communication'
-      ],
-      missions: [
-        'Formation des utilisateurs',
-        'Création de supports',
-        'Accompagnement au changement',
-        'Support utilisateur'
-      ],
-      niveauRequis: 'Bac+3',
-      experience: '2 ans minimum'
     }
   ];
   
@@ -486,6 +362,10 @@ export class DirectionSystemesInformationComponent implements AfterViewInit {
   
   constructor(private animationService: AnimationService) {}
   
+  ngOnInit() {
+    this.metiersDeLaStructure = metiers.filter(m => m.structureId === this.structureId);
+  }
+
   ngAfterViewInit() {
     setTimeout(() => {
       this.animationService.initScrollAnimations();

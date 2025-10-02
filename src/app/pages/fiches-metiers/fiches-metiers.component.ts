@@ -8,11 +8,12 @@ import {
   structures,
   thematiques,
 } from "../../shared/models/datas";
+import { MetiersListComponent } from "../../shared/components/metiers-list.component";
 
 @Component({
   selector: "app-fiches-metiers",
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule],
+  imports: [CommonModule, RouterModule, FormsModule, MetiersListComponent],
   template: `
     <!-- Hero Section -->
     <div
@@ -113,92 +114,7 @@ import {
     <!-- Liste des fiches métiers -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div
-            *ngFor="let metier of metiersFilters; trackBy: trackByMetierId"
-            class="card p-6 hover:shadow-lg transition-all duration-300"
-          >
-            <div class="flex items-start justify-between mb-4">
-              <div
-                class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center"
-              >
-                <span class="text-2xl">{{ metier.icone }}</span>
-              </div>
-              <span
-                class="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full text-xs font-medium"
-              >
-                {{ metier.structure }}
-              </span>
-            </div>
-
-            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-              {{ metier.titre }}
-            </h3>
-            <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm">
-              {{ metier.description }}
-            </p>
-
-            <div class="space-y-3 mb-6">
-              <div>
-                <h4
-                  class="font-semibold text-gray-900 dark:text-white text-sm mb-2"
-                >
-                  Compétences requises :
-                </h4>
-                <div class="flex flex-wrap gap-1">
-                  <span
-                    *ngFor="let competence of metier.competences.slice(0, 3)"
-                    class="bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-400 px-2 py-1 rounded text-xs"
-                  >
-                    {{ competence }}
-                  </span>
-                  <span
-                    *ngIf="metier.competences.length > 3"
-                    class="text-xs text-gray-500 dark:text-gray-400"
-                  >
-                    +{{ metier.competences.length - 3 }} autres
-                  </span>
-                </div>
-              </div>
-
-              <div class="flex items-center justify-between text-sm">
-                <span class="text-gray-500 dark:text-gray-400">
-                  <strong>Niveau :</strong> {{ metier.niveauRequis }}
-                </span>
-                <span class="text-gray-500 dark:text-gray-400">
-                  <strong>Exp :</strong> {{ metier.experience }}
-                </span>
-              </div>
-            </div>
-
-            <div
-              class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700"
-            >
-              <!-- <button
-                class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium text-sm transition-colors opacity-50 cursor-not-allowed"
-              >
-                <svg
-                  class="w-4 h-4 mr-2"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-                Télécharger
-              </button> -->
-              <a [routerLink]="['/fiches-metiers', metier.id]"
-                class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:text-primary-800 dark:hover:text-primary-200"
-              >
-                Détails
-              </a>
-            </div>
-          </div>
-        </div>
-
+        <app-metiers-list [metiers]="metiersFilters"></app-metiers-list>
         <!-- Message si aucun résultat -->
         <div *ngIf="metiersFilters.length === 0" class="text-center py-16">
           <div
@@ -303,9 +219,5 @@ export class FichesMetiersComponent implements AfterViewInit {
     }
 
     this.metiersFilters = metiersResultat;
-  }
-
-  trackByMetierId(index: number, metier: any): string {
-    return metier.id;
   }
 }

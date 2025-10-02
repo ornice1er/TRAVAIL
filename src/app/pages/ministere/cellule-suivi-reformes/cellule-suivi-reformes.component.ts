@@ -2,16 +2,19 @@ import {
   Component,
   AfterViewInit,
   CUSTOM_ELEMENTS_SCHEMA,
+  OnInit,
 } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { AnimationService } from "../../../shared/services/animation.service";
 import "@tailwindplus/elements";
 import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
+import { MetiersListComponent } from "../../../shared/components/metiers-list.component";
+import { metiers } from "../../../shared/models/datas";
 
 @Component({
   selector: "app-cellule-suivi-reformes",
   standalone: true,
-  imports: [CommonModule, NgxExtendedPdfViewerModule],
+  imports: [CommonModule, NgxExtendedPdfViewerModule, MetiersListComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: `
     <!-- Hero Section -->
@@ -255,33 +258,7 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
           <p class="text-xl text-gray-600 dark:text-gray-300"></p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div
-            *ngFor="let metier of fichesMetiers"
-            class="card p-6 flex flex-col"
-          >
-            <h3
-              class="text-xl font-semibold text-gray-900 dark:text-white mb-4 text-center"
-            >
-              {{ metier.titre }}
-            </h3>
-            <p
-              class="text-gray-600 dark:text-gray-300 mb-4 text-center flex-grow"
-            >
-              {{ metier.description }}
-            </p>
-
-            <div
-              class="mt-auto pt-4 border-t border-gray-200 dark:border-gray-600 flex justify-between items-center"
-            >
-              <a
-                class="text-sm font-medium text-primary-600 opacity-50 cursor-not-allowed"
-              >
-                Lire plus
-              </a>
-            </div>
-          </div>
-        </div>
+        <app-metiers-list [metiers]="metiersDeLaStructure"></app-metiers-list>
       </div>
     </section>
 
@@ -376,7 +353,10 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
     </el-dialog>
   `,
 })
-export class CelluleSuiviReformesComponent implements AfterViewInit {
+export class CelluleSuiviReformesComponent implements AfterViewInit, OnInit {
+  metiersDeLaStructure: any[] = [];
+  private structureId = 115; // ID for Cellule de Suivi des Réformes
+
   chiffres = [
     {
       icone: "📊",
@@ -440,127 +420,6 @@ export class CelluleSuiviReformesComponent implements AfterViewInit {
     },
   ];
 
-  fichesMetiers = [
-    {
-      icone: "📊",
-      titre: "Chargé de Suivi des Réformes",
-      description:
-        "Suivi opérationnel de la mise en œuvre des réformes sectorielles.",
-      competences: [
-        "Gestion de projet",
-        "Suivi-évaluation",
-        "Analyse de données",
-        "Reporting",
-      ],
-      missions: [
-        "Suivi des indicateurs",
-        "Production de rapports",
-        "Coordination des acteurs",
-        "Appui technique",
-      ],
-      niveauRequis: "Bac+4",
-      experience: "3 ans minimum",
-    },
-    {
-      icone: "🎯",
-      titre: "Analyste des Politiques Publiques",
-      description:
-        "Analyse et évaluation de l'efficacité des politiques de réforme.",
-      competences: [
-        "Analyse des politiques publiques",
-        "Méthodologie d'évaluation",
-        "Recherche appliquée",
-        "Statistiques",
-      ],
-      missions: [
-        "Évaluation d'impact",
-        "Analyse de politiques",
-        "Études prospectives",
-        "Recommandations stratégiques",
-      ],
-      niveauRequis: "Bac+5",
-      experience: "5 ans minimum",
-    },
-    {
-      icone: "🤝",
-      titre: "Facilitateur de Changement",
-      description: "Accompagnement du changement organisationnel et culturel.",
-      competences: [
-        "Gestion du changement",
-        "Communication",
-        "Formation d'adultes",
-        "Psychologie organisationnelle",
-      ],
-      missions: [
-        "Accompagnement du changement",
-        "Formation des équipes",
-        "Communication interne",
-        "Résolution de résistances",
-      ],
-      niveauRequis: "Bac+4",
-      experience: "4 ans minimum",
-    },
-    {
-      icone: "📋",
-      titre: "Coordinateur de Projet",
-      description:
-        "Coordination des projets de réforme et gestion des parties prenantes.",
-      competences: [
-        "Management de projet",
-        "Coordination multi-acteurs",
-        "Planification stratégique",
-        "Gestion des risques",
-      ],
-      missions: [
-        "Planification de projets",
-        "Coordination des équipes",
-        "Gestion des risques",
-        "Suivi budgétaire",
-      ],
-      niveauRequis: "Bac+5",
-      experience: "5 ans minimum",
-    },
-    {
-      icone: "📈",
-      titre: "Spécialiste Monitoring",
-      description:
-        "Conception et gestion des systèmes de suivi et d'évaluation.",
-      competences: [
-        "Systèmes de M&E",
-        "Indicateurs de performance",
-        "Outils de collecte",
-        "Analyse quantitative",
-      ],
-      missions: [
-        "Conception de systèmes M&E",
-        "Collecte de données",
-        "Analyse des performances",
-        "Tableaux de bord",
-      ],
-      niveauRequis: "Bac+4",
-      experience: "3 ans minimum",
-    },
-    {
-      icone: "💡",
-      titre: "Conseiller en Innovation",
-      description: "Promotion de l'innovation dans les processus de réforme.",
-      competences: [
-        "Innovation publique",
-        "Design thinking",
-        "Transformation digitale",
-        "Créativité",
-      ],
-      missions: [
-        "Identification d'innovations",
-        "Conception de solutions",
-        "Pilotage d'expérimentations",
-        "Diffusion des bonnes pratiques",
-      ],
-      niveauRequis: "Bac+5",
-      experience: "4 ans minimum",
-    },
-  ];
-
   contactsSpecifiques = [
     {
       icone: "📊",
@@ -619,6 +478,12 @@ export class CelluleSuiviReformesComponent implements AfterViewInit {
   ];
 
   constructor(private animationService: AnimationService) {}
+
+  ngOnInit() {
+    this.metiersDeLaStructure = metiers.filter(
+      (m) => m.structureId === this.structureId
+    );
+  }
 
   ngAfterViewInit() {
     setTimeout(() => {
