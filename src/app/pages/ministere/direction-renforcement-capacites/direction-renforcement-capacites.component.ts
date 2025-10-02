@@ -2,16 +2,19 @@ import {
   Component,
   AfterViewInit,
   CUSTOM_ELEMENTS_SCHEMA,
+  OnInit,
 } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { AnimationService } from "../../../shared/services/animation.service";
 import "@tailwindplus/elements";
 import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
+import { MetiersListComponent } from "../../../shared/components/metiers-list.component";
+import { metiers } from "../../../shared/models/datas";
 
 @Component({
   selector: "app-direction-renforcement-capacites",
   standalone: true,
-  imports: [CommonModule, NgxExtendedPdfViewerModule],
+  imports: [CommonModule, NgxExtendedPdfViewerModule, MetiersListComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: `
     <!-- Hero Section -->
@@ -343,33 +346,7 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
           <p class="text-xl text-gray-600 dark:text-gray-300"></p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div
-            *ngFor="let metier of fichesMetiers"
-            class="card p-6 flex flex-col"
-          >
-            <h3
-              class="text-xl font-semibold text-gray-900 dark:text-white mb-4 text-center"
-            >
-              {{ metier.titre }}
-            </h3>
-            <p
-              class="text-gray-600 dark:text-gray-300 mb-4 text-center flex-grow"
-            >
-              {{ metier.description }}
-            </p>
-
-            <div
-              class="mt-auto pt-4 border-t border-gray-200 dark:border-gray-600 flex justify-between items-center"
-            >
-              <a
-                class="text-sm font-medium text-primary-600 opacity-50 cursor-not-allowed"
-              >
-                Lire plus
-              </a>
-            </div>
-          </div>
-        </div>
+        <app-metiers-list [metiers]="metiersDeLaStructure"></app-metiers-list>
       </div>
     </section>
 
@@ -465,7 +442,12 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
     </el-dialog>
   `,
 })
-export class DirectionRenforcementCapacitesComponent implements AfterViewInit {
+export class DirectionRenforcementCapacitesComponent
+  implements AfterViewInit, OnInit
+{
+  metiersDeLaStructure: any[] = [];
+  private structureId = 100; // ID for Direction Générale du Renforcement des Capacités et de l'Employabilité
+
   chiffres = [
     {
       icone: "🎓",
@@ -505,123 +487,6 @@ export class DirectionRenforcementCapacitesComponent implements AfterViewInit {
       //   'Développement pédagogique',
       //   'Évaluation des formations'
       // ]
-    },
-  ];
-
-  fichesMetiers = [
-    {
-      icone: "🎓",
-      titre: "Ingénieur de Formation",
-      description: "Conception et développement de programmes de formation.",
-      competences: [
-        "Ingénierie pédagogique",
-        "Analyse des besoins",
-        "Conception de curricula",
-        "Évaluation pédagogique",
-      ],
-      missions: [
-        "Conception de formations",
-        "Développement pédagogique",
-        "Évaluation des programmes",
-        "Innovation pédagogique",
-      ],
-      niveauRequis: "Bac+5",
-      experience: "4 ans minimum",
-    },
-    {
-      icone: "💼",
-      titre: "Conseiller en Employabilité",
-      description: "Accompagnement des bénéficiaires vers l'emploi.",
-      competences: [
-        "Techniques d'insertion",
-        "Coaching professionnel",
-        "Marché du travail",
-        "Accompagnement individuel",
-      ],
-      missions: [
-        "Accompagnement individuel",
-        "Techniques de recherche d'emploi",
-        "Mise en relation",
-        "Suivi post-formation",
-      ],
-      niveauRequis: "Bac+4",
-      experience: "3 ans minimum",
-    },
-    {
-      icone: "🏆",
-      titre: "Responsable Certification",
-      description: "Gestion des processus de certification des compétences.",
-      competences: [
-        "Systèmes de certification",
-        "Évaluation des compétences",
-        "Normes qualité",
-        "Validation des acquis",
-      ],
-      missions: [
-        "Certification des compétences",
-        "Validation des acquis",
-        "Contrôle qualité",
-        "Délivrance de diplômes",
-      ],
-      niveauRequis: "Bac+5",
-      experience: "5 ans minimum",
-    },
-    {
-      icone: "🤝",
-      titre: "Chargé de Partenariats",
-      description: "Développement des partenariats avec les entreprises.",
-      competences: [
-        "Développement de partenariats",
-        "Négociation",
-        "Gestion de relations",
-        "Communication",
-      ],
-      missions: [
-        "Prospection d'entreprises",
-        "Négociation de partenariats",
-        "Suivi des conventions",
-        "Animation du réseau",
-      ],
-      niveauRequis: "Bac+4",
-      experience: "3 ans minimum",
-    },
-    {
-      icone: "📊",
-      titre: "Analyste Emploi-Formation",
-      description: "Analyse des besoins en formation et évolution des métiers.",
-      competences: [
-        "Analyse du marché du travail",
-        "Prospective métiers",
-        "Statistiques",
-        "Études sectorielles",
-      ],
-      missions: [
-        "Analyse des besoins",
-        "Études prospectives",
-        "Observatoire des métiers",
-        "Recommandations stratégiques",
-      ],
-      niveauRequis: "Bac+5",
-      experience: "4 ans minimum",
-    },
-    {
-      icone: "🎯",
-      titre: "Coordinateur de Programmes",
-      description: "Coordination des programmes de renforcement des capacités.",
-      competences: [
-        "Gestion de programmes",
-        "Coordination multi-acteurs",
-        "Suivi-évaluation",
-        "Reporting",
-      ],
-      missions: [
-        "Coordination de programmes",
-        "Suivi des activités",
-        "Gestion des partenaires",
-        "Évaluation des résultats",
-      ],
-      niveauRequis: "Bac+4",
-      experience: "4 ans minimum",
     },
   ];
 
@@ -683,6 +548,12 @@ export class DirectionRenforcementCapacitesComponent implements AfterViewInit {
   ];
 
   constructor(private animationService: AnimationService) {}
+
+  ngOnInit() {
+    this.metiersDeLaStructure = metiers.filter(
+      (m) => m.structureId === this.structureId
+    );
+  }
 
   ngAfterViewInit() {
     setTimeout(() => {

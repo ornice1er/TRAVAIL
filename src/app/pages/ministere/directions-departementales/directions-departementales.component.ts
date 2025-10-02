@@ -2,16 +2,19 @@ import {
   Component,
   AfterViewInit,
   CUSTOM_ELEMENTS_SCHEMA,
+  OnInit,
 } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { AnimationService } from "../../../shared/services/animation.service";
 import "@tailwindplus/elements";
 import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
+import { MetiersListComponent } from "../../../shared/components/metiers-list.component";
+import { metiers } from "../../../shared/models/datas";
 
 @Component({
   selector: "app-directions-departementales",
   standalone: true,
-  imports: [CommonModule, NgxExtendedPdfViewerModule],
+  imports: [CommonModule, NgxExtendedPdfViewerModule, MetiersListComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: `
     <!-- Hero Section -->
@@ -229,33 +232,7 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
           <p class="text-xl text-gray-600 dark:text-gray-300"></p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div
-            *ngFor="let metier of fichesMetiers"
-            class="card p-6 flex flex-col"
-          >
-            <h3
-              class="text-xl font-semibold text-gray-900 dark:text-white mb-4 text-center"
-            >
-              {{ metier.titre }}
-            </h3>
-            <p
-              class="text-gray-600 dark:text-gray-300 mb-4 text-center flex-grow"
-            >
-              {{ metier.description }}
-            </p>
-
-            <div
-              class="mt-auto pt-4 border-t border-gray-200 dark:border-gray-600 flex justify-between items-center"
-            >
-              <a
-                class="text-sm font-medium text-primary-600 opacity-50 cursor-not-allowed"
-              >
-                Lire plus
-              </a>
-            </div>
-          </div>
-        </div>
+        <app-metiers-list [metiers]="metiersDeLaStructure"></app-metiers-list>
       </div>
     </section>
 
@@ -351,7 +328,12 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
     </el-dialog>
   `,
 })
-export class DirectionsDepartementalesComponent implements AfterViewInit {
+export class DirectionsDepartementalesComponent
+  implements AfterViewInit, OnInit
+{
+  metiersDeLaStructure: any[] = [];
+  private structureId = 23; // ID for Directions Départementales
+
   chiffres = [
     {
       icone: "🏢",
@@ -454,123 +436,6 @@ export class DirectionsDepartementalesComponent implements AfterViewInit {
     },
   ];
 
-  fichesMetiers = [
-    {
-      icone: "🏛️",
-      titre: "Directeur Départemental",
-      description: "Direction et coordination des activités départementales.",
-      competences: [
-        "Management public",
-        "Coordination territoriale",
-        "Relations institutionnelles",
-        "Gestion d'équipe",
-      ],
-      missions: [
-        "Direction de la structure",
-        "Coordination des services",
-        "Relations avec les autorités",
-        "Représentation du ministère",
-      ],
-      niveauRequis: "Bac+5",
-      experience: "10 ans minimum",
-    },
-    {
-      icone: "🔍",
-      titre: "Inspecteur Départemental",
-      description: "Contrôle de l'application de la législation du travail.",
-      competences: [
-        "Droit du travail",
-        "Techniques d'inspection",
-        "Médiation",
-        "Rédaction de rapports",
-      ],
-      missions: [
-        "Inspection des entreprises",
-        "Contrôle de conformité",
-        "Médiation des conflits",
-        "Application des sanctions",
-      ],
-      niveauRequis: "Bac+4",
-      experience: "3 ans minimum",
-    },
-    {
-      icone: "💼",
-      titre: "Conseiller Emploi Territorial",
-      description: "Promotion de l'emploi au niveau départemental.",
-      competences: [
-        "Politiques d'emploi",
-        "Développement local",
-        "Partenariats locaux",
-        "Animation territoriale",
-      ],
-      missions: [
-        "Promotion de l'emploi local",
-        "Partenariats entreprises",
-        "Programmes d'insertion",
-        "Statistiques locales",
-      ],
-      niveauRequis: "Bac+4",
-      experience: "3 ans minimum",
-    },
-    {
-      icone: "📋",
-      titre: "Agent Administratif",
-      description: "Gestion des formalités et services administratifs.",
-      competences: [
-        "Procédures administratives",
-        "Accueil du public",
-        "Bureautique",
-        "Réglementation",
-      ],
-      missions: [
-        "Accueil des usagers",
-        "Traitement des dossiers",
-        "Délivrance d'actes",
-        "Information du public",
-      ],
-      niveauRequis: "Bac+2",
-      experience: "1 an minimum",
-    },
-    {
-      icone: "📊",
-      titre: "Chargé de Statistiques",
-      description: "Collecte et traitement des données locales.",
-      competences: [
-        "Statistiques",
-        "Collecte de données",
-        "Analyse quantitative",
-        "Reporting",
-      ],
-      missions: [
-        "Collecte de données",
-        "Traitement statistique",
-        "Production de rapports",
-        "Transmission au central",
-      ],
-      niveauRequis: "Bac+3",
-      experience: "2 ans minimum",
-    },
-    {
-      icone: "🤝",
-      titre: "Médiateur Social Local",
-      description: "Médiation des conflits de travail au niveau local.",
-      competences: [
-        "Techniques de médiation",
-        "Droit social",
-        "Communication",
-        "Négociation",
-      ],
-      missions: [
-        "Médiation des conflits",
-        "Facilitation du dialogue",
-        "Prévention des tensions",
-        "Suivi des accords",
-      ],
-      niveauRequis: "Bac+3",
-      experience: "3 ans minimum",
-    },
-  ];
-
   contactsSpecifiques = [
     {
       icone: "🔍",
@@ -629,6 +494,12 @@ export class DirectionsDepartementalesComponent implements AfterViewInit {
   ];
 
   constructor(private animationService: AnimationService) {}
+
+  ngOnInit() {
+    this.metiersDeLaStructure = metiers.filter(
+      (m) => m.structureId === this.structureId
+    );
+  }
 
   ngAfterViewInit() {
     setTimeout(() => {
