@@ -1,0 +1,57 @@
+ <div class="tw-bg-white tw-rounded-xl tw-shadow-sm tw-border tw-border-gray-100">
+
+        <!-- En-tête avec bouton créer -->
+        <div class="tw-p-6 tw-border-b tw-border-gray-200 tw-bg-gradient-to-r tw-from-benin-green/5 tw-to-benin-blue/5 tw-flex tw-items-center tw-justify-between">
+          <div>
+            <h2 class="tw-text-xl tw-font-bold tw-text-gray-900 tw-font-montserrat">Liste des citations du ministre</h2>
+            <p class="tw-text-sm tw-text-gray-600 tw-mt-1 tw-font-roboto">{{citations.length}} élément(s)</p>
+          </div>
+          <button class="tw-px-6 tw-py-2 tw-bg-gradient-to-r tw-from-benin-green tw-to-benin-blue tw-text-white tw-font-medium tw-rounded-lg tw-hover:shadow-lg tw-transition-all tw-duration-200 tw-whitespace-nowrap tw-font-roboto">
+            Ajouter une citation
+          </button>
+        </div>
+
+        <!-- Tableau -->
+        <div class="tw-overflow-x-auto">
+          <table class="tw-w-full">
+            <thead class="tw-bg-gray-50 tw-border-b tw-border-gray-200">
+              <tr>
+                <th class="tw-w-12 tw-px-6 tw-py-4">
+                  <input type="checkbox"
+                         [checked]="selectedItems.length === currentCitations.length && currentCitations.length > 0"
+                         (change)="handleSelectAll()"
+                         class="tw-w-4 tw-h-4 tw-text-benin-green tw-bg-gray-100 tw-border-gray-300 tw-rounded tw-focus:ring-benin-green tw-focus:ring-2">
+                </th>
+                <th class="tw-px-6 tw-py-4 tw-text-left tw-text-xs tw-font-semibold tw-text-gray-500 tw-uppercase tw-tracking-wider tw-font-montserrat">#</th>
+                <th class="tw-px-6 tw-py-4 tw-text-left tw-text-xs tw-font-semibold tw-text-gray-500 tw-uppercase tw-tracking-wider tw-font-montserrat">Citation</th>
+                <th class="tw-px-6 tw-py-4 tw-text-left tw-text-xs tw-font-semibold tw-text-gray-500 tw-uppercase tw-tracking-wider tw-font-montserrat">Contexte</th>
+                <th class="tw-px-6 tw-py-4 tw-text-center tw-text-xs tw-font-semibold tw-text-gray-500 tw-uppercase tw-tracking-wider tw-font-montserrat">Catégorie</th>
+                <th class="tw-px-6 tw-py-4 tw-text-center tw-text-xs tw-font-semibold tw-text-gray-500 tw-uppercase tw-tracking-wider tw-font-montserrat">Date</th>
+                <th class="tw-px-6 tw-py-4 tw-text-center tw-text-xs tw-font-semibold tw-text-gray-500 tw-uppercase tw-tracking-wider tw-font-montserrat">Statut</th>
+              </tr>
+            </thead>
+            <tbody class="tw-bg-white tw-divide-y tw-divide-gray-200">
+              <tr *ngFor="let citation of currentCitations; let i = index" class="tw-hover:bg-gray-50 tw-transition-colors">
+                <td class="tw-px-6 tw-py-4">
+                  <input type="checkbox" [checked]="selectedItems.includes(citation.id)"
+                         (change)="handleSelectItem(citation.id)"
+                         class="tw-w-4 tw-h-4 tw-text-benin-green tw-bg-gray-100 tw-border-gray-300 tw-rounded tw-focus:ring-benin-green tw-focus:ring-2">
+                </td>
+                <td class="tw-px-6 tw-py-4 tw-text-sm tw-text-gray-900 tw-font-roboto">{{startIndex + i + 1}}</td>
+                <td class="tw-px-6 tw-py-4 tw-text-sm tw-text-gray-900 tw-font-roboto tw-max-w-md italic">"{{citation.citation}}"</td>
+                <td class="tw-px-6 tw-py-4 tw-text-sm tw-text-gray-900 tw-font-roboto tw-max-w-xs">{{citation.contexte}}</td>
+                <td class="tw-px-6 tw-py-4 tw-text-center">
+                  <span class="tw-inline-flex tw-items-center tw-px-2.5 tw-py-0.5 tw-rounded-full tw-text-xs tw-font-medium tw-bg-blue-100 tw-text-blue-800 tw-font-roboto">{{citation.categorie}}</span>
+                </td>
+                <td class="tw-px-6 tw-py-4 tw-text-center tw-text-sm tw-text-gray-900 tw-font-roboto">{{citation.dateCreation}}</td>
+                <td class="tw-px-6 tw-py-4 tw-text-center">
+                  <span class="tw-inline-flex tw-items-center tw-px-2.5 tw-py-0.5 tw-rounded-full tw-text-xs tw-font-medium tw-font-roboto" [ngClass]="getStatusColor(citation.statut)">
+                    {{citation.statut}}
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>

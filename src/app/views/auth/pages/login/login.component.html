@@ -1,0 +1,103 @@
+<div class="min-h-screen bg-gradient-to-br from-benin-green/10 via-white to-benin-blue/10 flex items-center justify-center p-4 font-roboto">
+  <!-- Image de fond avec overlay -->
+  <div 
+    class="absolute inset-0 bg-cover bg-center opacity-10"
+    style="background-image: url('https://readdy.ai/api/search-image?query=Modern%20government%20office%20building%20in%20Benin%20with%20official%20architecture%2C%20clean%20professional%20environment%20with%20natural%20lighting%20and%20contemporary%20design%20elements%20representing%20ministry%20of%20labor&width=1920&height=1080&seq=login-bg-benin-001&orientation=landscape')"
+  ></div>
+
+  <div class="relative w-full max-w-md">
+    <!-- Logo officiel -->
+    <div class="text-center mb-8">
+      <div class="w-24 h-24 mx-auto mb-4">
+        <img 
+          src="https://static.readdy.ai/image/da6891ceab452ef6b6e6edf3741c1098/028cdb0819a99a187d373914410124ab.png" 
+          alt="Logo Ministère du Travail et de la Fonction Publique" 
+          class="w-full h-full object-contain"
+        />
+      </div>
+      <h1 class="text-lg font-bold text-gray-900 leading-tight font-montserrat">MINISTÈRE DU TRAVAIL ET</h1>
+      <h2 class="text-lg font-bold text-gray-900 leading-tight font-montserrat">DE LA FONCTION PUBLIQUE</h2>
+      <p class="text-sm text-benin-green mt-2 font-medium">RÉPUBLIQUE DU BÉNIN</p>
+    </div>
+
+    <!-- Carte de connexion -->
+    <div class="bg-white rounded-2xl shadow-2xl p-8 backdrop-blur-sm border border-white/20">
+      <!-- En-tête -->
+      <div class="text-center mb-8">
+        <h3 class="text-2xl font-bold text-gray-900 mb-2 font-montserrat">CONNEXION</h3>
+        <p class="text-gray-600 text-sm font-roboto">Accédez à votre espace d'administration</p>
+      </div>
+
+      <!-- Formulaire -->
+      <form (ngSubmit)="handleSubmit()" class="space-y-6">
+        <!-- Champ Email -->
+        <div>
+          <label for="email" class="block text-sm font-semibold text-gray-700 mb-2 font-montserrat">
+            Adresse email
+          </label>
+          <div class="relative">
+            <input
+              id="email"
+              type="email"
+              [(ngModel)]="email"
+              name="email"
+              class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-benin-green focus:border-transparent transition-all duration-200 text-sm font-roboto"
+              placeholder="votre@email.gov.bj"
+              required
+            />
+            <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+              <i class="ri-mail-line text-gray-400"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Champ Mot de passe -->
+        <div>
+          <label for="password" class="block text-sm font-semibold text-gray-700 mb-2 font-montserrat">
+            Mot de passe
+          </label>
+          <div class="relative">
+            <input
+              id="password"
+              [type]="showPassword ? 'text' : 'password'"
+              [(ngModel)]="password"
+              name="password"
+              class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-benin-green focus:border-transparent transition-all duration-200 text-sm pr-12 font-roboto"
+              placeholder="••••••••"
+              required
+            />
+            <button
+              type="button"
+              (click)="toggleShowPassword()"
+              class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
+            >
+              <i [ngClass]="showPassword ? 'ri-eye-off-line' : 'ri-eye-line'" class="text-gray-400 hover:text-benin-green transition-colors"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Options -->
+        <div class="flex items-center justify-between">
+          <label class="flex items-center cursor-pointer">
+            <input
+              type="checkbox"
+              [(ngModel)]="rememberMe"
+              name="rememberMe"
+              class="w-4 h-4 text-benin-green bg-gray-100 border-gray-300 rounded focus:ring-benin-green focus:ring-2"
+            />
+            <span class="ml-2 text-sm text-gray-600 font-roboto">Se souvenir de moi</span>
+          </label>
+          
+          <button type="button" class="text-sm text-benin-green hover:text-benin-blue font-medium transition-colors whitespace-nowrap font-roboto">
+            Mot de passe oublié ?
+          </button>
+        </div>
+
+        <!-- Bouton de connexion -->
+        <button
+          type="submit"
+          class="w-full bg-gradient-to-r from-benin-green to-benin-blue hover:from-benin-green/90 hover:to-benin-blue/90 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200 transform hover:scale-[1.02] focus:ring-4 focus:ring-benin-green/20 whitespace-nowrap text-center block font-montserrat"
+        >
+          SE CONNECTER
+        </button>
+      </form>

@@ -160,3 +160,9 @@ button, a, input, select, textarea {
     page-break-after: avoid;
   }
 }
+
+
+/* @import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.min.css";
+@import "primeicons/primeicons.css";
+@import "primeflex/primeflex.css"; */

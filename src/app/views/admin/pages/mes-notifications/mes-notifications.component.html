@@ -1,0 +1,112 @@
+  <div class="bg-white rounded-xl shadow-sm border border-gray-100">
+        <!-- En-tête avec filtres -->
+        <div class="p-6 border-b border-gray-200 bg-gradient-to-r from-benin-green/5 to-benin-blue/5">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h2 class="text-xl font-bold text-gray-900 font-montserrat">Centre de notifications</h2>
+              <p class="text-sm text-gray-600 mt-1 font-roboto">{{notifications.length}} notification(s)</p>
+            </div>
+            <div class="flex items-center space-x-3">
+              <button class="px-4 py-2 bg-benin-green text-white rounded-lg hover:bg-benin-green/80 transition-colors text-sm font-roboto whitespace-nowrap">
+                Marquer tout comme lu
+              </button>
+              <button class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors text-sm font-roboto whitespace-nowrap">
+                Supprimer sélectionnés
+              </button>
+            </div>
+          </div>
+
+          <!-- Filtres -->
+          <div class="flex items-center space-x-4">
+            <div class="flex items-center space-x-2">
+              <span class="text-sm text-gray-600 font-roboto">Filtrer par type:</span>
+              <select [(ngModel)]="filterType" class="px-3 py-1 border border-gray-300 rounded text-sm font-roboto pr-8">
+                <option value="all">Tous</option>
+                <option value="actualite">Actualités</option>
+                <option value="communique">Communiqués</option>
+                <option value="systeme">Système</option>
+                <option value="membre">Membres</option>
+                <option value="document">Documents</option>
+                <option value="rappel">Rappels</option>
+              </select>
+            </div>
+            
+            <div class="flex items-center space-x-2">
+              <input type="checkbox" class="w-4 h-4 text-benin-green bg-gray-100 border-gray-300 rounded focus:ring-benin-green focus:ring-2" 
+                     [checked]="selectedItems.length === notifications.length" 
+                     (change)="handleSelectAll()">
+              <span class="text-sm text-gray-600 font-roboto">Sélectionner tout</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Liste des notifications -->
+        <div class="divide-y divide-gray-200">
+          <div *ngFor="let notification of notifications" 
+               class="p-6 hover:bg-gray-50 transition-colors" 
+               [ngClass]="notification.statut === 'non-lu' ? 'bg-blue-50/30' : ''">
+            <div class="flex items-start space-x-4">
+              <!-- Checkbox -->
+              <input type="checkbox" class="w-4 h-4 text-benin-green bg-gray-100 border-gray-300 rounded focus:ring-benin-green focus:ring-2 mt-1"
+                     [checked]="selectedItems.includes(notification.id)" 
+                     (change)="handleSelectItem(notification.id)">
+
+              <!-- Icône de type -->
+              <div class="w-10 h-10 rounded-full flex items-center justify-center" [ngClass]="getTypeColor(notification.type)">
+                <i class="{{getTypeIcon(notification.type)}} text-lg"></i>
+              </div>
+
+              <!-- Contenu -->
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between mb-2">
+                  <h3 class="text-sm font-semibold font-montserrat" [ngClass]="notification.statut === 'non-lu' ? 'text-gray-900' : 'text-gray-700'">
+                    {{notification.titre}}
+                    <span *ngIf="notification.statut === 'non-lu'" class="ml-2 w-2 h-2 bg-benin-green rounded-full inline-block"></span>
+                  </h3>
+                  <div class="flex items-center space-x-2">
+                    <span class="text-xs font-medium" [ngClass]="getPriorityColor(notification.priorite)">
+                      {{notification.priorite.toUpperCase()}}
+                    </span>
+                    <span class="text-xs text-gray-500 font-roboto">{{notification.dateCreation}}</span>
+                  </div>
+                </div>
+                
+                <p class="text-sm text-gray-600 mb-3 font-roboto">{{notification.message}}</p>
+                
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center space-x-2">
+                    <span class="text-xs text-gray-500 font-roboto">Par: {{notification.auteur}}</span>
+                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium" [ngClass]="getTypeColor(notification.type)">
+                      {{notification.type}}
+                    </span>
+                  </div>
+
+                  <div class="flex items-center space-x-2">
+                    <button *ngIf="notification.statut === 'non-lu'" 
+                            class="text-xs text-benin-green hover:text-benin-blue transition-colors font-roboto"
+                            (click)="markAsRead(notification.id)">
+                      Marquer comme lu
+                    </button>
+                    <button class="text-xs text-red-500 hover:text-red-700 transition-colors font-roboto"
+                            (click)="deleteNotification(notification.id)">
+                      Supprimer
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+          <div class="text-sm text-gray-500 font-roboto">
+            <!-- {{ notifications.filter(n => n.statut === 'non-lu').length }} notification(s) non lue(s) -->
+          </div>
+          <div class="flex items-center space-x-2">
+            <button class="px-3 py-1 text-sm border border-gray-300 rounded hover:bg-gray-50 font-roboto">Précédent</button>
+            <button class="px-3 py-1 text-sm bg-benin-green text-white border border-benin-green rounded font-roboto">1</button>
+            <button class="px-3 py-1 text-sm border border-gray-300 rounded hover:bg-gray-50 font-roboto">Suivant</button>
+          </div>
+        </div>
+      </div>

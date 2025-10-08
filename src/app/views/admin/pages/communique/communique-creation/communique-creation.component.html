@@ -1,0 +1,56 @@
+ <div class="bg-white rounded-xl shadow-sm border border-gray-100">
+        <div class="p-6 border-b border-gray-200 bg-gradient-to-r from-benin-green/5 to-benin-blue/5 flex items-center justify-between">
+          <div>
+            <h2 class="text-xl font-bold text-gray-900 font-montserrat">Création d'un nouveau communiqué</h2>
+            <p class="text-sm text-gray-600 mt-1 font-roboto">Rédigez et publiez vos communications officielles</p>
+          </div>
+          <a routerLink="/communiques-list" class="px-4 py-2 bg-gray-500 text-white font-medium rounded-lg hover:bg-gray-600 transition-colors whitespace-nowrap font-roboto">Voir la liste</a>
+        </div>
+
+        <form (ngSubmit)="handleSubmit()" class="p-6 space-y-6">
+          <!-- Champ Titre -->
+          <div>
+            <label for="title" class="block text-sm font-semibold text-gray-700 mb-2 font-montserrat">Titre</label>
+            <input id="title" type="text" [(ngModel)]="title" name="title"
+                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-benin-green focus:border-transparent text-sm font-roboto"
+                   placeholder="Entrez le titre du communiqué" required>
+          </div>
+
+          <!-- Éditeur de texte -->
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-2 font-montserrat">Résumé du communiqué</label>
+
+            <!-- Zone d'édition -->
+            <textarea [(ngModel)]="content" name="content"
+                      class="w-full h-64 px-4 py-3 border-l border-r border-b border-gray-300 rounded-b-lg focus:ring-2 focus:ring-benin-green focus:border-transparent resize-none text-sm font-roboto"
+                      placeholder="Rédigez votre communiqué ici..." required></textarea>
+          </div>
+
+          <!-- Sélection de publication -->
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-2 font-montserrat">À publier sur l'espace principale ?</label>
+            <div class="relative">
+              <button type="button" (click)="toggleDropdown()"
+                      class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-left focus:ring-2 focus:ring-benin-green focus:border-transparent text-sm flex items-center justify-between font-roboto">
+                <span [ngClass]="publishLocation ? 'text-gray-900' : 'text-gray-500'">{{publishLocation || 'Sélectionner...'}}</span>
+                <i class="ri-arrow-down-s-line transition-transform text-gray-400" [class.rotate-180]="showLocationDropdown"></i>
+              </button>
+
+              <div *ngIf="showLocationDropdown" class="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg">
+                <button *ngFor="let option of publishOptions" type="button"
+                        (click)="selectPublishLocation(option)"
+                        class="w-full px-4 py-3 text-left hover:bg-benin-green/5 text-sm first:rounded-t-lg last:rounded-b-lg transition-colors font-roboto">
+                  {{option}}
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bouton d'action -->
+          <div class="flex justify-center pt-4 border-t border-gray-200">
+            <button type="submit" class="px-8 py-3 bg-gradient-to-r from-benin-green to-benin-blue text-white font-medium rounded-lg hover:shadow-lg transition-all duration-200 whitespace-nowrap font-roboto">
+              Créer
+            </button>
+          </div>
+        </form>
+      </div>

@@ -1,0 +1,49 @@
+  <div class="w-72 bg-white shadow-lg flex flex-col">
+    <!-- Logo et titre -->
+    <div class="p-6 border-b border-gray-200">
+      <div class="flex items-center">
+        <div class="h-16 flex-shrink-0">
+          <img
+            src="https://static.readdy.ai/image/da6891ceab452ef6b6e6edf3741c1098/028cdb0819a99a187d373914410124ab.png"
+            alt="Logo Ministère"
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <!-- <div>
+          <h1 class="text-sm font-bold text-gray-900 leading-tight font-montserrat">MINISTÈRE DU TRAVAIL ET</h1>
+          <h2 class="text-sm font-bold text-gray-900 leading-tight font-montserrat">DE LA FONCTION PUBLIQUE</h2>
+          <p class="text-xs text-benin-green mt-1 font-medium">RÉPUBLIQUE DU BÉNIN</p>
+        </div> -->
+      </div>
+    </div>
+
+    <!-- Menu -->
+    <div class="flex-1 py-4">
+      <div class="px-4 mb-4">
+        <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wider font-montserrat">MENU</h3>
+      </div>
+      <nav class="space-y-1 px-2">
+        <a
+          *ngFor="let item of menuItems"
+          [routerLink]="'/' + item.id"
+          (click)="setActiveMenu(item.id)"
+          class="w-full flex items-center px-3 py-3 text-sm font-medium rounded-lg transition-all duration-200 cursor-pointer"
+          [ngClass]="activeMenu === item.id
+            ? 'bg-gradient-to-r from-benin-green/10 to-benin-blue/10 text-benin-green border-r-4 border-benin-green shadow-sm'
+            : 'text-gray-700 hover:bg-gray-50 hover:text-benin-green'">
+          <i [class]="item.icon + ' mr-3 text-lg'"></i>
+          <span class="font-roboto">{{ item.label }}</span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- Footer du menu -->
+    <div class="p-4 border-t border-gray-200 bg-gradient-to-r from-benin-green/5 to-benin-blue/5">
+      <p class="text-xs text-gray-500 text-center font-roboto">
+        Copyright 2024 © Tous droits réservés.
+      </p>
+      <p class="text-xs text-benin-green text-center mt-1 font-medium">
+        Ministère du Travail - Bénin
+      </p>
+    </div>
+  </div>

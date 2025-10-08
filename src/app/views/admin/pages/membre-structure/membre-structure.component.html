@@ -1,0 +1,82 @@
+  <div class="bg-white rounded-xl shadow-sm border border-gray-100">
+        <div class="p-6 border-b border-gray-200 bg-gradient-to-r from-benin-green/5 to-benin-blue/5 flex items-center justify-between">
+          <div>
+            <h2 class="text-xl font-bold text-gray-900 font-montserrat">Liste des membres de la structure</h2>
+            <p class="text-sm text-gray-600 mt-1 font-roboto">{{membres.length}} élément(s)</p>
+          </div>
+          <button class="px-6 py-2 bg-gradient-to-r from-benin-green to-benin-blue text-white font-medium rounded-lg hover:shadow-lg transition-all duration-200 whitespace-nowrap font-roboto">
+            Ajouter un membre
+          </button>
+        </div>
+
+        <!-- Contrôles de la liste -->
+        <div class="p-6 border-b border-gray-200 flex items-center justify-between">
+          <div class="flex items-center space-x-4">
+            <span class="text-sm text-gray-600 font-roboto">Afficher</span>
+            <select [(ngModel)]="itemsPerPage" class="px-3 py-1 border border-gray-300 rounded text-sm font-roboto">
+              <option [value]="10">10</option>
+              <option [value]="25">25</option>
+              <option [value]="50">50</option>
+              <option [value]="100">100</option>
+            </select>
+            <span class="text-sm text-gray-600 font-roboto">lignes</span>
+          </div>
+
+          <div class="flex items-center space-x-2">
+            <span class="text-sm text-gray-600 font-roboto">Chercher:</span>
+            <input type="text" [(ngModel)]="searchQuery" placeholder="Rechercher..." class="px-3 py-1 border border-gray-300 rounded text-sm font-roboto w-48">
+          </div>
+        </div>
+
+        <!-- Tableau -->
+        <div class="overflow-x-auto">
+          <table class="w-full">
+            <thead class="bg-gray-50 border-b border-gray-200">
+              <tr>
+                <th class="w-12 px-6 py-4 text-left">
+                  <input type="checkbox" [checked]="selectedItems.length === currentMembres.length && currentMembres.length > 0" (change)="handleSelectAll()" class="w-4 h-4 text-benin-green bg-gray-100 border-gray-300 rounded focus:ring-benin-green focus:ring-2">
+                </th>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider font-montserrat">#</th>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider font-montserrat">Nom & Prénoms</th>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider font-montserrat">Fonction</th>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider font-montserrat">Direction</th>
+                <th class="px-6 py-4 text-center text-xs font-semibold text-gray-500 uppercase tracking-wider font-montserrat">Contact</th>
+                <th class="px-6 py-4 text-center text-xs font-semibold text-gray-500 uppercase tracking-wider font-montserrat">Statut</th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+              <tr *ngFor="let membre of currentMembres; let i = index" class="hover:bg-gray-50 transition-colors">
+                <td class="px-6 py-4">
+                  <input type="checkbox" [checked]="selectedItems.includes(membre.id)" (change)="handleSelectItem(membre.id)" class="w-4 h-4 text-benin-green bg-gray-100 border-gray-300 rounded focus:ring-benin-green focus:ring-2">
+                </td>
+                <td class="px-6 py-4 text-sm text-gray-900 font-roboto">{{startIndex + i + 1}}</td>
+                <td class="px-6 py-4">
+                  <div class="text-sm font-medium text-gray-900 font-roboto">{{membre.nom}}</div>
+                  <div class="text-sm text-gray-500 font-roboto">{{membre.prenoms}}</div>
+                </td>
+                <td class="px-6 py-4 text-sm text-gray-900 font-roboto">{{membre.fonction}}</td>
+                <td class="px-6 py-4 text-sm text-gray-900 font-roboto">{{membre.direction}}</td>
+                <td class="px-6 py-4 text-center">
+                  <div class="text-sm text-gray-900 font-roboto">{{membre.telephone}}</div>
+                  <div class="text-sm text-gray-500 font-roboto">{{membre.email}}</div>
+                </td>
+                <td class="px-6 py-4 text-center">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 font-roboto">{{membre.statut}}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+          <div class="text-sm text-gray-500 font-roboto">
+            Lignes {{startIndex + 1}} à {{endIndex}} sur {{membres.length}}
+          </div>
+          <div class="flex items-center space-x-2">
+            <button (click)="setPage(Math.max(1, currentPage - 1))" [disabled]="currentPage === 1" class="px-3 py-1 text-sm border border-gray-300 rounded hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed font-roboto">Précédent</button>
+            <button *ngFor="let p of [].constructor(Math.min(5, totalPages)); let idx = index" (click)="setPage(idx+1)" [ngClass]="currentPage === idx+1 ? 'bg-benin-green text-white border-benin-green' : 'border-gray-300 hover:bg-gray-50'" class="px-3 py-1 text-sm border rounded font-roboto">{{idx+1}}</button>
+            <button (click)="setPage(Math.min(totalPages, currentPage + 1))" [disabled]="currentPage === totalPages" class="px-3 py-1 text-sm border border-gray-300 rounded hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed font-roboto">Suivant</button>
+          </div>
+        </div>
+      </div>
