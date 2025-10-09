@@ -3,11 +3,14 @@ import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { AnimationService } from "../../../../shared/services/animation.service";
 import { thematiques, metiers, structures } from "../../../../shared/models/datas";
+import { PublicService } from "../../../../core/services/public.service";
+import { ConfigService } from "../../../../core/utils/config-service";
+import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
 
 @Component({
   selector: "app-accueil",
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule,TruncateHtmlPipe],
   template: `
     <!-- Slider Hero Section -->
     <section
@@ -23,7 +26,7 @@ import { thematiques, metiers, structures } from "../../../../shared/models/data
         >
           <div class="flex h-full">
             <div
-              *ngFor="let communique of communiques; let i = index"
+              *ngFor="let media of mediaActualites; let i = index"
               class="w-full h-full flex-shrink-0 relative"
             >
               <div
@@ -40,38 +43,38 @@ import { thematiques, metiers, structures } from "../../../../shared/models/data
                       <div
                         class="inline-block bg-white/20 dark:bg-white/10 px-4 py-2 rounded-full text-sm font-medium mb-4"
                       >
-                        {{ communique.type }}
+                        {{ media?.type }}
                       </div>
                       <h1
                         class="text-3xl lg:text-3xl 2xl:text-5xl font-bold mb-6 leading-tight"
                       >
-                        {{ communique.titre }}
+                        {{ media?.actualite?.title }}
                       </h1>
                       <p
                         class="text-lg lg:text-xl 2xl:text-4xl mb-8 text-white/90 font-light"
+                        [innerHTML]=" media?.actualite?.sub_description | truncateHtml:100"
                       >
-                        {{ communique.description }}
                       </p>
                       <div class="flex flex-col sm:flex-row gap-4">
                         <a
                           href="#"
                           class="btn-primary bg-white text-primary-800 hover:bg-gray-100"
                         >
-                          Lire le communiqué
+                          Lire l'article
                         </a>
                         <!-- <a routerLink="/contact" class="btn-secondary border-white text-white hover:bg-white/10">
                           Nous contacter
                         </a> -->
                       </div>
                       <!-- <div class="mt-6 text-sm text-white/80">
-                        <span class="mr-4">📅 {{ communique.date }}</span>
-                        <span>🏛️ {{ communique.source }}</span>
+                        <span class="mr-4">📅 {{ media?.actualite?.created_date  | date:"dd/MMMM/yyyy"}}</span>
+                        <span>🏛️ {{ actualite.source }}</span>
                       </div> -->
                     </div>
                     <div class="hidden lg:block">
                       <img
-                        [src]="communique.image"
-                        [alt]="communique.titre"
+                        [src]="getLink('actualites',media?.actualite?.photo)"
+                        [alt]="media?.actualite?.title"
                         class="rounded-2xl shadow-2xl w-full max-w-3xl mx-auto"
                         loading="lazy"
                       />
@@ -128,7 +131,7 @@ import { thematiques, metiers, structures } from "../../../../shared/models/data
           class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-10"
         >
           <button
-            *ngFor="let communique of communiques; let i = index"
+            *ngFor="let actualite of mediaActualites; let i = index"
             (click)="goToSlide(i)"
             [class]="i === currentSlide ? 'bg-white' : 'bg-white/50'"
             class="w-3 h-3 rounded-full transition-all hover:bg-white/80"
@@ -352,31 +355,28 @@ import { thematiques, metiers, structures } from "../../../../shared/models/data
           <div *ngIf="activeTabCommunique === 'concours'" class="col-span-full">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <div
-                *ngFor="let communique of communiquesConcours"
+                *ngFor="let media of communiquesConcours"
                 class="card p-6 hover:shadow-lg transition-all duration-300"
               >
                 <div class="flex items-start justify-between mb-4">
                   <span
                     class="bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-400 px-3 py-1 rounded-full text-xs font-medium"
                   >
-                    CONCOURS
+                    {{media?.communique?.category}}
                   </span>
-                  <span class="text-xs text-gray-500 dark:text-gray-400">{{
-                    communique.date
-                  }}</span>
+                  <span class="text-xs text-gray-500 dark:text-gray-400"> {{media?.communique?.created_at | date:"dd/MMMM/yyyy"}}</span>
                 </div>
                 <h3
                   class="text-lg font-semibold text-gray-900 dark:text-white mb-3 line-clamp-2"
                 >
-                  {{ communique.titre }}
+                   {{media?.communique?.title}}
                 </h3>
                 <p
-                  class="text-gray-600 dark:text-gray-300 mb-4 text-sm line-clamp-3"
+                  class="text-gray-600 dark:text-gray-300 mb-4 text-sm line-clamp-3" [innerHTML]=" media?.communique?.description | truncateHtml:100"
                 >
-                  {{ communique.description }}
                 </p>
                 <a
-                  href="#"
+                  routerLink="/communiques/{{media?.communique?.id}}"
                   class="text-primary-800 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300 font-medium text-sm"
                 >
                   Lire le communiqué →
@@ -389,31 +389,28 @@ import { thematiques, metiers, structures } from "../../../../shared/models/data
           <div *ngIf="activeTabCommunique === 'autres'" class="col-span-full">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <div
-                *ngFor="let communique of autresCommuniques"
+                *ngFor="let media of autresCommuniques"
                 class="card p-6 hover:shadow-lg transition-all duration-300"
               >
                 <div class="flex items-start justify-between mb-4">
                   <span
                     class="bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-400 px-3 py-1 rounded-full text-xs font-medium"
                   >
-                    {{ communique.type }}
+                    {{media?.communique?.category}}
                   </span>
-                  <span class="text-xs text-gray-500 dark:text-gray-400">{{
-                    communique.date
-                  }}</span>
+                  <span class="text-xs text-gray-500 dark:text-gray-400">{{media?.communique?.created_at | date:"dd/MMMM/yyyy"}}</span>
                 </div>
                 <h3
                   class="text-lg font-semibold text-gray-900 dark:text-white mb-3 line-clamp-2"
                 >
-                  {{ communique.titre }}
+                 {{media?.communique?.title}}
                 </h3>
                 <p
-                  class="text-gray-600 dark:text-gray-300 mb-4 text-sm line-clamp-3"
+                  class="text-gray-600 dark:text-gray-300 mb-4 text-sm line-clamp-3" [innerHTML]=" media?.communique?.description | truncateHtml:100"
                 >
-                  {{ communique.description }}
                 </p>
                 <a
-                  href="#"
+                   routerLink="/communiques/{{media?.communique?.id}}"
                   class="text-primary-800 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300 font-medium text-sm"
                 >
                   Lire le communiqué →
@@ -424,7 +421,7 @@ import { thematiques, metiers, structures } from "../../../../shared/models/data
         </div>
 
         <div class="text-center mt-8">
-          <a href="/actualites" class="btn-secondary">
+          <a href="/communiques" class="btn-secondary">
             Voir tous les communiqués
           </a>
         </div>
@@ -454,7 +451,7 @@ import { thematiques, metiers, structures } from "../../../../shared/models/data
           role="list"
         >
           <div
-            *ngFor="let service of servicesEnLigne"
+            *ngFor="let media of servicesEnLigne"
             class="card p-6 text-center hover:scale-105 transition-all duration-300"
             role="listitem"
           >
@@ -462,20 +459,20 @@ import { thematiques, metiers, structures } from "../../../../shared/models/data
               class="w-16 h-16 bg-secondary-100 dark:bg-secondary-900/30 rounded-lg flex items-center justify-center mx-auto mb-6"
               aria-hidden="true"
             >
-              <span class="text-3xl">{{ service.icone }}</span>
+              <span class="text-3xl">📄</span>
             </div>
             <h3
               class="text-xl font-semibold text-gray-900 dark:text-white mb-3"
             >
-              {{ service.nom }}
+              {{ media?.prestation?.name }}
             </h3>
-            <p class="text-gray-600 dark:text-gray-300 mb-6">
+            <!--<p class="text-gray-600 dark:text-gray-300 mb-6">
               {{ service.description }}
-            </p>
+            </p>-->
             <a
-              [href]="service.url"
+              [href]="media?.prestation?.link"
               class="btn-primary text-sm"
-              [attr.aria-label]="'Accéder au service: ' + service.nom"
+              [attr.aria-label]="'Accéder au service: ' + media?.prestation?.name "
             >
               Accéder au service
             </a>
@@ -619,14 +616,14 @@ import { thematiques, metiers, structures } from "../../../../shared/models/data
 
         <div class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-2 gap-6">
           <article
-            *ngFor="let actualite of actualitesRecentes"
+            *ngFor="let media of actualitesRecentes"
             class="card overflow-hidden hover:shadow-lg transition-all duration-300"
           >
             <div class="grid grid-cols-1 md:grid-cols-3 gap-0">
               <div class="md:col-span-1">
                 <img
-                  [src]="actualite.imageUrl"
-                  [alt]="actualite.titre"
+                  [src]="getLink('actualites',media?.actualite?.photo)"
+                  [alt]="media?.actualite?.title"
                   class="w-full h-48 md:h-full object-cover"
                 />
               </div>
@@ -635,22 +632,22 @@ import { thematiques, metiers, structures } from "../../../../shared/models/data
                   <span
                     class="bg-primary-800 dark:bg-primary-700 text-white px-3 py-1 rounded-full text-sm font-medium mr-3"
                   >
-                    {{ actualite.categorie }}
+                    {{ media?.actualite?.categorie }}
                   </span>
                   <span class="text-sm text-gray-500 dark:text-gray-400">
-                    {{ actualite.datePublication | date: "d MMMM yyyy":"fr" }}
+                    {{ media?.actualite?.created_at | date: "d MMMM yyyy":"fr" }}
                   </span>
                 </div>
                 <h3
                   class="text-xl font-semibold text-gray-900 dark:text-white mb-3"
                 >
-                  {{ actualite.titre }}
+                  {{ media?.actualite?.title }}
                 </h3>
-                <p class="text-gray-600 dark:text-gray-300 mb-4">
-                  {{ actualite.resume }}
+                <p class="text-gray-600 dark:text-gray-300 mb-4" [innerHTML]=" media?.actualite?.sub_description | truncateHtml:100">
+                  
                 </p>
                 <a
-                  [routerLink]="['/actualites', actualite.id]"
+                  [routerLink]="['/actualites', media?.actualite?.id]"
                   class="text-primary-800 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300 font-medium"
                 >
                   Lire la suite →
@@ -862,11 +859,14 @@ import { thematiques, metiers, structures } from "../../../../shared/models/data
             <span class="text-gray-900 dark:text-white font-medium">{{
               lien.nom
             }}</span>
-            <button
+            <a
+            type="button"
+              href="{{lien.link}}"
+              target="_blank"
               class="bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-400 px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-200 dark:hover:bg-primary-800/50 transition-colors"
             >
               J'accède
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -893,98 +893,11 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
   structuresMetiers: any[] = [];
   structuresMetiersFiltrees: any[] = [];
 
-  communiques = [
-    {
-      titre:
-        "Session extraordinaire de la Commission Nationale de Concertation, de Consultation et de Négociations Collectives",
-      description:
-        "Le gouvernement et les partenaires sociaux évaluent les préparatifs pour une bonne rentrée scolaire 2025-2026",
-      type: "COMMUNIQUÉ",
-      date: "20 janvier 2024",
-      // source: "Direction Générale de la Fonction Publique",
-      image:
-        "https://www.travail.gouv.bj/storage/actualites/big/session-extraordinaire-de-la-commission-nationale-de-concertation-de-consultation-et-de-negociations-collectives-big.JPG",
-    },
-    {
-      titre:
-        "Suivi de la mise en œuvre des projets du portefeuille « État de droit, démocratie, gouvernance et cohésion sociale »",
-      description:
-        "Le Bénin et le PNUD passent en revue les actions du premier semestre 2025",
-      type: "COMMUNIQUÉ",
-      date: "18 janvier 2024",
-      // source: "Direction Générale du Travail",
-      image:
-        "https://www.travail.gouv.bj/storage/actualites/big/suivi-de-la-mise-en-oeuvre-des-projets-du-portefeuille-etat-de-droit-democratie-gouvernance-et-cohesion-sociale-big.jpeg",
-    },
-    {
-      titre: "Lutte contre les pires formes de travail des enfants dans la Donga",
-      description: "Des enfants retirés et des auteurs poursuivis",
-      type: "COMMUNIQUÉ",
-      date: "15 janvier 2024",
-      // source: "Secrétariat Général",
-      image:
-        "https://www.travail.gouv.bj/storage/actualites/big/lutte-contre-les-pires-formes-de-travail-des-enfants-dans-la-donga-big.jpeg",
-    },
-    {
-      titre:
-        "Renforcement des capacités des acteurs des Ressources humaines en matière de GRH basée sur les compétences",
-      description:
-        "Un pas vers une Administration publique performante au service de l'intérêt général",
-      type: "COMMUNIQUÉ",
-      date: "12 janvier 2024",
-      // source: "Direction Générale du Travail",
-      image:
-        "https://www.travail.gouv.bj/storage/actualites/big/renforcement-des-capacites-des-acteurs-des-ressources-humaines-en-matiere-de-grh-basee-sur-les-competences-big.jpg",
-    },
-  ];
+  mediaActualites:any = [];
 
-  communiquesConcours = [
-    {
-      titre: "Concours de recrutement de 500 Inspecteurs du Travail",
-      description:
-        "Ouverture des inscriptions pour le concours de recrutement d'Inspecteurs du Travail. Dossiers à déposer avant le 15 mars 2024.",
-      date: "20 janvier 2024",
-      type: "CONCOURS",
-    },
-    {
-      titre: "Concours d'entrée à l'École Nationale d'Administration",
-      description:
-        "Recrutement de 200 élèves administrateurs pour la promotion 2024-2026. Inscription en ligne obligatoire.",
-      date: "18 janvier 2024",
-      type: "CONCOURS",
-    },
-    {
-      titre: "Concours de recrutement de Conseillers en Emploi",
-      description:
-        "150 postes de Conseillers en Emploi à pourvoir dans les directions départementales. Niveau Bac+4 requis.",
-      date: "15 janvier 2024",
-      type: "CONCOURS",
-    },
-  ];
+  communiquesConcours:any = [ ];
 
-  autresCommuniques = [
-    {
-      titre: "Mise en place du nouveau système de gestion des carrières",
-      description:
-        "Le ministère annonce la mise en service d'un nouveau système informatisé pour la gestion des carrières des agents publics.",
-      date: "22 janvier 2024",
-      type: "INFORMATION",
-    },
-    {
-      titre: "Suspension temporaire des services de visa de contrat",
-      description:
-        "En raison de la maintenance du système informatique, les services de visa de contrat seront suspendus du 25 au 27 janvier 2024.",
-      date: "20 janvier 2024",
-      type: "AVIS",
-    },
-    {
-      titre: "Nouvelle réglementation sur le télétravail",
-      description:
-        "Publication du décret encadrant le télétravail dans l'administration publique béninoise. Entrée en vigueur le 1er février 2024.",
-      date: "18 janvier 2024",
-      type: "RÉGLEMENTATION",
-    },
-  ];
+  autresCommuniques:any = [];
 
   evenementsDeClencheurs = [
     {
@@ -995,7 +908,7 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
         {
           nom: "Communiqués concours",
           type: "Communiqués",
-          url: "/actualites",
+          url: "/communiques?nature=Concours",
           disponible: true,
         },
         {
@@ -1007,7 +920,7 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
         {
           nom: "C'est quoi être fonctionnaire",
           type: "FM",
-          url: "/fiches-metiers",
+          url: "/fiches-metiers?nature=Carrière",
           disponible: true,
         },
       ],
@@ -1022,7 +935,7 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
         {
           nom: "Éthique du fonctionnaire",
           type: "FM",
-          url: "/fiches-metiers",
+          url: "/fiches-metiers?nature=Carrière",
           disponible: true,
         },
         {
@@ -1034,16 +947,16 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
         {
           nom: "Rémunération & Avantages",
           type: "FM",
-          url: "/fiches-metiers",
+          url: "/fiches-metiers?nature=Carrière",
           disponible: true,
         },
         {
           nom: "Discipline et sanction",
           type: "FM",
-          url: "/fiches-metiers",
+          url: "/fiches-metiers?nature=Carrière",
           disponible: true,
         },
-        { nom: "Retraite", type: "FM", url: "/fiches-metiers", disponible: true },
+        { nom: "Retraite", type: "FM", url: "/fiches-metiers?nature=Carrière", disponible: true },
       ],
     },
     {
@@ -1055,31 +968,31 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
         {
           nom: "Déclarations Obligatoires",
           type: "FM",
-          url: "/fiches-metiers",
+          url: "/fiches-metiers?nature=Social",
           disponible: true,
         },
         {
           nom: "Relations Sociales",
           type: "FM",
-          url: "/fiches-metiers",
+          url: "/fiches-metiers?nature=Social",
           disponible: true,
         },
         {
           nom: "Sécurité au Travail",
           type: "FM",
-          url: "/fiches-metiers",
+          url: "/fiches-metiers?nature=Social",
           disponible: true,
         },
         {
           nom: "Formation des Salariés",
           type: "FM",
-          url: "/fiches-metiers",
+          url: "/fiches-metiers?nature=Social",
           disponible: true,
         },
         {
           nom: "Contentieux Social",
           type: "FM",
-          url: "/fiches-metiers",
+          url: "/fiches-metiers?nature=Social",
           disponible: true,
         },
       ],
@@ -1093,19 +1006,19 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
         {
           nom: "Mes droits et obligatoires",
           type: "FM",
-          url: "/fiches-metiers",
+          url: "/fiches-metiers?nature=Sécurité",
           disponible: true,
         },
         {
           nom: "Sécurité sociale",
           type: "FM",
-          url: "/fiches-metiers",
+          url: "/fiches-metiers?nature=Sécurité",
           disponible: true,
         },
         {
           nom: "Résolution de conflits",
           type: "FM",
-          url: "/fiches-metiers",
+          url: "/fiches-metiers?nature=Sécurité",
           disponible: true,
         },
       ],
@@ -1120,7 +1033,7 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
         {
           nom: "Premier emploi",
           type: "FM",
-          url: "/fiches-metiers",
+          url: "/fiches-metiers?nature=Carrière",
           disponible: true,
         },
         {
@@ -1132,7 +1045,7 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
         {
           nom: "Entrepreneuriat",
           type: "FM",
-          url: "/fiches-metiers",
+          url: "/fiches-metiers?nature=Carrière",
           disponible: true,
         },
       ],
@@ -1170,102 +1083,9 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
     },
   ];
 
-  servicesEnLigne = [
-    {
-      nom: "Mes actes en ligne",
-      description: "Accédez à vos documents administratifs en quelques clics.",
-      icone: "📄",
-      url: "#",
-    },
-    {
-      nom: "Visa de contrat",
-      description: "Demandez le visa de contrat pour vos employés.",
-      icone: "✅",
-      url: "#",
-    },
-    {
-      nom: "Attestation CNSS",
-      description: "Obtenez votre attestation d'immatriculation CNSS.",
-      icone: "🏛️",
-      url: "#",
-    },
-    {
-      nom: "Permis de travail",
-      description: "Demandez un permis de travail pour les étrangers.",
-      icone: "🌍",
-      url: "#",
-    },
-  ];
+  servicesEnLigne:any = [];
 
-  actualitesRecentes = [
-    {
-      id: 4,
-      titre:
-        "Concours de recrutement de 172 fonctionnaires de l'État au profit au profit du MEF",
-      resume:
-        "Reprise de la composition dans le corps des Ingénieurs de la Statistique et celui des Ingénieurs des Services Techniques des Travaux Publics option BTP, pour le samedi 15 novembre 2025",
-      contenu:
-        "Reprise de la composition dans le corps des Ingénieurs de la Statistique et celui des Ingénieurs des Services Techniques des Travaux Publics option BTP, pour le samedi 15 novembre 2025",
-      imageUrl: "https://www.travail.gouv.bj/assets/images/tour2.jpeg",
-      datePublication: new Date("2023-12-20"),
-      auteur: "Cabinet du Ministre",
-      categorie: "Communiqués",
-      slug: "communiques",
-      tags: ["forum", "jeunes", "emploi", "entreprises"],
-    },
-    {
-      id: 5,
-      titre:
-        "Session extraordinaire de la Commission Nationale de Concertation, de Consultation et de Négociations Collectives",
-      resume:
-        "Le gouvernement et les partenaires sociaux évaluent les préparatifs pour une bonne rentrée scolaire 2025-2026",
-      contenu: `Une session extraordinaire de la Commission Nationale de Concertation, de Consultation et de Négociations Collectives s’est tenue ce mardi 09 septembre 2025 à la salle des fêtes des tours administratives. Objectif : faire le point sur la rentrée scolaire et universitaire à venir, dans un climat de dialogue entre gouvernement et syndicats. Présidée par le Ministre d’État chargé du Développement et de la Coordination de l’Action Gouvernementale, Abdoulaye BIO TCHANÉ, la cérémonie officielle d’ouverture de cette session s’est déroulée en présence d’une forte délégation ministérielle et de nombreux acteurs du secteur éducatif.
-
-Cette session a permis aux représentants syndicaux de soumettre leurs doléances et revendications aux autorités gouvernementales, dans une logique de concertation constructive. Il s’agissait notamment d’interpeller l’exécutif sur les conditions de travail des enseignants, la gestion des carrières, l’équité dans la répartition des ressources, et la nécessité d’un dialogue social plus structuré et permanent.
-
-Bilan positif, mais vigilance maintenue
-Dans son allocution, le Ministre d'État Abdoulaye BIO TCHANÉ a salué les efforts déployés collectivement au cours des dernières années, qui ont permis une nette amélioration des résultats aux examens nationaux : CEP : 89,81 % en 2025 contre 89,67 % en 2024 ; BEPC : 77,25 % contre 73,74 % ; Baccalauréat : 73,02 %, en forte progression par rapport aux 56,91 % enregistrés l’an passé.
-Ces résultats, a-t-il souligné, sont le fruit des réformes engagées, du professionnalisme des enseignants et du dialogue constant avec les partenaires sociaux.
-
-Maintenir le cap des réformes
-Toutefois, le ministre d’État a reconnu que des défis majeurs demeurent : amélioration des conditions de vie et de travail des enseignants, adaptation des curricula, répartition équitable des infrastructures, inclusion numérique, et réduction des inégalités d’accès à l’éducation.
-Le gouvernement, selon lui, reste engagé dans la réalisation de l’Objectif de Développement Durable n°4 qui est de garantir une éducation inclusive, équitable et de qualité. Il entend poursuivre les réformes, en comptant sur les ressources nationales comme les cantines scolaires et la formation technique, tout en renforçant la collaboration avec les partenaires au développement.
-
-Le gouvernement était représenté par plusieurs membres de premier plan, notamment :
-Adidjatou MATHYS (MTFP), Yvon DETCHENOU, (GS-MJL),  Salimane KARIMOU (MEMP), Véronique TOGNIFODE (MESTFP), Éléonore YAYI LADEKAN (MESRS), Rodrigue CHAOU, Directeur Général du Budget, représentant le Ministre de l’Économie et des Finances.
-
-Syndicats et patronat à la table des échanges
-Du côté des partenaires sociaux, on notait la présence des principales centrales syndicales du pays, notamment : la Confédération Syndicale des Travailleurs du Bénin (CSTB) ; la Confédération des Organisations Syndicales Indépendantes du Bénin (COSI-Bénin) ; la Confédération des Syndicats Autonomes du Bénin (CSA-Bénin).
-Les représentants du Conseil National du Patronat du Bénin (CNP-Bénin) et de la Confédération Nationale des Employeurs du Bénin (CONEB) ont également pris part aux travaux, marquant ainsi la diversité et l'inclusivité des parties prenantes impliquées dans la gouvernance du système éducatif.
-
-En termes de diligences, le Gouvernement a mis à disposition, une avance de trésorerie de plus d'un milliard cinq cents millions de FCFA. Les primes de rentrée pour les enseignants et les prestations des AME seront réglées dans la période du 20 au 25 septembre. Les avances de trésorerie pour les besoins de fonctionnement au 1er trimestre des établissements sont également disponibles.
-
-Un appel à l’unité et à la responsabilité
-En conclusion, le Ministre d’État a renouvelé la reconnaissance du gouvernement à l’endroit des partenaires sociaux, des enseignants, des parents d’élèves et des apprenants. Citant Kofi Annan, il a appelé à faire de l’éducation un pilier de paix, de justice sociale et de prospérité partagée.`,
-      imageUrl:
-        "https://www.travail.gouv.bj/storage/actualites/big/session-extraordinaire-de-la-commission-nationale-de-concertation-de-consultation-et-de-negociations-collectives-big.JPG",
-      datePublication: new Date("2025-09-09 18:44:48"),
-      auteur: "Direction Générale du Travail",
-      categorie: "Comptes rendus",
-      slug: "comptes-rendus",
-      tags: ["télétravail", "réglementation", "flexibilité"],
-    },
-    {
-      id: 6,
-      titre: "Audience au Cabinet du MTFP",
-      resume:
-        "Le Directeur Général du CRADAT reçu en audience par le Ministre Adidjatou MATHYS",
-      contenu: `Suite à la formation organisée par le Centre Régional d’Administration du Travail au profit des Inspecteurs du travail, des médecins du travail et des partenaires sociaux du 21 au 25 juillet 2025 à Cotonou, le Directeur Général du CRADAT, Arsène Armand HIEN est allé rendre compte dans la soirée du jeudi 24 juillet 2025, au Ministre Adidjatou MATHYS de son déroulement. Ladite formation a porté sur le thème : « Inspection du travail à l’ère de l’intelligence artificielle ». Elle s’inscrit dans le cadre de la mise en œuvre du programme d’activités 2025 : volet formation foraine dans les Etats membres de l’institution africaine. Le DG CRADAT se dit satisfait de la tenue de cette formation au Bénin et de la participation active des bénéficiaires. 
-Les deux personnalités ont aussi abordé des points relatifs au fonctionnement et à la dynamisation du CRADAT.`,
-      imageUrl:
-        "https://www.travail.gouv.bj/storage/actualites/big/audience-au-cabinet-du-mtfp-big.jpeg",
-      datePublication: new Date("2023-12-10"),
-      auteur: "Direction Générale de la Fonction Publique",
-      categorie: "Comptes rendus",
-      slug: "comptes-rendus",
-      tags: ["digitalisation", "fonction publique", "efficacité"],
-    },
-  ];
+  actualitesRecentes:any = [];
 
   communiquesSidebar = [
     {
@@ -1291,20 +1111,16 @@ Les deux personnalités ont aussi abordé des points relatifs au fonctionnement 
   ];
 
   liensUtiles = [
-    { nom: "Présidence de la République" },
-    { nom: "Organisations Internationales du Travail" },
-    { nom: "Agence des Services et Systèmes d'Information" },
-    {
-      nom: "Fonds National de Promotion de l'Entreprise et de l'Emploi des Jeunes",
-    },
-    { nom: "Portail National des Services" },
-    { nom: "Agri-Carrière" },
+    { nom: "Présidence de la République",link:"https://presidence.bj" },
+    { nom: "Agence des Systèmes d'Information et du Numérique",link:"https://asin.bj" },
+    { nom: "Portail National des Services Publics",link:"https://service-public.bj" },
   ];
 
-  constructor(private animationService: AnimationService) {}
+  constructor(private animationService: AnimationService,private publicService:PublicService) {}
 
   ngOnInit() {
     this.startSlideShow();
+    this.getAll()
     this.structuresMetiers = structures.map((structure) => {
       const metiersDeLaStructure = metiers.filter(
         (m) => m.structureId === structure.id
@@ -1316,6 +1132,19 @@ Les deux personnalités ont aussi abordé des points relatifs au fonctionnement 
       };
     });
     this.filtrerParThematique("toutes");
+  }
+
+
+  getAll(){
+    this.publicService.getAccueil().subscribe((res:any)=>{
+      this.mediaActualites=res.data?.actualites
+      this.communiquesConcours=res.data?.communiques?.filter((item:any) => item.communique?.category === 'Concours')
+      this.autresCommuniques=res.data?.communiques?.filter((item:any) => item.communique?.category === 'Activité')
+      this.servicesEnLigne=res.data?.prestations
+      this.actualitesRecentes=res.data?.actualites
+
+      console.log(res);
+    })
   }
 
   ngAfterViewInit() {
@@ -1338,13 +1167,13 @@ Les deux personnalités ont aussi abordé des points relatifs au fonctionnement 
   }
 
   nextSlide() {
-    this.currentSlide = (this.currentSlide + 1) % this.communiques.length;
+    this.currentSlide = (this.currentSlide + 1) % this.mediaActualites.length;
   }
 
   previousSlide() {
     this.currentSlide =
       this.currentSlide === 0
-        ? this.communiques.length - 1
+        ? this.mediaActualites.length - 1
         : this.currentSlide - 1;
   }
 
@@ -1415,5 +1244,9 @@ Les deux personnalités ont aussi abordé des points relatifs au fonctionnement 
         (structure) => structureIdsWithMetier.includes(structure.id)
       );
     }
+  }
+
+  getLink(dir:any,photo:any){
+    return`${ConfigService.toFile("storage")}/${dir}/${photo}`
   }
 }

@@ -5,6 +5,7 @@ import { provideAnimationsAsync } from "@angular/platform-browser/animations/asy
 import { provideRouter } from "@angular/router";
 import { routes } from "./app/app.routes";
 import { RouterOutlet } from "@angular/router";
+import { provideHttpClient } from "@angular/common/http";
 
 @Component({
   selector: "app-root",
@@ -25,5 +26,7 @@ bootstrapApplication(App, {
     provideClientHydration(),
     provideAnimations(),
     provideAnimationsAsync(),
+    provideHttpClient(), // ✅ Ajout obligatoire
+
   ],
 });
