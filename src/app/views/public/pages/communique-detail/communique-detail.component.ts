@@ -1,29 +1,10 @@
-import { Component, OnInit } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { ActivatedRoute, RouterModule } from "@angular/router";
-import { Actualite } from "../../../../shared/models/actualite.model";
-import { PublicService } from "../../../../core/services/public.service";
-import { ConfigService } from "../../../../core/utils/config-service";
-
-
-
-interface ShareLinks {
-  facebook: string;
-  twitter: string;
-  linkedin: string;
-  whatsapp: string;
-  telegram: string;
-}
-interface Network {
-  name: string;
-  url: string;
-  svg: string;
-  colorClass: string;
-}
-
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+import { Actualite } from '../../../../shared/models/actualite.model';
 
 @Component({
-  selector: "app-actualite-detail",
+  selector: "app-communique-detail",
   standalone: true,
   imports: [CommonModule, RouterModule],
   template: `
@@ -60,36 +41,76 @@ interface Network {
               <span
                 class="bg-primary-800 dark:bg-primary-700 text-white px-4 py-2 rounded-full text-sm font-medium mr-4"
               >
-               Actualité
+                {{ actualite.categorie }}
               </span>
               <span class="text-gray-500 dark:text-gray-400">{{
-                actualite?.created_at | date : "d MMMM yyyy" : "fr"
+                actualite.datePublication | date : "d MMMM yyyy" : "fr"
               }}</span>
             </div>
             <h1
               class="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6 leading-tight"
             >
-              {{ actualite?.title }}
+              {{ actualite.titre }}
             </h1>
-            <p class="text-xl text-gray-600 dark:text-gray-300 leading-relaxed" [innerHTML]=" actualite?.sub_description">
-            
+            <p class="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
+              {{ actualite.resume }}
             </p>
           </header>
 
           <!-- Image -->
           <div class="mb-8">
             <img
-              [src]="getLink('actualites/big',actualite?.big_photo)"
-              [alt]="actualite?.title"
+              [src]="actualite.imageUrl"
+              [alt]="actualite.titre"
               class="w-full h-64 lg:h-96 object-cover rounded-2xl shadow-lg"
             />
           </div>
 
           <!-- Contenu -->
           <div class="prose prose-lg dark:prose-invert max-w-none">
-            <p [innerHTML]=" actualite?.description"> </p>
+            <p>
+              Le Ministère du Travail et de la Fonction Publique de la
+              République du Bénin franchit une étape majeure dans sa
+              transformation numérique avec le lancement officiel de son nouveau
+              portail en ligne dédié à l'emploi et aux services administratifs.
+            </p>
 
-     
+            <h2>Une plateforme révolutionnaire</h2>
+            <p>
+              Cette nouvelle plateforme digitale représente un investissement
+              stratégique de plus de 2 milliards de FCFA dans la modernisation
+              des services publics. Elle permettra aux citoyens béninois
+              d'accéder facilement à une gamme complète de services en ligne,
+              24h/24 et 7j/7.
+            </p>
+
+            <h3>Fonctionnalités principales</h3>
+            <ul>
+              <li>
+                Recherche d'emploi personnalisée avec matching intelligent
+              </li>
+              <li>Dépôt de CV et gestion de profil professionnel</li>
+              <li>Suivi des candidatures en temps réel</li>
+              <li>Services administratifs dématérialisés</li>
+              <li>Formation continue et certification professionnelle</li>
+            </ul>
+
+            <h2>Impact attendu</h2>
+            <p>
+              Selon les projections du Ministère, cette plateforme devrait
+              permettre de réduire le délai moyen de recherche d'emploi de 30%
+              et d'améliorer significativement l'efficacité des processus
+              administratifs. Plus de 500 000 utilisateurs sont attendus dans
+              les 12 premiers mois.
+            </p>
+
+            <blockquote>
+              "Cette initiative s'inscrit parfaitement dans la vision du
+              gouvernement de faire du Bénin un hub numérique en Afrique de
+              l'Ouest. Nous mettons la technologie au service de nos citoyens
+              pour leur faciliter l'accès à l'emploi."
+              <cite>- Dr. Adidjatou MATHYS, Ministre du Travail</cite>
+            </blockquote>
           </div>
 
           <!-- Tags -->
@@ -110,23 +131,45 @@ interface Network {
           </div>
 
           <!-- Partage -->
-         <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
-  <h4 class="text-sm font-semibold text-gray-900 dark:text-white mb-4">
-    Partager cet article :
-  </h4>
-  <div class="flex space-x-4">
-    <ng-container *ngFor="let net of networks">
-      <a [href]="net.url" target="_blank" rel="noopener noreferrer"
-         class="flex items-center space-x-2 transition-colors"
-         [ngClass]="net.colorClass">
-        <span [innerHTML]="net.svg"></span>
-        <span>{{ net.name }}</span>
-      </a>
-    </ng-container>
-  </div>
-</div>
-
-
+          <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
+            <h4
+              class="text-sm font-semibold text-gray-900 dark:text-white mb-4"
+            >
+              Partager cet article :
+            </h4>
+            <div class="flex space-x-4">
+              <button
+                class="flex items-center space-x-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
+              >
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"
+                  />
+                </svg>
+                <span>Twitter</span>
+              </button>
+              <button
+                class="flex items-center space-x-2 text-blue-700 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors"
+              >
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"
+                  />
+                </svg>
+                <span>Facebook</span>
+              </button>
+              <button
+                class="flex items-center space-x-2 text-blue-800 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 transition-colors"
+              >
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M22.23 0H1.77C.8 0 0 .77 0 1.72v20.56C0 23.23.8 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.2 0 22.23 0zM7.27 20.1H3.65V9.24h3.62V20.1zM5.47 7.76h-.03c-1.22 0-2-.83-2-1.87 0-1.06.8-1.87 2.05-1.87 1.24 0 2 .8 2.02 1.87 0 1.04-.78 1.87-2.05 1.87zM20.34 20.1h-3.63v-5.8c0-1.45-.52-2.45-1.83-2.45-1 0-1.6.67-1.87 1.32-.1.23-.11.55-.11.88v6.05H9.28s.05-9.82 0-10.84h3.63v1.54a3.6 3.6 0 0 1 3.26-1.8c2.37 0 4.15 1.55 4.15 4.9v6.2h.02z"
+                  />
+                </svg>
+                <span>LinkedIn</span>
+              </button>
+            </div>
+          </div>
         </article>
       </div>
     </div>
@@ -186,9 +229,9 @@ interface Network {
     `,
   ],
 })
-export class ActualiteDetailComponent implements OnInit {
-  actualite: any= null;
-  actualiteId!: any;
+export class CommuniqueDetailComponent {
+actualite: Actualite | null = null;
+  actualiteId!: number;
 articlesSimilaires: Actualite[]=[];
   articles: Actualite[] = [
     {
@@ -345,160 +388,41 @@ Les deux personnalités ont aussi abordé des points relatifs au fonctionnement 
     },
   ];
 
-    networks: Network[] = [];
-
-  constructor(private route: ActivatedRoute,private publicService:PublicService) {}
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
-      this.actualiteId = params["id"];
-      this.getActualite()
+      this.actualiteId = +params["id"];
+      this.actualite = this.articles.find(
+        (a) => a.id === this.actualiteId
+      ) as Actualite;
 
-     // this.articlesSimilaires = this.articles.filter(a=> a.id !== this.actualiteId).slice(0,3);
+      this.articlesSimilaires = this.articles.filter(a=> a.id !== this.actualiteId).slice(0,3);
     });
-    }
+    // Simuler la récupération de l'actualité par ID
+//     this.actualite = {
+//       id: 1,
+//       titre:
+//         "Ouverture des travaux de la 2ᵉ session ordinaire du Comité Directeur National de lutte contre le travail des enfants",
+//       resume:
+//         "La deuxième session ordinaire du Comité Directeur National (CDN) de lutte contre le travail des enfants s’est ouverte ce mardi 23 septembre 2025 à la salle des fêtes des Tours Administratives à Cotonou. La cérémonie d’ouverture a connu, entre autres, la présence de la représentante du Conseil National du Patronat du Bénin (CNP-Bénin), de la représentante de la CONEB, du président de l’OBISACOTE, de la représentante du représentant résident de l’UNICEF, des membres du cabinet du ministre du Travail et de la Fonction Publique, des directeurs centraux, généraux et techniques, ainsi que des représentants des ministères, des confédérations syndicales et des ONG impliquées dans la chaîne de protection de l’enfant.",
+//       contenu: `Au nombre des intervenants, le Directeur Général du Travail, Edgard Dahoui, a souhaité la bienvenue aux participants. À sa suite, le président de l’OBISACOTE a relevé un point essentiel de l’ordre du jour : l’enrichissement et la prévalidation du rapport décennal 2014-2024 en matière de lutte contre le travail des enfants. Ce rapport revêt trois missions essentielles au-delà des objectifs. « La première mission est une mission rétrospective. La 2e mission est de faire le bilan et la 3e mission est une mission prospective. Le rapport permettra in fine de booster la lutte contre le travail des enfants et c’est pour cela que notre détermination au sein du CDN est capitale pour que nous puissions arriver à cette fin », a-t-il indiqué.
 
+// Prenant la parole au nom du Conseil National du Patronat, Marlyse Hounon a rappelé l’engagement des entreprises et leur rôle dans la scolarisation des enfants vulnérables : « L’entreprise ne peut prospérer sur les ruines de l’enfance », a-t-elle souligné, tout en évoquant la préparation de la conférence mondiale 2026 sur le travail des enfants et l’importance de la réédition de la campagne « Tolérance zéro au travail des enfants ».
 
-    getActualite(){
-    this.publicService.getActualite(this.actualiteId).subscribe((res:any)=>{
-      this.actualite=res.data.actualite
-      let links=res.data.shareLinks
+// À en croire Eléonore Soglohoun, représentante du représentant résident de l’UNICEF au Bénin, « Plus de 7 500 enfants en situation de travail ont été identifiés à travers des missions d’inspection intersectorielles menées par les directions départementales du travail et la Brigade des mœurs de 2024 à 2025. » Ces interventions ont permis, a-t-elle poursuivi, « le retrait effectif de plus de 1 500 enfants exposés aux pires formes de travail », d’où la nécessité, selon elle, de renforcer les actions pour atteindre la cible 8.7 de l’OIT.
 
-      this.networks = [
-          {
-            name: 'Twitter',
-            url: links.twitter,
-            colorClass: 'text-blue-500 hover:text-blue-700',
-            svg: `
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M24 4.557c-.883.392-1.832.656-2.828.775
-                         1.017-.609 1.798-1.574 2.165-2.724
-                         -.951.564-2.005.974-3.127 1.195
-                         -.897-.957-2.178-1.555-3.594-1.555
-                         -3.179 0-5.515 2.966-4.797 6.045
-                         -4.091-.205-7.719-2.165-10.148-5.144
-                         -1.29 2.213-.669 5.108 1.523 6.574
-                         -.806-.026-1.566-.247-2.229-.616
-                         -.054 2.281 1.581 4.415 3.949 4.89
-                         -.693.188-1.452.232-2.224.084
-                         .626 1.956 2.444 3.379 4.6 3.419
-                         -2.07 1.623-4.678 2.348-7.29 2.04
-                         2.179 1.397 4.768 2.212 7.548 2.212
-                         9.142 0 14.307-7.721 13.995-14.646
-                         .962-.695 1.797-1.562 2.457-2.549z"/>
-              </svg>
-            `
-          },
-          {
-            name: 'Facebook',
-            url: links.facebook,
-            colorClass: 'text-blue-600 hover:text-blue-800',
-            svg: `
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M22.46 6c-.77.35-1.6.58-2.46.69
-                         .88-.53 1.56-1.37 1.88-2.38
-                         -.83.5-1.75.85-2.72 1.05
-                         C18.37 4.5 17.26 4 16 4
-                         c-2.35 0-4.27 1.92-4.27 4.29
-                         0 .34.04.67.11.98
-                         C8.28 9.09 5.11 7.38 3 4.79
-                         c-.37.63-.58 1.37-.58 2.15
-                         0 1.49.75 2.81 1.91 3.56
-                         -.71 0-1.37-.2-1.95-.5v.03
-                         c0 2.08 1.48 3.82 3.44 4.21
-                         a4.22 4.22 0 0 1-1.93.07
-                         4.28 4.28 0 0 0 4 2.98
-                         8.521 8.521 0 0 1-5.33 1.84
-                         c-.34 0-.68-.02-1.02-.06
-                         C3.44 20.29 5.7 21 8.12 21
-                         16 21 20.33 14.46 20.33 8.79
-                         c0-.19 0-.37-.01-.56
-                         .84-.6 1.56-1.36 2.14-2.23z"/>
-              </svg>
-            `
-          },
-          {
-            name: 'LinkedIn',
-            url: links.linkedin,
-            colorClass: 'text-blue-800 hover:text-blue-900',
-            svg: `
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M22.23 0H1.77C.8 0 0 .77 0 1.72v20.56
-                         C0 23.23.8 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72
-                         C24 .77 23.2 0 22.23 0zM7.27 20.1H3.65V9.24h3.62V20.1z
-                         M5.47 7.76h-.03c-1.22 0-2-.83-2-1.87
-                         0-1.06.8-1.87 2.05-1.87
-                         1.24 0 2 .8 2.02 1.87
-                         0 1.04-.78 1.87-2.05 1.87z
-                         M20.34 20.1h-3.63v-5.8
-                         c0-1.45-.52-2.45-1.83-2.45
-                         -1 0-1.6.67-1.87 1.32
-                         -.1.23-.11.55-.11.88v6.05H9.28
-                         s.05-9.82 0-10.84h3.63v1.54
-                         a3.6 3.6 0 0 1 3.26-1.8
-                         c2.37 0 4.15 1.55 4.15 4.9v6.2z"/>
-              </svg>
-            `
-          },
-          {
-            name: 'WhatsApp',
-            url: links.whatsapp,
-            colorClass: 'text-green-500 hover:text-green-700',
-            svg: `
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M.057 24l1.687-6.163a11.936 11.936 0 0 1-1.62-6.043
-                         C.122 5.392 5.496 0 12.057 0
-                         c3.2 0 6.2 1.24 8.457 3.497
-                         2.256 2.256 3.494 5.256 3.494 8.457
-                         0 6.562-5.392 11.936-11.957 11.936
-                         a11.95 11.95 0 0 1-6.08-1.616L.057 24z
-                         M17.472 14.382c-.297-.149-1.758-.867-2.03-.967
-                         -.273-.099-.472-.149-.672.15
-                         -.198.297-.767.967-.94 1.164
-                         -.173.198-.347.223-.644.074
-                         -.297-.149-1.255-.462-2.39-1.475
-                         -.883-.788-1.48-1.761-1.654-2.059
-                         -.173-.297-.018-.458.13-.606
-                         .134-.133.297-.347.446-.52
-                         .149-.173.198-.297.298-.495
-                         .099-.198.05-.372-.025-.52
-                         -.074-.149-.672-1.611-.92-2.207
-                         -.242-.579-.487-.5-.672-.51
-                         -.173-.007-.372-.009-.57-.009
-                         -.198 0-.52.074-.792.372
-                         -.272.297-1.04 1.016-1.04 2.479
-                         0 1.462 1.065 2.875 1.213 3.074
-                         .149.198 2.095 3.2 5.077 4.487
-                         .709.306 1.262.489 1.694.626
-                         .712.227 1.36.195 1.872.118
-                         .571-.085 1.758-.719 2.006-1.413
-                         .248-.695.248-1.29.173-1.414
-                         -.074-.124-.272-.198-.57-.347z"/>
-              </svg>
-            `
-          },
-          {
-            name: 'Telegram',
-            url: links.telegram,
-            colorClass: 'text-blue-400 hover:text-blue-600',
-            svg: `
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12
-                         12-5.373 12-12S18.627 0 12 0zm5.743 8.816
-                         l-1.937 9.157c-.145.655-.522.818-1.056.51
-                         l-2.92-2.153-1.407 1.354c-.155.155-.285.285-.585.285
-                         l.21-2.982 5.424-4.898c.236-.21-.05-.327-.367-.117
-                         l-6.705 4.22-2.888-.903c-.627-.197-.64-.627.131-.927
-                         l11.27-4.355c.52-.173.974.124.81.908z"/>
-              </svg>
-            `
-          },
-        ];
-      
-    })
+// Dans son mot d’ouverture des travaux de la session, Victorin Honvoh, directeur de cabinet représentant la ministre Adidjatou Mathys, a rappelé les objectifs : enrichissement du rapport décennal, mise en œuvre des recommandations et élaboration du Plan de Travail Annuel 2026. « Les enfants sont notre avenir et nous avons de grandes responsabilités à assumer envers eux », a-t-il insisté.
+
+// La session se poursuit jusqu’au 25 septembre 2025, offrant une plateforme de dialogue et de décisions concrètes pour la protection des enfants au Bénin.`,
+//       imageUrl:
+//         "https://www.travail.gouv.bj/storage/actualites/big/ouverture-des-travaux-de-la-2-session-ordinaire-du-comite-directeur-national-de-lutte-contre-le-travail-des-enfants-big.jpeg",
+//       datePublication: new Date("2025-09-24 14:04:52"),
+//       auteur: "Ministère du Travail",
+//       categorie: "Comptes rendus",
+//       slug: "comptes-rendus",
+//       tags: ["emploi", "numérique", "innovation"],
+//     };
   }
 
-    getLink(dir:any,photo:any){
-      return`${ConfigService.toFile("storage")}/${dir}/${photo}`
-    }
 }

@@ -3,11 +3,14 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Document } from '../../../../shared/models/actualite.model';
 import { AnimationService } from '../../../../shared/services/animation.service';
+import { PublicService } from '../../../../core/services/public.service';
+import { ConfigService } from '../../../../core/utils/config-service';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-textes-lois',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,NgxPaginationModule],
   template: `
     <!-- Hero Section -->
     <div class="bg-gradient-to-r from-accent-700 to-accent-800 dark:from-accent-800 dark:to-accent-900 text-white pt-32 pb-16">
@@ -56,7 +59,10 @@ import { AnimationService } from '../../../../shared/services/animation.service'
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
       <div class="container-custom">
         <div class="space-y-6">
-          <div *ngFor="let document of documentsFiltres; trackBy: trackByDocumentId" 
+          <div *ngFor="let document of documentsFiltres | paginate: { id: 'actuality_id',
+                                                      itemsPerPage: pg.pageSize,
+                                                      currentPage: pg.page,
+                                                      totalItems: pg.total }; trackBy: trackByDocumentId" 
                class="card p-6  hover:shadow-lg transition-all duration-300">
             <div class="flex items-start justify-between">
               <div class="flex-1">
@@ -66,13 +72,13 @@ import { AnimationService } from '../../../../shared/services/animation.service'
                     {{ getTypeLabel(document.type) }}
                   </span>
                   <span class="text-sm text-gray-500 dark:text-gray-400">
-                    {{ document.datePublication | date:'d MMMM yyyy':'fr' }}
+                    {{ document.created_at | date:'d MMMM yyyy':'fr' }}
                   </span>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">{{ document.titre }}</h3>
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">{{ document.name }}</h3>
                 <p class="text-gray-600 dark:text-gray-300 mb-4">{{ document.description }}</p>
                 <div class="flex items-center space-x-4">
-                  <a [href]="document.url" 
+                  <a [href]="getLink('docs',document.filename)" 
                      target="_blank"
                      class="text-accent-700 dark:text-accent-400 hover:text-accent-800 dark:hover:text-accent-300 font-medium inline-flex items-center">
                     📄 Télécharger le PDF
@@ -95,19 +101,23 @@ import { AnimationService } from '../../../../shared/services/animation.service'
         </div>
         
         <!-- Pagination -->
-        <div class="flex justify-center mt-12 ">
-          <div class="flex space-x-2">
-            <button class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-              Précédent
-            </button>
-            <button class="px-4 py-2 bg-accent-700 dark:bg-accent-600 text-white rounded-lg">1</button>
-            <button class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">2</button>
-            <button class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">3</button>
-            <button class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-              Suivant
-            </button>
-          </div>
-        </div>
+          <ul class="flex justify-center mt-12 list-none space-x-2" *ngIf="documentsFiltres.length > 0">
+
+          <pagination-controls  id="actuality_id"
+                      (pageChange)="pageChanged($event)"
+                      (pageBoundsCorrection)="pageChanged($event)"
+                      [maxSize]="pg.total"
+                      [directionLinks]="true"
+                      [autoHide]="true"
+                      [responsive]="true"
+                      [previousLabel]="'Précédent'"
+                      [nextLabel]="'Suivant'"
+                      screenReaderPaginationLabel="Pagination"
+                      screenReaderPageLabel="page"
+                      screenReaderCurrentLabel="Page active"
+                      >
+</pagination-controls>
+      </ul>
       </div>
     </section>
 
@@ -168,77 +178,49 @@ export class TextesLoisComponent implements AfterViewInit {
   
   typesDocuments = [
     { nom: 'Tous', slug: 'tous' },
-    { nom: 'Lois', slug: 'loi' },
-    { nom: 'Décrets', slug: 'decret' },
-    { nom: 'Arrêtés', slug: 'arrete' },
-    { nom: 'Circulaires', slug: 'circulaire' }
+    { nom: 'Lois', slug: 'lois' },
+    { nom: 'Décrets', slug: 'decrets' },
+    { nom: 'Arrêtés', slug: 'arretes' },
+    { nom: 'Publications', slug: 'publications' },
+    { nom: "Rapports d'activités", slug:'rapport-activites' }
   ];
   
-  documents: Document[] = [
-    {
-      id: '1',
-      titre: 'Code du Travail de la République du Bénin',
-      description: 'Texte fondamental régissant les relations de travail, les droits et obligations des employeurs et travailleurs.',
-      url: '#',
-      type: 'loi',
-      datePublication: new Date('2023-12-15')
-    },
-    {
-      id: '2',
-      titre: 'Décret portant application du Code du Travail',
-      description: 'Modalités d\'application des dispositions du Code du Travail, procédures et sanctions.',
-      url: '#',
-      type: 'decret',
-      datePublication: new Date('2023-11-20')
-    },
-    {
-      id: '3',
-      titre: 'Arrêté fixant le salaire minimum interprofessionnel garanti',
-      description: 'Fixation du montant du SMIG applicable sur l\'ensemble du territoire national.',
-      url: '#',
-      type: 'arrete',
-      datePublication: new Date('2024-01-01')
-    },
-    {
-      id: '4',
-      titre: 'Loi portant statut général de la fonction publique',
-      description: 'Statut des fonctionnaires et agents contractuels de l\'État, droits et devoirs.',
-      url: '#',
-      type: 'loi',
-      datePublication: new Date('2023-10-10')
-    },
-    {
-      id: '5',
-      titre: 'Circulaire relative aux congés payés',
-      description: 'Instructions sur l\'application des dispositions relatives aux congés payés des travailleurs.',
-      url: '#',
-      type: 'circulaire',
-      datePublication: new Date('2023-12-01')
-    },
-    {
-      id: '6',
-      titre: 'Décret sur la sécurité et santé au travail',
-      description: 'Règlementation sur les mesures de prévention des risques professionnels.',
-      url: '#',
-      type: 'decret',
-      datePublication: new Date('2023-09-15')
-    }
-  ];
+  documents: any[] = [];
   
   documentsFiltres = [...this.documents];
   
-  constructor(private animationService: AnimationService) {}
+    pg:any={
+    pageSize:9,
+    page:1,
+    total:0
+  }
+
+
+  constructor(private animationService: AnimationService,private publicService:PublicService) {}
   
   ngAfterViewInit() {
     setTimeout(() => {
       this.animationService.initScrollAnimations();
     }, 100);
   }
+
   
   filtrerDocuments(type: string) {
     this.typeActif = type;
     this.appliquerFiltres();
   }
+
+  ngOnInit(){    this.getAll()
+}
+
+   getAll(){
+    this.publicService.getDocument(this.pg.pageSize,this.pg.page,this.typeActif).subscribe((res:any)=>{
+     this.documents=res.data.documents.data
+     this.documentsFiltres=this.documents
+     this.pg.total=res.data.documents.total
+    })
+  }
+
 
   appliquerFiltres() {
     let documents = [...this.documents];
@@ -252,7 +234,7 @@ export class TextesLoisComponent implements AfterViewInit {
     const terme = this.termeRecherche.toLowerCase().trim();
     if (terme) {
       documents = documents.filter(doc =>
-        doc.titre.toLowerCase().includes(terme) ||
+        doc.name.toLowerCase().includes(terme) ||
         doc.description.toLowerCase().includes(terme)
       );
     }
@@ -272,15 +254,29 @@ export class TextesLoisComponent implements AfterViewInit {
   
   getTypeLabel(type: string): string {
     const labels = {
-      'loi': 'Loi',
-      'decret': 'Décret',
-      'arrete': 'Arrêté',
-      'circulaire': 'Circulaire'
+      'lois': 'Loi',
+      'decrets': 'Décret',
+      'arretes': 'Arrêté',
+      'publications': 'Publications',
+      'rapport-activites': "Rapport d'activités"
     };
     return labels[type as keyof typeof labels] || type;
   }
+
+
+      getLink(dir:any,photo:any){
+        return`${ConfigService.toFile("storage")}/${dir}/${photo}`
+      }
+  
   
   trackByDocumentId(index: number, document: Document): string {
     return document.id;
   }
+
+
+    pageChanged(ev:any){
+
+      this.pg.page=ev
+      this.getAll()
+    }
 }

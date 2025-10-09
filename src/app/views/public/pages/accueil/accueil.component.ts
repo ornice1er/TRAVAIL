@@ -57,7 +57,7 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
                       </p>
                       <div class="flex flex-col sm:flex-row gap-4">
                         <a
-                          href="#"
+                          routerLink="actualites/{{media?.actualite?.slug}}"
                           class="btn-primary bg-white text-primary-800 hover:bg-gray-100"
                         >
                           Lire l'article
@@ -632,7 +632,7 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
                   <span
                     class="bg-primary-800 dark:bg-primary-700 text-white px-3 py-1 rounded-full text-sm font-medium mr-3"
                   >
-                    {{ media?.actualite?.categorie }}
+                    {{ media?.type}}
                   </span>
                   <span class="text-sm text-gray-500 dark:text-gray-400">
                     {{ media?.actualite?.created_at | date: "d MMMM yyyy":"fr" }}
@@ -647,7 +647,7 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
                   
                 </p>
                 <a
-                  [routerLink]="['/actualites', media?.actualite?.id]"
+                  [routerLink]="['/actualites', media?.actualite?.slug]"
                   class="text-primary-800 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300 font-medium"
                 >
                   Lire la suite →
@@ -685,7 +685,7 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
                     {{ communique.titre }}
                   </h4>
                   <a
-                    href="#"
+                    href="{{communique.slug}}"
                     class="text-xs text-primary-800 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300 font-medium"
                   >
                     Lire la suite →
@@ -857,7 +857,7 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
             class="bg-white dark:bg-gray-800 rounded-lg p-6 flex items-center justify-between"
           >
             <span class="text-gray-900 dark:text-white font-medium">{{
-              lien.nom
+              lien.title
             }}</span>
             <a
             type="button"
@@ -1087,34 +1087,8 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
 
   actualitesRecentes:any = [];
 
-  communiquesSidebar = [
-    {
-      type: "COMMUNIQUE",
-      date: "08.01.2024",
-      titre: "Mise en place du nouveau système de gestion des carrières",
-    },
-    {
-      type: "COMMUNIQUE",
-      date: "05.01.2024",
-      titre: "Lancement du programme d'insertion des jeunes diplômés",
-    },
-    {
-      type: "COMMUNIQUE",
-      date: "03.01.2024",
-      titre: "Réforme du système de notation des agents publics",
-    },
-    {
-      type: "COMMUNIQUE",
-      date: "28.12.2023",
-      titre: "Bilan des activités 2023 du Ministère du Travail",
-    },
-  ];
 
-  liensUtiles = [
-    { nom: "Présidence de la République",link:"https://presidence.bj" },
-    { nom: "Agence des Systèmes d'Information et du Numérique",link:"https://asin.bj" },
-    { nom: "Portail National des Services Publics",link:"https://service-public.bj" },
-  ];
+  liensUtiles:any[] = [];
 
   constructor(private animationService: AnimationService,private publicService:PublicService) {}
 
@@ -1142,7 +1116,7 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
       this.autresCommuniques=res.data?.communiques?.filter((item:any) => item.communique?.category === 'Activité')
       this.servicesEnLigne=res.data?.prestations
       this.actualitesRecentes=res.data?.actualites
-
+      this.liensUtiles=res.data?.links
       console.log(res);
     })
   }

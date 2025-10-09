@@ -77,6 +77,15 @@ export const PublicRounting: Routes = [
     path: 'actualites/:id',
     loadComponent: () => import('./pages/actualite-detail/actualite-detail.component').then(m => m.ActualiteDetailComponent)
   },
+
+    {
+    path: 'communiques',
+    loadComponent: () => import('./pages/communiques/communiques.component').then(m => m.CommuniquesComponent)
+  },
+  {
+    path: 'communiques/:id',
+    loadComponent: () => import('./pages/communique-detail/communique-detail.component').then(m => m.CommuniqueDetailComponent)
+  },
   {
     path: 'contact',
     loadComponent: () => import('./pages/contact/contact.component').then(m => m.ContactComponent)

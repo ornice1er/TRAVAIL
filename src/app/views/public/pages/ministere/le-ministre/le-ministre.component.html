@@ -77,7 +77,7 @@
                 <div class="text-center lg:text-left">
                   <div class="relative inline-block">
                     <img
-                      src="/ministre.jpg"
+                      [src]="getLink('teams',ministre?.photo)"
                       alt="Madame Adidjatou A. MATHYS, Ministre du Travail"
                       class="rounded-2xl shadow-lg w-full max-w-md mx-auto"
                     />
@@ -94,12 +94,12 @@
                   <h2
                     class="text-3xl font-bold text-gray-900 dark:text-white mb-2"
                   >
-                    Adidjatou A. MATHYS
+                   {{ministre?.name_responsable}}
                   </h2>
                   <h3
                     class="text-xl font-semibold text-primary-800 dark:text-primary-400 mb-6"
                   >
-                    Ministre du Travail et de la Fonction Publique
+                  {{ministre?.name}}                  
                   </h3>
 
                   <!-- Biographie -->
@@ -110,16 +110,7 @@
                       [class.line-clamp-6]="!showFullBio"
                       class="transition-all duration-300"
                     >
-                      <p class="mb-4">
-                        Mariée et mère de trois enfants, Mme Adidjatou MATHYS
-                        est experte en Finance et en Comptabilité de l'État.
-                        Administrateur du Trésor à la retraite, elle peut se
-                        targuer d'avoir eu un parcours professionnel élogieux,
-                        fait d'une série de promotions, confirmant la
-                        reconnaissance de ses mérites.
-                      </p>
-
-                      <p class="mb-4">
+                      <p [innerHTML]="ministre?.biographie_responsable" class="mb-4">
                         En effet, après l'obtention en 1981 de la Maîtrise
                         ès-Sciences Économiques (option Finances et Fiscalité) à
                         l'Université Nationale du Bénin, Mme Adidjatou MATHYS
@@ -128,85 +119,6 @@
                         Supérieur et de la Recherche Scientifique.
                       </p>
 
-                      <p class="mb-4">
-                        Pour répondre à la maxime selon laquelle les grands
-                        esprits ont un but, cette femme battante et confiante en
-                        ses capacités à réussir, a poursuivi ses études au CEFAP
-                        de 1982 à 1984 et a obtenu le Diplôme en Administration
-                        Centrale des Finances et Trésor.
-                      </p>
-
-                      <p class="mb-4">
-                        À partir de 1984, elle se retrouve à la Direction
-                        Générale du Trésor et de la Comptabilité Publique
-                        (DGTCP). C'est là qu'elle fit l'essentiel de sa carrière
-                        car elle y est restée jusqu'en 2003 et a gravi toutes
-                        les marches avant d'accéder au poste de Directrice
-                        Générale du Trésor et de la Comptabilité Publique en
-                        1999.
-                      </p>
-
-                      <p class="mb-4">
-                        Avant de se voir confier cette responsabilité, Adidjatou
-                        MATHYS a été successivement, Assistant du Receveur du
-                        Centre de Recouvrement, Chef Adjoint et ensuite, Chef du
-                        Service de la Dépense, Receveur des Finances de l'Ouémé
-                        et Directrice Générale Adjointe de la DGTCP.
-                      </p>
-
-                      <p class="mb-4">
-                        Elle a mis ses expériences accumulées, au service de
-                        plusieurs structures, institutions tant au plan national
-                        que régional et ce, à travers sa présence dans les
-                        organes de décision. Elle fut par exemple membre du
-                        Conseil d'Administration de la BCEAO, membre du Conseil
-                        de Gérance de la Caisse Autonome d'Amortissement et du
-                        Conseil d'Administration de la Continental Bank.
-                      </p>
-
-                      <p class="mb-4">
-                        À partir de 2006, la vie professionnelle d'Adidjatou
-                        MATHYS a pris une autre tournure. Grâce à sa
-                        détermination et son engagement, elle est désormais
-                        présente dans la grande sphère de décisions sur les
-                        questions des finances et de l'économie du Bénin.
-                      </p>
-
-                      <p class="mb-4">
-                        Avec une compétence avérée, elle fut successivement
-                        nommée de 2006 à 2011, Directrice de Cabinet du Ministre
-                        Délégué chargé du Budget auprès du Ministre du
-                        Développement, de l'Économie et des Finances, et
-                        Directrice de Cabinet du Ministre de l'Économie et des
-                        Finances.
-                      </p>
-
-                      <p class="mb-4">
-                        Ayant découvert en elle des qualités et des aptitudes
-                        pour un meilleur service à la nation, le Président Boni
-                        YAYI la propulse au-devant de la scène publique en la
-                        nommant dans son gouvernement en 2012, Ministre de
-                        l'Économie et des Finances.
-                      </p>
-
-                      <p class="mb-4">
-                        Patrice Talon, devenu Président de la République en
-                        Avril 2016, l'a rappelé à ses côtés pour la gestion des
-                        affaires de l'État. Le Chef de l'État qui ne doute point
-                        de ses compétences, lui a confié dans son premier
-                        gouvernement, la charge de Ministre du Travail, de la
-                        Fonction Publique et des Affaires Sociales.
-                      </p>
-
-                      <p>
-                        Bien conscient de l'immensité du chantier relatif à la
-                        dynamisation et à la modernisation de l'Administration
-                        publique Béninoise, le Président Patrice Talon, à
-                        l'occasion du remaniement ministériel du 27 octobre
-                        2017, a renouvelé toute sa confiance à cette femme de
-                        défis en la maintenant à la tête du très stratégique
-                        Ministère du Travail et de la Fonction Publique.
-                      </p>
                     </div>
 
                     <!-- Bouton Lire plus -->
@@ -250,8 +162,8 @@
                     class="w-full h-72 bg-gray-200 dark:bg-gray-700 rounded-t-md mx-auto mb-4 overflow-hidden"
                   >
                     <img
-                      [src]="membre.photo"
-                      [alt]="membre.nom"
+                      [src]="getLink('teams',membre?.photo)"
+                      [alt]="membre.name"
                       class="w-full h-full object-cover  object-top"
                       onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
                     />
@@ -270,14 +182,14 @@
                   <h3
                     class="text-lg font-bold text-primary-800 dark:text-primary-400 mb-2 mx-6"
                   >
-                    {{ membre.nom }}
+                    {{ membre.name }}
                   </h3>
 
                   <!-- Fonction -->
                   <p
                     class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mx-6 mb-6"
                   >
-                    {{ membre.fonction }}
+                    {{ membre.office }}
                   </p>
 
                   <!-- Contact optionnel -->
@@ -290,53 +202,6 @@
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Newsletter -->
-    <section
-      class="section-padding bg-primary-800 dark:bg-primary-900 text-white"
-    >
-      <div class="container-custom">
-        <div class="max-w-2xl mx-auto text-center ">
-          <h3 class="text-2xl lg:text-3xl font-bold mb-6">
-            Abonnez-vous à notre newsletter
-          </h3>
-          <p class="text-lg text-primary-100 dark:text-primary-200 mb-8">
-            Restez informé des dernières actualités et initiatives du Ministère
-            du Travail.
-          </p>
-          <form
-            class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto"
-            (ngSubmit)="onNewsletterSubmit()"
-            #newsletterForm="ngForm"
-          >
-            <input
-              type="email"
-              name="email"
-              [(ngModel)]="newsletterEmail"
-              placeholder="Votre adresse email"
-              required
-              class="flex-1 px-4 py-3 rounded-lg text-gray-900 dark:text-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-white focus:border-transparent"
-            />
-            <button
-              type="submit"
-              [disabled]="newsletterForm.invalid || isSubmittingNewsletter"
-              class="bg-secondary-600 hover:bg-secondary-700 disabled:opacity-50 disabled:cursor-not-allowed text-white px-6 py-3 rounded-lg font-medium transition-colors"
-            >
-              {{ isSubmittingNewsletter ? "Envoi..." : "Envoyer" }}
-            </button>
-          </form>
-
-          <!-- Message de succès newsletter -->
-          <div
-            *ngIf="newsletterSuccess"
-            class="mt-4 p-4 bg-green-600/20 border border-green-400 text-green-100 rounded-lg"
-            role="alert"
-          >
-            ✅ Inscription réussie ! Merci de votre intérêt.
           </div>
         </div>
       </div>

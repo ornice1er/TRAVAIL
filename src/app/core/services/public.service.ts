@@ -13,6 +13,17 @@ export class PublicService {
       return this.http.get<any>(`${ConfigService.toApiUrl("accueil")}`);
     }
 
+
+    getActualites(pageSize:any,page:any){
+      return this.http.get<any>(`${ConfigService.toApiUrl("public/actualites")}?pageSize=${pageSize}&page=${page}`);
+    }
+
+
+     getPrestations(pageSize:any,page:any){
+      return this.http.get<any>(`${ConfigService.toApiUrl("public/services")}?pageSize=${pageSize}&page=${page}`);
+    }
+
+
     getAccueilDGT(){
       return this.http.get<any>(`${ConfigService.toApiUrl("accueil-dgt")}`);
     }
@@ -36,6 +47,15 @@ export class PublicService {
 
      getIgsep(){
       return this.http.get<any>(`${ConfigService.toApiUrl("igsep")}`);
+    }
+
+
+    getActualite(slug:any){
+      return this.http.get<any>(`${ConfigService.toApiUrl("page/actualites")}/${slug}`);
+    }
+
+     getCommunique(slug:any){
+      return this.http.get<any>(`${ConfigService.toApiUrl("page/communiques")}/${slug}`);
     }
 
      getStructureSousTutelles(){
@@ -72,8 +92,8 @@ export class PublicService {
       return this.http.get<any>(`${ConfigService.toApiUrl("ministre")}`);
     }
 
-    getDocument(){
-      return this.http.get<any>(`${ConfigService.toApiUrl("document")}`);
+     getDocument(pageSize:any,page:any,typeActif:any){
+      return this.http.get<any>(`${ConfigService.toApiUrl("public/documents")}?pageSize=${pageSize}&page=${page}&categorie=${typeActif}`);
     }
 
 
@@ -105,5 +125,9 @@ export class PublicService {
       return this.http.get<any>(`${ConfigService.toApiUrl("structure/presentation")}${st}`);
     }
     
+    sendContactForm(resource:any){
+            return this.http.post<any>(`${ConfigService.toApiUrl("send-contact-form")}`,resource);
+
+    }
 
 }

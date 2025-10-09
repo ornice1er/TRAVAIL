@@ -15,6 +15,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { AnimationService } from "../../../../shared/services/animation.service";
+import { PublicService } from "../../../../core/services/public.service";
 
 export const environment = {
   mapbox: {
@@ -464,6 +465,7 @@ export class ContactComponent implements OnInit, AfterViewInit {
 
   constructor(
     private fb: FormBuilder,
+    private publicService:PublicService,
     private animationService: AnimationService,
     @Inject(PLATFORM_ID) platformId: Object
   ) {
@@ -478,7 +480,6 @@ export class ContactComponent implements OnInit, AfterViewInit {
     });
   }
   ngOnInit(): void {
-    throw new Error("Method not implemented.");
   }
 
   async ngAfterViewInit() {
@@ -506,26 +507,18 @@ export class ContactComponent implements OnInit, AfterViewInit {
   }
 
   onSubmit() {
-    if (this.contactForm.valid) {
       this.isSubmitting = true;
 
-      // Simuler l'envoi du message
-      setTimeout(() => {
-        this.isSubmitting = false;
-        this.messageEnvoye = true;
-        this.contactForm.reset();
+      // Simuler l'envoi du message  
 
-        // Cacher le message de succès après 5 secondes
-        setTimeout(() => {
-          this.messageEnvoye = false;
-        }, 5000);
-      }, 2000);
-    } else {
-      // Marquer tous les champs comme touchés pour afficher les erreurs
-      Object.keys(this.contactForm.controls).forEach((key) => {
-        const control = this.contactForm.get(key);
-        control?.markAsTouched();
-      });
-    }
+        this.publicService.sendContactForm(this.contactForm.value).subscribe((res:any) =>{
+        this.contactForm.reset();
+              this.isSubmitting = false;
+        this.messageEnvoye = true;
+
+        },(err:any) =>{
+                        this.isSubmitting = false;
+
+        })
   }
 }
