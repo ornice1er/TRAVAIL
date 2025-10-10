@@ -421,7 +421,7 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
         </div>
 
         <div class="text-center mt-8">
-          <a href="/communiques" class="btn-secondary">
+          <a routerLink="/communiques" class="btn-secondary">
             Voir tous les communiqués
           </a>
         </div>
