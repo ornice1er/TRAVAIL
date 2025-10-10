@@ -18,8 +18,8 @@ export class IsAuthedGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
         if (this.lsService.get(GlobalName.tokenName) != null) {
-          let url=AppRedirect.redirectLogin(this.lsService)
-          this.router.navigate([url]);
+         
+          this.router.navigate(["/admin/tableau-de-bord"]);
           return false;
 
         } else {

@@ -31,10 +31,10 @@
           <button class="p-2 text-gray-400 hover:text-benin-green transition-colors">
             <i class="ri-user-line text-lg"></i>
           </button>
-          <a routerLink="/login" class="flex items-center space-x-2 text-gray-700 hover:text-benin-red transition-colors">
+          <button (click)="logout()" class="flex items-center space-x-2 text-gray-700 hover:text-benin-red transition-colors">
             <i class="ri-logout-box-line"></i>
             <span class="text-sm font-medium font-roboto">Déconnexion</span>
-          </a>
+          </button>
         </div>
       </div>
     </header>

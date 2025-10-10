@@ -27,6 +27,8 @@ export class AppHttpInterceptor implements HttpInterceptor {
         Accept: `application/json`
       }
     });
+
+    console.log('xxxxxxxxxxxxxxxxxxxx',token)
     
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {

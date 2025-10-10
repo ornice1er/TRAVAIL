@@ -4,7 +4,7 @@
             <h2 class="text-xl font-bold text-gray-900 font-montserrat">Liste des communiqués en cours</h2>
             <p class="text-sm text-gray-600 mt-1 font-roboto">{{communiques.length}} élément(s)</p>
           </div>
-          <a routerLink="/communique-creation" class="px-6 py-2 bg-gradient-to-r from-benin-green to-benin-blue text-white font-medium rounded-lg hover:shadow-lg transition-all duration-200 whitespace-nowrap font-roboto">
+          <a routerLink="/admin/communiques/creation" class="px-6 py-2 bg-gradient-to-r from-benin-green to-benin-blue text-white font-medium rounded-lg hover:shadow-lg transition-all duration-200 whitespace-nowrap font-roboto">
             Créer un communiqué
           </a>
         </div>
@@ -23,6 +23,94 @@
         </div>
 
         <div class="overflow-x-auto">
+
+          <div >
+  <button
+    type="button"
+    pTooltip="Voir détails"
+    tooltipPosition="top"
+    class="hidden btn btn-square btn-secondary btn-xs"
+    (click)="onShowDetails()"
+  >
+    Voir détails
+  </button>
+
+  <!-- Editer -->
+  <button
+    type="button"
+    pTooltip="Editer"
+    tooltipPosition="top"
+    class="hidden btn btn-square btn-warning btn-xs"
+    (click)="onEdit()"
+  >
+    Editer
+  </button>
+
+  <!-- Supprimer -->
+  <button
+    type="button"
+    pTooltip="Supprimer"
+    tooltipPosition="top"
+    class="hidden btn btn-square btn-danger btn-xs"
+    (click)="onDelete()"
+  >
+    Supprimer
+  </button>
+
+  <!-- Transmettre -->
+  <button
+    type="button"
+    pTooltip="Transmettre"
+    tooltipPosition="top"
+    class="hidden btn btn-square btn-warning btn-xs"
+    (click)="onTransmit()"
+  >
+    Transmettre
+  </button>
+
+  <!-- Retourner le communiqué -->
+  <button
+    type="button"
+    class="hidden btn btn-square btn-secondary btn-xs"
+    (click)="openModal()"
+  >
+    Retourner le communiqué
+  </button>
+
+  <!-- Publier -->
+  <button
+    type="button"
+    pTooltip="Publier"
+    tooltipPosition="top"
+    class="hidden btn btn-square btn-success btn-xs"
+    (click)="onPublish()"
+  >
+    Publier
+  </button>
+
+  <!-- Arrêter de publier -->
+  <button
+    type="button"
+    pTooltip="Arrêter de publier"
+    tooltipPosition="top"
+    class="hidden btn btn-square btn-danger btn-xs"
+    (click)="onUnpublish()"
+  >
+    Arrêter de publier
+  </button>
+
+  <!-- Archiver -->
+  <button
+    type="button"
+    pTooltip="Archiver ce communiqué"
+    tooltipPosition="top"
+    class="btn btn-square btn-danger btn-xs"
+    (click)="onArchive()"
+  >
+    Archiver ce communiqué
+  </button>
+</div>
+
           <table class="w-full">
             <thead class="bg-gray-50 border-b border-gray-200">
               <tr>
@@ -31,24 +119,23 @@
                 </th>
                 <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider font-montserrat">#</th>
                 <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider font-montserrat">Titre</th>
-                <th class="px-6 py-4 text-center text-xs font-semibold text-gray-500 uppercase tracking-wider font-montserrat">Accès principale</th>
                 <th class="px-6 py-4 text-center text-xs font-semibold text-gray-500 uppercase tracking-wider font-montserrat">Motif</th>
               </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
-              <tr *ngFor="let communique of currentCommuniques; let i = index" class="hover:bg-gray-50 transition-colors">
+              <tr *ngFor="let communique of communiques | paginate: { id: 'communique_id',
+                                                      itemsPerPage: pg.pageSize,
+                                                      currentPage: pg.page,
+                                                      totalItems: pg.total }; let i = index" class="hover:bg-gray-50 transition-colors">
                 <td class="px-6 py-4">
                   <input type="checkbox" (change)="handleSelectItem(communique.id)" [checked]="selectedItems.includes(communique.id)" class="w-4 h-4 text-benin-green bg-gray-100 border-gray-300 rounded focus:ring-benin-green focus:ring-2" />
                 </td>
                 <td class="px-6 py-4 text-sm text-gray-900 font-roboto">{{startIndex + i + 1}}</td>
                 <td class="px-6 py-4 text-sm text-gray-900 font-roboto max-w-md">
-                  <a routerLink="/communique-details" class="line-clamp-2 hover:text-benin-green transition-colors cursor-pointer">{{communique.title}}</a>
+                  <a routerLink="/admin/communiques/details/{{communique.id}}" class="line-clamp-2 hover:text-benin-green transition-colors cursor-pointer">{{communique.title}}</a>
                 </td>
                 <td class="px-6 py-4 text-center">
-                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 font-roboto">{{communique.accessPrincipal}}</span>
-                </td>
-                <td class="px-6 py-4 text-center">
-                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 font-roboto">{{communique.motif}}</span>
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 font-roboto">{{communique?.motif ?? 'Non défini'}}</span>
                 </td>
               </tr>
             </tbody>
@@ -56,15 +143,22 @@
         </div>
 
         <div class="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
-          <div class="text-sm text-gray-500 font-roboto">
-            Lignes {{startIndex + 1}} à {{endIndex}} sur {{communiques.length}}
-          </div>
-          <div class="flex items-center space-x-2">
-            <button (click)="setPage(currentPage - 1)" [disabled]="currentPage === 1" class="px-3 py-1 text-sm border border-gray-300 rounded hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed font-roboto">Précédent</button>
-            <button *ngFor="let page of [].constructor(Math.min(5, totalPages)); let i = index" (click)="setPage(i + 1)" [ngClass]="currentPage === i + 1 ? 'bg-benin-green text-white border-benin-green' : 'border-gray-300 hover:bg-gray-50'" class="px-3 py-1 text-sm border rounded font-roboto">{{i + 1}}</button>
-            <span *ngIf="totalPages > 5" class="px-2 text-gray-500">...</span>
-            <button *ngIf="totalPages > 5" (click)="setPage(totalPages)" class="px-3 py-1 text-sm border border-gray-300 rounded hover:bg-gray-50 font-roboto">{{totalPages}}</button>
-            <button (click)="setPage(currentPage + 1)" [disabled]="currentPage === totalPages" class="px-3 py-1 text-sm border border-gray-300 rounded hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed font-roboto">Suivant</button>
-          </div>
+          <ul class="flex justify-center mt-12 list-none space-x-2" *ngIf="communiques.length > 0">
+
+          <pagination-controls  id="communique_id"
+                      (pageChange)="pageChanged($event)"
+                      (pageBoundsCorrection)="pageChanged($event)"
+                      [maxSize]="pg.total"
+                      [directionLinks]="true"
+                      [autoHide]="true"
+                      [responsive]="true"
+                      [previousLabel]="'Précédent'"
+                      [nextLabel]="'Suivant'"
+                      screenReaderPaginationLabel="Pagination"
+                      screenReaderPageLabel="page"
+                      screenReaderCurrentLabel="Page active"
+                      >
+</pagination-controls>
+      </ul>
         </div>
       </div>

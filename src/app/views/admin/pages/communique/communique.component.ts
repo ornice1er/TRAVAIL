@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { CommuniqueService } from '../../../../core/services/communique.service';
+import { LocalStorageService } from '../../../../core/utils/app-action-check';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 interface Communique {
   id: number;
@@ -11,7 +16,7 @@ interface Communique {
 
 @Component({
   selector: 'app-communique',
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule,FormsModule,RouterModule,NgxPaginationModule],
   templateUrl: './communique.component.html',
   styleUrl: './communique.component.css'
 })
@@ -22,20 +27,46 @@ export class CommuniqueComponent {
   currentPage = 1;
   selectedItems: number[] = [];
   Math=Math
+  loading=false
+  communiques: any[] = [];
+    pg:any={
+    pageSize:9,
+    page:1,
+    total:0
+  }
 
 
-  communiques: Communique[] = [
-    { id: 1, title: 'Communiqué du Ministère du Travail et de la Fonction Publique', accessPrincipal: 'oui', motif: 'Non défini' },
-    { id: 2, title: 'Concours de recrutement des Auditeurs de Justice', accessPrincipal: 'oui', motif: 'Non défini' },
-    { id: 3, title: 'Concours du 08 août 2020 au profit du Ministère de l\'Agriculture, de l\'Élevage et de la Pêche', accessPrincipal: 'oui', motif: 'Non défini' },
-    { id: 4, title: 'Concours de recrutement de soixante (60) élèves-professeurs certifiés au profit du Ministère des Enseignements Secondaire, Technique et de la Formation Professionnelle', accessPrincipal: 'oui', motif: 'Non défini' },
-    { id: 5, title: 'Information relative aux concours dans la fonction publique', accessPrincipal: 'oui', motif: 'Non défini' },
-    { id: 6, title: 'Communiqué de report de la date de clôture de réception des dossiers de candidature au concours de recrutement des soixante (60) élèves-professeurs certifiés au profit du MESTFP', accessPrincipal: 'oui', motif: 'Non défini' },
-    { id: 7, title: 'Résultats du concours du 08 août 2020 au profit du Ministère de l\'Agriculture, de l\'Élevage et de la Pêche', accessPrincipal: 'oui', motif: 'Non défini' },
-    { id: 8, title: 'Communiqué relatif à l\'administration de l\'épreuve de natation aux candidats admissibles au concours de recrutement de soixante (62) agents contractuels au profit du MAEP', accessPrincipal: 'oui', motif: 'Non défini' },
-    { id: 9, title: 'Concours de recrutement de soixante (60) élèves-professeurs certifiés au profit du Ministère des Enseignements Secondaire, Technique et de la Formation Professionnelle - consultation des listes d\'inscription et de rejet', accessPrincipal: 'oui', motif: 'Non défini' },
-    { id: 10, title: 'Résultats définitifs du concours de recrutement de soixante (62) agents contractuels au profit du MAEP', accessPrincipal: 'oui', motif: 'Non défini' }
-  ];
+  constructor(
+    private communiqueService:CommuniqueService,
+    private lsService:LocalStorageService,
+    private router:Router,
+    private toastr:ToastrService
+  ){
+
+  }
+
+  ngOnInit(){
+    this.getAll()
+  }
+
+
+  getAll() {
+    this.loading=true
+      this.communiqueService.getAll(this.pg.pageSize,this.pg.page).subscribe((res:any)=>{
+          this.loading=false
+
+          this.communiques=res.data.data
+          this.pg.total=res.data.total
+
+
+         },
+         (err:any)=>{
+          this.loading=false
+          this.toastr.error(err.error?.message, 'Communiqué');
+    
+        })
+  }
+
 
   get totalPages(): number {
     return Math.ceil(this.communiques.length / this.itemsPerPage);
@@ -75,9 +106,58 @@ export class CommuniqueComponent {
     if (page >= 1 && page <= this.totalPages) {
       this.currentPage = page;
     }
+    this.pg.page=this.currentPage
+    this.getAll()
   }
 
   setActive(id: string) {
     this.activeMenu = id;
   }
+
+     pageChanged(ev:any){
+
+      this.pg.page=ev
+      this.getAll()
+    }
+
+
+    onEdit() {
+    console.log('Editer');
+    // implémenter l'édition
+  }
+
+  onDelete() {
+    console.log('Supprimer');
+    // confirmation et appel API
+  }
+
+  onTransmit() {
+    console.log('Transmettre');
+    // implémenter la transmission
+  }
+
+
+    onShowDetails() {
+    console.log('Transmettre');
+    // implémenter la transmission
+  }
+
+
+  openModal() {
+    console.log('Ouvrir modal');
+    // afficher le modal Angular (PrimeNG ou Tailwind)
+  }
+
+  onPublish() {
+    console.log('Publier');
+  }
+
+  onUnpublish() {
+    console.log('Arrêter de publier');
+  }
+
+  onArchive() {
+    console.log('Archiver');
+  }
+
 }

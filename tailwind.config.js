@@ -3,10 +3,13 @@ module.exports = {
   darkMode: 'class',
   content: [
     "./src/**/*.{html,ts}",
+    "./node_modules/primeng/**/*.js"
   ],
   theme: {
     extend: {
       colors: {
+        'benin-green': '#009639', // ✅ vert du drapeau
+        'benin-blue': '#0072ce',
         'primary': {
           50: '#f0f9ff',
           100: '#e0f2fe',

@@ -4,6 +4,11 @@
 @import 'mapbox-gl/dist/mapbox-gl.css';
 /* @import '@tailwindplus/elements'; */
 
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.min.css"; /* seulement base */
+@import "primeicons/primeicons.css";
+
+
 
 /* Styles personnalisés */
 @layer base {

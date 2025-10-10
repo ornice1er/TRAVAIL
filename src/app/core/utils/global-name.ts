@@ -1,12 +1,12 @@
 
 
  export const GlobalName:any ={
-    tokenName:"saeToken",
-    currentRoleIndex:"saeRoleIndex",
-    refreshTokenName:"saeRefreshToken",
-    userName:"saeUserConnected",
-    childName:"saeChildSelected",
-    exercice:"saeExercise",
-    expireIn:'saeExpireIn',
-    features:'saeFeatures'
+    tokenName:"mtfpToken",
+    currentRoleIndex:"mtfpRoleIndex",
+    refreshTokenName:"mtfpRefreshToken",
+    userName:"mtfpUserConnected",
+    childName:"mtfpChildSelected",
+    exercice:"mtfpExercise",
+    expireIn:'mtfpExpireIn',
+    features:'mtfpFeatures'
  }

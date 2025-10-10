@@ -41,10 +41,12 @@ import { OrganigrammeDetailsComponent } from './pages/organigramme/organigramme-
 import { OrganigrammeEditionComponent } from './pages/organigramme/organigramme-edition/organigramme-edition.component';
 
 import { PosterComponent } from './pages/poster/poster.component';
+import { AuthGuard } from '../../core/guards/auth.guard';
 
 export const AdminRounting: Routes = [
   {
     path: 'admin',
+    canActivate:[AuthGuard],
     component: AdminLayoutComponent,
     children: [
       { path: 'tableau-de-bord', component: DashboardComponent },
