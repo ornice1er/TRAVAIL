@@ -18,12 +18,29 @@ export class CommuniqueService {
     return this.http.get<any[]>(`${ConfigService.toApiUrl("communiques-by-state")}/${state}`,ConfigService.addAction('LISTER'));
   }
 
-  getStudents(){
-    return this.http.get<any[]>(`${ConfigService.toApiUrl("communiques-students")}`,ConfigService.addAction('LISTER'));
+
+    up(id:any){
+    return this.http.get<any[]>(`${ConfigService.toApiUrl("communiques/transmission/up")}/${id}`,ConfigService.addAction('LISTER'));
   }
-  updateAccount(id:any,resource:any){
-    return this.http.post<any[]>(`${ConfigService.toApiUrl("communiques-account-update")}/${id}`,resource,ConfigService.addAction('LISTER'));
+     down(id:any){
+    return this.http.get<any[]>(`${ConfigService.toApiUrl("communiques/transmission/down")}/${id}`,ConfigService.addAction('LISTER'));
   }
+
+     publish(id:any){
+    return this.http.get<any[]>(`${ConfigService.toApiUrl("communiques/publication/up")}/${id}`,ConfigService.addAction('LISTER'));
+  }
+     unpublish(id:any){
+    return this.http.get<any[]>(`${ConfigService.toApiUrl("communiques/publication/down")}/${id}`,ConfigService.addAction('LISTER'));
+  }
+
+      archive(id:any){
+    return this.http.get<any[]>(`${ConfigService.toApiUrl("communiques/archivied/up")}/${id}`,ConfigService.addAction('LISTER'));
+  }
+
+      restore(id:any){
+    return this.http.get<any[]>(`${ConfigService.toApiUrl("communiques/restored/up")}/${id}`,ConfigService.addAction('LISTER'));
+  }
+
 
 
   store(ressource:any){

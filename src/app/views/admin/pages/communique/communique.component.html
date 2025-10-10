@@ -24,34 +24,40 @@
 
         <div class="overflow-x-auto">
 
-          <div >
+<div class="flex flex-wrap items-center gap-2" *ngIf="selected_data">
+
+  <!-- Voir détails -->
   <button
     type="button"
     pTooltip="Voir détails"
     tooltipPosition="top"
-    class="hidden btn btn-square btn-secondary btn-xs"
+    class="px-3 py-1 text-xs font-medium text-white bg-gray-600 rounded-lg hover:bg-gray-700 focus:ring-2 focus:ring-gray-400 transition"
     (click)="onShowDetails()"
   >
     Voir détails
   </button>
 
-  <!-- Editer -->
+  <!-- Éditer -->
   <button
+
+    *ngIf="!selected_data?.media?.is_published"
     type="button"
-    pTooltip="Editer"
+    pTooltip="Éditer"
     tooltipPosition="top"
-    class="hidden btn btn-square btn-warning btn-xs"
+    class="px-3 py-1 text-xs font-medium text-white bg-yellow-500 rounded-lg hover:bg-yellow-600 focus:ring-2 focus:ring-yellow-400 transition"
     (click)="onEdit()"
   >
-    Editer
+    Éditer
   </button>
 
   <!-- Supprimer -->
   <button
+      *ngIf="!selected_data?.media?.is_published"
+
     type="button"
     pTooltip="Supprimer"
     tooltipPosition="top"
-    class="hidden btn btn-square btn-danger btn-xs"
+    class="px-3 py-1 text-xs font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-2 focus:ring-red-400 transition"
     (click)="onDelete()"
   >
     Supprimer
@@ -59,10 +65,12 @@
 
   <!-- Transmettre -->
   <button
+      *ngIf="!selected_data?.media?.is_published"
+
     type="button"
     pTooltip="Transmettre"
     tooltipPosition="top"
-    class="hidden btn btn-square btn-warning btn-xs"
+    class="px-3 py-1 text-xs font-medium text-white bg-sky-500 rounded-lg hover:bg-sky-600 focus:ring-2 focus:ring-sky-300 transition"
     (click)="onTransmit()"
   >
     Transmettre
@@ -70,46 +78,61 @@
 
   <!-- Retourner le communiqué -->
   <button
+      *ngIf="!selected_data?.media?.is_published"
+
     type="button"
-    class="hidden btn btn-square btn-secondary btn-xs"
+    pTooltip="Retourner le communiqué"
+    tooltipPosition="top"
+    class="px-3 py-1 text-xs font-medium text-gray-700 border border-gray-400 rounded-lg hover:bg-gray-100 focus:ring-2 focus:ring-gray-300 transition"
     (click)="openModal()"
   >
-    Retourner le communiqué
+    Retourner
   </button>
 
   <!-- Publier -->
   <button
+      *ngIf="!selected_data?.media?.is_published"
+
     type="button"
     pTooltip="Publier"
     tooltipPosition="top"
-    class="hidden btn btn-square btn-success btn-xs"
+    class="px-3 py-1 text-xs font-medium text-white bg-green-600 rounded-lg hover:bg-green-700 focus:ring-2 focus:ring-green-400 transition"
     (click)="onPublish()"
   >
     Publier
   </button>
 
-  <!-- Arrêter de publier -->
+  <!-- Arrêter publication -->
   <button
+      *ngIf="selected_data?.media?.is_published"
+
     type="button"
-    pTooltip="Arrêter de publier"
+    pTooltip="Arrêter la publication"
     tooltipPosition="top"
-    class="hidden btn btn-square btn-danger btn-xs"
+    class="px-3 py-1 text-xs font-medium text-red-600 border border-red-500 rounded-lg hover:bg-red-50 focus:ring-2 focus:ring-red-300 transition"
     (click)="onUnpublish()"
   >
-    Arrêter de publier
+    Arrêter
   </button>
 
   <!-- Archiver -->
   <button
+      *ngIf="!selected_data?.media?.is_published"
+
     type="button"
     pTooltip="Archiver ce communiqué"
     tooltipPosition="top"
-    class="btn btn-square btn-danger btn-xs"
+    class="px-3 py-1 text-xs font-medium text-white bg-gray-800 rounded-lg hover:bg-black focus:ring-2 focus:ring-gray-500 transition"
     (click)="onArchive()"
   >
-    Archiver ce communiqué
+    Archiver
   </button>
+
 </div>
+
+
+
+
 
           <table class="w-full">
             <thead class="bg-gray-50 border-b border-gray-200">
@@ -128,7 +151,7 @@
                                                       currentPage: pg.page,
                                                       totalItems: pg.total }; let i = index" class="hover:bg-gray-50 transition-colors">
                 <td class="px-6 py-4">
-                  <input type="checkbox" (change)="handleSelectItem(communique.id)" [checked]="selectedItems.includes(communique.id)" class="w-4 h-4 text-benin-green bg-gray-100 border-gray-300 rounded focus:ring-benin-green focus:ring-2" />
+                  <input type="checkbox" (change)="handleSelectItem(communique.id,communique)" [checked]="selectedItems.includes(communique.id)" class="w-4 h-4 text-benin-green bg-gray-100 border-gray-300 rounded focus:ring-benin-green focus:ring-2" />
                 </td>
                 <td class="px-6 py-4 text-sm text-gray-900 font-roboto">{{startIndex + i + 1}}</td>
                 <td class="px-6 py-4 text-sm text-gray-900 font-roboto max-w-md">

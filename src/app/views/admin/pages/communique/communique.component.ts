@@ -34,6 +34,7 @@ export class CommuniqueComponent {
     page:1,
     total:0
   }
+  selected_data:any
 
 
   constructor(
@@ -57,7 +58,7 @@ export class CommuniqueComponent {
 
           this.communiques=res.data.data
           this.pg.total=res.data.total
-
+          this.selected_data=null
 
          },
          (err:any)=>{
@@ -86,12 +87,14 @@ export class CommuniqueComponent {
     return Math.min(this.startIndex + this.itemsPerPage, this.communiques.length);
   }
 
-  handleSelectItem(id: number) {
+  handleSelectItem(id: number,el:any) {
     if (this.selectedItems.includes(id)) {
       this.selectedItems = this.selectedItems.filter(item => item !== id);
     } else {
       this.selectedItems = [...this.selectedItems, id];
     }
+
+    this.selected_data=el
   }
 
   handleSelectAll() {
@@ -132,8 +135,19 @@ export class CommuniqueComponent {
   }
 
   onTransmit() {
-    console.log('Transmettre');
-    // implémenter la transmission
+      this.loading=true
+      this.communiqueService.up(this.selected_data.id).subscribe((res:any)=>{
+          this.loading=false
+
+          this.getAll()
+
+
+         },
+         (err:any)=>{
+          this.loading=false
+          this.toastr.error(err.error?.message, 'Communiqué');
+    
+        })
   }
 
 
@@ -149,15 +163,51 @@ export class CommuniqueComponent {
   }
 
   onPublish() {
-    console.log('Publier');
+          this.loading=true
+      this.communiqueService.publish(this.selected_data.id).subscribe((res:any)=>{
+          this.loading=false
+
+          this.getAll()
+
+
+         },
+         (err:any)=>{
+          this.loading=false
+          this.toastr.error(err.error?.message, 'Communiqué');
+    
+        })
   }
 
   onUnpublish() {
-    console.log('Arrêter de publier');
+          this.loading=true
+      this.communiqueService.unpublish(this.selected_data.id).subscribe((res:any)=>{
+          this.loading=false
+
+          this.getAll()
+
+
+         },
+         (err:any)=>{
+          this.loading=false
+          this.toastr.error(err.error?.message, 'Communiqué');
+    
+        })
   }
 
   onArchive() {
-    console.log('Archiver');
+         this.loading=true
+      this.communiqueService.archive(this.selected_data.id).subscribe((res:any)=>{
+          this.loading=false
+
+          this.getAll()
+
+
+         },
+         (err:any)=>{
+          this.loading=false
+          this.toastr.error(err.error?.message, 'Communiqué');
+    
+        })
   }
 
 }

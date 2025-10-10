@@ -239,7 +239,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     </section>
 
     <!-- Newsletter -->
-    <section class="section-padding bg-white dark:bg-gray-900">
+    <!--<section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
         <div class="card p-8 lg:p-12 text-center ">
           <h3
@@ -280,7 +280,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
           </form>
         </div>
       </div>
-    </section>
+    </section>-->
   `,
   styles: [
     `

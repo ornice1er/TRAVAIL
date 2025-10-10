@@ -97,8 +97,8 @@ export class PublicService {
     }
 
 
-     getCommuniques(){
-      return this.http.get<any>(`${ConfigService.toApiUrl("communiques")}`);
+     getCommuniques(pageSize:any,page:any){
+      return this.http.get<any>(`${ConfigService.toApiUrl("public/communiques")}?pageSize=${pageSize}&page=${page}`);
     }
 
      getOppStages(){
