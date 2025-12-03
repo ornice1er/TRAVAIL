@@ -1,74 +1,63 @@
- <div class="tw-bg-white tw-rounded-xl tw-shadow-sm tw-border tw-border-gray-100">
-        <!-- En-tête -->
-        <div class="tw-p-6 tw-border-b tw-border-gray-200 tw-bg-gradient-to-r tw-from-benin-green/5 tw-to-benin-blue/5">
-          <h2 class="tw-text-xl tw-font-bold tw-text-gray-900 tw-font-montserrat">TOUS LES DÉTAILS</h2>
-        </div>
+<div class="bg-white rounded-xl shadow-sm border border-gray-100">
+  <!-- En-tête -->
+  <div class="p-6 border-b border-gray-200 bg-gradient-to-r from-benin-green/5 to-benin-blue/5">
+    <h2 class="text-xl font-bold text-gray-900 font-montserrat">TOUS LES DÉTAILS</h2>
+  </div>
 
-        <div class="tw-p-6 tw-space-y-8">
-          <!-- Image -->
-          <div class="tw-w-full tw-h-64 tw-bg-gray-200 tw-rounded-lg tw-overflow-hidden">
-            <img src="https://readdy.ai/api/search-image?query=Modern%20government%20building%20facade%20with%20clean%20architectural%20lines%2C%20professional%20administrative%20setting%2C%20official%20ministry%20building%20exterior%20with%20contemporary%20design%2C%20neutral%20lighting%2C%20institutional%20architecture%20representing%20public%20service%20and%20governance&width=800&height=300&seq=actualite-details-1&orientation=landscape" alt="Image de l'actualité" class="tw-w-full tw-h-full tw-object-cover tw-object-top"/>
-          </div>
+  <div class="p-6 space-y-8">
+    <!-- Image -->
+<div class="grid grid-cols-2 gap-4">
+  <div class="w-full h-64 bg-gray-200 rounded-lg overflow-hidden">
+    <img 
+      [src]="getLink('actualites/big', actualite?.big_photo)"
+      alt="Image 1"
+      class="w-full h-full object-contain object-center"
+    />
+  </div>
 
-          <!-- Titre -->
-          <div>
-            <h3 class="tw-text-sm tw-font-semibold tw-text-gray-700 tw-mb-2 tw-font-montserrat">Titre de l'actualité</h3>
-            <p class="tw-text-lg tw-font-medium tw-text-gray-900 tw-font-roboto">Compte rendu du 22 Octobre 2021 de la séance de validation des décrets à la DGT</p>
-          </div>
+  <div class="w-full h-64 bg-gray-200 rounded-lg overflow-hidden">
+    <img 
+      [src]="getLink('actualites', actualite?.photo)"
+      alt="Image 2"
+      class="w-full h-full object-contain object-center"
+    />
+  </div>
+</div>
 
-          <!-- Résumé -->
-          <div>
-            <h3 class="tw-text-sm tw-font-semibold tw-text-gray-700 tw-mb-2 tw-font-montserrat">Résumé</h3>
-            <p class="tw-text-gray-700 tw-leading-relaxed tw-font-roboto">
-              La Direction Générale du Travail a pris part à la session de validation des décrets qui s'est tenue à l'INFOSEC les 14 et 15 octobre 2021.
-            </p>
-          </div>
 
-          <!-- Description -->
-          <div>
-            <h3 class="tw-text-sm tw-font-semibold tw-text-gray-700 tw-mb-2 tw-font-montserrat">Description</h3>
-            <p class="tw-text-gray-700 tw-leading-relaxed tw-font-roboto tw-font-bold">
-              Quand le Bénin reçoit les vives et chaleureuses félicitations.
-            </p>
-          </div>
+    <!-- Titre -->
+    <div>
+      <h3 class="text-sm font-semibold text-gray-700 mb-2 font-montserrat">Titre de l'actualité</h3>
+      <p class="text-lg font-medium text-gray-900 font-roboto">{{actualite?.title}}</p>
+    </div>
 
-          <!-- Auteur -->
-          <div>
-            <h3 class="tw-text-sm tw-font-semibold tw-text-gray-700 tw-mb-2 tw-font-montserrat">Auteur</h3>
-            <p class="tw-text-gray-900 tw-font-roboto">Saisie DGT</p>
-          </div>
+    <!-- Résumé -->
+    <div>
+      <h3 class="text-sm font-semibold text-gray-700 mb-2 font-montserrat">Résumé</h3>
+      <p class="text-gray-700 leading-relaxed font-roboto">
+{{actualite?.resume}}      </p>
+    </div>
 
-          <!-- À publier -->
-          <div>
-            <h3 class="tw-text-sm tw-font-semibold tw-text-gray-700 tw-mb-2 tw-font-montserrat">À publié sur l'accueil principal</h3>
-            <p class="tw-text-gray-900 tw-font-roboto">OUI</p>
-          </div>
+    <!-- Description -->
+    <div>
+      <h3 class="text-sm font-semibold text-gray-700 mb-2 font-montserrat">Description</h3>
+      <p class="text-gray-700 leading-relaxed font-roboto font-bold">
+{{actualite?.description}}      </p>
+    </div>
 
-          <!-- Médias -->
-          <div>
-            <h3 class="tw-text-lg tw-font-bold tw-text-gray-900 tw-mb-4 tw-font-montserrat">LISTE DES MÉDIAS</h3>
-            <div class="tw-overflow-x-auto">
-              <table class="tw-w-full tw-border tw-border-gray-200">
-                <thead class="tw-bg-gray-50">
-                  <tr>
-                    <th class="tw-px-6 tw-py-3 tw-text-left tw-text-xs tw-font-semibold tw-text-gray-500 tw-uppercase tw-tracking-wider tw-border-r tw-border-gray-200 tw-font-montserrat">Nom</th>
-                    <th class="tw-px-6 tw-py-3 tw-text-left tw-text-xs tw-font-semibold tw-text-gray-500 tw-uppercase tw-tracking-wider tw-border-r tw-border-gray-200 tw-font-montserrat">Fichier</th>
-                    <th class="tw-px-6 tw-py-3 tw-text-left tw-text-xs tw-font-semibold tw-text-gray-500 tw-uppercase tw-tracking-wider tw-font-montserrat">Action</th>
-                  </tr>
-                </thead>
-                <tbody class="tw-bg-white">
-                  <tr *ngIf="medias.length === 0">
-                    <td colspan="3" class="tw-px-6 tw-py-8 tw-text-center tw-text-gray-500 tw-font-roboto">Aucune donnée disponible</td>
-                  </tr>
-                  <tr *ngFor="let media of medias; let i = index" class="tw-border-t tw-border-gray-200">
-                    <td class="tw-px-6 tw-py-4 tw-text-sm tw-text-gray-900 tw-border-r tw-border-gray-200 tw-font-roboto">{{media.nom}}</td>
-                    <td class="tw-px-6 tw-py-4 tw-text-sm tw-text-gray-900 tw-border-r tw-border-gray-200 tw-font-roboto">{{media.fichier}}</td>
-                    <td class="tw-px-6 tw-py-4 tw-text-sm tw-text-gray-900 tw-font-roboto">{{media.action}}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+    <!-- Auteur -->
+    <div>
+      <h3 class="text-sm font-semibold text-gray-700 mb-2 font-montserrat">Auteur</h3>
+      <p class="text-gray-900 font-roboto">{{actualite?.author}}</p>
+    </div>
 
-        </div>
-      </div>
+    <!-- À publier -->
+    <div>
+      <h3 class="text-sm font-semibold text-gray-700 mb-2 font-montserrat">À publié sur l'accueil principal</h3>
+      <p class="text-gray-900 font-roboto">{{actualite?.media?.has_principal_access? 'OUI': 'NON'}}</p>
+    </div>
+
+
+
+  </div>
+</div>

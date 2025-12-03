@@ -112,7 +112,8 @@ displayModal = false;
         
             })
       }
-    
+
+
 
         delete(id:any){
     let confirmed=AppSweetAlert.confirmBox('info','Suppression','Voulez vous vraiment retirer cet élément?',);

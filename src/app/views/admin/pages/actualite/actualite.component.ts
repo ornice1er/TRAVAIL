@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { ActualiteService } from '../../../../core/services/actualite.service';
+import { ToastrService } from 'ngx-toastr';
+import { LocalStorageService } from '../../../../core/utils/local-stoarge-service';
 
 
 
@@ -33,6 +36,8 @@ export class ActualiteComponent {
   currentPage = 1;
   selectedItems: number[] = [];
     Math:any=Math
+      loading=false
+
   menuItems: MenuItem[] = [
     { id: 'tableau-de-bord', label: 'Tableau de bord', icon: 'ri-dashboard-line' },
     { id: 'communiques', label: 'Communiqués', icon: 'ri-file-text-line' },
@@ -47,16 +52,48 @@ export class ActualiteComponent {
     { id: 'historique', label: 'Historique', icon: 'ri-history-line' }
   ];
 
-  actualites: Actualite[] = [
-    { id: 1, title: 'Réunion du Conseil des Ministres du 15 Mars 2024', category: 'comptes-rendus', auteur: 'Direction de la Communication', dateCreation: '15/03/2024', statut: 'Publié' },
-    { id: 2, title: 'Lancement du programme de formation professionnelle', category: 'annonces', auteur: 'Service Formation', dateCreation: '12/03/2024', statut: 'Publié' },
-    { id: 3, title: 'Visite officielle du Ministre dans les départements', category: 'événements', auteur: 'Cabinet du Ministre', dateCreation: '10/03/2024', statut: 'Brouillon' },
-    { id: 4, title: 'Nouvelle réglementation sur les conditions de travail', category: 'réglementations', auteur: 'Direction Juridique', dateCreation: '08/03/2024', statut: 'Publié' },
-    { id: 5, title: 'Campagne de sensibilisation sur la sécurité au travail', category: 'campagnes', auteur: 'Direction de la Prévention', dateCreation: '05/03/2024', statut: 'Publié' },
-    { id: 6, title: 'Résultats du concours de recrutement 2024', category: 'résultats', auteur: 'Direction des Ressources Humaines', dateCreation: '03/03/2024', statut: 'Publié' },
-    { id: 7, title: 'Atelier sur la modernisation de l\'administration', category: 'formations', auteur: 'Direction de la Modernisation', dateCreation: '01/03/2024', statut: 'Programmé' },
-    { id: 8, title: 'Bilan des activités du premier trimestre 2024', category: 'bilans', auteur: 'Secrétariat Général', dateCreation: '28/02/2024', statut: 'En révision' }
-  ];
+  actualites: any[] = [ ];
+    pg:any={
+    pageSize:9,
+    page:1,
+    total:0
+  }
+  selected_data:any
+
+
+  constructor(
+    private actualityService:ActualiteService,
+    private lsService:LocalStorageService,
+    private router:Router,
+    private toastr:ToastrService
+  ){
+
+  }
+
+  ngOnInit(){
+    this.getAll()
+  }
+
+
+  getAll() {
+    this.loading=true
+      this.actualityService.getAll(this.pg.pageSize,this.pg.page).subscribe((res:any)=>{
+          this.loading=false
+
+          this.actualites=res.data.data
+          this.pg.total=res.data.total
+          this.selected_data=null
+
+         },
+         (err:any)=>{
+          this.loading=false
+          this.toastr.error(err.error?.message, 'Communiqué');
+    
+        })
+  }
+
+
+
 
   get totalPages(): number {
     return Math.ceil(this.actualites.length / this.itemsPerPage);
@@ -74,12 +111,14 @@ export class ActualiteComponent {
     return this.actualites.slice(this.startIndex, this.endIndex);
   }
 
-  handleSelectItem(id: number) {
+  handleSelectItem(id: number,el:any) {
     if (this.selectedItems.includes(id)) {
       this.selectedItems = this.selectedItems.filter(item => item !== id);
     } else {
       this.selectedItems.push(id);
     }
+
+    this.selected_data=el
   }
 
   handleSelectAll() {
@@ -90,12 +129,102 @@ export class ActualiteComponent {
     }
   }
 
-  getStatusColor(statut: string) {
+      onShowDetails() {
+    this.router.navigate(["/admin/actualites/details/"+this.selected_data?.id])
+    // implémenter la transmission
+  }
+
+     onEdit() {
+    console.log('Editer');
+
+    this.router.navigate(["/admin/actualites/edition/"+this.selected_data?.id])
+    // implémenter l'édition
+  }
+
+   onDelete() {
+    console.log('Supprimer');
+    // confirmation et appel API
+  }
+
+
+  onTransmit() {
+      this.loading=true
+      this.actualityService.up(this.selected_data.id).subscribe((res:any)=>{
+          this.loading=false
+
+          this.getAll()
+
+
+         },
+         (err:any)=>{
+          this.loading=false
+          this.toastr.error(err.error?.message, 'Communiqué');
+    
+        })
+  }
+
+
+  openModal() {
+    console.log('Ouvrir modal');
+    // afficher le modal Angular (PrimeNG ou Tailwind)
+  }
+
+
+
+
+  onPublish() {
+          this.loading=true
+      this.actualityService.publish(this.selected_data.id).subscribe((res:any)=>{
+          this.loading=false
+
+          this.getAll()
+
+
+         },
+         (err:any)=>{
+          this.loading=false
+          this.toastr.error(err.error?.message, 'Communiqué');
+    
+        })
+  }
+
+  onUnpublish() {
+          this.loading=true
+      this.actualityService.unpublish(this.selected_data.id).subscribe((res:any)=>{
+          this.loading=false
+
+          this.getAll()
+
+
+         },
+         (err:any)=>{
+          this.loading=false
+          this.toastr.error(err.error?.message, 'Communiqué');
+    
+        })
+  }
+
+  onArchive() {
+         this.loading=true
+      this.actualityService.archive(this.selected_data.id).subscribe((res:any)=>{
+          this.loading=false
+
+          this.getAll()
+
+
+         },
+         (err:any)=>{
+          this.loading=false
+          this.toastr.error(err.error?.message, 'Communiqué');
+    
+        })
+  }
+
+
+  getStatusColor(statut: any) {
     switch (statut) {
-      case 'Publié': return 'bg-green-100 text-green-800';
-      case 'Brouillon': return 'bg-yellow-100 text-yellow-800';
-      case 'En révision': return 'bg-blue-100 text-blue-800';
-      case 'Programmé': return 'bg-purple-100 text-purple-800';
+      case 1: return 'bg-green-100 text-green-800';
+      case 0: return 'bg-blue-100 text-blue-800';
       default: return 'bg-gray-100 text-gray-800';
     }
   }

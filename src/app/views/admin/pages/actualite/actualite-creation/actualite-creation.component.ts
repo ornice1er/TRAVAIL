@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { ActualiteService } from '../../../../../core/services/actualite.service';
+import { StructureService } from '../../../../../core/services/structure.service';
+import { CategorieService } from '../../../../../core/services/categorie.service';
 
 
 interface MenuItem {
@@ -23,7 +26,7 @@ export class ActualiteCreationComponent {
   showLocationDropdown = false;
   publishLocation = '';
   searchQuery = '';
-
+  loading=false
   publishOptions = [
     'Sélectionner...',
     'Page d\'accueil',
@@ -47,19 +50,57 @@ export class ActualiteCreationComponent {
   ];
 
   actualiteForm: FormGroup;
+structures:any[]=[]
+categories:any[]=[]
 
-  constructor(private fb: FormBuilder, private router: Router) {
-    this.actualiteForm = this.fb.group({
-      structure: [{ value: 'Ministère du travail et de la fonction publique', disabled: true }, Validators.required],
-      category: ['comptes-rendus', Validators.required],
-      title: ['', Validators.required],
-      resume: ['', Validators.required],
-      description: ['', Validators.required],
-      lienFlickr: [''],
-      auteur: ['']
-    });
+  constructor(private fb: FormBuilder, 
+    private router: Router, 
+    private categorieService:CategorieService,
+    private actualityService:ActualiteService, 
+    private structureServuce:StructureService) {
+     this.actualiteForm = this.fb.group({
+    structure_id: [''],
+    category_id: [''],
+    title: [''],
+    sub_description: [''],
+    description: [''],
+    link: [''],
+    author: [''],
+    has_principal_access: [''],
+    photo: [null],
+    big_photo: [null],
+  });
   }
 
+
+  ngOnInit(){
+    this.getStructures()
+    this.getCategories()
+  }
+
+   getCategories() {
+         this.loading=true
+          this.categorieService.getAll().subscribe((res:any)=>{
+              this.loading=false
+            this.categories=res.data
+             },
+             (err:any)=>{
+              this.loading=false
+        
+            })
+      }
+
+    getStructures() {
+         this.loading=true
+          this.structureServuce.getAll().subscribe((res:any)=>{
+              this.loading=false
+            this.structures=res.data
+             },
+             (err:any)=>{
+              this.loading=false
+        
+            })
+      }
   setActiveMenu(id: string) {
     this.activeMenu = id;
   }
@@ -77,13 +118,36 @@ export class ActualiteCreationComponent {
     console.log('Format appliqué:', format);
   }
 
-  onSubmit() {
-    if (this.actualiteForm.valid) {
-      console.log('Création de l’actualité:', {
-        ...this.actualiteForm.getRawValue(),
-        publishLocation: this.publishLocation
-      });
-    }
+  onFileSelect(event: any, field: string) {
+  const file = event.target.files[0];
+  if (file) {
+    this.actualiteForm.patchValue({ [field]: file });
   }
+}
+
+
+     onSubmit() {
+        if (this.actualiteForm.invalid) return;
+
+        const formData = new FormData();
+        let object=this.actualiteForm.value
+        for (const key in object) {
+          if (Object.prototype.hasOwnProperty.call(object, key)) {
+            const element = object[key];
+            formData.append(key,element)
+          }
+        }
+      
+         this.loading=true
+          this.actualityService.store(formData).subscribe((res:any)=>{
+              this.loading=false
+               this.router.navigate(["/admin/actualites"])
+
+             },
+             (err:any)=>{
+              this.loading=false
+        
+            })
+      }
 
 }

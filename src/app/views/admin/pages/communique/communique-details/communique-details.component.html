@@ -67,7 +67,7 @@
                   </tr>
                 </thead>
                 <tbody class="bg-white">
-                  <tr *ngIf="medias.length === 0">
+                  <tr *ngIf="medias?.length === 0">
                     <td colspan="3" class="px-6 py-8 text-center text-gray-500 font-roboto">Aucune donnée disponible</td>
                   </tr>
                   <tr *ngFor="let media of medias; let i = index" class="border-t border-gray-200">
@@ -76,7 +76,13 @@
                       <a target="_blank" [href]="getLink('communiques',media.filename)">Lire fichier</a>
                     </td>
                     <td class="px-6 py-4 text-sm text-gray-900 font-roboto">
-                      
+                        <button
+                        (click)="delete(media?.id)"
+                      pButton
+                      type="submit"
+                      label="Supprimer"
+                      class="p-button-danger"
+                    ></button>
                     </td>
                   </tr>
                 </tbody>

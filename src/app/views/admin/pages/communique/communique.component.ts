@@ -126,6 +126,8 @@ export class CommuniqueComponent {
 
     onEdit() {
     console.log('Editer');
+
+    this.router.navigate(["/admin/communiques/edition/"+this.selected_data?.id])
     // implémenter l'édition
   }
 
@@ -152,7 +154,7 @@ export class CommuniqueComponent {
 
 
     onShowDetails() {
-    console.log('Transmettre');
+    this.router.navigate(["/admin/communiques/details/"+this.selected_data?.id])
     // implémenter la transmission
   }
 
