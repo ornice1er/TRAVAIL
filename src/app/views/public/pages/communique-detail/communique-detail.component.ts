@@ -58,7 +58,7 @@ import { ConfigService } from '../../../../core/utils/config-service';
         
 
           <!-- Contenu -->
-          <div class="prose prose-lg dark:prose-invert max-w-none" [innerHTML]="communique.description">
+          <div class="prose prose-lg dark:prose-invert max-w-none rich-content" [innerHTML]="communique.description">
           <p [innerHTML]="communique.description"></p>
           </div>
 

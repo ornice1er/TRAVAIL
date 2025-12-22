@@ -7,9 +7,16 @@ import { CategorieService } from '../../../../../core/services/categorie.service
 import { StructureService } from '../../../../../core/services/structure.service';
 import { ToastrService } from 'ngx-toastr';
 import { ConfigService } from '../../../../../core/utils/config-service';
+import Quill from 'quill';
+import { QuillModule } from 'ngx-quill';
+import { LoadingComponent } from '../../../../../shared/components/loading/loading.component';
+const Font = Quill.import('formats/font') as any;
+Font.whitelist = ['bookman', 'arial', 'times-new-roman'];
+Quill.register('formats/font', Font, true);
+
 @Component({
   selector: 'app-actualite-edition',
-  imports: [CommonModule,RouterModule,ReactiveFormsModule,FormsModule],
+  imports: [CommonModule,RouterModule,ReactiveFormsModule,FormsModule,LoadingComponent,QuillModule],
   templateUrl: './actualite-edition.component.html',
   styleUrl: './actualite-edition.component.css'
 })
@@ -17,6 +24,8 @@ export class ActualiteEditionComponent {
  activeMenu = 'actualites';
   showLocationDropdown = false;
   publishLocation = '';
+    sub_description=""
+  description=""
   searchQuery = '';
   loading=false
   publishOptions = [
@@ -46,6 +55,17 @@ structures:any[]=[]
 categories:any[]=[]
 actualiteId:any
 actualite:any
+      modules = {
+  toolbar: [
+    ['bold', 'italic', 'underline', 'strike'],
+    [{ font: Font.whitelist }],  // Ajoute le menu déroulant des polices
+    [{ header: 1 }, { header: 2 }],
+    [{ list: 'ordered' }, { list: 'bullet' }],
+    [{ color: [] }, { background: [] }],
+    ['link', 'image', 'blockquote', 'code-block'],
+    ['clean']
+  ]
+};
 
   constructor(private fb: FormBuilder, 
     private router: Router, 
@@ -168,6 +188,8 @@ actualite:any
   if (this.actualiteForm.value.big_photo instanceof File) {
     formData.append('big_photo', this.actualiteForm.value.big_photo);
   }
+      
+
          this.loading=true
           this.actualityService.update(this.actualite?.media?.id,formData).subscribe((res:any)=>{
               this.loading=false

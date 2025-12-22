@@ -143,6 +143,8 @@
                 <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider font-montserrat">#</th>
                 <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider font-montserrat">Titre</th>
                 <th class="px-6 py-4 text-center text-xs font-semibold text-gray-500 uppercase tracking-wider font-montserrat">Motif</th>
+                <th class="px-6 py-4 text-center text-xs font-semibold text-gray-500 uppercase tracking-wider font-montserrat">Etat</th>
+                <th class="px-6 py-4 text-center text-xs font-semibold text-gray-500 uppercase tracking-wider font-montserrat">Date</th>
               </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
@@ -159,6 +161,17 @@
                 </td>
                 <td class="px-6 py-4 text-center">
                   <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 font-roboto">{{communique?.motif ?? 'Non défini'}}</span>
+                </td>
+                 <td class="px-6 py-4 text-center">
+                  <span
+                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium font-roboto"
+                    [ngClass]="communique?.media?.is_published ? 'bg-benin-green text-white' : 'bg-gray-100 text-gray-800'"
+                  >
+                    {{ communique?.media?.is_published ? 'Publié' : 'Non publié' }}
+                  </span>
+                </td>
+                 <td class="px-6 py-4 text-center">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 font-roboto">{{communique?.created_at | date:'dd-MM-yyyy'}}</span>
                 </td>
               </tr>
             </tbody>

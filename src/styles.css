@@ -105,6 +105,48 @@
   }
 }
 
+/* styles.css */
+.active-menu {
+  @apply bg-gray-50
+         text-benin-green
+         border-r-4 border-benin-green
+         shadow-sm;
+}
+
+.rich-content * {
+  max-width: 100% !important; /* Empêche tout élément de dépasser */
+  box-sizing: border-box;
+  word-break: break-word;
+}
+.rich-content table {
+  display: block;
+  width: 100% !important;
+  overflow-x: auto;
+}
+
+.rich-content img,
+.rich-content iframe {
+  max-width: 100% !important;
+  height: auto;
+  display: block;
+}
+
+.rich-content pre,
+.rich-content code {
+  white-space: pre-wrap !important;
+  word-wrap: break-word;
+}
+
+.ql-editor {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.ql-editor img {
+  max-width: 100%;
+  height: auto;
+}
+
 /* Animations personnalisées */
 .animate-fade-in {
   animation: fadeIn 0.2s ease-out;

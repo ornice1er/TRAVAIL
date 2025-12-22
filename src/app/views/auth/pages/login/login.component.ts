@@ -7,10 +7,11 @@ import { LocalStorageService } from '../../../../core/utils/local-stoarge-servic
 import { ToastrService } from 'ngx-toastr';
 import { AppRedirect } from '../../../../core/utils/app-redirect';
 import { GlobalName } from '../../../../core/utils/global-name';
+import { LoadingComponent } from '../../../../shared/components/loading/loading.component';
 
 @Component({
   selector: 'app-login',
-  imports: [CommonModule,FormsModule,ReactiveFormsModule,RouterModule],
+  imports: [CommonModule,FormsModule,ReactiveFormsModule,RouterModule,LoadingComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -19,7 +20,7 @@ export class LoginComponent {
   password: string = '';
   showPassword: boolean = false;
   rememberMe: boolean = false;
-  loading:any=true
+  loading:any=false
   constructor(
     private lsService:LocalStorageService,
     private toastr: ToastrService,
@@ -30,6 +31,7 @@ export class LoginComponent {
 
   handleSubmit() {
     // Logique de connexion ici
+    this.loading=true
       this.authService.login({email: this.email,password: this.password}).subscribe((res:any)=>{
       this.lsService.set(GlobalName.tokenName,res.data?.access_token)
      this.authService.me().subscribe((res:any)=>{

@@ -166,7 +166,7 @@ export class CommuniqueComponent {
 
   onPublish() {
           this.loading=true
-      this.communiqueService.publish(this.selected_data.id).subscribe((res:any)=>{
+      this.communiqueService.publish(this.selected_data.media?.id).subscribe((res:any)=>{
           this.loading=false
 
           this.getAll()
@@ -182,7 +182,7 @@ export class CommuniqueComponent {
 
   onUnpublish() {
           this.loading=true
-      this.communiqueService.unpublish(this.selected_data.id).subscribe((res:any)=>{
+      this.communiqueService.unpublish(this.selected_data.media?.id).subscribe((res:any)=>{
           this.loading=false
 
           this.getAll()

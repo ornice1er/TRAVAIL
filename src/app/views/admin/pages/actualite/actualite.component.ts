@@ -174,7 +174,7 @@ export class ActualiteComponent {
 
   onPublish() {
           this.loading=true
-      this.actualityService.publish(this.selected_data.id).subscribe((res:any)=>{
+      this.actualityService.publish(this.selected_data.media?.id).subscribe((res:any)=>{
           this.loading=false
 
           this.getAll()
@@ -190,7 +190,7 @@ export class ActualiteComponent {
 
   onUnpublish() {
           this.loading=true
-      this.actualityService.unpublish(this.selected_data.id).subscribe((res:any)=>{
+      this.actualityService.unpublish(this.selected_data.media?.id).subscribe((res:any)=>{
           this.loading=false
 
           this.getAll()

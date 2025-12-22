@@ -376,7 +376,7 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
                 >
                 </p>
                 <a
-                  routerLink="/communiques/{{media?.communique?.id}}"
+                  routerLink="/communiques/{{media?.communique?.slug}}"
                   class="text-primary-800 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300 font-medium text-sm"
                 >
                   Lire le communiqué →

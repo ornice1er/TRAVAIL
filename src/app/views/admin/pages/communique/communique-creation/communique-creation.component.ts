@@ -6,9 +6,20 @@ import { CommuniqueService } from '../../../../../core/services/communique.servi
 import { LocalStorageService } from '../../../../../core/utils/app-action-check';
 import { GlobalName } from '../../../../../core/utils/global-name';
 import { ToastrService } from 'ngx-toastr';
+import { NgSelectModule } from '@ng-select/ng-select';
+import Quill from 'quill';
+import { QuillModule } from 'ngx-quill';
+import { LoadingComponent } from '../../../../../shared/components/loading/loading.component';
+const Font = Quill.import('formats/font') as any;
+Font.whitelist = ['bookman', 'arial', 'times-new-roman'];
+Quill.register('formats/font', Font, true);
+
+
+
+
 @Component({
   selector: 'app-communique-creation',
-  imports: [CommonModule,FormsModule,RouterModule],
+  imports: [CommonModule,FormsModule,RouterModule,NgSelectModule,QuillModule,LoadingComponent],
   templateUrl: './communique-creation.component.html',
   styleUrl: './communique-creation.component.css'
 })
@@ -16,10 +27,12 @@ export class CommuniqueCreationComponent {
 activeMenu = 'communiques';
   searchQuery = '';
   title = '';
+   category = '';
   content = '';
+     has_principal_access :any;
   publishLocation = '';
   showLocationDropdown = false;
-loading=true
+loading=false
    publishOptions = [
     'Page d\'accueil',
     'Section actualités', 
@@ -28,6 +41,17 @@ loading=true
   ];
 
 
+      modules = {
+  toolbar: [
+    ['bold', 'italic', 'underline', 'strike'],
+    [{ font: Font.whitelist }],  // Ajoute le menu déroulant des polices
+    [{ header: 1 }, { header: 2 }],
+    [{ list: 'ordered' }, { list: 'bullet' }],
+    [{ color: [] }, { background: [] }],
+    ['link', 'image', 'blockquote', 'code-block'],
+    ['clean']
+  ]
+};
   constructor(
     private communiqueService:CommuniqueService,
     private lsService:LocalStorageService,
@@ -46,7 +70,9 @@ loading=true
     this.loading=true
       this.communiqueService.store({
         title:this.title,
-        description:this.content
+        description:this.content,
+        category:this.category,
+        has_principal_access:this.has_principal_access
       }).subscribe((res:any)=>{
           this.loading=false
                this.router.navigate(['/admin/communiques'])

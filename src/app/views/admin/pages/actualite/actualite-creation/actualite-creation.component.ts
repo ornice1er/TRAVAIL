@@ -5,6 +5,12 @@ import { Router, RouterModule } from '@angular/router';
 import { ActualiteService } from '../../../../../core/services/actualite.service';
 import { StructureService } from '../../../../../core/services/structure.service';
 import { CategorieService } from '../../../../../core/services/categorie.service';
+import Quill from 'quill';
+import { QuillModule } from 'ngx-quill';
+import { LoadingComponent } from '../../../../../shared/components/loading/loading.component';
+const Font = Quill.import('formats/font') as any;
+Font.whitelist = ['bookman', 'arial', 'times-new-roman'];
+Quill.register('formats/font', Font, true);
 
 
 interface MenuItem {
@@ -17,7 +23,7 @@ interface MenuItem {
 
 @Component({
   selector: 'app-actualite-creation',
-  imports: [CommonModule,RouterModule,ReactiveFormsModule,FormsModule],
+  imports: [CommonModule,RouterModule,ReactiveFormsModule,FormsModule,LoadingComponent,QuillModule],
   templateUrl: './actualite-creation.component.html',
   styleUrl: './actualite-creation.component.css'
 })
@@ -25,6 +31,8 @@ export class ActualiteCreationComponent {
  activeMenu = 'actualites';
   showLocationDropdown = false;
   publishLocation = '';
+  sub_description=""
+  description=""
   searchQuery = '';
   loading=false
   publishOptions = [
@@ -52,6 +60,17 @@ export class ActualiteCreationComponent {
   actualiteForm: FormGroup;
 structures:any[]=[]
 categories:any[]=[]
+      modules = {
+  toolbar: [
+    ['bold', 'italic', 'underline', 'strike'],
+    [{ font: Font.whitelist }],  // Ajoute le menu déroulant des polices
+    [{ header: 1 }, { header: 2 }],
+    [{ list: 'ordered' }, { list: 'bullet' }],
+    [{ color: [] }, { background: [] }],
+    ['link', 'image', 'blockquote', 'code-block'],
+    ['clean']
+  ]
+};
 
   constructor(private fb: FormBuilder, 
     private router: Router, 

@@ -1,16 +1,16 @@
 <div class="min-h-screen bg-gray-50 flex font-roboto">
   <!-- Menu latéral -->
 
-<app-admin-side-bar></app-admin-side-bar>
+<app-admin-side-bar [isSidebarOpen]="isSidebarOpenMobile"></app-admin-side-bar>
 
   <!-- Contenu principal -->
-  <div class="flex-1 flex flex-col">
+  <div class="flex-1 flex flex-col md:ml-72 min-w-0">
     <!-- Barre de navigation supérieure -->
-   <app-admin-header></app-admin-header>
+   <app-admin-header   (toggleSidebar)="isSidebarOpenMobile = $event"></app-admin-header>
 
     <!-- Zone de contenu -->
-    <main class="flex-1 p-6">
-    <router-outlet></router-outlet>
+      <main class="flex-1 p-6 overflow-auto min-w-0">
+      <router-outlet></router-outlet>
     </main>
   </div>
 </div>

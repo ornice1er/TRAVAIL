@@ -1,15 +1,16 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-admin-side-bar',
+  standalone:true,
   imports: [CommonModule,RouterModule],
   templateUrl: './admin-side-bar.component.html',
   styleUrl: './admin-side-bar.component.css'
 })
 export class AdminSideBarComponent {
- activeMenu: string = 'tableau-de-bord';
   searchQuery: string = '';
+ @Input() isSidebarOpen = false;
 
   menuItems = [
     { id: 'admin/tableau-de-bord', label: 'Tableau de bord', icon: 'ri-dashboard-line' },
@@ -25,8 +26,8 @@ export class AdminSideBarComponent {
     { id: 'admin/mes-notifications', label: 'Mes Notifications', icon: 'ri-notification-line' },
     { id: 'admin/historique', label: 'Historique', icon: 'ri-history-line' }
   ];
-
-    setActiveMenu(id: string): void {
-    this.activeMenu = id;
+ toggleSidebar() {
+    this.isSidebarOpen = !this.isSidebarOpen;
   }
+
 }
