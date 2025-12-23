@@ -209,6 +209,71 @@ button, a, input, select, textarea {
 }
 
 
+/* Conteneur global */
+::ng-deep .ngx-pagination {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Boutons */
+::ng-deep .ngx-pagination li {
+  border-radius: 0.375rem; /* rounded-md */
+  border: 1px solid #e5e7eb; /* gray-200 */
+  background-color: #ffffff;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Liens */
+::ng-deep .ngx-pagination a,
+::ng-deep .ngx-pagination button {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  color: #374151; /* gray-700 */
+  min-width: 36px;
+  text-align: center;
+}
+
+/* Hover */
+::ng-deep .ngx-pagination li:hover {
+  background-color: #f9fafb; /* gray-50 */
+}
+
+/* Page active */
+::ng-deep .ngx-pagination .current {
+  background-color: #008751; /* benin-green */
+  color: #ffffff !important;
+  border-color: #008751;
+  font-weight: 600;
+}
+
+/* Désactivé */
+::ng-deep .ngx-pagination .disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Précédent / Suivant */
+::ng-deep .ngx-pagination .pagination-previous,
+::ng-deep .ngx-pagination .pagination-next {
+  font-weight: 500;
+}
+
+/* Responsive mobile */
+@media (max-width: 640px) {
+  ::ng-deep .ngx-pagination a,
+  ::ng-deep .ngx-pagination button {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.75rem;
+  }
+}
+
+.swal2-container {
+  z-index: 2000 !important;
+}
+
+
 /* @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.min.css";
 @import "primeicons/primeicons.css";

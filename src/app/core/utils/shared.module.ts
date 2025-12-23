@@ -30,6 +30,9 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { ColorPickerModule } from 'primeng/colorpicker';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FileUploadModule } from 'primeng/fileupload';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SampleSearchPipe } from '../pipes/sample-search.pipe';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 
 @NgModule({
@@ -67,7 +70,9 @@ import { FileUploadModule } from 'primeng/fileupload';
     CalendarModule,
     OverlayPanelModule,
     HttpClientModule,
-    FileUploadModule
+    FileUploadModule,
+    NgbModule,
+    ProgressSpinnerModule
   ],
   exports: [
     ButtonModule,
@@ -91,8 +96,10 @@ import { FileUploadModule } from 'primeng/fileupload';
     InputSwitchModule,
     CheckboxModule,
     CalendarModule,
-    FileUploadModule
-  ],
+    FileUploadModule,
+    NgbModule,
+    ProgressSpinnerModule
+    ],
   providers: [
     MessageService,
     ConfirmationService,

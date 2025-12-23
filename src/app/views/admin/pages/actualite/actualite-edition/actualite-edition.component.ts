@@ -73,7 +73,7 @@ actualite:any
     private actualityService:ActualiteService, 
     private route:ActivatedRoute,
     private toastr:ToastrService,
-    private structureServuce:StructureService) {
+    private structureService:StructureService) {
      this.actualiteForm = this.fb.group({
     structure_id: [''],
     category_id: [''],
@@ -88,7 +88,11 @@ actualite:any
   });
   }
 
-
+      pg:any={
+    pageSize:10,
+    page:1,
+    total:0
+  }
   ngOnInit(){
     this.getStructures()
     this.getCategories()
@@ -135,7 +139,7 @@ actualite:any
 
     getStructures() {
          this.loading=true
-          this.structureServuce.getAll().subscribe((res:any)=>{
+    this.structureService.getAll(this.pg.pageSize,this.pg.page,false).subscribe((res:any)=>{
               this.loading=false
             this.structures=res.data
              },
