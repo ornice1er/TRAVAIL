@@ -64,7 +64,7 @@ export class ActualiteComponent {
 
   getAll() {
     this.loading=true
-      this.actualityService.getAll(this.pg.pageSize,this.pg.page).subscribe((res:any)=>{
+      this.actualityService.getAll(this.pg.pageSize,this.pg.page,true).subscribe((res:any)=>{
           this.loading=false
 
           this.actualites=res.data.data

@@ -71,7 +71,7 @@ interface Network {
             >
               {{ actualite?.title }}
             </h1>
-            <p class="text-xl text-gray-600 dark:text-gray-300 leading-relaxed" [innerHTML]=" actualite?.sub_description">
+            <p class="text-xl text-gray-600 dark:text-gray-300 leading-relaxed rich-content" [innerHTML]=" actualite?.sub_description">
             
             </p>
           </header>
@@ -87,7 +87,7 @@ interface Network {
 
           <!-- Contenu -->
           <div class="prose prose-lg dark:prose-invert max-w-none">
-            <p [innerHTML]=" actualite?.description"> </p>
+            <p  class="rich-content" [innerHTML]=" actualite?.description"> </p>
 
      
           </div>

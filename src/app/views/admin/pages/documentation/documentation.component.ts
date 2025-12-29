@@ -1,122 +1,221 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { DocumentationService } from '../../../../core/services/documentation.service';
+import { Router, RouterModule } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { LocalStorageService } from '../../../../core/utils/local-stoarge-service';
+import { Actualite } from '../../../../shared/models/actualite.model';
+import { ConfigService } from '../../../../core/utils/config-service';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { SharedModule } from 'primeng/api';
+import { SampleSearchPipe } from '../../../../core/pipes/sample-search.pipe';
+import { LoadingComponent } from '../../../../shared/components/loading/loading.component';
 
-interface DocumentItem {
-  id: number;
-  titre: string;
-  type: string;
-  statut: string;
-  dateCreation: string;
-  auteur: string;
-}
-
-interface NotificationItem {
-  id: number;
-  title: string;
-  message: string;
-  time: string;
-  read: boolean;
-}
-
-interface User {
-  nom: string;
-  prenom: string;
-  poste: string;
-  statut: string;
-  avatar: string;
-}
 @Component({
   selector: 'app-documentation',
-  imports: [CommonModule,FormsModule,],
+  imports: [CommonModule,RouterModule,FormsModule,SharedModule,NgxPaginationModule,LoadingComponent,SampleSearchPipe],
   templateUrl: './documentation.component.html',
   styleUrl: './documentation.component.css'
 })
 export class DocumentationComponent {
-activeMenu: string = 'documentation';
-  searchQuery: string = '';
-  itemsPerPage: number = 10;
-  currentPage: number = 1;
+ activeMenu = 'documents';
+  searchQuery = '';
+  itemsPerPage = 10;
+  currentPage = 1;
   selectedItems: number[] = [];
-  showNotifications: boolean = false;
-  showUserDropdown: boolean = false;
-Math=Math
-  documents: DocumentItem[] = [
-    { id: 1, titre: 'Loi-2008-07-code-procédure portant code de procédure civile, commerciale, sociale, administrative et des comptes.', type: 'Loi', statut: 'Publié', dateCreation: '15/03/2024', auteur: 'Direction Juridique' },
-    { id: 2, titre: 'CCNIDGT - Conseil Consultatif National', type: 'Guide', statut: 'En révision', dateCreation: '12/03/2024', auteur: 'Direction Générale du Travail' },
-    { id: 3, titre: 'LOI N° 2020-35 DU 06 JANVIER 2021 modifiant le code du numérique', type: 'Loi', statut: 'Publié', dateCreation: '10/03/2024', auteur: 'Secrétariat Général' },
-    { id: 4, titre: 'LOI No 2017-20 DU 20 AVRIL 2018 portant code du numérique en République du Bénin', type: 'Loi', statut: 'Publié', dateCreation: '08/03/2024', auteur: 'Direction Juridique' },
-    { id: 5, titre: 'Code du travail en République du Bénin', type: 'Code', statut: 'Publié', dateCreation: '05/03/2024', auteur: 'Direction du Travail' },
-    { id: 6, titre: 'Le Code Social et Jurisprudence en République du Bénin', type: 'Code', statut: 'Publié', dateCreation: '02/03/2024', auteur: 'Direction des Affaires Sociales' },
-    { id: 7, titre: 'Manuel des procédures administratives', type: 'Manuel', statut: 'Brouillon', dateCreation: '28/02/2024', auteur: 'Direction Administrative' },
-    { id: 8, titre: 'Guide de sécurité au travail', type: 'Guide', statut: 'Validé', dateCreation: '25/02/2024', auteur: 'Inspection du Travail' }
-  ];
+    Math:any=Math
+      loading=false
 
-  notifications: NotificationItem[] = [
-    { id: 1, title: 'Nouveau document ajouté', message: 'Le document "Guide des procédures administratives" a été publié', time: '5 min', read: false },
-    { id: 2, title: 'Document mis à jour', message: 'Le manuel de formation a été révisé et republié', time: '1h', read: false },
-    { id: 3, title: 'Validation requise', message: 'Le document "Rapport annuel 2024" attend votre validation', time: '2h', read: true }
-  ];
 
-  utilisateurConnecte: User = {
-    nom: 'KOUASSI',
-    prenom: 'Jean-Baptiste',
-    poste: 'Directeur de Cabinet',
-    statut: 'En ligne',
-    avatar: 'https://readdy.ai/api/search-image?query=Professional%20African%20government%20official%20portrait%20in%20formal%20business%20attire&width=200&height=200&seq=user-avatar-001&orientation=squarish'
-  };
-
-  getStatusColor(statut: string): string {
-    switch (statut) {
-      case 'Publié': return 'bg-green-100 text-green-800';
-      case 'En révision': return 'bg-yellow-100 text-yellow-800';
-      case 'Brouillon': return 'bg-gray-100 text-gray-800';
-      case 'Validé': return 'bg-blue-100 text-blue-800';
-      default: return 'bg-gray-100 text-gray-800';
-    }
+  documents: any[] = [ ];
+    pg:any={
+    pageSize:9,
+    page:1,
+    total:0
   }
+  selected_data:any
+
+
+  constructor(
+    private docService:DocumentationService,
+    private lsService:LocalStorageService,
+    private router:Router,
+    private toastr:ToastrService
+  ){
+
+  }
+
+  ngOnInit(){
+    this.getAll()
+  }
+
+
+  getAll() {
+    this.loading=true
+      this.docService.getAll(this.pg.pageSize,this.pg.page,true).subscribe((res:any)=>{
+          this.loading=false
+
+          this.documents=res.data.data
+          this.pg.total=res.data.total
+          this.selected_data=null
+
+         },
+         (err:any)=>{
+          this.loading=false
+          this.toastr.error(err.error?.message, 'Communiqué');
+    
+        })
+  }
+
+
+
 
   get totalPages(): number {
     return Math.ceil(this.documents.length / this.itemsPerPage);
   }
 
-  get currentDocuments(): DocumentItem[] {
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    return this.documents.slice(startIndex, startIndex + this.itemsPerPage);
+  get startIndex(): number {
+    return (this.currentPage - 1) * this.itemsPerPage;
   }
 
-  handleSelectAll(event: any) {
-        let checked=event.target.checked
-
-    if (checked) {
-      this.selectedItems = this.currentDocuments.map(d => d.id);
-    } else {
-      this.selectedItems = [];
-    }
+  get endIndex(): number {
+    return Math.min(this.startIndex + this.itemsPerPage, this.documents.length);
   }
 
-  handleSelectItem(id: number, event: any) {
-    let checked=event.target.checked
-    if (checked) {
-      if (!this.selectedItems.includes(id)) this.selectedItems.push(id);
-    } else {
+  get currentActualites(): Actualite[] {
+    return this.documents.slice(this.startIndex, this.endIndex);
+  }
+
+  handleSelectItem(id: number,el:any) {
+    if (this.selectedItems.includes(id)) {
       this.selectedItems = this.selectedItems.filter(item => item !== id);
+    } else {
+      this.selectedItems.push(id);
+    }
+
+    this.selected_data=el
+  }
+
+  handleSelectAll() {
+    if (this.selectedItems.length === this.currentActualites.length) {
+      this.selectedItems = [];
+    } else {
+      this.selectedItems = this.currentActualites.map(item => item.id);
     }
   }
 
-  setActiveMenu(id: string) {
-    this.activeMenu = id;
+      onShowDetails() {
+    this.router.navigate(["/admin/documentation/details/"+this.selected_data?.id])
+    // implémenter la transmission
   }
 
-  get unreadCount(): number {
-    return this.notifications.filter(n => !n.read).length;
+     onEdit() {
+    console.log('Editer');
+
+    this.router.navigate(["/admin/documentation/edition/"+this.selected_data?.id])
+    // implémenter l'édition
   }
 
-  previousPage() {
-    if (this.currentPage > 1) this.currentPage--;
+   onDelete() {
+    console.log('Supprimer');
+    // confirmation et appel API
   }
 
-  nextPage() {
-    if (this.currentPage < this.totalPages) this.currentPage++;
+
+  onTransmit() {
+      this.loading=true
+      this.docService.up(this.selected_data.id).subscribe((res:any)=>{
+          this.loading=false
+
+          this.getAll()
+
+
+         },
+         (err:any)=>{
+          this.loading=false
+          this.toastr.error(err.error?.message, 'Communiqué');
+    
+        })
   }
+
+
+  openModal() {
+    console.log('Ouvrir modal');
+    // afficher le modal Angular (PrimeNG ou Tailwind)
+  }
+
+
+
+
+  onPublish() {
+          this.loading=true
+      this.docService.publish(this.selected_data.media?.id).subscribe((res:any)=>{
+          this.loading=false
+
+          this.getAll()
+
+
+         },
+         (err:any)=>{
+          this.loading=false
+          this.toastr.error(err.error?.message, 'Communiqué');
+    
+        })
+  }
+
+  onUnpublish() {
+          this.loading=true
+      this.docService.unpublish(this.selected_data.media?.id).subscribe((res:any)=>{
+          this.loading=false
+
+          this.getAll()
+
+
+         },
+         (err:any)=>{
+          this.loading=false
+          this.toastr.error(err.error?.message, 'Communiqué');
+    
+        })
+  }
+
+  onArchive() {
+         this.loading=true
+      this.docService.archive(this.selected_data.id).subscribe((res:any)=>{
+          this.loading=false
+
+          this.getAll()
+
+
+         },
+         (err:any)=>{
+          this.loading=false
+          this.toastr.error(err.error?.message, 'Communiqué');
+    
+        })
+  }
+
+
+  getStatusColor(statut: any) {
+    switch (statut) {
+      case 1: return 'bg-green-100 text-green-800';
+      case 0: return 'bg-blue-100 text-blue-800';
+      default: return 'bg-gray-100 text-gray-800';
+    }
+  }
+
+
+     getLink(dir:any,photo:any){
+          return`${ConfigService.toFile("storage")}/${dir}/${photo}`
+        }
+  
+        getPage(event:any){
+          this.pg.page=event
+  
+          this.getAll()
+        }
+      loadMore(ev:any){
+        this.pg.pageSize=ev.target?.value
+      }
 }

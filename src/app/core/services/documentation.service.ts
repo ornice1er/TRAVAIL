@@ -5,13 +5,14 @@ import { ConfigService } from '../utils/config-service';
 @Injectable({
   providedIn: 'root'
 })
-export class ActualiteService {
+export class DocumentationService {
 
-  url=ConfigService.toApiUrl("actualites/");
+  url=ConfigService.toApiUrl("docs/");
 
   constructor(private http:HttpClient) { }
 
-    getAll(pageSize:any,page:any,isPaginate=false){
+
+      getAll(pageSize:any,page:any,isPaginate=false){
       if (isPaginate) {
             return this.http.get<any[]>(`${this.url}?pageSize=${pageSize}&page=${page}`,ConfigService.addAction('recup'));
 
@@ -20,6 +21,7 @@ export class ActualiteService {
 
       }
   }
+ 
   getByState(state:any){
     return this.http.get<any[]>(`${ConfigService.toApiUrl("backups-by-state")}/${state}`,ConfigService.addAction('LISTER'));
   }

@@ -64,9 +64,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
                   {{ actualiteUne?.title }}
                 </h2>
                 <p
-                  class="text-lg text-gray-600 dark:text-gray-300 mb-6 text-content line-clamp-4"
+                  class="text-lg text-gray-600 dark:text-gray-300 mb-6 text-content line-clamp-4 rich-content" [innerHTML]="actualiteUne?.sub_description"
                 >
-                  {{ actualiteUne?.sub_description }}
                 </p>
                 <a
                   [routerLink]="['/actualites', actualiteUne?.slug]"
@@ -177,7 +176,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
                 {{ actualite.title }}
               </h3>
               <p
-                class="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3 text-content"
+                class="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3 text-content rich-content" [innerHTML]="actualite?.sub_description"
               >
                 {{ actualite.sub_description }}
               </p>

@@ -1,86 +1,122 @@
 <div class="bg-white rounded-xl shadow-sm border border-gray-100">
-        <div class="p-6 border-b border-gray-200 bg-gradient-to-r from-benin-green/5 to-benin-blue/5">
-          <h2 class="text-xl font-bold text-gray-900 font-montserrat">Création d'une nouvelle documentation</h2>
-          <p class="text-sm text-gray-600 mt-1 font-roboto">Ajoutez et gérez vos documents officiels</p>
-        </div>
 
-        <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-6 space-y-6">
-          <!-- Nom -->
-          <div>
-            <label class="block text-sm font-semibold text-gray-700 mb-2 font-montserrat">Nom</label>
-            <input formControlName="nom" type="text" placeholder="Nom du document" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-benin-green focus:border-transparent text-sm font-roboto">
-          </div>
 
-          <!-- Description -->
-          <div>
-            <label class="block text-sm font-semibold text-gray-700 mb-2 font-montserrat">Description</label>
-            <textarea formControlName="description" class="w-full h-32 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-benin-green focus:border-transparent resize-none text-sm font-roboto" placeholder="Description du document"></textarea>
-          </div>
+      <form
+  [formGroup]="docForm"
+  (ngSubmit)="onSubmit()"
+  enctype="multipart/form-data"
+  class="p-6 space-y-6"
+>
 
-          <!-- Type -->
-          <div class="relative">
-            <label class="block text-sm font-semibold text-gray-700 mb-2 font-montserrat">Type</label>
-            <button type="button" class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-left flex items-center justify-between text-sm font-roboto" (click)="showTypeDropdown = !showTypeDropdown">
-              <span [ngClass]="form.get('type')?.value ? 'text-gray-900' : 'text-gray-500'">{{ form.get('type')?.value || 'Sélectionner...' }}</span>
-              <i class="ri-arrow-down-s-line transition-transform" [ngClass]="{'rotate-180': showTypeDropdown}"></i>
-            </button>
-            <div *ngIf="showTypeDropdown" class="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg">
-              <button *ngFor="let option of typeOptions" type="button" class="w-full px-4 py-3 text-left hover:bg-benin-green/5 text-sm first:rounded-t-lg last:rounded-b-lg transition-colors font-roboto" (click)="setType(option)">
-                {{option}}
-              </button>
-            </div>
-          </div>
-
-          <!-- État -->
-          <div class="relative">
-            <label class="block text-sm font-semibold text-gray-700 mb-2 font-montserrat">État</label>
-            <button type="button" class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-left flex items-center justify-between text-sm font-roboto" (click)="showEtatDropdown = !showEtatDropdown">
-              <span [ngClass]="form.get('etat')?.value ? 'text-gray-900' : 'text-gray-500'">{{ form.get('etat')?.value || 'Sélectionner...' }}</span>
-              <i class="ri-arrow-down-s-line transition-transform" [ngClass]="{'rotate-180': showEtatDropdown}"></i>
-            </button>
-            <div *ngIf="showEtatDropdown" class="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg">
-              <button *ngFor="let option of etatOptions" type="button" class="w-full px-4 py-3 text-left hover:bg-benin-green/5 text-sm first:rounded-t-lg last:rounded-b-lg transition-colors font-roboto" (click)="setEtat(option)">
-                {{option}}
-              </button>
-            </div>
-          </div>
-
-          <!-- Publication -->
-          <div class="relative">
-            <label class="block text-sm font-semibold text-gray-700 mb-2 font-montserrat">À publié sur l'espace principale ?</label>
-            <button type="button" class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-left flex items-center justify-between text-sm font-roboto" (click)="showLocationDropdown = !showLocationDropdown">
-              <span [ngClass]="form.get('publishLocation')?.value ? 'text-gray-900' : 'text-gray-500'">{{ form.get('publishLocation')?.value || 'Sélectionner...' }}</span>
-              <i class="ri-arrow-down-s-line transition-transform" [ngClass]="{'rotate-180': showLocationDropdown}"></i>
-            </button>
-            <div *ngIf="showLocationDropdown" class="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg">
-              <button *ngFor="let option of publishOptions" type="button" class="w-full px-4 py-3 text-left hover:bg-benin-green/5 text-sm first:rounded-t-lg last:rounded-b-lg transition-colors font-roboto" (click)="setPublishLocation(option)">
-                {{option}}
-              </button>
-            </div>
-          </div>
-
-          <!-- Upload -->
-<!-- Upload -->
-<div>
-  <label class="block text-sm font-semibold text-gray-700 mb-2 font-montserrat">Document à publier</label>
-  <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-benin-green transition-colors">
-    <input type="file" #fileInput (change)="onFileChange($event)" accept=".pdf,.doc,.docx,.txt,.xlsx,.ppt,.pptx" class="hidden">
-    <label class="cursor-pointer">
-      <i class="ri-upload-cloud-2-line text-4xl text-gray-400 mb-4"></i>
-      <div class="space-y-2">
-        <!-- On déclenche le click de l'input via la référence locale -->
-        <button type="button" (click)="fileInput.click()" class="px-4 py-2 bg-benin-green text-white text-sm font-medium rounded hover:bg-benin-green/90 transition-colors whitespace-nowrap font-roboto">
-          Choisir un fichier
-        </button>
-        <p class="text-sm text-gray-500 font-roboto">{{ selectedFile?.name || 'Aucun fichier choisi' }}</p>
-      </div>
+  <!-- Nom du document -->
+  <div>
+    <label class="block text-sm font-semibold text-gray-700 mb-2 font-montserrat">
+      Nom
     </label>
+    <input
+      formControlName="name"
+      type="text"
+      placeholder="Nom du document"
+      class="w-full px-4 py-3 border border-gray-300 rounded-lg
+             focus:ring-2 focus:ring-benin-green text-sm font-roboto"
+    />
   </div>
-</div>
 
-          <!-- Submit -->
-          <div class="flex justify-center pt-4 border-t border-gray-200">
-            <button type="submit" class="px-8 py-3 bg-gradient-to-r from-benin-green to-benin-blue text-white font-medium rounded-lg hover:shadow-lg transition-all duration-200 whitespace-nowrap font-roboto">Créer</button>
-          </div>
-        </form>
+  <!-- Description -->
+  <div>
+    <label class="block text-sm font-semibold text-gray-700 mb-2 font-montserrat">
+      Description
+    </label>
+    <quill-editor
+      formControlName="description"
+      [modules]="modules"
+      [format]="'html'"
+      theme="snow"
+      [styles]="{ height: '200px', width: '100%' }"
+    >
+    </quill-editor>
+  </div>
+
+  <!-- Type -->
+  <div>
+    <label class="block text-sm font-semibold text-gray-700 mb-2 font-montserrat">
+      Type
+    </label>
+    <select
+      formControlName="type"
+      class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white
+             focus:ring-2 focus:ring-benin-green text-sm font-roboto"
+    >
+      <option value="">Sélectionner...</option>
+      <option value="lois">Lois</option>
+      <option value="decrets">Décrets</option>
+      <option value="arretes">Arrêtés</option>
+      <option value="publications">Publications</option>
+      <option value="rapports-activites">Rapports d'activité</option>
+      <option value="commentaire">Présentation / Commentaire</option>
+      <option value="officiels">Documents officiels</option>
+    </select>
+  </div>
+
+  <!-- Statut -->
+  <div>
+    <label class="block text-sm font-semibold text-gray-700 mb-2 font-montserrat">
+      État
+    </label>
+    <select
+      formControlName="status"
+      class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white
+             focus:ring-2 focus:ring-benin-green text-sm font-roboto"
+    >
+      <option value="">Sélectionner...</option>
+      <option value="active">Active</option>
+      <option value="inactive">Inactive</option>
+    </select>
+  </div>
+
+  <!-- Publication espace principal -->
+  <div>
+    <label class="block text-sm font-semibold text-gray-700 mb-2 font-montserrat">
+      Publier sur l’espace principal ?
+    </label>
+    <select
+      formControlName="has_principal_access"
+      class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white
+             focus:ring-2 focus:ring-benin-green text-sm font-roboto"
+    >
+      <option value="">Sélectionner...</option>
+      <option value="1">OUI</option>
+      <option value="0">NON</option>
+    </select>
+  </div>
+
+  <!-- Document à publier -->
+  <div>
+    <label class="block text-sm font-semibold text-gray-700 mb-2 font-montserrat">
+      Document à publier
+    </label>
+    <input
+      type="file"
+      (change)="onFileSelect($event, 'filename')"
+      class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white
+             text-sm font-roboto"
+    />
+  </div>
+
+  <!-- Bouton -->
+  <div class="flex justify-center pt-4 border-t border-gray-200">
+    <button
+      type="submit"
+      [disabled]="docForm.invalid || loading"
+      class="px-8 py-3 bg-gradient-to-r from-benin-green to-benin-blue
+             text-white font-medium rounded-lg hover:shadow-lg
+             transition-all duration-200 font-roboto"
+    >
+      <span>Créer</span>
+      <app-loading [isVisible]="loading"></app-loading>
+    </button>
+  </div>
+
+</form>
+
       </div>

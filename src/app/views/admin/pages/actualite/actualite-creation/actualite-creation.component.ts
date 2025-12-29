@@ -43,19 +43,6 @@ export class ActualiteCreationComponent {
     'Archives'
   ];
 
-  menuItems: MenuItem[] = [
-    { id: 'tableau-de-bord', label: 'Tableau de bord', icon: 'ri-dashboard-line' },
-    { id: 'communiques', label: 'Communiqués', icon: 'ri-file-text-line' },
-    { id: 'actualites', label: 'Actualités', icon: 'ri-news-line' },
-    { id: 'posters', label: 'Posters', icon: 'ri-image-line' },
-    { id: 'membres-structure', label: 'Membres Structure', icon: 'ri-team-line' },
-    { id: 'documentation', label: 'Documentation', icon: 'ri-book-line' },
-    { id: 'organigramme', label: 'Organigramme', icon: 'ri-organization-chart' },
-    { id: 'mots-du-ministre', label: 'Mots du ministre', icon: 'ri-government-line' },
-    { id: 'citation-du-ministre', label: 'Citation du ministre', icon: 'ri-chat-quote-line' },
-    { id: 'mes-notifications', label: 'Mes Notifications', icon: 'ri-notification-line' },
-    { id: 'historique', label: 'Historique', icon: 'ri-history-line' }
-  ];
 
   actualiteForm: FormGroup;
 structures:any[]=[]

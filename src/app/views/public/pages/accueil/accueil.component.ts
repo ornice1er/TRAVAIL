@@ -51,7 +51,7 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
                         {{ media?.actualite?.title }}
                       </h1>
                       <p
-                        class="text-lg lg:text-xl 2xl:text-4xl mb-8 text-white/90 font-light"
+                        class="text-lg lg:text-xl 2xl:text-4xl mb-8 text-white/90 font-light rich-content"
                         [innerHTML]=" media?.actualite?.sub_description | truncateHtml:100"
                       >
                       </p>
