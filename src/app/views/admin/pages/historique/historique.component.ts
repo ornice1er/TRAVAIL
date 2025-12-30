@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { MediaService } from '../../../../core/services/media.service';
+import { Router, RouterModule } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { LocalStorageService } from '../../../../core/utils/local-stoarge-service';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 interface HistoriqueItem {
@@ -15,57 +20,96 @@ interface HistoriqueItem {
 }
 @Component({
   selector: 'app-historique',
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule,FormsModule,RouterModule,NgxPaginationModule],
   templateUrl: './historique.component.html',
   styleUrl: './historique.component.css'
 })
 export class HistoriqueComponent {
  activeMenu = 'historique';
-  searchQuery = '';
-  filterType = 'all';
-  filterPeriod = 'all';
-  itemsPerPage = 10;
-  currentPage = 1;
+tabs = [
+  { key: 'all', label: 'Tous' },
+  { key: 'doc', label: 'Documents' },
+  { key: 'actualite', label: 'Actualités' },
+  { key: 'communique', label: 'Communiqués' },
+  { key: 'prestation', label: 'Prestations' },
+  { key: 'aof', label: 'AOF' }
+];
 
+selectedTab: string = 'all';
+filteredHistorique: any[] = [];
 
-   historique: HistoriqueItem[] = [
-    { id: 1, type: 'communique', action: 'Création', titre: 'Communiqué du Ministère du Travail et de la Fonction Publique', utilisateur: 'Marie DOSSOU', dateAction: '15/03/2024 14:30', statut: 'Publié', details: 'Création et publication immédiate du communiqué officiel' },
-    { id: 2, type: 'actualite', action: 'Modification', titre: 'Réunion du Conseil des Ministres du 15 Mars 2024', utilisateur: 'Jean KPOHINTO', dateAction: '15/03/2024 11:45', statut: 'Publié', details: 'Mise à jour du contenu et ajout d\'images' },
-    { id: 3, type: 'poster', action: 'Création', titre: 'Campagne de sensibilisation - Sécurité au travail', utilisateur: 'Sylvie AGBODJAN', dateAction: '14/03/2024 16:20', statut: 'En révision', details: 'Création du poster de sensibilisation format A3' },
-    { id: 4, type: 'communique', action: 'Suppression', titre: 'Ancien communiqué de recrutement 2023', utilisateur: 'Prosper HOUNGBO', dateAction: '14/03/2024 09:15', statut: 'Supprimé', details: 'Suppression définitive après archivage' },
-    { id: 5, type: 'actualite', action: 'Publication', titre: 'Lancement du programme de formation professionnelle', utilisateur: 'Bernadette ZANNOU', dateAction: '13/03/2024 15:30', statut: 'Publié', details: 'Publication après validation du ministre' },
-    { id: 6, type: 'membre', action: 'Ajout', titre: 'Nouveau membre: Vincent AKPLOGAN', utilisateur: 'Marie DOSSOU', dateAction: '13/03/2024 10:45', statut: 'Actif', details: 'Ajout du nouveau chef de service communication' },
-    { id: 7, type: 'actualite', action: 'Création', titre: 'Visite officielle du Ministre dans les départements', utilisateur: 'Angélique DOSSOU-YOVO', dateAction: '12/03/2024 14:20', statut: 'Brouillon', details: 'Création en mode brouillon pour révision' },
-    { id: 8, type: 'communique', action: 'Modification', titre: 'Concours de recrutement des Auditeurs de Justice', utilisateur: 'Jean KPOHINTO', dateAction: '12/03/2024 08:30', statut: 'Publié', details: 'Correction des dates et modalités d\'inscription' },
-    { id: 9, type: 'poster', action: 'Publication', titre: 'Journée mondiale du travail 2024', utilisateur: 'Sylvie AGBODJAN', dateAction: '11/03/2024 17:00', statut: 'Publié', details: 'Publication du poster bilingue français/fon' },
-    { id: 10, type: 'actualite', action: 'Archivage', titre: 'Bilan des activités 2023', utilisateur: 'Prosper HOUNGBO', dateAction: '11/03/2024 13:15', statut: 'Archivé', details: 'Archivage automatique après 6 mois' }
-  ];
+  loading=false
 
-  get totalPages(): number {
-    return Math.ceil(this.historique.length / this.itemsPerPage);
+    pg:any={
+    pageSize:9,
+    page:1,
+    total:0
+  }
+  selected_data:any
+  total:any
+  constructor(
+    private mediaService:MediaService,
+    private lsService:LocalStorageService,
+    private router:Router,
+    private toastr:ToastrService
+  ){
+
   }
 
-  get startIndex(): number {
-    return (this.currentPage - 1) * this.itemsPerPage;
+  ngOnInit(){
+    this.getAll()
   }
 
-  get endIndex(): number {
-    return Math.min(this.startIndex + this.itemsPerPage, this.historique.length);
+  selectTab(type: string) {
+  this.selectedTab = type;
+  this.pg.page = 1;
+  this.applyFilter();
+}
+
+
+applyFilter() {
+  if (this.selectedTab === 'all') {
+    this.filteredHistorique = this.historique;
+   this.pg.total=this.total
+
+  } else {
+    this.getAll(this.selectedTab)
+  }
+}
+
+getCountByType(type: string) {
+  if (type == this.selectedTab) return this.total
+}
+
+getTypelabel(key: string){
+  return this.tabs.find(item => item.key == key)?.label;
+}
+
+    getAll(category?:any) {
+    this.loading=true
+      this.mediaService.getAll(this.pg.pageSize,this.pg.page,true,category).subscribe((res:any)=>{
+          this.loading=false
+
+          this.historique=res.data.data
+          this.pg.total=res.data.total
+          this.total=res.data.total
+          this.selected_data=null
+
+          this.filteredHistorique=this.historique
+
+         },
+         (err:any)=>{
+          this.loading=false
+          this.toastr.error(err.error?.message, 'Communiqué');
+    
+        })
   }
 
-  get currentHistorique(): HistoriqueItem[] {
-    return this.historique.slice(this.startIndex, this.endIndex);
-  }
 
-  setActiveMenuItem(id: string) {
-    this.activeMenu = id;
-  }
 
-  goToPage(page: number) {
-    if (page >= 1 && page <= this.totalPages) {
-      this.currentPage = page;
-    }
-  }
+
+   historique: any[] = [  ];
+
 
   getTypeIcon(type: string): string {
     switch (type) {
@@ -112,4 +156,11 @@ export class HistoriqueComponent {
       default: return 'bg-gray-100 text-gray-800';
     }
   }
+
+
+     pageChanged(ev:any){
+
+      this.pg.page=ev
+      this.getAll()
+    }
 }

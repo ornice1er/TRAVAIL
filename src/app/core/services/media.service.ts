@@ -5,14 +5,14 @@ import { ConfigService } from '../utils/config-service';
 @Injectable({
   providedIn: 'root'
 })
-export class NotificationService {
-  url=ConfigService.toApiUrl("notifications/");
+export class MediaService {
+  url=ConfigService.toApiUrl("media/");
 
   constructor(private http:HttpClient) { }
 
-   getAll(pageSize:any,page:any,isPaginate=false){
+  getAll(pageSize:any,page:any,isPaginate=false,category?:any){
       if (isPaginate) {
-            return this.http.get<any[]>(`${this.url}?pageSize=${pageSize}&page=${page}`,ConfigService.addAction('recup'));
+            return this.http.get<any[]>(`${this.url}?pageSize=${pageSize}&page=${page}&${category?`category=${category}`:''}`,ConfigService.addAction('recup'));
 
       }else{
         return this.http.get<any[]>(`${this.url}`,ConfigService.addAction('recup'));
@@ -20,14 +20,14 @@ export class NotificationService {
       }
   }
   getByState(state:any){
-    return this.http.get<any[]>(`${ConfigService.toApiUrl("notifications-by-state")}/${state}`,ConfigService.addAction('LISTER'));
+    return this.http.get<any[]>(`${ConfigService.toApiUrl("media-by-state")}/${state}`,ConfigService.addAction('LISTER'));
   }
 
   getStudents(){
-    return this.http.get<any[]>(`${ConfigService.toApiUrl("notifications-students")}`,ConfigService.addAction('LISTER'));
+    return this.http.get<any[]>(`${ConfigService.toApiUrl("media-students")}`,ConfigService.addAction('LISTER'));
   }
   updateAccount(id:any,resource:any){
-    return this.http.post<any[]>(`${ConfigService.toApiUrl("notifications-account-update")}/${id}`,resource,ConfigService.addAction('LISTER'));
+    return this.http.post<any[]>(`${ConfigService.toApiUrl("media-account-update")}/${id}`,resource,ConfigService.addAction('LISTER'));
   }
 
 
@@ -53,6 +53,6 @@ export class NotificationService {
   }
 
   setState(id:any,state:any){
-    return this.http.get<any[]>(`${ConfigService.toApiUrl("notifications-set-state")}/${id}/state/${state}`,ConfigService.addAction('CHANGER_STATUT'));
+    return this.http.get<any[]>(`${ConfigService.toApiUrl("media-set-state")}/${id}/state/${state}`,ConfigService.addAction('CHANGER_STATUT'));
   }
 }

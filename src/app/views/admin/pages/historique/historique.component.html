@@ -1,51 +1,77 @@
- <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-x-auto">
+<div class="flex space-x-2 mb-4 border-b border-gray-200">
+  <button *ngFor="let tab of tabs"
+          (click)="selectTab(tab.key)"
+          class="px-4 py-2 text-sm font-semibold rounded-t-lg transition-all"
+          [ngClass]="selectedTab === tab.key
+            ? 'bg-benin-green text-white border border-benin-green border-b-0'
+            : 'bg-gray-100 text-gray-600 hover:bg-gray-200'">
+    {{ tab.label }}
+    <span class="ml-2 text-xs bg-white text-benin-green px-2 py-0.5 rounded-full"
+          *ngIf="getCountByType(tab.key) > 0">
+      {{ getCountByType(tab.key) }}
+    </span>
+  </button>
+</div>
+
+<div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-x-auto">
         <table class="w-full">
           <thead class="bg-gray-50 border-b border-gray-200">
             <tr>
               <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider font-montserrat">#</th>
-              <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider font-montserrat">Type & Action</th>
-              <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider font-montserrat">Élément</th>
-              <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider font-montserrat">Utilisateur</th>
+              <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider font-montserrat">Type</th>
+              <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider font-montserrat">titre</th>
               <th class="px-6 py-4 text-center text-xs font-semibold text-gray-500 uppercase tracking-wider font-montserrat">Date & Heure</th>
               <th class="px-6 py-4 text-center text-xs font-semibold text-gray-500 uppercase tracking-wider font-montserrat">Statut</th>
-              <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider font-montserrat">Détails</th>
             </tr>
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
-            <tr *ngFor="let item of currentHistorique; let i = index" class="hover:bg-gray-50 transition-colors">
-              <td class="px-6 py-4 text-sm text-gray-900 font-roboto">{{ startIndex + i + 1 }}</td>
+            <tr *ngFor="let item of filteredHistorique | paginate: { id: 'communique_id',
+                                                      itemsPerPage: pg.pageSize,
+                                                      currentPage: pg.page,
+                                                      totalItems: pg.total }; let i = index" class="hover:bg-gray-50 transition-colors">
+              <td class="px-6 py-4 text-sm text-gray-900 font-roboto">{{ i + 1 }}</td>
               <td class="px-6 py-4 flex items-center space-x-3">
                 <div [ngClass]="getTypeColor(item.type)" class="w-8 h-8 rounded-full flex items-center justify-center">
                   <i [class]="getTypeIcon(item.type) + ' text-sm'"></i>
                 </div>
                 <div>
-                  <span [ngClass]="getActionColor(item.action)" class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium">{{ item.action }}</span>
-                  <div class="text-xs text-gray-500 mt-1 font-roboto capitalize">{{ item.type }}</div>
+                  <div class="text-xs text-gray-500 mt-1 font-roboto capitalize">{{ getTypelabel(item.type )}}</div>
                 </div>
               </td>
-              <td class="px-6 py-4 text-sm text-gray-900 font-roboto max-w-xs line-clamp-2">{{ item.titre }}</td>
-              <td class="px-6 py-4 text-sm text-gray-900 font-roboto">{{ item.utilisateur }}</td>
-              <td class="px-6 py-4 text-center text-sm text-gray-900 font-roboto">{{ item.dateAction }}</td>
-              <td class="px-6 py-4 text-center">
-                <span [ngClass]="getStatutColor(item.statut)" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium">{{ item.statut }}</span>
+              <td class="px-6 py-4 text-center text-sm text-gray-900 font-roboto">
+                <span *ngIf="item.doc">{{ item.doc?.name }}</span>
+                <span *ngIf="item.communique">{{ item.communique?.title }}</span>
+                <span *ngIf="item.actualite">{{ item.actualite?.title }}</span>
+                <span *ngIf="item.actualite">
+                  <p class="rich-content" [innerHTML]="item.aof?.mission"></p>
+                </span>
+
               </td>
-              <td class="px-6 py-4 text-sm text-gray-600 font-roboto max-w-xs line-clamp-2">{{ item.details }}</td>
+              <td class="px-6 py-4 text-center text-sm text-gray-900 font-roboto">{{ item.created_at | date:"dd-MM-yyyy" }}</td>
+              <td class="px-6 py-4 text-center">
+                   <span
+                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium font-roboto"
+                    [ngClass]="item?.is_published ? 'bg-benin-green text-white' : 'bg-gray-100 text-gray-800'"
+                  >
+                    {{ item?.is_published ? 'Publié' : 'Non publié' }}
+                  </span>              </td>
             </tr>
           </tbody>
         </table>
 
         <!-- Pagination -->
-        <div class="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
-          <div class="text-sm text-gray-500 font-roboto">Lignes {{ startIndex + 1 }} à {{ endIndex }} sur {{ historique.length }}</div>
-          <div class="flex items-center space-x-2">
-            <button (click)="goToPage(currentPage-1)" [disabled]="currentPage === 1" class="px-3 py-1 text-sm border border-gray-300 rounded hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed font-roboto">Précédent</button>
-            <button *ngFor="let p of [].constructor(totalPages); let idx = index"
-                    (click)="goToPage(idx+1)"
-                    [ngClass]="currentPage === idx+1 ? 'bg-benin-green text-white border-benin-green' : 'border-gray-300 hover:bg-gray-50'"
-                    class="px-3 py-1 text-sm border rounded font-roboto">
-              {{ idx+1 }}
-            </button>
-            <button (click)="goToPage(currentPage+1)" [disabled]="currentPage === totalPages" class="px-3 py-1 text-sm border border-gray-300 rounded hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed font-roboto">Suivant</button>
-          </div>
-        </div>
+            <pagination-controls  id="communique_id"
+                      (pageChange)="pageChanged($event)"
+                      (pageBoundsCorrection)="pageChanged($event)"
+                      [maxSize]="pg.total"
+                      [directionLinks]="true"
+                      [autoHide]="true"
+                      [responsive]="true"
+                      [previousLabel]="'Précédent'"
+                      [nextLabel]="'Suivant'"
+                      screenReaderPaginationLabel="Pagination"
+                      screenReaderPageLabel="page"
+                      screenReaderCurrentLabel="Page active"
+                      >
+</pagination-controls>
       </div>

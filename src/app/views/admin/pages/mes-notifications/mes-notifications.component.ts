@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { NotificationService } from '../../../../core/services/notification.service';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { LocalStorageService } from '../../../../core/utils/local-stoarge-service';
 
 
 interface Notification {
@@ -28,48 +32,50 @@ export class MesNotificationsComponent {
   selectedItems: number[] = [];
 
 
-  notifications: Notification[] = [
-    {
-      id: 1, type: 'actualite', titre: 'Nouvelle actualité publiée',
-      message: 'L\'actualité "Réunion du Conseil des Ministres du 15 Mars 2024" a été publiée avec succès.',
-      dateCreation: '15/03/2024 14:30', statut: 'non-lu', priorite: 'normale', auteur: 'Système'
-    },
-    {
-      id: 2, type: 'communique', titre: 'Communiqué en attente de validation',
-      message: 'Le communiqué "Concours de recrutement 2024" nécessite votre validation avant publication.',
-      dateCreation: '15/03/2024 10:15', statut: 'lu', priorite: 'haute', auteur: 'Direction RH'
-    },
-    {
-      id: 3, type: 'systeme', titre: 'Mise à jour système programmée',
-      message: 'Une maintenance système est programmée le 20 mars 2024 de 02h00 à 04h00.',
-      dateCreation: '14/03/2024 16:45', statut: 'non-lu', priorite: 'normale', auteur: 'Administrateur'
-    },
-    {
-      id: 4, type: 'membre', titre: 'Nouveau membre ajouté',
-      message: 'Un nouveau membre "Jean KOUASSI" a été ajouté à la structure.',
-      dateCreation: '14/03/2024 11:20', statut: 'lu', priorite: 'basse', auteur: 'Direction RH'
-    },
-    {
-      id: 5, type: 'document', titre: 'Document en attente de signature',
-      message: 'Le document "Arrêté ministériel n°2024-001" attend votre signature électronique.',
-      dateCreation: '13/03/2024 15:30', statut: 'non-lu', priorite: 'haute', auteur: 'Secrétariat'
-    },
-    {
-      id: 6, type: 'actualite', titre: 'Actualité modifiée',
-      message: 'L\'actualité "Formation professionnelle 2024" a été mise à jour.',
-      dateCreation: '13/03/2024 09:45', statut: 'lu', priorite: 'normale', auteur: 'Service Communication'
-    },
-    {
-      id: 7, type: 'rappel', titre: 'Rappel: Réunion hebdomadaire',
-      message: 'N\'oubliez pas la réunion hebdomadaire prévue demain à 14h00 en salle de conférence.',
-      dateCreation: '12/03/2024 17:00', statut: 'non-lu', priorite: 'normale', auteur: 'Secrétariat'
-    },
-    {
-      id: 8, type: 'systeme', titre: 'Sauvegarde automatique effectuée',
-      message: 'La sauvegarde automatique des données a été effectuée avec succès.',
-      dateCreation: '12/03/2024 02:00', statut: 'lu', priorite: 'basse', auteur: 'Système'
-    }
-  ];
+    loading=false
+
+    pg:any={
+    pageSize:9,
+    page:1,
+    total:0
+  }
+  selected_data:any
+  total:any
+  constructor(
+    private notificationService:NotificationService,
+    private lsService:LocalStorageService,
+    private router:Router,
+    private toastr:ToastrService
+  ){
+
+  }
+
+  ngOnInit(){
+    this.getAll()
+  }
+
+
+    getAll() {
+    this.loading=true
+      this.notificationService.getAll(this.pg.pageSize,this.pg.page,true).subscribe((res:any)=>{
+          this.loading=false
+
+          this.notifications=res.data.data
+          this.pg.total=res.data.total
+          this.total=res.data.total
+          this.selected_data=null
+
+
+         },
+         (err:any)=>{
+          this.loading=false
+          this.toastr.error(err.error?.message, 'Communiqué');
+    
+        })
+  }
+
+
+  notifications: any[] = [];
 
   handleSelectItem(id: number) {
     const index = this.selectedItems.indexOf(id);

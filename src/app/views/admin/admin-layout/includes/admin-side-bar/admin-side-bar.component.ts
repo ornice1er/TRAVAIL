@@ -20,9 +20,9 @@ export class AdminSideBarComponent {
     { id: 'admin/membres-structure', label: 'Membres Structure', icon: 'ri-team-line' },
     // { id: 'admin/recrutements', label: 'Recrutements', icon: 'ri-user-add-line' },
     { id: 'admin/documentation', label: 'Documentation', icon: 'ri-book-line' },
-    { id: 'admin/organigramme', label: 'Organigramme', icon: 'ri-organization-chart' },
-    { id: 'admin/avis-du-ministre', label: 'Avis du ministre', icon: 'ri-government-line' },
-    { id: 'admin/citation-du-ministre', label: 'Citation du ministre', icon: 'ri-chat-quote-line' },
+//    { id: 'admin/organigramme', label: 'Organigramme', icon: 'ri-organization-chart' },
+//    { id: 'admin/avis-du-ministre', label: 'Avis du ministre', icon: 'ri-government-line' },
+//    { id: 'admin/citation-du-ministre', label: 'Citation du ministre', icon: 'ri-chat-quote-line' },
     { id: 'admin/mes-notifications', label: 'Mes Notifications', icon: 'ri-notification-line' },
     { id: 'admin/historique', label: 'Historique', icon: 'ri-history-line' }
   ];
