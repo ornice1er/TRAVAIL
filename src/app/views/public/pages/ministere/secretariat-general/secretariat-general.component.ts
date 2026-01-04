@@ -7,6 +7,8 @@ import { CommonModule } from "@angular/common";
 import { AnimationService } from "../../../../../shared/services/animation.service";
 import "@tailwindplus/elements";
 import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
+import { PublicService } from "../../../../../core/services/public.service";
+import { ConfigService } from "../../../../../core/utils/config-service";
 
 @Component({
   selector: "app-secretariat-general",
@@ -89,7 +91,7 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
           <div class="md:col-span-1 text-center">
             <div class="relative inline-block">
               <img
-                src="https://www.travail.gouv.bj/storage/structures/respos/1708440238kanhounon-norbert.jpg"
+                [src]="getLink('structures/respos',structure?.photo_responsable)"
                 alt="ALOHON N. Germain - Secrétaire Général du Ministère"
                 class="rounded-xl shadow-lg w-full min-w-md h-128 object-cover"
               />
@@ -98,10 +100,10 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
               <h3
                 class="text-xl font-bold text-primary-800 dark:text-primary-400 mb-2"
               >
-                ALOKPO N. Germain
+                {{structure?.name_responsable}}
               </h3>
               <p class="text-gray-600 dark:text-gray-300">
-                Secrétaire Général du Ministère
+                {{structure?.name}}
               </p>
             </div>
           </div>
@@ -112,17 +114,8 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
               Mission
             </h3>
             <p
-              class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed"
+              class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed rich-content" [innerHTML]="media?.aof?.mission"
             >
-              Conformément aux dispositions de l'article 39 du décret n°
-              2021-401 du 28 juillet 2021 fixant le nouveau type des ministères,
-              le secrétariat général du Ministère du Travail et de la Fonction
-              Publique est l'organe chargé de l'exécution correcte de la mission
-              du ministère. Il veille à l'exécution des résultats et à la
-              satisfaction des besoins des citoyens.
-            </p>
-            <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-              Il assure la continuité de l'administration du ministère.
             </p>
             <div>
               <h3
@@ -130,66 +123,8 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
               >
                 Attributions
               </h3>
-              <p class="text-gray-700 dark:text-gray-300 mb-4">
-                À ce titre et sous autorité du ministre :
-              </p>
-              <ul class="space-y-3 text-gray-700 dark:text-gray-300">
-                <li class="flex items-start">
-                  <span
-                    class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                  ></span>
-                  <span
-                    >propose en collaboration avec le cabinet du ministre, les
-                    orientations stratégiques destinées à traduire la vision,
-                    les politiques et les stratégies du gouvernement dans les
-                    secteurs d'activités relevant du ministère</span
-                  >
-                </li>
-                <li class="flex items-start">
-                  <span
-                    class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                  ></span>
-                  <span
-                    >veille à la mise en œuvre du Programme d'Actions du
-                    Gouvernement (PAG) et des orientations stratégiques du
-                    département en collaboration avec le cabinet du
-                    ministère</span
-                  >
-                </li>
-                <li class="flex items-start">
-                  <span
-                    class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                  ></span>
-                  <span
-                    >veille à aligner toutes les directions centrales,
-                    techniques et départementales sur les orientations
-                    stratégiques du département et coordonne les actions de mise
-                    en œuvre du programme de renforcement du leadership du
-                    ministère</span
-                  >
-                </li>
-                <li class="flex items-start">
-                  <span
-                    class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                  ></span>
-                  <span
-                    >assure un rôle technique sur tous les dossiers relevant de
-                    l'Inspection du ministère</span
-                  >
-                </li>
-                <li class="flex items-start">
-                  <span
-                    class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                  ></span>
-                  <span
-                    >assure avec l'appui technique du programme support,
-                    l'élaboration des rapports, l'évaluation et la
-                    capitalisation du plan d'amélioration de la performance
-                    globale du ministère, de ses politiques, de ses programmes
-                    et de ses projets</span
-                  >
-                </li>
-              </ul>
+              <p class="text-gray-700 dark:text-gray-300 mb-4 rich-content" [innerHTML]="media?.aof?.attribution"></p>
+     
 
               <!-- Boutons de téléchargement -->
               <div class="flex flex-col sm:flex-row gap-4 mt-8">
@@ -213,8 +148,8 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
                   Lire l'arrêté
                 </button>
                 <a
-                  href="https://travail.gouv.bj/download-data/aofs/2301250210-628.pdf/aof"
-                  download="https://travail.gouv.bj/download-data/aofs/2301250210-628.pdf/aof"
+                  [href]="getLink('aofs',media?.aof?.aof)"
+                  download="{{media?.aof?.aof}}"
                   class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
                 >
                   <svg
@@ -497,7 +432,7 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
             </div>
             <div>
               <ngx-extended-pdf-viewer
-                [src]="'assets/download-data/aofs/aof-sgm.pdf'"
+                [src]="getLink('aof',media?.aof?.aof)"
               ></ngx-extended-pdf-viewer>
             </div>
           </el-dialog-panel>
@@ -609,7 +544,37 @@ export class SecretariatGeneralComponent implements AfterViewInit {
     },
   ];
 
-  constructor(private animationService: AnimationService) {}
+  structure:any
+  media:any
+
+    constructor(private animationService: AnimationService,private publicService:PublicService) {}
+  
+    ngOnInit() {
+      this.getAll()
+    }
+  
+  
+  
+    getAll(){
+      this.publicService.getSGM().subscribe((res:any)=>{
+        this.structure=res.data?.structure
+        this.media=res.data?.aof
+      })
+    }
+
+
+  openPdf() {
+    const dialog = document.getElementById('dialog') as any;
+    if (dialog) {
+      dialog.showModal();
+    }
+  }
+
+
+
+      getLink(dir:any,photo:any){
+        return`${ConfigService.toFile("storage")}/${dir}/${photo}`
+      }
 
   ngAfterViewInit() {
     setTimeout(() => {

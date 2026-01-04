@@ -195,7 +195,7 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
         </h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
           <a
-            href="/actualites"
+            routerLink="/communiques"
             class="group flex flex-col items-center p-6 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
             aria-label="Communiqués"
           >
@@ -232,7 +232,7 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
           </a>
 
           <a
-            href="/services"
+            routerLink="/communiques"
             class="group flex flex-col items-center p-6 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
             aria-label="Concours publics"
           >
@@ -248,7 +248,8 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
           </a>
 
           <a
-            href="/services"
+            href="https://demarchesmtfp.gouv.bj/"
+            target="_blank"
             class="group flex flex-col items-center p-6 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
             aria-label="Démarches Administratives"
           >
@@ -264,7 +265,8 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
           </a>
 
           <a
-            href="/contact"
+            href="https://demarchesmtfp.gouv.bj/auth/logusager/"
+             target="_blank"
             class="group flex flex-col items-center p-6 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
             aria-label="Nous contacter"
           >
@@ -282,7 +284,8 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
 
         <div class="grid grid-cols-1 md:grid-cols-1 gap-6 mt-6">
           <a
-            href="#"
+            href="https://reformesbenin.gouv.bj"
+             target="_blank"
             class="group flex flex-col items-center p-6 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
             aria-label="Suivi des réformes administratives et institutionnelles"
           >

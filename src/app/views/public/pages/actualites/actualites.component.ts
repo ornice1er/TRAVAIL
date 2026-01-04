@@ -178,7 +178,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
               <p
                 class="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3 text-content rich-content" [innerHTML]="actualite?.sub_description"
               >
-                {{ actualite.sub_description }}
               </p>
               <div class="flex items-center justify-between">
                 <a

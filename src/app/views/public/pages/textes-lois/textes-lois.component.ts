@@ -76,7 +76,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
                   </span>
                 </div>
                 <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">{{ document.name }}</h3>
-                <p class="text-gray-600 dark:text-gray-300 mb-4">{{ document.description }}</p>
+                <p class="text-gray-600 dark:text-gray-300 mb-4 rich-content" [innerHTML]="document.description"></p>
                 <div class="flex items-center space-x-4">
                   <a [href]="getLink('docs',document.filename)" 
                      target="_blank"
@@ -162,7 +162,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
             </div>
           </div>
           <div class="">
-            <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800" 
+            <img src="assets/besoinjuridique.jpg" 
                  alt="Consultation juridique" 
                  class="rounded-2xl shadow-lg w-full">
           </div>

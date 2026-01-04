@@ -14,6 +14,12 @@ export class PublicService {
     }
 
 
+    getVision(){
+      return this.http.get<any>(`${ConfigService.toApiUrl("public/vision")}`);
+    }
+
+
+
     getActualites(pageSize:any,page:any){
       return this.http.get<any>(`${ConfigService.toApiUrl("public/actualites")}?pageSize=${pageSize}&page=${page}`);
     }
@@ -70,9 +76,7 @@ export class PublicService {
       return this.http.get<any>(`${ConfigService.toApiUrl("organigramme")}`);
     }
 
-    getVision(){
-      return this.http.get<any>(`${ConfigService.toApiUrl("vision")}`);
-    }
+    
 
      getSGM(){
       return this.http.get<any>(`${ConfigService.toApiUrl("sgm")}`);
