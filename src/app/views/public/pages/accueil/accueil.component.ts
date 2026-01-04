@@ -141,7 +141,7 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
       </div>
     </section>
 
-    <!-- Section Statistiques -->
+    <!-- Section Statistiques 
     <section
       class="section-padding bg-primary-800 dark:bg-primary-900 text-white"
       aria-label="Statistiques du ministère"
@@ -180,7 +180,7 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
           </div>
         </div>
       </div>
-    </section>
+    </section>-->
 
     <!-- Accès rapide aux services essentiels -->
     <section
@@ -494,7 +494,7 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
       </div>
     </section>
 
-    <!-- Section Fiches métiers -->
+    <!-- Section Fiches métiers 
     <section
       class="section-padding bg-white dark:bg-gray-900"
       aria-label="Fiches métiers par structure"
@@ -597,7 +597,7 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
           </a>
         </div>
       </div>
-    </section>
+    </section>-->
 
     <!-- Actualités -->
     <section class="section-padding bg-white dark:bg-gray-900">
@@ -818,7 +818,7 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
               Nous contacter
             </a>
             <a
-              href="tel:+22921300000"
+              href="tel:+22952160000"
               class="btn-secondary border-white text-white hover:bg-white/10"
             >
               📞 +229 21 30 00 00

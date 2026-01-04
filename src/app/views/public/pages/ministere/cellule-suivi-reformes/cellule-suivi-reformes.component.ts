@@ -36,7 +36,7 @@ import { metiers } from "../../../../../shared/models/datas";
       </div>
     </div>
 
-    <!-- Direction en chiffres -->
+    <!-- Direction en chiffres 
     <section
       class="section-padding bg-accent-800 dark:bg-accent-900 text-white"
     >
@@ -71,7 +71,7 @@ import { metiers } from "../../../../../shared/models/datas";
           </div>
         </div>
       </div>
-    </section>
+    </section>-->
 
     <!-- Mission & Attribution avec photo du responsable -->
     <section class="section-padding bg-white dark:bg-gray-900">
@@ -246,7 +246,7 @@ import { metiers } from "../../../../../shared/models/datas";
       </div>
     </section> -->
 
-    <!-- Fiches métiers -->
+    <!-- Fiches métiers 
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
         <div class="text-center mb-16 ">
@@ -260,7 +260,7 @@ import { metiers } from "../../../../../shared/models/datas";
 
         <app-metiers-list [metiers]="metiersDeLaStructure"></app-metiers-list>
       </div>
-    </section>
+    </section>-->
 
     <!-- Contacts spécifiques -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
@@ -286,7 +286,7 @@ import { metiers } from "../../../../../shared/models/datas";
                     Téléphone
                   </p>
                   <p class="text-gray-600 dark:text-gray-300">
-                    +229 21 30 60 00
+                    +229 52 16 00 00
                   </p>
                 </div>
               </div>
@@ -299,16 +299,11 @@ import { metiers } from "../../../../../shared/models/datas";
                 <div class="text-left">
                   <p class="font-medium text-gray-900 dark:text-white">Email</p>
                   <p class="text-gray-600 dark:text-gray-300">
-                    {{ "csr@travail.gouv.bj" }}
+                    {{ "mtfp.usager@gouv.bj" }}
                   </p>
                 </div>
               </div>
-              <div class="bg-accent-50 dark:bg-accent-900/20 rounded-lg p-4">
-                <p class="text-sm text-accent-700 dark:text-accent-400">
-                  <strong>Réunions mensuelles :</strong> Premier mercredi de
-                  chaque mois à 9h
-                </p>
-              </div>
+             
             </div>
           </div>
         </div>

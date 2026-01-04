@@ -37,7 +37,7 @@ import { metiers } from "../../../../../shared/models/datas";
       </div>
     </div>
 
-    <!-- Direction en chiffres -->
+    <!-- Direction en chiffres 
     <section
       class="section-padding bg-secondary-800 dark:bg-secondary-900 text-white"
     >
@@ -334,7 +334,7 @@ import { metiers } from "../../../../../shared/models/datas";
       </div>
     </section>
 
-    <!-- Fiches métiers -->
+    <!-- Fiches métiers 
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
         <div class="text-center mb-16 ">
@@ -348,7 +348,7 @@ import { metiers } from "../../../../../shared/models/datas";
 
         <app-metiers-list [metiers]="metiersDeLaStructure"></app-metiers-list>
       </div>
-    </section>
+    </section>-->
 
     <!-- Contact Général -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
@@ -389,13 +389,13 @@ import { metiers } from "../../../../../shared/models/datas";
                 <div class="text-left">
                   <p class="font-medium text-gray-900 dark:text-white">Email</p>
                   <p class="text-gray-600 dark:text-gray-300">
-                    {{ "secretariat.general@travail.gouv.bj" }}
+                    {{ "mtfp.usager@gouv.bj" }}
                   </p>
                 </div>
               </div>
               <div class="bg-primary-50 dark:bg-primary-900/20 rounded-lg p-4">
                 <p class="text-sm text-primary-700 dark:text-primary-400">
-                  <strong>Horaires :</strong> Du lundi au vendredi de 8h à 17h
+                  <strong>Horaires :</strong> Du lundi au vendredi de 8h à 17h30
                 </p>
               </div>
             </div>
@@ -496,7 +496,7 @@ export class DirectionRenforcementCapacitesComponent
       service: "Service Formation Continue",
       description: "Programmes de formation professionnelle continue.",
       telephone: "+229 21 30 50 01",
-      email: "formation.continue@travail.gouv.bj",
+      email: "mtfp.usager@gouv.bj",
       horaires: "Lun-Ven 8h-16h",
       specialite: "Formation continue",
     },
@@ -505,7 +505,7 @@ export class DirectionRenforcementCapacitesComponent
       service: "Service Employabilité",
       description: "Accompagnement vers l'emploi et insertion professionnelle.",
       telephone: "+229 21 30 50 02",
-      email: "employabilite@travail.gouv.bj",
+      email: "mtfp.usager@gouv.bj",
       horaires: "Lun-Ven 8h-16h",
       specialite: "Insertion professionnelle",
     },
@@ -514,7 +514,7 @@ export class DirectionRenforcementCapacitesComponent
       service: "Service Certification",
       description: "Certification des compétences et validation des acquis.",
       telephone: "+229 21 30 50 03",
-      email: "certification@travail.gouv.bj",
+      email: "mtfp.usager@gouv.bj",
       horaires: "Lun-Ven 8h-16h",
       specialite: "Certification des compétences",
     },
@@ -523,7 +523,7 @@ export class DirectionRenforcementCapacitesComponent
       service: "Service Partenariats",
       description: "Développement des partenariats avec les entreprises.",
       telephone: "+229 21 30 50 04",
-      email: "partenariats.dgrce@travail.gouv.bj",
+      email: "mtfp.usager@gouv.bj",
       horaires: "Lun-Ven 8h-17h",
       specialite: "Partenariats entreprises",
     },
@@ -532,7 +532,7 @@ export class DirectionRenforcementCapacitesComponent
       service: "Service Études et Prospective",
       description: "Études sur l'emploi et prospective des métiers.",
       telephone: "+229 21 30 50 05",
-      email: "etudes.dgrce@travail.gouv.bj",
+      email: "mtfp.usager@gouv.bj",
       horaires: "Lun-Ven 8h-16h",
       specialite: "Études et prospective",
     },
@@ -541,7 +541,7 @@ export class DirectionRenforcementCapacitesComponent
       service: "Accueil et Information",
       description: "Information sur les programmes de formation disponibles.",
       telephone: "+229 21 30 50 00",
-      email: "info.dgrce@travail.gouv.bj",
+      email: "mtfp.usager@gouv.bj",
       horaires: "Lun-Ven 7h30-17h",
       specialite: "Information générale",
     },

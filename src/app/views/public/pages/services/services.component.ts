@@ -135,11 +135,11 @@ import { NgxPaginationModule } from 'ngx-pagination';
             Notre équipe support est disponible pour vous accompagner dans l'utilisation de nos services en ligne.
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="tel:+22921300000" class="btn-primary" aria-label="Appeler le support au +229 21 30 00 00">
+            <a href="tel:+22952160000" class="btn-primary" aria-label="Appeler le support au +229 21 30 00 00">
               📞 +229 21 30 00 00
             </a>
-            <a href="mailto:support@travail.gouv.bj" class="btn-secondary" aria-label="Envoyer un email au support">
-              ✉️ {{'support@travail.gouv.bj'}}
+            <a href="mailto:mtfp.usager@gouv.bj" class="btn-secondary" aria-label="Envoyer un email au support">
+              ✉️ {{'mtfp.usager@gouv.bj'}}
             </a>
           </div>
         </div>

@@ -336,7 +336,7 @@ import { metiers } from "../../../../../shared/models/datas";
       </div>
     </section>
 
-    <!-- Fiches métiers -->
+    <!-- Fiches métiers 
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
         <div class="text-center mb-16 ">
@@ -350,7 +350,7 @@ import { metiers } from "../../../../../shared/models/datas";
 
         <app-metiers-list [metiers]="metiersDeLaStructure"></app-metiers-list>
       </div>
-    </section>
+    </section>-->
 
     <!-- Contacts spécifiques -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">

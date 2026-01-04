@@ -36,7 +36,7 @@ import { metiers } from "../../../../../shared/models/datas";
       </div>
     </div>
 
-    <!-- Direction en chiffres -->
+    <!-- Direction en chiffres 
     <section
       class="section-padding bg-primary-800 dark:bg-primary-900 text-white"
     >
@@ -71,7 +71,7 @@ import { metiers } from "../../../../../shared/models/datas";
           </div>
         </div>
       </div>
-    </section>
+    </section>-->
 
     <!-- Mission & Attribution -->
     <section class="section-padding bg-white dark:bg-gray-900">
@@ -220,7 +220,7 @@ import { metiers } from "../../../../../shared/models/datas";
       </div>
     </section>
 
-    <!-- Fiches métiers -->
+    <!-- Fiches métiers 
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
         <div class="text-center mb-16 ">
@@ -234,7 +234,7 @@ import { metiers } from "../../../../../shared/models/datas";
 
         <app-metiers-list [metiers]="metiersDeLaStructure"></app-metiers-list>
       </div>
-    </section>
+    </section>-->
 
     <!-- Contact Général -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
@@ -275,13 +275,13 @@ import { metiers } from "../../../../../shared/models/datas";
                 <div class="text-left">
                   <p class="font-medium text-gray-900 dark:text-white">Email</p>
                   <p class="text-gray-600 dark:text-gray-300">
-                    {{ "secretariat.general@travail.gouv.bj" }}
+                    {{ "mtfp.usager@gouv.bj" }}
                   </p>
                 </div>
               </div>
               <div class="bg-primary-50 dark:bg-primary-900/20 rounded-lg p-4">
                 <p class="text-sm text-primary-700 dark:text-primary-400">
-                  <strong>Horaires :</strong> Du lundi au vendredi de 8h à 17h
+                  <strong>Horaires :</strong> Du lundi au vendredi de 8h à 17h30
                 </p>
               </div>
             </div>

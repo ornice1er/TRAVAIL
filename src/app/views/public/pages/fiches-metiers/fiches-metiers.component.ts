@@ -32,14 +32,13 @@ import { MetiersListComponent } from "../../../../shared/components/metiers-list
       </div>
     </div>
 
-    <!-- Filtres -->
+    <!-- Filtres 
     <section
       class="py-8 bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700"
     >
       <div class="container-custom">
         <div class="flex flex-col md:flex-row items-center justify-between gap-6">
           <div class="flex flex-col gap-4 w-full">
-            <!-- Filtres par thématique -->
             <div class="flex items-center gap-4">
               <span class="text-sm font-semibold">Thématiques:</span>
               <div class="flex flex-wrap gap-2">
@@ -61,7 +60,6 @@ import { MetiersListComponent } from "../../../../shared/components/metiers-list
               </div>
             </div>
 
-            <!-- Filtres par structure -->
             <div class="flex items-center gap-4">
               <span class="text-sm font-semibold">Structures:</span>
               <div class="flex flex-wrap gap-2">
@@ -84,7 +82,6 @@ import { MetiersListComponent } from "../../../../shared/components/metiers-list
             </div>
           </div>
 
-          <!-- Barre de recherche -->
           <div class="relative w-full md:w-auto flex-shrink-0">
             <input
               type="text"
@@ -109,13 +106,12 @@ import { MetiersListComponent } from "../../../../shared/components/metiers-list
           </div>
         </div>
       </div>
-    </section>
+    </section>-->
 
-    <!-- Liste des fiches métiers -->
+    <!-- Liste des fiches métiers 
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
         <app-metiers-list [metiers]="metiersFilters"></app-metiers-list>
-        <!-- Message si aucun résultat -->
         <div *ngIf="metiersFilters.length === 0" class="text-center py-16">
           <div
             class="w-16 h-16 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-4"
@@ -130,9 +126,8 @@ import { MetiersListComponent } from "../../../../shared/components/metiers-list
           </p>
         </div>
       </div>
-    </section>
+    </section>-->
 
-    <!-- Informations complémentaires -->
     <section class="section-padding bg-primary-800 dark:bg-primary-900 text-white">
       <div class="container-custom">
         <div class="text-center">
@@ -144,7 +139,8 @@ import { MetiersListComponent } from "../../../../shared/components/metiers-list
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              routerLink="/actualites"
+              routerLink="/communiques"
+              [queryParams]="{ nature: 'Concours' }"
               class="btn-primary bg-white text-primary-800 hover:bg-gray-100"
             >
               Voir les concours

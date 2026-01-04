@@ -392,7 +392,7 @@ export const environment = {
               </h4>
               <p class="text-gray-700 dark:text-gray-300">
                 Ministère du Travail et de la Fonction Publique<br />
-                Route de l'Aéroport, face SONAPRA<br />
+                Route de l'Aéroport, CITE MINISTERIELLE<br />
                 01 BP 394 Cotonou, Bénin
               </p>
             </div>
@@ -443,18 +443,18 @@ export class ContactComponent implements OnInit, AfterViewInit {
       id: 4,
       icone: "🏢",
       titre: "Bureaux",
-      informations: ["Route de l'Aéroport", "Face SONAPRA", "Cotonou, Bénin"],
+      informations: ["Route de l'Aéroport", "CITE MINISTERIELLE", "Cotonou, Bénin"],
     },
     {
       id: 5,
       icone: "🏢",
       titre: "Portail des Démarches Administratives",
-      informations: ["https://pda.mtfp-ctd.bj/"],
+      informations: ["https://demarchesmtfp.gouv.bj/"],
     },
   ];
 
   horaires = [
-    { jour: "Lundi - Vendredi", heures: "8h00 - 17h00" },
+    { jour: "Lundi - Vendredi", heures: "8h00 - 17h30" },
     { jour: "Samedi - Dimanche", heures: "Fermé" },
     { jour: "Jours fériés", heures: "Fermé" },
   ];
@@ -500,7 +500,7 @@ export class ContactComponent implements OnInit, AfterViewInit {
       .setLngLat([2.3997338, 6.354602])
       .setPopup(
         new mapboxgl.Popup({ offset: 25 }).setHTML(
-          `<h3 class="font-bold text-lg text-black">Ministère du Travail et de la Fonction Publique</h3><p class="text-gray-600">Route de l'Aéroport, face SONAPRA, Cotonou, Bénin</p>`
+          `<h3 class="font-bold text-lg text-black">Ministère du Travail et de la Fonction Publique</h3><p class="text-gray-600">Route de l'Aéroport, CITE MINISTERIELLE, Cotonou, Bénin</p>`
         )
       )
       .addTo(this.map);

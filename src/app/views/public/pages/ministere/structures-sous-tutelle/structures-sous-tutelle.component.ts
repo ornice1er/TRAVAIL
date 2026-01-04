@@ -47,38 +47,7 @@ import { AnimationService } from '../../../../../shared/services/animation.servi
                     <p class="text-lg text-secondary-700 dark:text-secondary-400 font-medium mb-4">{{ structure.sigle }}</p>
                     <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">{{ structure.description }}</p>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div>
-                        <h4 class="font-semibold text-gray-900 dark:text-white mb-3">Missions principales</h4>
-                        <ul class="space-y-2">
-                          <li *ngFor="let mission of structure.missions" class="flex items-start">
-                            <span class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                            <span class="text-gray-700 dark:text-gray-300 text-sm">{{ mission }}</span>
-                          </li>
-                        </ul>
-                      </div>
-                      <div>
-                        <h4 class="font-semibold text-gray-900 dark:text-white mb-3">Informations</h4>
-                        <div class="space-y-2 text-sm">
-                          <div class="flex justify-between">
-                            <span class="text-gray-500 dark:text-gray-400">Création</span>
-                            <span class="font-medium">{{ structure.creation }}</span>
-                          </div>
-                          <div class="flex justify-between">
-                            <span class="text-gray-500 dark:text-gray-400">Siège</span>
-                            <span class="font-medium">{{ structure.siege }}</span>
-                          </div>
-                          <div class="flex justify-between">
-                            <span class="text-gray-500 dark:text-gray-400">Personnel</span>
-                            <span class="font-medium">{{ structure.personnel }}</span>
-                          </div>
-                          <div class="flex justify-between">
-                            <span class="text-gray-500 dark:text-gray-400">Budget</span>
-                            <span class="font-medium">{{ structure.budget }}</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    
                   </div>
                 </div>
               </div>
@@ -218,7 +187,7 @@ import { AnimationService } from '../../../../../shared/services/animation.servi
                 </div>
                 <div class="text-left">
                   <p class="font-medium text-gray-900 dark:text-white">Téléphone</p>
-                  <p class="text-gray-600 dark:text-gray-300">+229 21 30 80 00</p>
+                  <p class="text-gray-600 dark:text-gray-300">+229 52160000</p>
                 </div>
               </div>
               <div class="flex items-center justify-center space-x-4">
@@ -227,7 +196,7 @@ import { AnimationService } from '../../../../../shared/services/animation.servi
                 </div>
                 <div class="text-left">
                   <p class="font-medium text-gray-900 dark:text-white">Email</p>
-                  <p class="text-gray-600 dark:text-gray-300">{{'tutelle@travail.gouv.bj'}}</p>
+                  <p class="text-gray-600 dark:text-gray-300">{{'mtfp.usager@gouv.bj'}}</p>
                 </div>
               </div>
             </div>

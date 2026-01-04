@@ -35,7 +35,7 @@ import { ConfigService } from "../../../../../core/utils/config-service";
       </div>
     </div>
 
-    <!-- Direction en chiffres -->
+    <!-- Direction en chiffres 
     <section
       class="section-padding bg-secondary-800 dark:bg-secondary-900 text-white"
     >
@@ -70,7 +70,7 @@ import { ConfigService } from "../../../../../core/utils/config-service";
           </div>
         </div>
       </div>
-    </section>
+    </section>-->
 
     <!-- Mission & Attribution -->
     <section class="section-padding bg-gray-50 dark:bg-gray-900">
@@ -365,7 +365,7 @@ import { ConfigService } from "../../../../../core/utils/config-service";
                       Email
                     </p>
                     <p class="text-gray-600 dark:text-gray-300">
-                      {{ "secretariat.general@travail.gouv.bj" }}
+                      {{ "mtfp.usager@gouv.bj" }}
                     </p>
                   </div>
                 </div>
@@ -394,7 +394,7 @@ import { ConfigService } from "../../../../../core/utils/config-service";
                   Horaires d'ouverture
                 </p>
                 <p class="text-primary-700 dark:text-primary-400 mt-1">
-                  Du lundi au vendredi de 8h à 17h
+                  Du lundi au vendredi de 8h à 17h30
                 </p>
               </div>
             </div>

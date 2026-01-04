@@ -81,7 +81,7 @@ interface Network {
             <img
               [src]="getLink('actualites/big',actualite?.big_photo)"
               [alt]="actualite?.title"
-              class="w-full h-64 lg:h-96 object-cover rounded-2xl shadow-lg"
+              class="w-full h-64 lg:h-150 object-cover object-top rounded-2xl shadow-lg"
             />
           </div>
 

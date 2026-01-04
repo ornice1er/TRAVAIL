@@ -36,7 +36,7 @@ import { metiers } from "../../../../../shared/models/datas";
       </div>
     </div>
 
-    <!-- Direction en chiffres -->
+    <!-- Direction en chiffres 
     <section
       class="section-padding bg-accent-800 dark:bg-accent-900 text-white"
     >
@@ -72,7 +72,7 @@ import { metiers } from "../../../../../shared/models/datas";
           </div>
         </div>
       </div>
-    </section>
+    </section>-->
 
     <!-- Mission & Attribution avec photo du responsable -->
     <section class="section-padding bg-white dark:bg-gray-900">
@@ -294,7 +294,7 @@ import { metiers } from "../../../../../shared/models/datas";
       </div>
     </section> -->
 
-    <!-- Fiches métiers -->
+    <!-- Fiches métiers 
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
         <div class="text-center mb-16 ">
@@ -310,7 +310,7 @@ import { metiers } from "../../../../../shared/models/datas";
 
         <app-metiers-list [metiers]="metiersDeLaStructure"></app-metiers-list>
       </div>
-    </section>
+    </section>-->
 
     <!-- Contact Général -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
@@ -351,13 +351,13 @@ import { metiers } from "../../../../../shared/models/datas";
                 <div class="text-left">
                   <p class="font-medium text-gray-900 dark:text-white">Email</p>
                   <p class="text-gray-600 dark:text-gray-300">
-                    {{ "secretariat.general@travail.gouv.bj" }}
+                    {{ "mtfp.usager@gouv.bj" }}
                   </p>
                 </div>
               </div>
               <div class="bg-primary-50 dark:bg-primary-900/20 rounded-lg p-4">
                 <p class="text-sm text-primary-700 dark:text-primary-400">
-                  <strong>Horaires :</strong> Du lundi au vendredi de 8h à 17h
+                  <strong>Horaires :</strong> Du lundi au vendredi de 8h à 17h30
                 </p>
               </div>
             </div>
@@ -477,7 +477,7 @@ export class InspectionGeneraleComponent implements AfterViewInit, OnInit {
       service: "Service Inspection Administrative",
       description: "Contrôle du fonctionnement des services administratifs.",
       telephone: "+229 21 30 15 01",
-      email: "inspection.admin@travail.gouv.bj",
+      email: "mtfp.usager@gouv.bj",
       horaires: "Lun-Ven 8h-16h",
       specialite: "Dysfonctionnements administratifs",
     },
@@ -486,7 +486,7 @@ export class InspectionGeneraleComponent implements AfterViewInit, OnInit {
       service: "Service Inspection RH",
       description: "Contrôle de la gestion des ressources humaines.",
       telephone: "+229 21 30 15 02",
-      email: "inspection.rh@travail.gouv.bj",
+      email: "mtfp.usager@gouv.bj",
       horaires: "Lun-Ven 8h-16h",
       specialite: "Gestion du personnel public",
     },
@@ -495,7 +495,7 @@ export class InspectionGeneraleComponent implements AfterViewInit, OnInit {
       service: "Service Déontologie",
       description: "Enquêtes disciplinaires et respect de l'éthique.",
       telephone: "+229 21 30 15 03",
-      email: "deontologie@travail.gouv.bj",
+      email: "mtfp.usager@gouv.bj",
       horaires: "Lun-Ven 8h-17h",
       specialite: "Violations déontologiques",
     },
@@ -504,7 +504,7 @@ export class InspectionGeneraleComponent implements AfterViewInit, OnInit {
       service: "Service Audit et Évaluation",
       description: "Audit des processus et évaluation des performances.",
       telephone: "+229 21 30 15 04",
-      email: "audit.evaluation@travail.gouv.bj",
+      email: "mtfp.usager@gouv.bj",
       horaires: "Lun-Ven 8h-16h",
       specialite: "Audit de performance",
     },
@@ -513,7 +513,7 @@ export class InspectionGeneraleComponent implements AfterViewInit, OnInit {
       service: "Cellule d'Urgence",
       description: "Traitement des signalements urgents et crises.",
       telephone: "+229 21 30 15 99",
-      email: "urgence.inspection@travail.gouv.bj",
+      email: "mtfp.usager@gouv.bj",
       horaires: "24h/24 - 7j/7",
       specialite: "Situations d'urgence",
     },
@@ -522,7 +522,7 @@ export class InspectionGeneraleComponent implements AfterViewInit, OnInit {
       service: "Accueil et Orientation",
       description: "Information et orientation des usagers.",
       telephone: "+229 21 30 15 00",
-      email: "accueil.inspection@travail.gouv.bj",
+      email: "mtfp.usager@gouv.bj",
       horaires: "Lun-Ven 7h30-17h",
       specialite: "Information générale",
     },

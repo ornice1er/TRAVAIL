@@ -33,7 +33,7 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
       </div>
     </div>
 
-    <!-- Direction en chiffres -->
+    <!-- Direction en chiffres 
     <section
       class="section-padding bg-secondary-800 dark:bg-secondary-900 text-white"
     >
@@ -68,7 +68,7 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
           </div>
         </div>
       </div>
-    </section>
+    </section>-->
 
     <!-- Mission & Attribution avec photo du responsable -->
     <section class="section-padding bg-white dark:bg-gray-900">
@@ -436,7 +436,7 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
                     Téléphone
                   </p>
                   <p class="text-gray-600 dark:text-gray-300">
-                    +229 21 30 20 00
+                    +229 52 16 00 00
                   </p>
                 </div>
               </div>
@@ -449,7 +449,7 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
                 <div class="text-left">
                   <p class="font-medium text-gray-900 dark:text-white">Email</p>
                   <p class="text-gray-600 dark:text-gray-300">
-                    {{ "dpaf@travail.gouv.bj" }}
+                    {{ "mtfp.usager@gouv.bj" }}
                   </p>
                 </div>
               </div>
@@ -458,7 +458,7 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
               >
                 <p class="text-sm text-secondary-700 dark:text-secondary-400">
                   <strong>Service budgétaire :</strong> Disponible du lundi au
-                  vendredi de 8h à 16h
+                  vendredi de 8h à 17h30
                 </p>
               </div>
             </div>
@@ -736,7 +736,7 @@ export class DirectionPlanificationComponent implements AfterViewInit {
       icone: "📞",
       service: "Accueil et Information",
       description: "Information générale sur les services de la direction.",
-      telephone: "+229 21 30 20 00",
+      telephone: "+229 52 16n 00 00",
       email: "info.dpaf@travail.gouv.bj",
       horaires: "Lun-Ven 7h30-17h",
       specialite: "Information générale",

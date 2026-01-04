@@ -30,7 +30,7 @@ import { metiers } from "../../../../../shared/models/datas";
       </div>
     </div>
 
-    <!-- Direction en chiffres -->
+    <!-- Direction en chiffres 
     <section
       class="section-padding bg-secondary-800 dark:bg-secondary-900 text-white"
     >
@@ -65,7 +65,7 @@ import { metiers } from "../../../../../shared/models/datas";
           </div>
         </div>
       </div>
-    </section>
+    </section>-->
 
     <!-- Mission & Attribution avec photo du responsable -->
     <section class="section-padding bg-white dark:bg-gray-900">
@@ -314,7 +314,7 @@ import { metiers } from "../../../../../shared/models/datas";
       </div>
     </section>
 
-    <!-- Fiches métiers -->
+    <!-- Fiches métiers 
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
         <div class="text-center mb-16 ">
@@ -330,7 +330,7 @@ import { metiers } from "../../../../../shared/models/datas";
 
         <app-metiers-list [metiers]="metiersDeLaStructure"></app-metiers-list>
       </div>
-    </section>
+    </section>-->
 
     <!-- Contacts spécifiques -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">
@@ -356,7 +356,7 @@ import { metiers } from "../../../../../shared/models/datas";
                     Téléphone
                   </p>
                   <p class="text-gray-600 dark:text-gray-300">
-                    +229 21 30 30 00
+                    +229 52 16 00 00
                   </p>
                 </div>
               </div>
@@ -369,18 +369,11 @@ import { metiers } from "../../../../../shared/models/datas";
                 <div class="text-left">
                   <p class="font-medium text-gray-900 dark:text-white">Email</p>
                   <p class="text-gray-600 dark:text-gray-300">
-                    {{ "dgt@travail.gouv.bj" }}
+                    {{ "mtfp.usager@gouv.bj" }}
                   </p>
                 </div>
               </div>
-              <div
-                class="bg-secondary-50 dark:bg-secondary-900/20 rounded-lg p-4"
-              >
-                <p class="text-sm text-secondary-700 dark:text-secondary-400">
-                  <strong>Permanence :</strong> Service d'urgence disponible
-                  24h/24 pour les accidents du travail
-                </p>
-              </div>
+           
             </div>
           </div>
         </div>
