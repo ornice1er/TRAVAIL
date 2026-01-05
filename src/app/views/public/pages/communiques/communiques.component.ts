@@ -135,11 +135,16 @@ import { NgxPaginationModule } from 'ngx-pagination';
         </div>
 
         <!-- Titre -->
+         <a
+            [routerLink]="['/communiques', communique.slug]"
+            class="inline-flex items-center text-primary-700 dark:text-primary-400 font-medium hover:underline"
+          >
         <h3
-          class="text-xl font-semibold text-gray-900 dark:text-white mb-3 group-hover:text-primary-700 dark:group-hover:text-primary-400 transition-colors line-clamp-2"
+          class="text-xl font-semibold cursor-pointer text-gray-900 dark:text-white mb-3 group-hover:text-primary-700 dark:group-hover:text-primary-400 transition-colors line-clamp-2"
         >
           {{ communique.title }}
         </h3>
+          </a>
 
         <!-- Description courte -->
         <p class="text-gray-600 dark:text-gray-300 text-sm mb-4 line-clamp-3">
