@@ -92,7 +92,7 @@ import { ConfigService } from "../../../../../core/utils/config-service";
             <div class="relative inline-block">
               <img
                 [src]="getLink('structures/respos',structure?.photo_responsable)"
-                alt="{{structure?.name_responsable}} - {{structure?.office}}"
+                alt="{{structure?.name_responsable}} - {{structure?.fonction}}"
                 class="rounded-xl shadow-lg w-full min-w-md h-128 object-cover"
               />
             </div>
@@ -103,7 +103,7 @@ import { ConfigService } from "../../../../../core/utils/config-service";
                 {{structure?.name_responsable}}
               </h3>
               <p class="text-gray-600 dark:text-gray-300">
-                {{structure?.office}}
+                {{structure?.fonction}}
               </p>
             </div>
           </div>

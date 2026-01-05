@@ -84,7 +84,7 @@ import { ConfigService } from "../../../../../core/utils/config-service";
             <div class="relative">
               <img
                 [src]="getLink('structures/respos',structure?.photo_responsable)"
-                alt="{{structure?.name_responsable}} - {{structure?.office}}"                alt="KANHOUNON Norbert Boccace - Inspecteur Général des Services et Emplois Publics"
+                alt="{{structure?.name_responsable}} - {{structure?.fonction}}"                alt="KANHOUNON Norbert Boccace - Inspecteur Général des Services et Emplois Publics"
                 class="rounded-2xl shadow-lg w-full max-w-sm mx-auto"
               />
               <!-- <div
@@ -101,7 +101,7 @@ import { ConfigService } from "../../../../../core/utils/config-service";
 
               </h3>
               <p class="text-gray-600 dark:text-gray-300">
-                {{structure?.office}}
+                {{structure?.fonction}}
               </p>
             </div>
           </div>

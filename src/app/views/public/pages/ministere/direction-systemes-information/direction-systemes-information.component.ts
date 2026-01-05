@@ -57,7 +57,7 @@ import { ConfigService } from '../../../../../core/utils/config-service';
             <div class="relative">
               <img 
               [src]="getLink('structures/respos',structure?.photo_responsable)"
-                alt="{{structure?.name_responsable}} - {{structure?.office}}"
+                alt="{{structure?.name_responsable}} - {{structure?.fonction}}"
                    class="rounded-2xl shadow-lg w-full max-w-md mx-auto">
               <!-- <div class="absolute -bottom-6 -right-6 w-16 h-16 bg-primary-700 rounded-full flex items-center justify-center">
                 <span class="text-white text-2xl">🇧🇯</span>
@@ -65,7 +65,7 @@ import { ConfigService } from '../../../../../core/utils/config-service';
             </div>
             <div class="mt-6 text-center">
               <h3 class="text-xl font-bold text-primary-800 dark:text-primary-400 mb-2">{{structure?.name_responsable}}</h3>
-              <p class="text-gray-600 dark:text-gray-300">  {{structure?.office}}</p>
+              <p class="text-gray-600 dark:text-gray-300">  {{structure?.fonction}}</p>
             </div>
           </div>
           
