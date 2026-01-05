@@ -9,160 +9,104 @@ import { ConfigService } from '../../../../core/utils/config-service';
   standalone: true,
   imports: [CommonModule, RouterModule],
   template: `
-    <div class="pt-32 pb-16 bg-white dark:bg-gray-900" *ngIf="communique">
-      <div class="container-custom">
-        <!-- Breadcrumb -->
-        <nav class="mb-8">
-          <a
-            routerLink="/communiques"
-            class="text-primary-800 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300 inline-flex items-center"
-          >
-            <svg
-              class="w-4 h-4 mr-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-            Retour aux communiqués
-          </a>
-        </nav>
+<div class="pt-32 pb-16 bg-white dark:bg-gray-900" *ngIf="communique">
+  <div class="container-custom">
 
-        <!-- Article -->
-        <article class="max-w-4xl mx-auto">
-          <!-- En-tête -->
-          <header class="mb-8">
-            <div class="flex items-center mb-4">
-              <span
-                class="bg-primary-800 dark:bg-primary-700 text-white px-4 py-2 rounded-full text-sm font-medium mr-4"
-              >
-                {{ communique.category }}
-              </span>
-              <span class="text-gray-500 dark:text-gray-400">{{
-                communique.created_at | date : "d MMMM yyyy" : "fr"
-              }}</span>
-            </div>
-            <h1
-              class="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6 leading-tight"
-            >
-              {{ communique.title }}
-            </h1>
-          </header>
-
-        
-
-          <!-- Contenu -->
-          <div class="prose prose-lg dark:prose-invert max-w-none rich-content" [innerHTML]="communique.description">
-          <p [innerHTML]="communique.description"></p>
-          </div>
-
-          <!-- Tags -->
-          <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
-            <h4
-              class="text-sm font-semibold text-gray-900 dark:text-white mb-4"
-            >
-              Mots-clés :
-            </h4>
-            <div class="flex flex-wrap gap-2">
-              <span
-                *ngFor="let tag of communique.tags"
-                class="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full text-sm"
-              >
-                #{{ tag }}
-              </span>
-            </div>
-          </div>
-
-                    <div class="mt-8">
-  <h4 class="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-4">
-    📎 Médias associés
-  </h4>
-
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-    <div
-      *ngFor="let media of medias"
-      class="group flex items-center bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-4 hover:shadow-md transition-all duration-300"
-    >
-      <!-- Icône selon le type -->
-      <div
-        class="flex items-center justify-center w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900/40 mr-4"
+    <!-- Breadcrumb -->
+    <nav class="mb-8">
+      <a
+        routerLink="/communiques"
+        class="text-primary-800 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300 inline-flex items-center"
       >
-        <ng-container [ngSwitch]="media.type">
-          <svg
-            *ngSwitchCase="'pdf'"
-            class="w-7 h-7 text-red-600"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12 11V3l8 8h-6a2 2 0 01-2-2zM12 15v6m0 0l3-3m-3 3l-3-3"
-            />
-          </svg>
-          <svg
-            *ngSwitchDefault
-            class="w-7 h-7 text-blue-600"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M7 3h10a2 2 0 012 2v14a2 2 0 01-2 2H7a2 2 0 01-2-2V5a2 2 0 012-2z"
-            />
-          </svg>
-        </ng-container>
-      </div>
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+        </svg>
+        Retour aux communiqués
+      </a>
+    </nav>
+
+    <!-- ARTICLE CENTRÉ -->
+    <article class="max-w-4xl mx-auto">
+
+      <!-- En-tête -->
+      <header class="mb-8">
+        <div class="flex items-center mb-4">
+          <span class="bg-primary-800 dark:bg-primary-700 text-white px-4 py-2 rounded-full text-sm font-medium mr-4">
+            {{ communique.category }}
+          </span>
+          <span class="text-gray-500 dark:text-gray-400">
+            {{ communique.created_at | date : "d MMMM yyyy" : "fr" }}
+          </span>
+        </div>
+
+        <h1 class="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
+          {{ communique.title }}
+        </h1>
+      </header>
 
       <!-- Contenu -->
-      <div class="flex-1">
-        <h5
-          class="font-medium text-gray-900 dark:text-white mb-1 line-clamp-2"
-          [title]="media.nom"
-        >
-          {{ media.nom }}
-        </h5>
-        <p class="text-xs text-gray-500 dark:text-gray-400">
-          {{ media.created_at | date : "d MMMM yyyy" : "fr" }}
-        </p>
+      <div class="prose prose-lg dark:prose-invert max-w-none rich-content" [innerHTML]="communique.description"></div>
+
+      <!-- Tags -->
+      <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
+        <h4 class="text-sm font-semibold text-gray-900 dark:text-white mb-4">Mots-clés :</h4>
+        <div class="flex flex-wrap gap-2">
+          <span *ngFor="let tag of communique.tags"
+            class="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full text-sm">
+            #{{ tag }}
+          </span>
+        </div>
       </div>
 
-      <!-- Actions -->
-      <div class="flex flex-col items-center space-y-1 ml-3">
-        <a
-        target="_blank"
-          [href]="getLink('communiques', media.filename)"
-          target="_blank"
-          class="text-primary-700 dark:text-primary-400 hover:underline text-sm font-medium"
-        >
-          Voir
-        </a>
-        <a
-        target="_blank"
-          [href]="getLink('communiques', media.filename)"
-          download
-          class="text-gray-600 dark:text-gray-300 hover:text-primary-700 text-xs"
-        >
-          Télécharger
-        </a>
-      </div>
-    </div>
+    </article>
   </div>
-</div>
 
-          <!-- Partage -->
-          <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
+  <!-- MÉDIAS EN PLEINE LARGEUR -->
+  <section class="max-w-4xl mx-auto mt-12">
+    <h4 class="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-4">
+      📎 Médias associés
+    </h4>
+
+    <div class="space-y-4">
+      <div *ngFor="let media of medias"
+        class="group flex items-center w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl px-6 py-4 hover:shadow-md transition-all duration-300">
+
+        <!-- Icône -->
+        <div class="flex items-center justify-center w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900/40 mr-4">
+          <ng-container [ngSwitch]="media.type">
+            <svg *ngSwitchCase="'pdf'" class="w-7 h-7 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 11V3l8 8h-6a2 2 0 01-2-2zM12 15v6m0 0l3-3m-3 3l-3-3"/>
+            </svg>
+            <svg *ngSwitchDefault class="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M7 3h10a2 2 0 012 2v14a2 2 0 01-2 2H7a2 2 0 01-2-2V5a2 2 0 012-2z"/>
+            </svg>
+          </ng-container>
+        </div>
+
+        <!-- Contenu -->
+        <div class="flex-1 min-w-0">
+          <h5 class="font-medium text-gray-900 dark:text-white mb-1 truncate" [title]="media.nom">
+            {{ media.nom }}
+          </h5>
+          <p class="text-xs text-gray-500 dark:text-gray-400">
+            {{ media.created_at | date : "d MMMM yyyy" : "fr" }}
+          </p>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex items-center space-x-4 ml-4">
+          <a [href]="getLink('communiques', media.filename)" target="_blank"
+            class="text-primary-700 dark:text-primary-400 hover:underline text-sm font-medium">Voir</a>
+          <a [href]="getLink('communiques', media.filename)" download
+            class="text-gray-600 dark:text-gray-300 hover:text-primary-700 text-sm">Télécharger</a>
+        </div>
+      </div>
+
+      
+    </div>
+    <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
             <h4
               class="text-sm font-semibold text-gray-900 dark:text-white mb-4"
             >
@@ -201,60 +145,9 @@ import { ConfigService } from '../../../../core/utils/config-service';
               </button>
             </div>
           </div>
+  </section>
+</div>
 
-
-
-
-        </article>
-      </div>
-    </div>
-
-
-
-
-    <!-- Articles similaires -->
-    <section
-      class="section-padding bg-gray-50 dark:bg-gray-800"
-      *ngIf="communique"
-    >
-      <div class="container-custom">
-        <h3
-          class="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center"
-        >
-          Communiqués similaires
-        </h3>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div
-            *ngFor="let article of articlesSimilaires"
-            class="card overflow-hidden"
-          >
-            <div class="h-48 overflow-hidden">
-              <img
-                [src]="article.imageUrl"
-                [alt]="article.titre"
-                class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-              />
-            </div>
-            <div class="p-6">
-              <div class="text-sm text-gray-500 dark:text-gray-400 mb-2">
-                {{ article.datePublication | date : "d MMM yyyy" : "fr" }}
-              </div>
-              <h4
-                class="text-lg font-semibold text-gray-900 dark:text-white mb-3 line-clamp-2"
-              >
-                {{ article.titre }}
-              </h4>
-              <a
-                [routerLink]="['/actualites', article.id]"
-                class="text-primary-800 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300 font-medium"
-              >
-                Lire la suite →
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
   `,
   styles: [
     `
