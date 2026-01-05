@@ -32,7 +32,7 @@ import { MetiersListComponent } from "../../../../shared/components/metiers-list
       </div>
     </div>
 
-    <!-- Filtres 
+    <!-- Filtres -->
     <section
       class="py-8 bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700"
     >
@@ -106,9 +106,9 @@ import { MetiersListComponent } from "../../../../shared/components/metiers-list
           </div>
         </div>
       </div>
-    </section>-->
+    </section>
 
-    <!-- Liste des fiches métiers 
+    <!-- Liste des fiches métiers -->
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
         <app-metiers-list [metiers]="metiersFilters"></app-metiers-list>
@@ -126,7 +126,7 @@ import { MetiersListComponent } from "../../../../shared/components/metiers-list
           </p>
         </div>
       </div>
-    </section>-->
+    </section>
 
     <section class="section-padding bg-primary-800 dark:bg-primary-900 text-white">
       <div class="container-custom">
