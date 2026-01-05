@@ -50,11 +50,36 @@ export class PublicService {
     }
 
 
+     getDSI(){
+      return this.http.get<any>(`${ConfigService.toApiUrl("dsi")}`);
+    }
+
+      getDGT(){
+      return this.http.get<any>(`${ConfigService.toApiUrl("dgt")}`);
+    }
+
+
+      getDGRCE(){
+      return this.http.get<any>(`${ConfigService.toApiUrl("dgrce")}`);
+    }
+
+
 
      getIgsep(){
       return this.http.get<any>(`${ConfigService.toApiUrl("igsep")}`);
     }
 
+
+
+     getDGFP(){
+      return this.http.get<any>(`${ConfigService.toApiUrl("dgfp")}`);
+    }
+ getCSRAI(){
+      return this.http.get<any>(`${ConfigService.toApiUrl("csrai")}`);
+    }
+
+
+    
 
     getActualite(slug:any){
       return this.http.get<any>(`${ConfigService.toApiUrl("page/actualites")}/${slug}`);
@@ -80,6 +105,9 @@ export class PublicService {
 
      getSGM(){
       return this.http.get<any>(`${ConfigService.toApiUrl("sgm")}`);
+    }
+     getDPAF(){
+      return this.http.get<any>(`${ConfigService.toApiUrl("dpaf")}`);
     }
 
 

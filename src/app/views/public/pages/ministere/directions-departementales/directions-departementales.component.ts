@@ -10,6 +10,8 @@ import "@tailwindplus/elements";
 import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
 import { MetiersListComponent } from "../../../../../shared/components/metiers-list.component";
 import { metiers } from "../../../../../shared/models/datas";
+import { PublicService } from "../../../../../core/services/public.service";
+import { ConfigService } from "../../../../../core/utils/config-service";
 
 @Component({
   selector: "app-directions-departementales",
@@ -104,20 +106,10 @@ import { metiers } from "../../../../../shared/models/datas";
             >
               Mission
             </h3>
-            <p
-              class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed"
+              <p
+              class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed rich-content" [innerHTML]="media?.aof?.mission"
             >
-              Conformément aux dispositions de l'article 10 du décret n°
-              2021-562 du 3 novembre 2021 portant attributions, organisation et
-              fonctionnement du Ministère du Travail et de la Fonction publique,
-              les directions départementales du travail et de la fonction
-              publique sont des démembrements territoriaux du ministère chargés
-              de la gestion des plans d'action sectoriels, de l'assistance
-              technique et de l'appui-consell aux communes, dans les domaines de
-              compétence du ministère, conformément aux lois sur la
-              décentralisation.
             </p>
-
             <!-- Boutons de téléchargement -->
             <!-- Boutons de téléchargement -->
             <div class="flex flex-col sm:flex-row gap-4 mt-8">
@@ -141,8 +133,8 @@ import { metiers } from "../../../../../shared/models/datas";
                 Lire l'arrêté
               </button>
               <a
-                href="https://travail.gouv.bj/download-data/aofs/2301250210-628.pdf/aof"
-                download="https://travail.gouv.bj/download-data/aofs/2301250210-628.pdf/aof"
+                [href]="getLink('aofs',media?.aof?.aof)"
+                  download="{{media?.aof?.aof}}"
                 class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
               >
                 <svg
@@ -187,8 +179,8 @@ import { metiers } from "../../../../../shared/models/datas";
               class="w-32 h-48 bg-gray-200 dark:bg-gray-700 rounded-lg mx-auto mb-4 overflow-hidden"
             >
               <img
-                [src]="directeur.photo"
-                [alt]="directeur.nom"
+                 [src]="getLink('structures/respos',directeur?.photo_responsable)"
+                alt="{{directeur?.name_responsable}} - {{directeur?.office}}"
                 class="w-full h-full object-cover"
                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
               />
@@ -205,10 +197,10 @@ import { metiers } from "../../../../../shared/models/datas";
             <h3
               class="text-sm font-bold text-secondary-800 dark:text-secondary-400 mb-2"
             >
-              {{ directeur.directeur }}
+              {{ directeur.name_responsable }}
             </h3>
             <p class="text-gray-600 dark:text-gray-300 text-xs mb-3">
-              {{ directeur.nom }}
+              {{ directeur.name }}
             </p>
             <!-- <div class="space-y-2">
               <div *ngFor="let responsabilite of directeur.responsabilites" class="text-xs text-gray-500 dark:text-gray-400">
@@ -361,145 +353,42 @@ export class DirectionsDepartementalesComponent
     },
   ];
 
-  departements = [
-    {
-      nom: "Direction Départementale Alibori",
-      directeur: "M. COLLY Faustin Tiburce",
-      photo:
-        "https://www.travail.gouv.bj/storage/structures/respos/faustin-tiburce-colly.jpg",
-    },
-    {
-      nom: "Direction Départementale Atacora",
-      directeur: "M. SEKE Jacques",
-      photo:
-        "https://www.travail.gouv.bj/storage/structures/respos/seke-jacques.jpg",
-    },
-    {
-      nom: "Direction Départementale Atlantique",
-      directeur: "Mme ALASSANE OUASSAGARI Lamatou",
-      photo:
-        "https://www.travail.gouv.bj/storage/structures/respos/alassane-ouassagari-lamatou.JPG",
-    },
-    {
-      nom: "Direction Départementale Borgou",
-      directeur: "M. TAHOUNGA Biwègnon Robert Bertrand",
-      photo:
-        "https://www.travail.gouv.bj/storage/structures/respos/1733740668tahounga-biwegnon-robert-bertrand.jpg",
-    },
-    {
-      nom: "Direction Départementale Collines",
-      directeur: "Mme DAFIA YAROU Gniré",
-      photo:
-        "https://www.travail.gouv.bj/storage/structures/respos/dafia-yarou-gnire.jpg",
-    },
-    {
-      nom: "Direction Départementale Couffo",
-      directeur: "M. ADOSSOU Jules Parfait Akpédjé",
-      photo:
-        "https://www.travail.gouv.bj/storage/structures/respos/1678289709adossou-jules-parfait-akpedje.jpg",
-    },
-    {
-      nom: "Direction Départementale Donga",
-      directeur: "Mme AMOUSSOU Valéry James",
-      photo:
-        "https://www.travail.gouv.bj/storage/structures/respos/valery-james-amoussou.png",
-    },
-    {
-      nom: "Direction Départementale Littoral",
-      directeur: "Mme LEGBA ADANKON Constance",
-      photo:
-        "https://www.travail.gouv.bj/storage/structures/respos/1708504919legba-adankon-constance.jpg",
-    },
-    {
-      nom: "Direction Départementale Mono",
-      directeur: "M. WHANNOU Kolawolé Sidoine Fred",
-      photo:
-        "https://www.travail.gouv.bj/storage/structures/respos/whannou-kolawole-sidoine-fred.jpg",
-    },
-    {
-      nom: "Direction Départementale Ouémé",
-      directeur: "Mme AKOTENOU Edwige Sigan",
-      photo:
-        "https://www.travail.gouv.bj/storage/structures/respos/akotenou-sigan-edwige.jpg",
-    },
-    {
-      nom: "Direction Départementale Plateau",
-      directeur: "M. ZOUNMATOUN Raymond",
-      photo:
-        "https://www.travail.gouv.bj/storage/structures/respos/1733740395zounmatoun-raymond.jpg",
-    },
-    {
-      nom: "Direction Départementale Zou",
-      directeur: "M. TOKPO Houénagnon Gérard",
-      photo:
-        "https://www.travail.gouv.bj/storage/structures/respos/tokpo-houenagnon-gerard.jpg",
-    },
-  ];
-
-  contactsSpecifiques = [
-    {
-      icone: "🔍",
-      service: "Service Inspection Territoriale",
-      description: "Contrôle des entreprises au niveau départemental.",
-      telephone: "+229 21 30 70 01",
-      email: "inspection.territoriale@travail.gouv.bj",
-      horaires: "Lun-Ven 8h-16h",
-      specialite: "Inspection du travail",
-    },
-    {
-      icone: "💼",
-      service: "Service Emploi Local",
-      description: "Promotion de l'emploi et insertion professionnelle.",
-      telephone: "+229 21 30 70 02",
-      email: "emploi.local@travail.gouv.bj",
-      horaires: "Lun-Ven 8h-16h",
-      specialite: "Emploi et insertion",
-    },
-    {
-      icone: "📋",
-      service: "Service Formalités",
-      description: "Traitement des formalités administratives.",
-      telephone: "+229 21 30 70 03",
-      email: "formalites@travail.gouv.bj",
-      horaires: "Lun-Ven 8h-15h30",
-      specialite: "Formalités administratives",
-    },
-    {
-      icone: "🤝",
-      service: "Service Médiation",
-      description: "Médiation des conflits de travail locaux.",
-      telephone: "+229 21 30 70 04",
-      email: "mediation.locale@travail.gouv.bj",
-      horaires: "Lun-Ven 8h-17h",
-      specialite: "Médiation sociale",
-    },
-    {
-      icone: "📊",
-      service: "Service Statistiques",
-      description: "Collecte et traitement des données locales.",
-      telephone: "+229 21 30 70 05",
-      email: "stats.locales@travail.gouv.bj",
-      horaires: "Lun-Ven 8h-16h",
-      specialite: "Statistiques locales",
-    },
-    {
-      icone: "📞",
-      service: "Accueil et Orientation",
-      description: "Information et orientation des usagers.",
-      telephone: "+229 21 30 70 00",
-      email: "accueil.territorial@travail.gouv.bj",
-      horaires: "Lun-Ven 7h30-17h",
-      specialite: "Information générale",
-    },
-  ];
-
-  constructor(private animationService: AnimationService) {}
-
-  ngOnInit() {
-    this.metiersDeLaStructure = metiers.filter(
-      (m) => m.structureId === this.structureId
-    );
-  }
+teams:any[] = [];
+  directeursTechniques:any[]=[]
+  departements:any=[]
+    fichesMetiers = [];
+  
+    structure:any
+    media:any
+  
+      constructor(private animationService: AnimationService,private publicService:PublicService) {}
+    
+      ngOnInit() {
+        this.getAll()
+      }
+    
+    
+    
+      getAll(){
+        this.publicService.getDD().subscribe((res:any)=>{
+          this.departements=res.data?.structures
+          this.media=res.data?.aof
+        })
+      }
+  
+  
+    openPdf() {
+      const dialog = document.getElementById('dialog') as any;
+      if (dialog) {
+        dialog.showModal();
+      }
+    }
+  
+  
+  
+        getLink(dir:any,photo:any){
+          return`${ConfigService.toFile("storage")}/${dir}/${photo}`
+        }
 
   ngAfterViewInit() {
     setTimeout(() => {

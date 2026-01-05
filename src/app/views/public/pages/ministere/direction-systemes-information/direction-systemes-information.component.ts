@@ -5,6 +5,8 @@ import '@tailwindplus/elements';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { MetiersListComponent } from '../../../../../shared/components/metiers-list.component';
 import { metiers } from '../../../../../shared/models/datas';
+import { PublicService } from '../../../../../core/services/public.service';
+import { ConfigService } from '../../../../../core/utils/config-service';
 
 @Component({
   selector: 'app-direction-systemes-information',
@@ -53,16 +55,17 @@ import { metiers } from '../../../../../shared/models/datas';
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div class="">
             <div class="relative">
-              <img src="/dsi.jpeg" 
-                   alt="GANDAHO D. J. Wilfried - Directeur" 
+              <img 
+              [src]="getLink('structures/respos',structure?.photo_responsable)"
+                alt="{{structure?.name_responsable}} - {{structure?.office}}"
                    class="rounded-2xl shadow-lg w-full max-w-md mx-auto">
               <!-- <div class="absolute -bottom-6 -right-6 w-16 h-16 bg-primary-700 rounded-full flex items-center justify-center">
                 <span class="text-white text-2xl">🇧🇯</span>
               </div> -->
             </div>
             <div class="mt-6 text-center">
-              <h3 class="text-xl font-bold text-primary-800 dark:text-primary-400 mb-2">GANDAHO D. J. Wilfried</h3>
-              <p class="text-gray-600 dark:text-gray-300">Directeur</p>
+              <h3 class="text-xl font-bold text-primary-800 dark:text-primary-400 mb-2">{{structure?.name_responsable}}</h3>
+              <p class="text-gray-600 dark:text-gray-300">  {{structure?.office}}</p>
             </div>
           </div>
           
@@ -70,44 +73,13 @@ import { metiers } from '../../../../../shared/models/datas';
             <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Mission & Attribution</h2>
             
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Mission</h3>
-            <p class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-              La direction des systèmes d'information assure, en relation avec toutes les structures du ministère, la 
-              conception, la mise en œuvre, la coordination et le suivi-évaluation d'actions intégrées.
+             <p
+              class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed rich-content" [innerHTML]="media?.aof?.mission"
+            >
             </p>
-            
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Attributions</h3>
-            <p class="text-gray-700 dark:text-gray-300 mb-4">Ces actions visent à :</p>
-            <ul class="space-y-3 text-gray-700 dark:text-gray-300">
-              <li class="flex items-start">
-                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                <span>garantir l'opérationnalisation sectorielle de la politique nationale des services et systèmes d'information</span>
-              </li>
-              <li class="flex items-start">
-                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                <span>conduire l'élaboration, la mise à jour et l'exécution opérationnelle du schéma directeur sectoriel des systèmes d'information en lien avec le schéma directeur national des systèmes d'information</span>
-              </li>
-              <li class="flex items-start">
-                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                <span>développer et optimiser les systèmes d'information du ministère</span>
-              </li>
-              <li class="flex items-start">
-                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                <span>assurer les projets et programmes numériques du ministère</span>
-              </li>
-              <li class="flex items-start">
-                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                <span>assurer la promotion et l'accélération de la transformation digitale du ministère</span>
-              </li>
-              <li class="flex items-start">
-                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                <span>mettre en œuvre et garantir la cohérence technique et applicative des systèmes d'information</span>
-              </li>
-              <li class="flex items-start">
-                <span class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                <span>coordonner les fonctions des systèmes d'information des entités, directions ou structures sous tutelle du ministère</span>
-              </li>
-            </ul>
-            
+                        <p class="text-gray-700 dark:text-gray-300 mb-4 rich-content" [innerHTML]="media?.aof?.attribution"></p>
+
             <!-- Boutons de téléchargement -->
              <!-- Boutons de téléchargement -->
           <div class="flex flex-col sm:flex-row gap-4 mt-8">
@@ -117,7 +89,10 @@ import { metiers } from '../../../../../shared/models/datas';
               </svg>
               Lire l'arrêté
             </button>
-            <a href="https://travail.gouv.bj/download-data/aofs/2301250210-628.pdf/aof" download="https://travail.gouv.bj/download-data/aofs/2301250210-628.pdf/aof" class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors">
+            <a 
+                              [href]="getLink('aofs',media?.aof?.aof)"
+                  download="{{media?.aof?.aof}}"
+            class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors">
               <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
               </svg>
@@ -230,7 +205,9 @@ import { metiers } from '../../../../../shared/models/datas';
           <button type="button" command="close" commandfor="dialog" class="inline-flex  justify-center rounded-md bg-red-600 px-4 py-2 text-sm font-semibold text-white shadow-xs hover:bg-red-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 dark:bg-red-500 dark:shadow-none dark:hover:bg-red-400 dark:focus-visible:outline-red-500">Fermer</button>
         </div>
         <div>
-         <ngx-extended-pdf-viewer [src]="'assets/download-data/aofs/aof-sgm.pdf'"></ngx-extended-pdf-viewer>
+         <ngx-extended-pdf-viewer 
+[src]="getLink('aofs',media?.aof?.aof)"         
+         ></ngx-extended-pdf-viewer>
         </div>
         
       </el-dialog-panel>
@@ -269,102 +246,46 @@ export class DirectionSystemesInformationComponent implements AfterViewInit, OnI
       description: 'Agents formés aux outils numériques'
     }
   ];
+
+
+
+    teams:any[] = [];
   
-  directeursTechniques = [
-    {
-      nom: 'AGBESSI Paul',
-      fonction: 'Directeur Technique Développement',
-      photo: 'https://images.pexels.com/photos/3184317/pexels-photo-3184317.jpeg?auto=compress&cs=tinysrgb&w=200',
-      responsabilites: [
-        'Développement d\'applications',
-        'Architecture technique',
-        'Supervision des projets'
-      ]
-    },
-    {
-      nom: 'KOSSOU Marie',
-      fonction: 'Directrice Technique Infrastructure',
-      photo: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=200',
-      responsabilites: [
-        'Gestion des infrastructures',
-        'Administration réseau',
-        'Sécurité informatique'
-      ]
-    },
-    {
-      nom: 'DOSSOU Jean-Claude',
-      fonction: 'Directeur Technique Data',
-      photo: 'https://images.pexels.com/photos/3184302/pexels-photo-3184302.jpeg?auto=compress&cs=tinysrgb&w=200',
-      responsabilites: [
-        'Gestion des données',
-        'Business Intelligence',
-        'Analyse des données'
-      ]
+    fichesMetiers = [];
+  
+    structure:any
+    media:any
+  
+      constructor(private animationService: AnimationService,private publicService:PublicService) {}
+    
+      ngOnInit() {
+        this.getAll()
+      }
+    
+    
+    
+      getAll(){
+        this.publicService.getDSI().subscribe((res:any)=>{
+          this.structure=res.data?.structure
+          this.media=res.data?.aof
+          this.teams=res.data?.structure?.teams1
+        })
+      }
+  
+  
+    openPdf() {
+      const dialog = document.getElementById('dialog') as any;
+      if (dialog) {
+        dialog.showModal();
+      }
     }
-  ];
   
-  contactsSpecifiques = [
-    {
-      icone: '💻',
-      service: 'Service Développement',
-      description: 'Développement d\'applications et solutions informatiques.',
-      telephone: '+229 21 30 25 01',
-      email: 'dev.dsi@travail.gouv.bj',
-      horaires: 'Lun-Ven 8h-17h',
-      specialite: 'Développement logiciel'
-    },
-    {
-      icone: '🔧',
-      service: 'Service Infrastructure',
-      description: 'Gestion des serveurs et infrastructures réseau.',
-      telephone: '+229 21 30 25 02',
-      email: 'infra.dsi@travail.gouv.bj',
-      horaires: 'Lun-Ven 8h-17h',
-      specialite: 'Infrastructure IT'
-    },
-    {
-      icone: '🛡️',
-      service: 'Service Sécurité',
-      description: 'Sécurisation des systèmes et protection des données.',
-      telephone: '+229 21 30 25 03',
-      email: 'securite.dsi@travail.gouv.bj',
-      horaires: 'Lun-Ven 8h-17h',
-      specialite: 'Sécurité informatique'
-    },
-    {
-      icone: '📊',
-      service: 'Service Data',
-      description: 'Gestion et analyse des données.',
-      telephone: '+229 21 30 25 04',
-      email: 'data.dsi@travail.gouv.bj',
-      horaires: 'Lun-Ven 8h-16h',
-      specialite: 'Gestion des données'
-    },
-    {
-      icone: '🛠️',
-      service: 'Support Technique',
-      description: 'Assistance technique et maintenance.',
-      telephone: '+229 21 30 25 99',
-      email: 'support.dsi@travail.gouv.bj',
-      horaires: 'Lun-Ven 7h30-18h',
-      specialite: 'Support utilisateur'
-    },
-    {
-      icone: '📞',
-      service: 'Accueil et Information',
-      description: 'Information générale sur les services informatiques.',
-      telephone: '+229 21 30 25 00',
-      email: 'info.dsi@travail.gouv.bj',
-      horaires: 'Lun-Ven 8h-17h',
-      specialite: 'Information générale'
-    }
-  ];
   
-  constructor(private animationService: AnimationService) {}
   
-  ngOnInit() {
-    this.metiersDeLaStructure = metiers.filter(m => m.structureId === this.structureId);
-  }
+        getLink(dir:any,photo:any){
+          return`${ConfigService.toFile("storage")}/${dir}/${photo}`
+        }
+  
 
   ngAfterViewInit() {
     setTimeout(() => {

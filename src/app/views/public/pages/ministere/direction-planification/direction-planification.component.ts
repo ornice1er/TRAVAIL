@@ -7,6 +7,8 @@ import { CommonModule } from "@angular/common";
 import { AnimationService } from "../../../../../shared/services/animation.service";
 import "@tailwindplus/elements";
 import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
+import { PublicService } from "../../../../../core/services/public.service";
+import { ConfigService } from "../../../../../core/utils/config-service";
 
 @Component({
   selector: "app-direction-planification",
@@ -77,11 +79,11 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
           <div class="col-span-1">
             <div class="space-y-8">
               <!-- Directeur -->
-              <!-- <div class="text-center">
+            <div class="text-center">
                 <div class="relative inline-block">
                   <img
-                    src="https://www.travail.gouv.bj/storage/structures/respos/malick-abdoulazize.JPG"
-                    alt="MALICK Abdoulaziz - Directeur"
+                [src]="getLink('structures/respos',structure?.photo_responsable)"
+                    alt="{{structure?.name_responsable}}- {{structure?.office}}"
                     class="rounded-2xl shadow-lg w-full max-w-sm mx-auto"
                   />
                   <div
@@ -94,13 +96,13 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
                   <h3
                     class="text-xl font-bold text-secondary-800 dark:text-secondary-400 mb-2"
                   >
-                    MALICK Abdoulaziz
+                   {{structure?.office}}
                   </h3>
                   <p class="text-gray-600 dark:text-gray-300">Directeur</p>
                 </div>
-              </div> -->
+              </div>
 
-              <!-- Directeur Adjoint -->
+              <!-- Directeur Adjoint 
               <div class="text-center">
                 <div class="relative inline-block">
                   <img
@@ -117,7 +119,7 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
                   </h3>
                   <p class="text-gray-600 dark:text-gray-300">Directeur</p>
                 </div>
-              </div>
+              </div>-->
             </div>
           </div>
 
@@ -131,148 +133,18 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
             >
               Mission
             </h3>
-            <p
-              class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed"
+              <p
+              class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed rich-content" [innerHTML]="media?.aof?.mission"
             >
-              Conformément aux dispositions de l'article 51 du décret n°2021-401
-              du 28 juillet 2021 fixant la structure type des ministères, la
-              Direction de la planification, de l'administration et des finances
-              assure au niveau ministériel, le pilotage du processus de
-              planification et de gestion des ressources humaines, financières,
-              matérielles et des services généraux, de concert avec les
-              gestionnaires de crédit.
             </p>
-
             <h3
               class="text-xl font-semibold text-gray-900 dark:text-white mb-4"
             >
               Attributions
             </h3>
-            <p class="text-gray-700 dark:text-gray-300 mb-4">
-              À ce titre, elle est chargée :
-            </p>
+        
+          <p class="text-gray-700 dark:text-gray-300 mb-4 rich-content" [innerHTML]="media?.aof?.attribution"></p>
 
-            <div class="space-y-6">
-              <div>
-                <h4 class="font-semibold text-gray-900 dark:text-white mb-3">
-                  En matière de planification :
-                </h4>
-                <ul class="space-y-2 text-gray-700 dark:text-gray-300">
-                  <li class="flex items-start">
-                    <span
-                      class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                    ></span>
-                    <span
-                      >de collecter, de traiter et de diffuser toutes les
-                      informations nécessaires à une réflexion prospective et
-                      stratégique dans les domaines de compétence du ministère
-                      en liaison avec les structures compétentes du ministère en
-                      charge du développement ;</span
-                    >
-                  </li>
-                  <li class="flex items-start">
-                    <span
-                      class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                    ></span>
-                    <span
-                      >d'animer les processus de planification, du
-                      suivi-évaluation et de capitalisation au sein du ministère
-                      ;</span
-                    >
-                  </li>
-                  <li class="flex items-start">
-                    <span
-                      class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                    ></span>
-                    <span
-                      >d'élaborer, de suivre et d'évaluer les plans stratégiques
-                      du ministère en liaison avec les structures de
-                      coordination et de supervision des activités du ministère,
-                      à savoir le cabinet du ministre et le secrétariat général
-                      du ministère. A cet effet, il veille à la prise en compte
-                      des aspects liés au genre et aux changements climatiques,
-                      conformément à la politique nationale de gestion des
-                      changements climatiques et autres stratégies
-                      connexes.</span
-                    >
-                  </li>
-                  <li class="flex items-start">
-                    <span
-                      class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                    ></span>
-                    <span
-                      >de mobiliser, en liaison avec les services compétents,
-                      les financements pour les programmes et projets de
-                      développement du ministère ;</span
-                    >
-                  </li>
-                  <li class="flex items-start">
-                    <span
-                      class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                    ></span>
-                    <span
-                      >de mettre en place une base de données et un dispositif
-                      de collecte, de traitement et de synthèse des informations
-                      pour soutenir le processus de planification au sein du
-                      ministère ; d'élaborer, en lien avec les autres
-                      responsables de programmes, le document de programmation
-                      pluriannuelle des dépenses et autres outils de gestion du
-                      ministère ;</span
-                    >
-                  </li>
-                  <li class="flex items-start">
-                    <span
-                      class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                    ></span>
-                    <span
-                      >de coordonner l'élaboration des projets et rapports
-                      annuels de performance prévus par la loi organique
-                      relative aux lois de Finances et d'en opérer la
-                      consolidation ;</span
-                    >
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h4 class="font-semibold text-gray-900 dark:text-white mb-3">
-                  en matière de gestion des ressources humaines :
-                </h4>
-                <ul class="space-y-2 text-gray-700 dark:text-gray-300">
-                  <li class="flex items-start">
-                    <span
-                      class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                    ></span>
-                    <span
-                      >d'élaborer, de mettre en œuvre et d'évaluer la stratégie de modernisation de la gestion des ressources humaines, notamment, les outils de gestion prévisionnelle des emplois et des compétences du ministère en liaison avec les structures compétentes du ministère en charge de la fonction publique ;</span
-                    >
-                  </li>
-                  <li class="flex items-start">
-                    <span
-                      class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                    ></span>
-                    <span
-                      >de préparer, en lien avec les responsables de programmes, la prévision et la programmation des emplois et de la masse salariale ;</span
-                    >
-                  </li>
-                  <li class="flex items-start">
-                    <span
-                      class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                    ></span>
-                    <span
-                      >d'informer et de former le personnel sur les enjeux de gouvernance, les principes, les bonnes pratiques et les procédures de gestion des ressources humaines ;</span
-                    >
-                  </li>
-                  <li class="flex items-start">
-                    <span
-                      class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                    ></span>
-                    <span
-                      >de développer une capacité d'amélioration de la communication interne, de la qualité de l'accueil des agents, du dialogue social et du travail.</span
-                    >
-                  </li>
-                </ul>
-              </div>
-            </div>
 
             <!-- Boutons de téléchargement -->
             <!-- Boutons de téléchargement -->
@@ -297,8 +169,8 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
                 Lire l'arrêté
               </button>
               <a
-                href="https://travail.gouv.bj/download-data/aofs/2301250210-628.pdf/aof"
-                download="https://travail.gouv.bj/download-data/aofs/2301250210-628.pdf/aof"
+               [href]="getLink('aofs',media?.aof?.aof)"
+              download="{{media?.aof?.aof}}"
                 class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
               >
                 <svg
@@ -496,7 +368,7 @@ import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
             </div>
             <div>
               <ngx-extended-pdf-viewer
-                [src]="'assets/download-data/aofs/aof-sgm.pdf'"
+                [src]="getLink('aofs',media?.aof?.aof)"
               ></ngx-extended-pdf-viewer>
             </div>
           </el-dialog-panel>
@@ -533,217 +405,42 @@ export class DirectionPlanificationComponent implements AfterViewInit {
     },
   ];
 
-  directeursTechniques = [
-    {
-      nom: "KOUTON Marie",
-      fonction: "Directrice Technique Planification",
-      photo:
-        "https://images.pexels.com/photos/3184317/pexels-photo-3184317.jpeg?auto=compress&cs=tinysrgb&w=200",
-      responsabilites: [
-        "Élaboration des plans stratégiques",
-        "Coordination de la planification",
-        "Suivi des programmes",
-      ],
-    },
-    {
-      nom: "AGBESSI Paul",
-      fonction: "Directeur Technique Budget",
-      photo:
-        "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=200",
-      responsabilites: [
-        "Préparation du budget",
-        "Suivi de l'exécution budgétaire",
-        "Contrôle financier",
-      ],
-    },
-    {
-      nom: "DOSSOU Sylvie",
-      fonction: "Directrice Technique Administration",
-      photo:
-        "https://images.pexels.com/photos/3184302/pexels-photo-3184302.jpeg?auto=compress&cs=tinysrgb&w=200",
-      responsabilites: [
-        "Gestion administrative",
-        "Ressources humaines",
-        "Logistique et patrimoine",
-      ],
-    },
-  ];
+  teams:any[] = [];
 
-  fichesMetiers = [
-    {
-      icone: "📊",
-      titre: "Planificateur Stratégique",
-      description: "Élaboration et suivi des plans stratégiques du ministère.",
-      competences: [
-        "Planification stratégique",
-        "Analyse prospective",
-        "Gestion de projet",
-        "Suivi-évaluation",
-      ],
-      missions: [
-        "Élaboration de plans",
-        "Analyse prospective",
-        "Coordination intersectorielle",
-        "Suivi des indicateurs",
-      ],
-      niveauRequis: "Bac+5",
-      experience: "5 ans minimum",
-    },
-    {
-      icone: "💰",
-      titre: "Gestionnaire Budgétaire",
-      description: "Gestion et suivi de l'exécution du budget ministériel.",
-      competences: [
-        "Gestion budgétaire",
-        "Finances publiques",
-        "Contrôle de gestion",
-        "Comptabilité publique",
-      ],
-      missions: [
-        "Préparation du budget",
-        "Suivi de l'exécution",
-        "Contrôle des dépenses",
-        "Reporting financier",
-      ],
-      niveauRequis: "Bac+4",
-      experience: "3 ans minimum",
-    },
-    {
-      icone: "📈",
-      titre: "Chargé de Suivi-Évaluation",
-      description: "Suivi des performances et évaluation des programmes.",
-      competences: [
-        "Méthodologie d'évaluation",
-        "Indicateurs de performance",
-        "Collecte de données",
-        "Analyse statistique",
-      ],
-      missions: [
-        "Définition d'indicateurs",
-        "Collecte de données",
-        "Évaluation de programmes",
-        "Production de rapports",
-      ],
-      niveauRequis: "Bac+4",
-      experience: "3 ans minimum",
-    },
-    {
-      icone: "📋",
-      titre: "Chargé d'Études",
-      description: "Réalisation d'études sectorielles et prospectives.",
-      competences: [
-        "Méthodologie de recherche",
-        "Analyse sectorielle",
-        "Rédaction de rapports",
-        "Veille stratégique",
-      ],
-      missions: [
-        "Études prospectives",
-        "Analyses sectorielles",
-        "Veille stratégique",
-        "Appui à la décision",
-      ],
-      niveauRequis: "Bac+5",
-      experience: "4 ans minimum",
-    },
-    {
-      icone: "👥",
-      titre: "Gestionnaire RH",
-      description: "Gestion des ressources humaines du ministère.",
-      competences: [
-        "Gestion des ressources humaines",
-        "Droit du travail",
-        "Formation",
-        "Évaluation du personnel",
-      ],
-      missions: [
-        "Gestion du personnel",
-        "Formation des agents",
-        "Évaluation des performances",
-        "Gestion des carrières",
-      ],
-      niveauRequis: "Bac+4",
-      experience: "3 ans minimum",
-    },
-    {
-      icone: "🏢",
-      titre: "Gestionnaire Patrimoine",
-      description: "Gestion du patrimoine mobilier et immobilier.",
-      competences: [
-        "Gestion patrimoniale",
-        "Maintenance",
-        "Logistique",
-        "Marchés publics",
-      ],
-      missions: [
-        "Gestion des bâtiments",
-        "Maintenance des équipements",
-        "Approvisionnement",
-        "Gestion des véhicules",
-      ],
-      niveauRequis: "Bac+3",
-      experience: "2 ans minimum",
-    },
-  ];
+  fichesMetiers = [];
 
-  contactsSpecifiques = [
-    {
-      icone: "📊",
-      service: "Service Planification",
-      description: "Élaboration des plans et programmation des activités.",
-      telephone: "+229 21 30 20 01",
-      email: "planification.dpaf@travail.gouv.bj",
-      horaires: "Lun-Ven 8h-16h",
-      specialite: "Planification stratégique",
-    },
-    {
-      icone: "💰",
-      service: "Service Budget et Finances",
-      description: "Gestion budgétaire et financière du ministère.",
-      telephone: "+229 21 30 20 02",
-      email: "budget.dpaf@travail.gouv.bj",
-      horaires: "Lun-Ven 8h-16h",
-      specialite: "Gestion budgétaire",
-    },
-    {
-      icone: "📈",
-      service: "Service Suivi-Évaluation",
-      description: "Suivi des performances et évaluation des résultats.",
-      telephone: "+229 21 30 20 03",
-      email: "suivi.evaluation@travail.gouv.bj",
-      horaires: "Lun-Ven 8h-16h",
-      specialite: "Suivi et évaluation",
-    },
-    {
-      icone: "👥",
-      service: "Service Ressources Humaines",
-      description: "Gestion du personnel du ministère.",
-      telephone: "+229 21 30 20 04",
-      email: "rh.dpaf@travail.gouv.bj",
-      horaires: "Lun-Ven 8h-16h",
-      specialite: "Gestion RH",
-    },
-    {
-      icone: "🏢",
-      service: "Service Patrimoine",
-      description: "Gestion du patrimoine et de la logistique.",
-      telephone: "+229 21 30 20 05",
-      email: "patrimoine.dpaf@travail.gouv.bj",
-      horaires: "Lun-Ven 8h-16h",
-      specialite: "Patrimoine et logistique",
-    },
-    {
-      icone: "📞",
-      service: "Accueil et Information",
-      description: "Information générale sur les services de la direction.",
-      telephone: "+229 52 16n 00 00",
-      email: "info.dpaf@travail.gouv.bj",
-      horaires: "Lun-Ven 7h30-17h",
-      specialite: "Information générale",
-    },
-  ];
+  structure:any
+  media:any
 
-  constructor(private animationService: AnimationService) {}
+    constructor(private animationService: AnimationService,private publicService:PublicService) {}
+  
+    ngOnInit() {
+      this.getAll()
+    }
+  
+  
+  
+    getAll(){
+      this.publicService.getDPAF().subscribe((res:any)=>{
+        this.structure=res.data?.structure
+        this.media=res.data?.aof
+        this.teams=res.data?.structure?.teams1
+      })
+    }
+
+
+  openPdf() {
+    const dialog = document.getElementById('dialog') as any;
+    if (dialog) {
+      dialog.showModal();
+    }
+  }
+
+
+
+      getLink(dir:any,photo:any){
+        return`${ConfigService.toFile("storage")}/${dir}/${photo}`
+      }
 
   ngAfterViewInit() {
     setTimeout(() => {

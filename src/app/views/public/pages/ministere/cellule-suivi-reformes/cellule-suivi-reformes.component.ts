@@ -10,6 +10,8 @@ import "@tailwindplus/elements";
 import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
 import { MetiersListComponent } from "../../../../../shared/components/metiers-list.component";
 import { metiers } from "../../../../../shared/models/datas";
+import { ConfigService } from "../../../../../core/utils/config-service";
+import { PublicService } from "../../../../../core/services/public.service";
 
 @Component({
   selector: "app-cellule-suivi-reformes",
@@ -80,8 +82,8 @@ import { metiers } from "../../../../../shared/models/datas";
           <div class="">
             <div class="relative">
               <img
-                src="https://www.travail.gouv.bj/storage/structures/respos/nobime-alfred-kocou.JPG"
-                alt="Chef de la Cellule de Suivi des Réformes"
+                 [src]="getLink('structures/respos',structure?.photo_responsable)"
+                alt="{{structure?.name_responsable}} - {{structure?.office}}"
                 class="rounded-2xl shadow-lg w-full max-w-md mx-auto"
               />
               <!-- <div class="absolute -bottom-6 -right-6 w-16 h-16 bg-accent-700 rounded-full flex items-center justify-center">
@@ -92,9 +94,9 @@ import { metiers } from "../../../../../shared/models/datas";
               <h3
                 class="text-xl font-bold text-accent-800 dark:text-accent-400 mb-2"
               >
-                NOBIME Alfred Kocou
+                {{structure?.name_responsable}}
               </h3>
-              <p class="text-gray-600 dark:text-gray-300">Directeur</p>
+              <p class="text-gray-600 dark:text-gray-300">{{structure?.office}}</p>
             </div>
           </div>
 
@@ -108,15 +110,9 @@ import { metiers } from "../../../../../shared/models/datas";
             >
               Mission
             </h3>
-            <p
-              class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed"
+              <p
+              class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed rich-content" [innerHTML]="media?.aof?.mission"
             >
-              Conformément aux dispositions de l'article 5 du décret n° 2021-562
-              du 03 novembre 2021 portant attributions, organisation et
-              fonctionnement du Ministère du Travail et de la Fonction Publique,
-              la cellule de suivi des réformes administratives et
-              institutionnelles assure le suivi des réformes administratives et
-              institutionnelles, globales et sectorielles.
             </p>
 
             <h3
@@ -124,48 +120,8 @@ import { metiers } from "../../../../../shared/models/datas";
             >
               Attributions
             </h3>
-            <p class="text-gray-700 dark:text-gray-300 mb-4">
-              À ce titre, elle est chargée :
-            </p>
-            <ul class="space-y-3 text-gray-700 dark:text-gray-300">
-              <li class="flex items-start">
-                <span
-                  class="w-2 h-2 bg-accent-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                ></span>
-                <span
-                  >d'assurer le suivi des réformes administratives et
-                  institutionnelles adoptées par le Gouvernement;</span
-                >
-              </li>
-              <li class="flex items-start">
-                <span
-                  class="w-2 h-2 bg-accent-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                ></span>
-                <span
-                  >d'impulser et de coordonner les réformes concourant à une
-                  administration publique de développement;</span
-                >
-              </li>
-              <li class="flex items-start">
-                <span
-                  class="w-2 h-2 bg-accent-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                ></span>
-                <span
-                  >d'appuyer les ministères sectoriels dans la conception des
-                  politiques et stratégies de réformes globales et sectorielles
-                  et de suivre leur application effective;</span
-                >
-              </li>
-              <li class="flex items-start">
-                <span
-                  class="w-2 h-2 bg-accent-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                ></span>
-                <span
-                  >d'appuyer le ministère en charge du numérique dans la
-                  dématérialisation des services publics;</span
-                >
-              </li>
-            </ul>
+                                  <p class="text-gray-700 dark:text-gray-300 mb-4 rich-content" [innerHTML]="media?.aof?.attribution"></p>
+
 
             <!-- Boutons de téléchargement -->
             <!-- Boutons de téléchargement -->
@@ -190,8 +146,8 @@ import { metiers } from "../../../../../shared/models/datas";
                 Lire l'arrêté
               </button>
               <a
-                href="https://travail.gouv.bj/download-data/aofs/2301250210-628.pdf/aof"
-                download="https://travail.gouv.bj/download-data/aofs/2301250210-628.pdf/aof"
+                [href]="getLink('aofs',media?.aof?.aof)"
+                  download="{{media?.aof?.aof}}"
                 class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
               >
                 <svg
@@ -339,7 +295,7 @@ import { metiers } from "../../../../../shared/models/datas";
             </div>
             <div>
               <ngx-extended-pdf-viewer
-                [src]="'assets/download-data/aofs/aof-sgm.pdf'"
+  [src]="getLink('aofs',media?.aof?.aof)"
               ></ngx-extended-pdf-viewer>
             </div>
           </el-dialog-panel>
@@ -379,107 +335,47 @@ export class CelluleSuiviReformesComponent implements AfterViewInit, OnInit {
     },
   ];
 
-  directeursTechniques = [
-    {
-      nom: "ADJOVI Marcel",
-      fonction: "Directeur Technique Principal",
-      photo:
-        "https://images.pexels.com/photos/3184317/pexels-photo-3184317.jpeg?auto=compress&cs=tinysrgb&w=200",
-      responsabilites: [
-        "Coordination des missions de suivi",
-        "Supervision des équipes techniques",
-        "Validation des rapports de suivi",
-      ],
-    },
-    {
-      nom: "KOSSOU Françoise",
-      fonction: "Directrice Suivi-Évaluation",
-      photo:
-        "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=200",
-      responsabilites: [
-        "Évaluation des réformes",
-        "Analyse des indicateurs",
-        "Recommandations d'amélioration",
-      ],
-    },
-    {
-      nom: "TOGNON Sylvain",
-      fonction: "Directeur Coordination",
-      photo:
-        "https://images.pexels.com/photos/3184302/pexels-photo-3184302.jpeg?auto=compress&cs=tinysrgb&w=200",
-      responsabilites: [
-        "Coordination intersectorielle",
-        "Facilitation du dialogue",
-        "Suivi des partenariats",
-      ],
-    },
-  ];
-
-  contactsSpecifiques = [
-    {
-      icone: "📊",
-      service: "Service Suivi des Réformes",
-      description: "Suivi opérationnel de l'avancement des réformes.",
-      telephone: "+229 21 30 60 01",
-      email: "suivi.reformes@travail.gouv.bj",
-      horaires: "Lun-Ven 8h-16h",
-      specialite: "Suivi et coordination",
-    },
-    {
-      icone: "📈",
-      service: "Service Évaluation",
-      description: "Évaluation de l'impact et de l'efficacité des réformes.",
-      telephone: "+229 21 30 60 02",
-      email: "evaluation@travail.gouv.bj",
-      horaires: "Lun-Ven 8h-16h",
-      specialite: "Évaluation d'impact",
-    },
-    {
-      icone: "🎯",
-      service: "Service Planification",
-      description: "Planification stratégique et programmation des réformes.",
-      telephone: "+229 21 30 60 03",
-      email: "planification.csr@travail.gouv.bj",
-      horaires: "Lun-Ven 8h-16h",
-      specialite: "Planification stratégique",
-    },
-    {
-      icone: "🤝",
-      service: "Service Coordination",
-      description: "Coordination entre les différents acteurs des réformes.",
-      telephone: "+229 21 30 60 04",
-      email: "coordination.csr@travail.gouv.bj",
-      horaires: "Lun-Ven 8h-17h",
-      specialite: "Coordination multi-acteurs",
-    },
-    {
-      icone: "💻",
-      service: "Service Innovation",
-      description: "Promotion de l'innovation dans les processus de réforme.",
-      telephone: "+229 21 30 60 05",
-      email: "innovation.csr@travail.gouv.bj",
-      horaires: "Lun-Ven 9h-17h",
-      specialite: "Innovation publique",
-    },
-    {
-      icone: "📞",
-      service: "Accueil et Information",
-      description: "Information générale sur les réformes en cours.",
-      telephone: "+229 21 30 60 00",
-      email: "info.csr@travail.gouv.bj",
-      horaires: "Lun-Ven 7h30-17h",
-      specialite: "Information générale",
-    },
-  ];
-
-  constructor(private animationService: AnimationService) {}
-
-  ngOnInit() {
-    this.metiersDeLaStructure = metiers.filter(
-      (m) => m.structureId === this.structureId
-    );
-  }
-
+  
+      teams:any[] = [];
+      directeursTechniques:any[]=[]
+      
+        fichesMetiers = [];
+      
+        structure:any
+        media:any
+      
+          constructor(private animationService: AnimationService,private publicService:PublicService) {}
+        
+          ngOnInit() {
+            this.getAll()
+          }
+        
+        
+        
+          getAll(){
+            this.publicService.getCSRAI().subscribe((res:any)=>{
+              this.structure=res.data?.structure
+              this.media=res.data?.aof
+              this.teams=res.data?.structure?.teams1
+              this.directeursTechniques=res.data?.structure?.teams2
+            })
+          }
+      
+      
+        openPdf() {
+          const dialog = document.getElementById('dialog') as any;
+          if (dialog) {
+            dialog.showModal();
+          }
+        }
+      
+      
+      
+            getLink(dir:any,photo:any){
+              return`${ConfigService.toFile("storage")}/${dir}/${photo}`
+            }
+    
+  
   ngAfterViewInit() {
     setTimeout(() => {
       this.animationService.initScrollAnimations();

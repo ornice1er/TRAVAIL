@@ -1,6 +1,8 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AnimationService } from '../../../../../shared/services/animation.service';
+import { PublicService } from '../../../../../core/services/public.service';
+import { ConfigService } from '../../../../../core/utils/config-service';
 
 @Component({
   selector: 'app-structures-sous-tutelle',
@@ -39,7 +41,7 @@ import { AnimationService } from '../../../../../shared/services/animation.servi
                   </div>
                   <div class="flex-1">
                     <div class="flex items-center space-x-3 mb-3">
-                      <h3 class="text-2xl font-bold text-gray-900 dark:text-white">{{ structure.nom }}</h3>
+                      <h3 class="text-2xl font-bold text-gray-900 dark:text-white">{{ structure.name }}</h3>
                       <span [class]="getStatusClass(structure.statut)" class="px-3 py-1 rounded-full text-xs font-medium">
                         {{ structure.statut }}
                       </span>
@@ -53,14 +55,14 @@ import { AnimationService } from '../../../../../shared/services/animation.servi
               </div>
               <div class="text-center">
                 <div class="mb-4">
-                  <img [src]="structure.logo" [alt]="'Logo ' + structure.nom" class="w-24 h-24 mx-auto rounded-lg shadow-md">
+                  <img [src]="getLink('sts',structure.logo)" [alt]="'Logo ' + structure.name" class="w-24 h-24 mx-auto rounded-lg shadow-md">
                 </div>
                 <div class="space-y-2">
-                  <a [href]="structure.siteWeb" target="_blank" class="btn-secondary text-sm w-full block">
+                  <a [href]="structure.link" target="_blank" class="btn-secondary text-sm w-full block">
                     Site Web
                   </a>
                   <!-- <p class="text-xs text-gray-500 dark:text-gray-400">
-                    DG : {{ structure.directeur }}
+                    DG : {{ structure.name_responsable }}
                   </p> -->
                 </div>
               </div>
@@ -208,166 +210,45 @@ import { AnimationService } from '../../../../../shared/services/animation.servi
 })
 export class StructuresSousTutelleComponent implements AfterViewInit {
   
-  structures = [
-    {
-      nom: 'Caisse Nationale de Sécurité Sociale',
-      sigle: 'CNSS',
-      icone: '🏥',
-      description: 'La CNSS gère le régime de sécurité sociale des travailleurs salariés du secteur privé et assure la protection sociale des travailleurs et de leurs familles.',
-      missions: [
-        'Gestion des prestations familiales',
-        'Assurance maladie des travailleurs',
-        'Pensions de retraite et d\'invalidité',
-        'Accidents du travail et maladies professionnelles'
-      ],
-      creation: '1970',
-      siege: 'Cotonou',
-      personnel: '850 agents',
-      budget: '45 milliards FCFA',
-      statut: 'Opérationnel',
-      directeur: 'Mme [Nom du DG]',
-      logo: '/logo-cnss.png',
-      siteWeb: 'https://cnss.bj'
-    },
-  ];
+  structures:any[] = [];
   
-  typesTutelle = [
-    {
-      icone: '🎯',
-      nom: 'Tutelle Technique',
-      description: 'Contrôle de la conformité des activités aux missions assignées.',
-      caracteristiques: [
-        'Validation des programmes d\'activités',
-        'Contrôle de la qualité des prestations',
-        'Évaluation des performances',
-        'Appui technique et conseil'
-      ]
-    },
-    {
-      icone: '💰',
-      nom: 'Tutelle Financière',
-      description: 'Contrôle de la gestion financière et budgétaire.',
-      caracteristiques: [
-        'Approbation des budgets',
-        'Contrôle de l\'exécution budgétaire',
-        'Audit financier périodique',
-        'Validation des comptes annuels'
-      ]
-    },
-    {
-      icone: '👥',
-      nom: 'Tutelle Administrative',
-      description: 'Contrôle de la gestion administrative et des ressources humaines.',
-      caracteristiques: [
-        'Nomination des dirigeants',
-        'Validation des organigrammes',
-        'Contrôle des procédures',
-        'Suivi des réformes internes'
-      ]
+
+teams:any[] = [];
+  directeursTechniques:any[]=[]
+  
+    fichesMetiers = [];
+  
+    structure:any
+    media:any
+  
+      constructor(private animationService: AnimationService,private publicService:PublicService) {}
+    
+      ngOnInit() {
+        this.getAll()
+      }
+    
+    
+    
+      getAll(){
+        this.publicService.getStructureSousTutelles().subscribe((res:any)=>{
+          this.structures=res.data?.sts
+        
+        })
+      }
+  
+  
+    openPdf() {
+      const dialog = document.getElementById('dialog') as any;
+      if (dialog) {
+        dialog.showModal();
+      }
     }
-  ];
   
-  mecanismesGouvernance = [
-    {
-      icone: '📋',
-      nom: 'Conseils d\'Administration',
-      description: 'Organes de gouvernance avec représentation ministérielle.',
-      frequence: 'Trimestrielle'
-    },
-    {
-      icone: '📊',
-      nom: 'Rapports d\'Activités',
-      description: 'Transmission régulière des rapports de performance.',
-      frequence: 'Mensuelle'
-    },
-    {
-      icone: '🔍',
-      nom: 'Missions d\'Inspection',
-      description: 'Contrôles périodiques de conformité et performance.',
-      frequence: 'Semestrielle'
-    },
-    {
-      icone: '💼',
-      nom: 'Comités de Pilotage',
-      description: 'Instances de coordination stratégique.',
-      frequence: 'Bimestrielle'
-    }
-  ];
   
-  indicateursPerformance = [
-    {
-      icone: '🎯',
-      valeur: '87%',
-      titre: 'Taux de Réalisation',
-      description: 'Objectifs atteints par les structures'
-    },
-    {
-      icone: '💰',
-      valeur: '92%',
-      titre: 'Exécution Budgétaire',
-      description: 'Taux moyen d\'exécution des budgets'
-    },
-    {
-      icone: '👥',
-      valeur: '2.1M',
-      titre: 'Bénéficiaires',
-      description: 'Personnes servies par les structures'
-    },
-    {
-      icone: '📈',
-      valeur: '15%',
-      titre: 'Croissance Activité',
-      description: 'Augmentation annuelle des services'
-    }
-  ];
   
-  partenariats = [
-    {
-      icone: '🌍',
-      type: 'Partenaires Internationaux',
-      description: 'Coopération avec les organisations internationales.',
-      nombre: '25'
-    },
-    {
-      icone: '🏢',
-      type: 'Secteur Privé',
-      description: 'Partenariats public-privé pour l\'emploi.',
-      nombre: '180'
-    },
-    {
-      icone: '🎓',
-      type: 'Institutions de Formation',
-      description: 'Collaboration avec les centres de formation.',
-      nombre: '65'
-    },
-    {
-      icone: '🤝',
-      type: 'Société Civile',
-      description: 'Partenariats avec les ONGs et associations.',
-      nombre: '95'
-    },
-    {
-      icone: '🏛️',
-      type: 'Collectivités Locales',
-      description: 'Coopération avec les communes.',
-      nombre: '77'
-    },
-    {
-      icone: '🔬',
-      type: 'Centres de Recherche',
-      description: 'Collaboration pour la recherche appliquée.',
-      nombre: '12'
-    }
-  ];
-  
-  constructor(private animationService: AnimationService) {}
-  
-  ngAfterViewInit() {
-    setTimeout(() => {
-      this.animationService.initScrollAnimations();
-    }, 100);
-  }
-  
+        getLink(dir:any,photo:any){
+          return`${ConfigService.toFile("storage")}/${dir}/${photo}`
+        }
   getStatusClass(statut: string): string {
     const classes = {
       'Opérationnel': 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400',
@@ -376,5 +257,10 @@ export class StructuresSousTutelleComponent implements AfterViewInit {
       'Suspendu': 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400'
     };
     return classes[statut as keyof typeof classes] || 'bg-gray-100 text-gray-800';
+  }
+    ngAfterViewInit() {
+    setTimeout(() => {
+      this.animationService.initScrollAnimations();
+    }, 100);
   }
 }

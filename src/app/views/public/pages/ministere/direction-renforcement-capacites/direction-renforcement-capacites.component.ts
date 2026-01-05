@@ -10,6 +10,8 @@ import "@tailwindplus/elements";
 import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
 import { MetiersListComponent } from "../../../../../shared/components/metiers-list.component";
 import { metiers } from "../../../../../shared/models/datas";
+import { PublicService } from "../../../../../core/services/public.service";
+import { ConfigService } from "../../../../../core/utils/config-service";
 
 @Component({
   selector: "app-direction-renforcement-capacites",
@@ -84,8 +86,8 @@ import { metiers } from "../../../../../shared/models/datas";
               <div class="text-center">
                 <div class="relative inline-block">
                   <img
-                    src="https://www.travail.gouv.bj/storage/structures/respos/1709533437avalla-omer-w-charles.jpg"
-                    alt="AVALLA Omer W. Charles - Directeur Général"
+                   [src]="getLink('structures/respos',structure?.photo_responsable)"
+                alt="{{structure?.name_responsable}} - {{structure?.office}}"
                     class="rounded-2xl shadow-lg w-full max-w-sm h-72 mx-auto"
                   />
                   <!-- <div
@@ -98,20 +100,20 @@ import { metiers } from "../../../../../shared/models/datas";
                   <h3
                     class="text-xl font-bold text-secondary-800 dark:text-secondary-400 mb-2"
                   >
-                    AVALLA Omer W. Charles
+                   {{structure?.name_responsable}}
                   </h3>
                   <p class="text-gray-600 dark:text-gray-300">
-                    Directeur Général
+                   {{structure?.office}}
                   </p>
                 </div>
               </div>
 
               <!-- Directeur Général Adjoint -->
-              <div class="text-center">
+              <div class="text-center" *ngFor="let team of teams" >
                 <div class="relative inline-block">
                   <img
-                    src="https://www.travail.gouv.bj/storage/teams/1677698988ohossa-sourou-djile.JPG"
-                    alt="OHOSSA Saturnin Djiki - Directeur Général Adjoint"
+                   [src]="getLink('teams',team?.photo)"
+                  alt=" {{team?.name}} - {{team?.office}}"
                     class="rounded-2xl shadow-lg w-full max-w-sm h-72 mx-auto"
                   />
                 </div>
@@ -119,10 +121,10 @@ import { metiers } from "../../../../../shared/models/datas";
                   <h3
                     class="text-xl font-bold text-secondary-800 dark:text-secondary-400 mb-2"
                   >
-                    OHOSSA Sourou Djilé
+                     {{team?.name}}
                   </h3>
                   <p class="text-gray-600 dark:text-gray-300">
-                    Directeur Général Adjoint
+                    {{team?.office}}
                   </p>
                 </div>
               </div>
@@ -139,16 +141,9 @@ import { metiers } from "../../../../../shared/models/datas";
             >
               Mission
             </h3>
-            <p
-              class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed"
+           <p
+              class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed rich-content" [innerHTML]="media?.aof?.mission"
             >
-              Conformément aux dispositions de l'article 10 du décret n°
-              2021-562 du 03 novembre 2021 portant attributions, organisation et
-              fonctionnement du Ministère du Travail et de la Fonction Publique,
-              la direction générale du renforcement des capacités et de
-              l'employabilité assure la mise en œuvre de la politique de l'État
-              en matière de formation et de valorisation des ressources
-              humaines.
             </p>
 
             <h3
@@ -156,81 +151,8 @@ import { metiers } from "../../../../../shared/models/datas";
             >
               Attributions
             </h3>
-            <p class="text-gray-700 dark:text-gray-300 mb-4">
-              À ce titre, elle est chargée, en liaison avec les structures
-              techniques des autres ministères et institutions de l'État :
-            </p>
-            <ul class="space-y-3 text-gray-700 dark:text-gray-300">
-              <li class="flex items-start">
-                <span
-                  class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                ></span>
-                <span
-                  >de promouvoir l'employabilité et le développement de
-                  l'expertise des agents de l'État et de la main d'œuvre</span
-                >
-              </li>
-              <li class="flex items-start">
-                <span
-                  class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                ></span>
-                <span
-                  >d'assurer la réglementation et le contrôle du contrat
-                  d'apprentissage dans les corps de métiers, en collaboration
-                  avec les ministères compétents</span
-                >
-              </li>
-              <li class="flex items-start">
-                <span
-                  class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                ></span>
-                <span
-                  >d'accompagner les structures et organismes de formation
-                  professionnelle continue des agents de l'État et du secteur
-                  privé</span
-                >
-              </li>
-              <li class="flex items-start">
-                <span
-                  class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                ></span>
-                <span
-                  >d'agréer les centres de formation continue qualifiants des
-                  agents de l'État et du secteur privé</span
-                >
-              </li>
-              <li class="flex items-start">
-                <span
-                  class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                ></span>
-                <span
-                  >de contrôler l'application de la réglementation relative au
-                  fonctionnement des centres agréés de formation continue et du
-                  contenu de leurs programmes de formation en collaboration avec
-                  le ministère en charge de la formation technique et
-                  professionnelle</span
-                >
-              </li>
-              <li class="flex items-start">
-                <span
-                  class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                ></span>
-                <span
-                  >d'assurer le développement des ressources humaines et la
-                  programmation de la formation, notamment du personnel civil de
-                  l'État</span
-                >
-              </li>
-              <li class="flex items-start">
-                <span
-                  class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                ></span>
-                <span
-                  >de centraliser la documentation relative à la formation
-                  professionnelle continue des agents de l'État</span
-                >
-              </li>
-            </ul>
+                                  <p class="text-gray-700 dark:text-gray-300 mb-4 rich-content" [innerHTML]="media?.aof?.attribution"></p>
+
 
             <!-- Boutons de téléchargement -->
             <!-- Boutons de téléchargement -->
@@ -255,8 +177,8 @@ import { metiers } from "../../../../../shared/models/datas";
                 Lire l'arrêté
               </button>
               <a
-                href="https://travail.gouv.bj/download-data/aofs/2301250210-628.pdf/aof"
-                download="https://travail.gouv.bj/download-data/aofs/2301250210-628.pdf/aof"
+                [href]="getLink('aofs',media?.aof?.aof)"
+                  download="{{media?.aof?.aof}}"
                 class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
               >
                 <svg
@@ -301,8 +223,8 @@ import { metiers } from "../../../../../shared/models/datas";
               class="w-24 h-32 bg-gray-200 dark:bg-gray-700 rounded-lg mx-auto mb-4 overflow-hidden"
             >
               <img
-                [src]="directeur.photo"
-                [alt]="directeur.nom"
+              [src]="getLink('teams',directeur?.photo)"
+                  alt=" {{directeur?.name}} - {{directeur?.office}}"
                 class="w-full h-full object-cover"
                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
               />
@@ -319,10 +241,10 @@ import { metiers } from "../../../../../shared/models/datas";
             <h3
               class="text-sm font-bold text-secondary-800 dark:text-secondary-400 mb-2"
             >
-              {{ directeur.nom }}
+               {{directeur?.name}}
             </h3>
             <p class="text-gray-600 dark:text-gray-300 text-xs mb-3">
-              {{ directeur.fonction }}
+             {{directeur?.office}}
             </p>
             <!-- <div class="space-y-2">
               <div *ngFor="let responsabilite of directeur.responsabilites" class="text-xs text-gray-500 dark:text-gray-400">
@@ -433,7 +355,7 @@ import { metiers } from "../../../../../shared/models/datas";
             </div>
             <div>
               <ngx-extended-pdf-viewer
-                [src]="'assets/download-data/aofs/aof-sgm.pdf'"
+  [src]="getLink('aofs',media?.aof?.aof)"
               ></ngx-extended-pdf-viewer>
             </div>
           </el-dialog-panel>
@@ -475,85 +397,44 @@ export class DirectionRenforcementCapacitesComponent
     },
   ];
 
-  directeursTechniques = [
-    {
-      nom: "GOUDA Nodichao Marylène Rékiath",
-      fonction:
-        "Directrice de la Formation Continue, des Bonnes Pratiques, de la Planification Et de Validation des Plans de Formation",
-      photo:
-        "https://www.travail.gouv.bj/storage/teams/1677699129gouda-nodichao-marylene-rekiath.JPG",
-      // responsabilites: [
-      //   'Coordination des programmes de formation',
-      //   'Développement pédagogique',
-      //   'Évaluation des formations'
-      // ]
-    },
-  ];
-
-  contactsSpecifiques = [
-    {
-      icone: "🎓",
-      service: "Service Formation Continue",
-      description: "Programmes de formation professionnelle continue.",
-      telephone: "+229 21 30 50 01",
-      email: "mtfp.usager@gouv.bj",
-      horaires: "Lun-Ven 8h-16h",
-      specialite: "Formation continue",
-    },
-    {
-      icone: "💼",
-      service: "Service Employabilité",
-      description: "Accompagnement vers l'emploi et insertion professionnelle.",
-      telephone: "+229 21 30 50 02",
-      email: "mtfp.usager@gouv.bj",
-      horaires: "Lun-Ven 8h-16h",
-      specialite: "Insertion professionnelle",
-    },
-    {
-      icone: "🏆",
-      service: "Service Certification",
-      description: "Certification des compétences et validation des acquis.",
-      telephone: "+229 21 30 50 03",
-      email: "mtfp.usager@gouv.bj",
-      horaires: "Lun-Ven 8h-16h",
-      specialite: "Certification des compétences",
-    },
-    {
-      icone: "🤝",
-      service: "Service Partenariats",
-      description: "Développement des partenariats avec les entreprises.",
-      telephone: "+229 21 30 50 04",
-      email: "mtfp.usager@gouv.bj",
-      horaires: "Lun-Ven 8h-17h",
-      specialite: "Partenariats entreprises",
-    },
-    {
-      icone: "📊",
-      service: "Service Études et Prospective",
-      description: "Études sur l'emploi et prospective des métiers.",
-      telephone: "+229 21 30 50 05",
-      email: "mtfp.usager@gouv.bj",
-      horaires: "Lun-Ven 8h-16h",
-      specialite: "Études et prospective",
-    },
-    {
-      icone: "📞",
-      service: "Accueil et Information",
-      description: "Information sur les programmes de formation disponibles.",
-      telephone: "+229 21 30 50 00",
-      email: "mtfp.usager@gouv.bj",
-      horaires: "Lun-Ven 7h30-17h",
-      specialite: "Information générale",
-    },
-  ];
-
-  constructor(private animationService: AnimationService) {}
-
-  ngOnInit() {
-    this.metiersDeLaStructure = metiers.filter(
-      (m) => m.structureId === this.structureId
-    );
-  }
+  teams:any[] = [];
+  directeursTechniques:any[]=[]
+  
+    fichesMetiers = [];
+  
+    structure:any
+    media:any
+  
+      constructor(private animationService: AnimationService,private publicService:PublicService) {}
+    
+      ngOnInit() {
+        this.getAll()
+      }
+    
+    
+    
+      getAll(){
+        this.publicService.getDGRCE().subscribe((res:any)=>{
+          this.structure=res.data?.structure
+          this.media=res.data?.aof
+          this.teams=res.data?.structure?.teams1
+          this.directeursTechniques=res.data?.structure?.teams2
+        })
+      }
+  
+  
+    openPdf() {
+      const dialog = document.getElementById('dialog') as any;
+      if (dialog) {
+        dialog.showModal();
+      }
+    }
+  
+  
+  
+        getLink(dir:any,photo:any){
+          return`${ConfigService.toFile("storage")}/${dir}/${photo}`
+        }
 
   ngAfterViewInit() {
     setTimeout(() => {

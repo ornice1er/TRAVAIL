@@ -10,6 +10,8 @@ import "@tailwindplus/elements";
 import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
 import { MetiersListComponent } from "../../../../../shared/components/metiers-list.component";
 import { metiers } from "../../../../../shared/models/datas";
+import { PublicService } from "../../../../../core/services/public.service";
+import { ConfigService } from "../../../../../core/utils/config-service";
 
 @Component({
   selector: "app-direction-generale-fonction-publique",
@@ -36,7 +38,7 @@ import { metiers } from "../../../../../shared/models/datas";
       </div>
     </div>
 
-    <!-- Direction en chiffres -->
+    <!-- Direction en chiffres 
     <section
       class="section-padding bg-primary-800 dark:bg-primary-900 text-white"
     >
@@ -72,7 +74,7 @@ import { metiers } from "../../../../../shared/models/datas";
           </div>
         </div>
       </div>
-    </section>
+    </section>-->
 
     <!-- Mission & Attribution avec photo du responsable -->
     <section class="section-padding bg-white dark:bg-gray-900">
@@ -81,8 +83,8 @@ import { metiers } from "../../../../../shared/models/datas";
           <div class="">
             <div class="relative">
               <img
-                src="https://www.travail.gouv.bj/storage/structures/respos/ainanmon-c-eric.JPG"
-                alt="AINANMON C. Eric - Directeur Général"
+                [src]="getLink('structures/respos',structure?.photo_responsable)"
+                alt="{{structure?.name_responsable}} - {{structure?.office}}"
                 class="rounded-2xl shadow-lg w-full max-w-md mx-auto"
               />
               <!-- <div
@@ -95,16 +97,16 @@ import { metiers } from "../../../../../shared/models/datas";
               <h3
                 class="text-xl font-bold text-primary-800 dark:text-primary-400 mb-2"
               >
-                AINANMON C. Eric
+                {{structure?.name_responsable}}
               </h3>
-              <p class="text-gray-600 dark:text-gray-300">Directeur Général</p>
+              <p class="text-gray-600 dark:text-gray-300">   {{structure?.office}}</p>
             </div>
 
-            <div class="mt-8">
+            <div class="mt-8" *ngFor="let team of teams" >
               <div class="relative">
                 <img
-                  src="https://www.travail.gouv.bj/storage/teams/1677698519migan-rolande-regina-henriette-ayodele.JPG"
-                  alt="MIGAN Bolanle Regina Henriette Ayéfé - Directeur Général Adjoint"
+                  [src]="getLink('teams',team?.photo)"
+                  alt=" {{team?.name}} - {{team?.office}}"
                   class="rounded-2xl shadow-lg w-full max-w-md mx-auto"
                 />
               </div>
@@ -112,10 +114,10 @@ import { metiers } from "../../../../../shared/models/datas";
                 <h3
                   class="text-xl font-bold text-primary-800 dark:text-primary-400 mb-2"
                 >
-                  MIGAN Rolande Regina Henriette Ayodélé
+                 {{team?.name}}
                 </h3>
                 <p class="text-gray-600 dark:text-gray-300">
-                  Directeur Général Adjoint
+                  {{team?.office}}
                 </p>
               </div>
             </div>
@@ -132,108 +134,16 @@ import { metiers } from "../../../../../shared/models/datas";
               Mission
             </h3>
             <p
-              class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed"
+              class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed rich-content" [innerHTML]="media?.aof?.mission"
             >
-              Conformément aux dispositions de l'article 9 du décret n° 2021-562
-              du 03 novembre 2021 portant attributions, organisation et
-              fonctionnement du Ministère du Travail et de la Fonction Publique,
-              la direction générale de la fonction publique définit, suit et
-              évalue la politique de l'État en matière de fonction publique.
             </p>
-
             <h3
               class="text-xl font-semibold text-gray-900 dark:text-white mb-4"
             >
               Attributions
             </h3>
-            <p class="text-gray-700 dark:text-gray-300 mb-4">
-              À ce titre, elle est chargée :
-            </p>
-            <ul class="space-y-3 text-gray-700 dark:text-gray-300">
-              <li class="flex items-start">
-                <span
-                  class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                ></span>
-                <span
-                  >d'assurer la gestion prévisionnelle et la programmation des
-                  effectifs de fonction publique</span
-                >
-              </li>
-              <li class="flex items-start">
-                <span
-                  class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                ></span>
-                <span>d'organiser le recrutement des agents de l'État</span>
-              </li>
-              <li class="flex items-start">
-                <span
-                  class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                ></span>
-                <span
-                  >de suivre la gestion des carrières des agents de l'État ;
-                  d'organiser la gestion des départs à la retraite</span
-                >
-              </li>
-              <li class="flex items-start">
-                <span
-                  class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                ></span>
-                <span
-                  >de conserver les archives du personnel de l'État ; d'élaborer
-                  les projets de textes législatifs et réglementaires en matière
-                  de fonction publique</span
-                >
-              </li>
-              <li class="flex items-start">
-                <span
-                  class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                ></span>
-                <span
-                  >de gérer les relations avec les juridictions en matière de
-                  contentieux administratif</span
-                >
-              </li>
-              <li class="flex items-start">
-                <span
-                  class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                ></span>
-                <span>d'organiser la discipline dans la fonction publique</span>
-              </li>
-            </ul>
+                        <p class="text-gray-700 dark:text-gray-300 mb-4 rich-content" [innerHTML]="media?.aof?.attribution"></p>
 
-            <div
-              class="mt-6 bg-primary-50 dark:bg-primary-900/20 rounded-lg p-6"
-            >
-              <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-                Elle assure en outre, le secrétariat permanent :
-              </p>
-              <ul class="space-y-2 text-gray-700 dark:text-gray-300 mt-3">
-                <li class="flex items-start">
-                  <span
-                    class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                  ></span>
-                  <span
-                    >du comité consultatif paritaire de la fonction
-                    publique</span
-                  >
-                </li>
-                <li class="flex items-start">
-                  <span
-                    class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                  ></span>
-                  <span
-                    >de la conférence des gestionnaires des ressources
-                    humaines</span
-                  >
-                </li>
-                <li class="flex items-start">
-                  <span
-                    class="w-2 h-2 bg-primary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                  ></span>
-                  <span>du conseil national de discipline</span>
-                </li>
-              </ul>
-            </div>
 
             <!-- Boutons de téléchargement -->
             <!-- Boutons de téléchargement -->
@@ -258,8 +168,8 @@ import { metiers } from "../../../../../shared/models/datas";
                 Lire l'arrêté
               </button>
               <a
-                href="https://travail.gouv.bj/download-data/aofs/2301250210-628.pdf/aof"
-                download="https://travail.gouv.bj/download-data/aofs/2301250210-628.pdf/aof"
+                [href]="getLink('aofs',media?.aof?.aof)"
+                  download="{{media?.aof?.aof}}"
                 class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
               >
                 <svg
@@ -304,8 +214,9 @@ import { metiers } from "../../../../../shared/models/datas";
               class="w-24 h-32 bg-gray-200 dark:bg-gray-700 rounded-lg mx-auto mb-4 overflow-hidden"
             >
               <img
-                [src]="directeur.photo"
-                [alt]="directeur.nom"
+               [src]="getLink('teams',directeur?.photo)"
+                  alt=" {{directeur?.name}} - {{directeur?.office}}"
+                class="w-full h-full object-cover"
                 class="w-full h-full object-cover"
                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
               />
@@ -321,10 +232,10 @@ import { metiers } from "../../../../../shared/models/datas";
             <h3
               class="text-sm font-bold text-primary-800 dark:text-primary-400 mb-2"
             >
-              {{ directeur.nom }}
+              {{directeur?.name}}
             </h3>
             <p class="text-gray-600 dark:text-gray-300 text-xs mb-3">
-              {{ directeur.fonction }}
+                {{directeur?.office}}
             </p>
             <!-- <div class="space-y-2">
               <div *ngFor="let responsabilite of directeur.responsabilites" class="text-xs text-gray-500 dark:text-gray-400">
@@ -434,8 +345,9 @@ import { metiers } from "../../../../../shared/models/datas";
             </div>
             <div>
               <ngx-extended-pdf-viewer
-                [src]="'assets/download-data/aofs/aof-sgm.pdf'"
-              ></ngx-extended-pdf-viewer>
+  [src]="getLink('aofs',media?.aof?.aof)"
+  
+  ></ngx-extended-pdf-viewer>
             </div>
           </el-dialog-panel>
         </div>
@@ -476,99 +388,46 @@ export class DirectionGeneraleFonctionPubliqueComponent
     },
   ];
 
-  directeursTechniques = [
-    {
-      nom: "ZENONTIN Zita Emma épouse DOSSA DAH",
-      fonction: "Chef du Département des Retraites et des Archives",
-      photo:
-        "https://www.travail.gouv.bj/storage/teams/1677698620zenontin-zita-emma-epouse-dossa-dah.JPG",
-    },
-    {
-      nom: "MASSOU Siaka",
-      fonction: "Chef du Département du Recrutement des Agents de l’Etat",
-      photo:
-        "https://www.travail.gouv.bj/storage/teams/1677698690massou-siaka.JPG",
-    },
-    {
-      nom: "AHOUANDOGBO Gbènakpon Elodie",
-      fonction:
-        "Chef du Département des Etudes, du Contentieux et du Régime Disciplinaire",
-      photo:
-        "https://www.travail.gouv.bj/storage/teams/1677698788ahouandogbo-gbenakpon-elodie.JPG",
-    },
-    {
-      nom: "IDOHOU Prosper",
-      fonction:
-        "Chef de la Cellule de Gestion du Fichier Unique de Référence et de la Programmation des Effectifs",
-      photo:
-        "https://www.travail.gouv.bj/storage/teams/1677698854idohou-prosper.JPG",
-    },
-  ];
-
-  contactsSpecifiques = [
-    {
-      icone: "👥",
-      service: "Service Gestion des Carrières",
-      description: "Gestion des parcours professionnels et promotions.",
-      telephone: "+229 21 30 40 01",
-      email: "carrieres.dgfp@travail.gouv.bj",
-      horaires: "Lun-Ven 8h-16h",
-      specialite: "Carrières et promotions",
-    },
-    {
-      icone: "📋",
-      service: "Service Recrutement",
-      description: "Organisation des concours et recrutements.",
-      telephone: "+229 21 30 40 02",
-      email: "recrutement.dgfp@travail.gouv.bj",
-      horaires: "Lun-Ven 8h-16h",
-      specialite: "Concours et recrutements",
-    },
-    {
-      icone: "⚖️",
-      service: "Service Contentieux",
-      description: "Gestion des affaires disciplinaires et contentieux.",
-      telephone: "+229 21 30 40 03",
-      email: "contentieux.dgfp@travail.gouv.bj",
-      horaires: "Lun-Ven 8h-17h",
-      specialite: "Discipline et contentieux",
-    },
-    {
-      icone: "🎓",
-      service: "Service Formation",
-      description: "Coordination des programmes de formation continue.",
-      telephone: "+229 21 30 40 04",
-      email: "formation.dgfp@travail.gouv.bj",
-      horaires: "Lun-Ven 8h-16h",
-      specialite: "Formation des agents",
-    },
-    {
-      icone: "💰",
-      service: "Service Solde et Pensions",
-      description: "Gestion de la paie et des pensions de retraite.",
-      telephone: "+229 21 30 40 05",
-      email: "solde.dgfp@travail.gouv.bj",
-      horaires: "Lun-Ven 8h-16h",
-      specialite: "Paie et pensions",
-    },
-    {
-      icone: "📞",
-      service: "Accueil et Information",
-      description: "Information générale sur la fonction publique.",
-      telephone: "+229 21 30 40 00",
-      email: "info.dgfp@travail.gouv.bj",
-      horaires: "Lun-Ven 7h30-17h",
-      specialite: "Information générale",
-    },
-  ];
-
-  constructor(private animationService: AnimationService) {}
-
-  ngOnInit() {
-    this.metiersDeLaStructure = metiers.filter(
-      (m) => m.structureId === this.structureId
-    );
-  }
+  
+    teams:any[] = [];
+    directeursTechniques:any[]=[]
+    
+      fichesMetiers = [];
+    
+      structure:any
+      media:any
+    
+        constructor(private animationService: AnimationService,private publicService:PublicService) {}
+      
+        ngOnInit() {
+          this.getAll()
+        }
+      
+      
+      
+        getAll(){
+          this.publicService.getDGFP().subscribe((res:any)=>{
+            this.structure=res.data?.structure
+            this.media=res.data?.aof
+            this.teams=res.data?.structure?.teams1
+            this.directeursTechniques=res.data?.structure?.teams2
+          })
+        }
+    
+    
+      openPdf() {
+        const dialog = document.getElementById('dialog') as any;
+        if (dialog) {
+          dialog.showModal();
+        }
+      }
+    
+    
+    
+          getLink(dir:any,photo:any){
+            return`${ConfigService.toFile("storage")}/${dir}/${photo}`
+          }
+  
 
   ngAfterViewInit() {
     setTimeout(() => {

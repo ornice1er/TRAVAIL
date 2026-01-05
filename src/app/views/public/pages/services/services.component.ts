@@ -22,7 +22,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
       </div>
     </div>
 
-    <!-- Filtres -->
+    <!-- Filtres
     <section class="py-8 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
       <div class="container-custom">
         <div class="flex flex-wrap justify-center gap-4 ">
@@ -35,7 +35,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
           </button>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- Services -->
     <section class="section-padding bg-gray-50 dark:bg-gray-800">

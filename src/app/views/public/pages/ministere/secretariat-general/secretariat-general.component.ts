@@ -92,7 +92,7 @@ import { ConfigService } from "../../../../../core/utils/config-service";
             <div class="relative inline-block">
               <img
                 [src]="getLink('structures/respos',structure?.photo_responsable)"
-                alt="ALOHON N. Germain - Secrétaire Général du Ministère"
+                alt="{{structure?.name_responsable}} - {{structure?.office}}"
                 class="rounded-xl shadow-lg w-full min-w-md h-128 object-cover"
               />
             </div>
@@ -103,7 +103,7 @@ import { ConfigService } from "../../../../../core/utils/config-service";
                 {{structure?.name_responsable}}
               </h3>
               <p class="text-gray-600 dark:text-gray-300">
-                {{structure?.name}}
+                {{structure?.office}}
               </p>
             </div>
           </div>
@@ -175,7 +175,7 @@ import { ConfigService } from "../../../../../core/utils/config-service";
             <h2
               class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4"
             >
-              L'équipe du Secrétariat
+              L'équipe du Secrétariat Général du Ministère
             </h2>
             <p
               class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
@@ -185,82 +185,32 @@ import { ConfigService } from "../../../../../core/utils/config-service";
             </p>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <!-- Secrétaire Général Adjoint -->
-            <div class="text-center flex flex-col items-center">
+            <div  *ngFor="let team of teams" class="text-center flex flex-col items-center">
               <div class="relative inline-block">
                 <img
-                  src="https://www.travail.gouv.bj/storage/teams/1708594357estelle-honfo-akpovo.jpg"
-                  alt="Estelle HONFO AKPOVO - Secrétaire Générale Adjointe du Ministère"
-                  class="rounded-xl shadow-lg w-full min-w-md h-76 object-cover object-top"
+                [src]="getLink('teams',team?.photo)"
+                  alt=" {{team?.name}} - {{team?.office}}"
+                  class="rounded-xl shadow-lg w-full min-w-md h-100 object-cover object-top"
                 />
               </div>
               <div class="mt-6">
                 <h3
                   class="text-xl font-bold text-primary-800 dark:text-primary-400 mb-2"
                 >
-                  HONFO AKPOVO Estelle
+                 {{team?.name}}
                 </h3>
                 <p class="text-gray-600 dark:text-gray-300">
-                  Secrétaire Générale Adjointe du Ministère
-                </p>
-              </div>
-            </div>
+                                   {{team?.office}}
 
-            <!-- Assistant -->
-            <div class="text-center flex flex-col items-center">
-              <div class="relative inline-block">
-                <img
-                  src="https://www.travail.gouv.bj/storage/teams/1714985419vissoh-ahissin-g-mahoutondji-fredy.jpg"
-                  alt="VISSOH AHISSIN G. Mahoutondji Frédy - Assistant du Secrétaire Général du Ministère"
-                  class="rounded-xl shadow-lg w-full min-w-md h-76 object-cover"
-                />
-              </div>
-              <div class="mt-6">
-                <h3
-                  class="text-xl font-bold text-primary-800 dark:text-primary-400 mb-2"
-                >
-                  VISSOH AHISSIN G. Mahoutondji Frédy
-                </h3>
-                <p class="text-gray-600 dark:text-gray-300">
-                  Assistant du Secrétaire Général du Ministère
                 </p>
               </div>
-            </div>
+            </div>            
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Présentation des directeurs techniques -->
-    <!-- <section class="section-padding bg-gray-50 dark:bg-gray-900">
-      <div class="container-custom">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Départements Techniques</h2>
-          <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            L'équipe des directeurs techniques qui appuient le Secrétariat Général dans ses missions.
-          </p>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div *ngFor="let directeur of directeursTechniques" class="card p-6 text-center transform hover:-translate-y-2 transition-transform duration-300">
-            <div class="w-32 h-32 rounded-full mx-auto mb-6 overflow-hidden ring-4 ring-primary-200 dark:ring-primary-800">
-              <img [src]="directeur.photo" 
-                   [alt]="directeur.nom" 
-                   class="w-full h-full object-cover">
-            </div>
-            <h3 class="text-lg font-bold text-primary-800 dark:text-primary-400 mb-1">{{ directeur.nom }}</h3>
-            <p class="font-medium text-gray-600 dark:text-gray-400 text-sm mb-4">{{ directeur.fonction }}</p>
-            <div class="space-y-2 text-left text-sm border-t border-gray-200 dark:border-gray-700 pt-4">
-              <p *ngFor="let responsabilite of directeur.responsabilites" class="flex items-start">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 mt-1 text-secondary-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <span class="text-gray-600 dark:text-gray-300">{{ responsabilite }}</span>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section> -->
-
+   
     <!-- Fiches métiers -->
     <!-- <section class="section-padding bg-white dark:bg-gray-800">
       <div class="container-custom">
@@ -432,7 +382,7 @@ import { ConfigService } from "../../../../../core/utils/config-service";
             </div>
             <div>
               <ngx-extended-pdf-viewer
-                [src]="getLink('aof',media?.aof?.aof)"
+                [src]="getLink('aofs',media?.aof?.aof)"
               ></ngx-extended-pdf-viewer>
             </div>
           </el-dialog-panel>
@@ -469,80 +419,9 @@ export class SecretariatGeneralComponent implements AfterViewInit {
     },
   ];
 
-  directeursTechniques = [
-    {
-      nom: "KOUTON Marie-Claire",
-      fonction: "Directrice Technique Coordination",
-      photo:
-        "https://images.pexels.com/photos/3184317/pexels-photo-3184317.jpeg?auto=compress&cs=tinysrgb&w=200",
-      responsabilites: [
-        "Coordination des directions",
-        "Suivi du PAG",
-        "Reporting ministériel",
-      ],
-    },
-    {
-      nom: "AGBESSI Jean-Paul",
-      fonction: "Directeur Technique Administration",
-      photo:
-        "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=200",
-      responsabilites: [
-        "Gestion administrative",
-        "Procédures internes",
-        "Documentation officielle",
-      ],
-    },
-    {
-      nom: "DOSSOU Sylvie",
-      fonction: "Directrice Technique Suivi-Évaluation",
-      photo:
-        "https://images.pexels.com/photos/3184302/pexels-photo-3184302.jpeg?auto=compress&cs=tinysrgb&w=200",
-      responsabilites: [
-        "Suivi des performances",
-        "Évaluation des programmes",
-        "Capitalisation des acquis",
-      ],
-    },
-  ];
+  teams:any[] = [];
 
-  fichesMetiers = [
-    {
-      titre: "Coordinateur Général",
-      description: "Coordination des activités de l'ensemble du ministère.",
-      file: "assets/download-data/fiches-metiers/coordinateur-general.pdf",
-      readMoreLink: "#",
-    },
-    {
-      titre: "Chargé de Mission",
-      description: "Suivi de dossiers spéciaux et missions transversales.",
-      file: "assets/download-data/fiches-metiers/charge-de-mission.pdf",
-      readMoreLink: "#",
-    },
-    {
-      titre: "Analyste Performance",
-      description: "Suivi et évaluation des performances du ministère.",
-      file: "assets/download-data/fiches-metiers/analyste-performance.pdf",
-      readMoreLink: "#",
-    },
-    {
-      titre: "Secrétaire de Direction",
-      description: "Assistance administrative et gestion du secrétariat.",
-      file: "assets/download-data/fiches-metiers/secretaire-de-direction.pdf",
-      readMoreLink: "#",
-    },
-    {
-      titre: "Chargé de Relations",
-      description: "Gestion des relations institutionnelles et partenariats.",
-      file: "assets/download-data/fiches-metiers/charge-de-relations.pdf",
-      readMoreLink: "#",
-    },
-    {
-      titre: "Documentaliste",
-      description: "Gestion de la documentation et des archives.",
-      file: "assets/download-data/fiches-metiers/documentaliste.pdf",
-      readMoreLink: "#",
-    },
-  ];
+  fichesMetiers = [];
 
   structure:any
   media:any
@@ -559,6 +438,7 @@ export class SecretariatGeneralComponent implements AfterViewInit {
       this.publicService.getSGM().subscribe((res:any)=>{
         this.structure=res.data?.structure
         this.media=res.data?.aof
+        this.teams=res.data?.structure?.teams1
       })
     }
 

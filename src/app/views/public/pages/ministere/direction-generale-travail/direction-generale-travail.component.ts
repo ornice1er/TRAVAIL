@@ -1,15 +1,18 @@
-import { Component, AfterViewInit, OnInit } from "@angular/core";
+import { Component, AfterViewInit, OnInit, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { AnimationService } from "../../../../../shared/services/animation.service";
 import "@tailwindplus/elements";
 import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
 import { MetiersListComponent } from "../../../../../shared/components/metiers-list.component";
 import { metiers } from "../../../../../shared/models/datas";
+import { PublicService } from "../../../../../core/services/public.service";
+import { ConfigService } from "../../../../../core/utils/config-service";
 
 @Component({
   selector: "app-direction-generale-travail",
   standalone: true,
   imports: [CommonModule, NgxExtendedPdfViewerModule, MetiersListComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: `
     <!-- Hero Section -->
     <div
@@ -77,8 +80,8 @@ import { metiers } from "../../../../../shared/models/datas";
               <div class="text-center">
                 <div class="relative inline-block">
                   <img
-                    src="https://www.travail.gouv.bj/storage/structures/respos/1708505247dahoui-edgard.jpg"
-                    alt="DAHOUI Edgard - Directeur Général du Travail"
+                     [src]="getLink('structures/respos',structure?.photo_responsable)"
+                alt="{{structure?.name_responsable}} - {{structure?.office}}"
                     class="rounded-2xl shadow-lg w-full max-w-sm h-72 mx-auto"
                   />
                   <!-- <div
@@ -91,20 +94,20 @@ import { metiers } from "../../../../../shared/models/datas";
                   <h3
                     class="text-xl font-bold text-secondary-800 dark:text-secondary-400 mb-2"
                   >
-                    DAHOUI Edgard
+                    {{structure?.name_responsable}}
                   </h3>
                   <p class="text-gray-600 dark:text-gray-300">
-                    Directeur Général du Travail
+                     {{structure?.office}}
                   </p>
                 </div>
               </div>
 
               <!-- Directeur Général Adjoint -->
-              <div class="text-center">
+              <div class="text-center" *ngFor="let team of teams">
                 <div class="relative inline-block">
                   <img
-                    src="https://www.travail.gouv.bj/storage/teams/1680503358hedokingbe-paul-n.jpg"
-                    alt="HEDOKINGBE Paul N. - Directeur Général Adjoint du Travail"
+                   [src]="getLink('teams',team?.photo)"
+                  alt=" {{team?.name}} - {{team?.office}}"
                     class="rounded-2xl shadow-lg w-98 h-72  object-scale-down object-top mx-auto"
                   />
                 </div>
@@ -112,10 +115,10 @@ import { metiers } from "../../../../../shared/models/datas";
                   <h3
                     class="text-xl font-bold text-secondary-800 dark:text-secondary-400 mb-2"
                   >
-                    HEDOKINGBE Paul N.
+                   {{team?.name}}
                   </h3>
                   <p class="text-gray-600 dark:text-gray-300">
-                    Directeur Général Adjoint du Travail
+                    {{team?.office}}
                   </p>
                 </div>
               </div>
@@ -132,11 +135,9 @@ import { metiers } from "../../../../../shared/models/datas";
             >
               Mission
             </h3>
-            <p
-              class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed"
+             <p
+              class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed rich-content" [innerHTML]="media?.aof?.mission"
             >
-              La Direction Générale du Travail assure la mise en œuvre de la
-              politique de l'État en matière de travail.
             </p>
 
             <h3
@@ -144,73 +145,9 @@ import { metiers } from "../../../../../shared/models/datas";
             >
               Attributions
             </h3>
-            <p class="text-gray-700 dark:text-gray-300 mb-4">
-              À ce titre, elle est chargée :
-            </p>
-            <ul class="space-y-3 text-gray-700 dark:text-gray-300">
-              <li class="flex items-start">
-                <span
-                  class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                ></span>
-                <span
-                  >de concevoir, de mettre en œuvre, de suivre et d'évaluer la
-                  politique nationale du travail</span
-                >
-              </li>
-              <li class="flex items-start">
-                <span
-                  class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                ></span>
-                <span
-                  >de concevoir et d'élaborer les avant-projets de textes
-                  législatifs, réglementaires et conventionnels en matière de
-                  travail, de main-d'œuvre et de sécurité sociale</span
-                >
-              </li>
-              <li class="flex items-start">
-                <span
-                  class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                ></span>
-                <span
-                  >de promouvoir les relations de travail dans les entreprises
-                  publiques et privées</span
-                >
-              </li>
-              <li class="flex items-start">
-                <span
-                  class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                ></span>
-                <span
-                  >de promouvoir le dialogue social en milieu de travail</span
-                >
-              </li>
-              <li class="flex items-start">
-                <span
-                  class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                ></span>
-                <span
-                  >de promouvoir la sécurité sociale dans tous les secteurs
-                  d'activités</span
-                >
-              </li>
-              <li class="flex items-start">
-                <span
-                  class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                ></span>
-                <span
-                  >de promouvoir la lutte contre le travail des enfants</span
-                >
-              </li>
-              <li class="flex items-start">
-                <span
-                  class="w-2 h-2 bg-secondary-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                ></span>
-                <span
-                  >de collecter et de publier conformément à la réglementation
-                  en vigueur, les statistiques sur le travail</span
-                >
-              </li>
-            </ul>
+                        <p class="text-gray-700 dark:text-gray-300 mb-4 rich-content" [innerHTML]="media?.aof?.attribution"></p>
+
+           
 
             <!-- Boutons de téléchargement -->
             <!-- Boutons de téléchargement -->
@@ -235,8 +172,8 @@ import { metiers } from "../../../../../shared/models/datas";
                 Lire l'arrêté
               </button>
               <a
-                href="https://travail.gouv.bj/download-data/aofs/2301250210-628.pdf/aof"
-                download="https://travail.gouv.bj/download-data/aofs/2301250210-628.pdf/aof"
+              [href]="getLink('aofs',media?.aof?.aof)"
+                  download="{{media?.aof?.aof}}"
                 class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
               >
                 <svg
@@ -281,8 +218,8 @@ import { metiers } from "../../../../../shared/models/datas";
               class="w-24 h-32 bg-gray-200 dark:bg-gray-700 rounded-lg mx-auto mb-4 overflow-hidden"
             >
               <img
-                [src]="directeur.photo"
-                [alt]="directeur.nom"
+                [src]="getLink('teams',directeur?.photo)"
+                  alt=" {{directeur?.name}} - {{directeur?.office}}"
                 class="w-full h-full object-cover"
                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
               />
@@ -299,10 +236,10 @@ import { metiers } from "../../../../../shared/models/datas";
             <h3
               class="text-sm font-bold text-secondary-800 dark:text-secondary-400 mb-2"
             >
-              {{ directeur.nom }}
+               {{directeur?.name}}
             </h3>
             <p class="text-gray-600 dark:text-gray-300 text-xs mb-3">
-              {{ directeur.fonction }}
+                {{directeur?.office}}
             </p>
             <!-- <div class="space-y-2">
               <div *ngFor="let responsabilite of directeur.responsabilites" class="text-xs text-gray-500 dark:text-gray-400">
@@ -379,6 +316,44 @@ import { metiers } from "../../../../../shared/models/datas";
         </div>
       </div>
     </section>
+
+
+        <el-dialog>
+      <dialog
+        id="dialog"
+        aria-labelledby="dialog-title"
+        class="fixed inset-0 size-auto max-h-none max-w-none overflow-y-auto bg-transparent backdrop:bg-transparent"
+      >
+        <el-dialog-backdrop
+          class="fixed inset-0 bg-gray-500/75 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in dark:bg-gray-900/50"
+        ></el-dialog-backdrop>
+
+        <div
+          tabindex="0"
+          class="flex min-h-full items-end justify-center text-center focus:outline-none sm:items-center p-0 relative"
+        >
+          <el-dialog-panel
+            class="transform overflow-hidden absolute inset-0 bg-white px-4 pt-5 pb-4 text-left  transition-all data-closed:translate-y-4 data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in sm:my-8 sm:w-full sm:max-w-full sm:p-6 data-closed:sm:translate-y-0 data-closed:sm:scale-95 dark:bg-gray-800 dark:outline dark:-outline-offset-1 dark:outline-white/10"
+          >
+            <div class="flex justify-end items-center w-full">
+              <button
+                type="button"
+                command="close"
+                commandfor="dialog"
+                class="inline-flex  justify-center rounded-md bg-red-600 px-4 py-2 text-sm font-semibold text-white shadow-xs hover:bg-red-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 dark:bg-red-500 dark:shadow-none dark:hover:bg-red-400 dark:focus-visible:outline-red-500"
+              >
+                Fermer
+              </button>
+            </div>
+            <div>
+              <ngx-extended-pdf-viewer
+                [src]="getLink('aofs',media?.aof?.aof)"
+              ></ngx-extended-pdf-viewer>
+            </div>
+          </el-dialog-panel>
+        </div>
+      </dialog>
+    </el-dialog>
   `,
 })
 export class DirectionGeneraleTravailComponent implements AfterViewInit, OnInit {
@@ -412,92 +387,44 @@ export class DirectionGeneraleTravailComponent implements AfterViewInit, OnInit 
     },
   ];
 
-  directeursTechniques = [
-    {
-      nom: "AROUNA Ramanou",
-      fonction: "Chef Département des Normes et de la Statistique au Travail",
-      photo:
-        "https://www.travail.gouv.bj/storage/teams/1733741844arouna-ramanou.jpg",
-    },
-    {
-      nom: "OUENDO Wilfrid K. Serge",
-      fonction:
-        "Chef Département des Relations Professionnelles et du Dialogue Social",
-      photo:
-        "https://www.travail.gouv.bj/storage/teams/1677698329ouendo-wilfrid-k-serge.JPG",
-    },
-    {
-      nom: "Dr BEDIE TOÏHEN Lucile",
-      fonction:
-        "Chef Département de la Sécurité Sociale, de la Mutualité et de la Santé au Travail",
-      photo:
-        "https://www.travail.gouv.bj/storage/teams/1678289870dr-bedie-toihen-lucile.jpg",
-    },
-  ];
-
-  contactsSpecifiques = [
-    {
-      icone: "🔍",
-      service: "Service Inspection du Travail",
-      description: "Contrôle de l'application de la législation du travail.",
-      telephone: "+229 21 30 30 01",
-      email: "inspection.travail@travail.gouv.bj",
-      horaires: "Lun-Ven 8h-16h",
-      specialite: "Inspection et contrôle",
-    },
-    {
-      icone: "⚖️",
-      service: "Service Relations Professionnelles",
-      description: "Médiation des conflits et dialogue social.",
-      telephone: "+229 21 30 30 02",
-      email: "relations.pro@travail.gouv.bj",
-      horaires: "Lun-Ven 8h-17h",
-      specialite: "Médiation et dialogue social",
-    },
-    {
-      icone: "💼",
-      service: "Service Promotion de l'Emploi",
-      description: "Développement des politiques d'emploi.",
-      telephone: "+229 21 30 30 03",
-      email: "emploi.dgt@travail.gouv.bj",
-      horaires: "Lun-Ven 8h-16h",
-      specialite: "Politiques d'emploi",
-    },
-    {
-      icone: "🛡️",
-      service: "Service Sécurité Sociale",
-      description: "Promotion et contrôle de la sécurité sociale.",
-      telephone: "+229 21 30 30 04",
-      email: "securite.sociale@travail.gouv.bj",
-      horaires: "Lun-Ven 8h-16h",
-      specialite: "Sécurité sociale",
-    },
-    {
-      icone: "🚨",
-      service: "Urgences Accidents du Travail",
-      description: "Traitement des urgences et accidents professionnels.",
-      telephone: "+229 21 30 30 99",
-      email: "urgence.travail@travail.gouv.bj",
-      horaires: "24h/24 - 7j/7",
-      specialite: "Urgences professionnelles",
-    },
-    {
-      icone: "📞",
-      service: "Accueil et Information",
-      description: "Information générale sur le droit du travail.",
-      telephone: "+229 21 30 30 00",
-      email: "info.dgt@travail.gouv.bj",
-      horaires: "Lun-Ven 7h30-17h",
-      specialite: "Information générale",
-    },
-  ];
-
-  constructor(private animationService: AnimationService) {}
-
-  ngOnInit() {
-    this.metiersDeLaStructure = metiers.filter(m => m.structureId === this.structureId);
-  }
-
+  teams:any[] = [];
+  directeursTechniques:any[]=[]
+  
+    fichesMetiers = [];
+  
+    structure:any
+    media:any
+  
+      constructor(private animationService: AnimationService,private publicService:PublicService) {}
+    
+      ngOnInit() {
+        this.getAll()
+      }
+    
+    
+    
+      getAll(){
+        this.publicService.getDGT().subscribe((res:any)=>{
+          this.structure=res.data?.structure
+          this.media=res.data?.aof
+          this.teams=res.data?.structure?.teams1
+          this.directeursTechniques=res.data?.structure?.teams2
+        })
+      }
+  
+  
+    openPdf() {
+      const dialog = document.getElementById('dialog') as any;
+      if (dialog) {
+        dialog.showModal();
+      }
+    }
+  
+  
+  
+        getLink(dir:any,photo:any){
+          return`${ConfigService.toFile("storage")}/${dir}/${photo}`
+        }
   ngAfterViewInit() {
     setTimeout(() => {
       this.animationService.initScrollAnimations();

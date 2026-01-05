@@ -10,6 +10,8 @@ import "@tailwindplus/elements";
 import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
 import { MetiersListComponent } from "../../../../../shared/components/metiers-list.component";
 import { metiers } from "../../../../../shared/models/datas";
+import { PublicService } from "../../../../../core/services/public.service";
+import { ConfigService } from "../../../../../core/utils/config-service";
 
 @Component({
   selector: "app-inspection-generale",
@@ -81,8 +83,8 @@ import { metiers } from "../../../../../shared/models/datas";
           <div class="">
             <div class="relative">
               <img
-                src="https://www.travail.gouv.bj/storage/structures/respos/1708440169alokpo-n-germain.jpg"
-                alt="KANHOUNON Norbert Boccace - Inspecteur Général des Services et Emplois Publics"
+                [src]="getLink('structures/respos',structure?.photo_responsable)"
+                alt="{{structure?.name_responsable}} - {{structure?.office}}"                alt="KANHOUNON Norbert Boccace - Inspecteur Général des Services et Emplois Publics"
                 class="rounded-2xl shadow-lg w-full max-w-sm mx-auto"
               />
               <!-- <div
@@ -95,10 +97,11 @@ import { metiers } from "../../../../../shared/models/datas";
               <h3
                 class="text-xl font-bold text-accent-800 dark:text-accent-400 mb-2"
               >
-                KANHOUNON Norbert Boccace
+                                {{structure?.name_responsable}}
+
               </h3>
               <p class="text-gray-600 dark:text-gray-300">
-                Inspecteur Général des Services et Emplois Publics
+                {{structure?.office}}
               </p>
             </div>
           </div>
@@ -113,19 +116,9 @@ import { metiers } from "../../../../../shared/models/datas";
             >
               Mission
             </h3>
-            <p
-              class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed"
+              <p
+              class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed rich-content" [innerHTML]="media?.aof?.mission"
             >
-              Conformément aux dispositions de l'article 4 du décret n° 2018-398
-              du 29 août 2018 portant statuts particuliers des corps de contrôle
-              de l'ordre administratif en République du Bénin, l'inspection
-              générale des services et emplois publics exerce une mission
-              générale de contrôle, d'audit, d'étude et de conseil et
-              d'évaluation dans les domaines administratif, déontologique et de
-              gestion des ressources humaines pour l'ensemble des services
-              centraux et déconcentrés de tous les ministères et institutions de
-              l'État, des collectivités territoriales et des établissements et
-              organismes publics.
             </p>
 
             <h3
@@ -133,63 +126,9 @@ import { metiers } from "../../../../../shared/models/datas";
             >
               Attributions
             </h3>
-            <p
-              class="text-lg text-gray-700 dark:text-gray-300 mb-4 leading-relaxed"
-            >
-              L'inspection générale des services et emplois publics exerce ses
-              attributions tant au niveau national que sectoriel.
-            </p>
+                     <p class="text-gray-700 dark:text-gray-300 mb-4 rich-content" [innerHTML]="media?.aof?.attribution"></p>
 
-            <p
-              class="text-lg text-gray-700 dark:text-gray-300 mb-4 leading-relaxed"
-            >
-              Au niveau national, l'inspection générale des services et emplois
-              publics a pour attributions:
-            </p>
-            <ul class="space-y-3 text-gray-700 dark:text-gray-300 mb-6">
-              <li class="flex items-start">
-                <span
-                  class="w-2 h-2 bg-accent-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                ></span>
-                <span
-                  >de contrôler la gestion administrative et celle des
-                  ressources humaines</span
-                >
-              </li>
-              <li class="flex items-start">
-                <span
-                  class="w-2 h-2 bg-accent-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                ></span>
-                <span
-                  >de contrôler l'organisation et le fonctionnement des services
-                  publics et des structures chargées de la gestion des agents
-                  publics</span
-                >
-              </li>
-              <li class="flex items-start">
-                <span
-                  class="w-2 h-2 bg-accent-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                ></span>
-                <span
-                  >de contrôler l'application des règles de déontologie
-                  administrative, d'éthique, et santé et de sécurité au
-                  travail</span
-                >
-              </li>
-              <li class="flex items-start">
-                <span
-                  class="w-2 h-2 bg-accent-600 rounded-full mr-3 mt-2 flex-shrink-0"
-                ></span>
-                <span
-                  >d'apporter l'assistance conseil nécessaire dans les services
-                  de l'État, des collectivités territoriales décentralisées, des
-                  établissements et offices publics ou semi-publics ainsi que
-                  des organismes de toute nature utilisant des agents
-                  publics</span
-                >
-              </li>
-            </ul>
-
+        
             <!-- Boutons de téléchargement -->
             <!-- Boutons de téléchargement -->
             <div class="flex flex-col sm:flex-row gap-4 mt-8">
@@ -213,9 +152,9 @@ import { metiers } from "../../../../../shared/models/datas";
                 Lire l'arrêté
               </button>
               <a
-                href="https://travail.gouv.bj/download-data/aofs/2301250210-628.pdf/aof"
-                download="https://travail.gouv.bj/download-data/aofs/2301250210-628.pdf/aof"
-                class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
+                [href]="getLink('aofs',media?.aof?.aof)"
+                  download="{{media?.aof?.aof}}"
+                  class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
               >
                 <svg
                   class="w-5 h-5 mr-2"
@@ -395,7 +334,7 @@ import { metiers } from "../../../../../shared/models/datas";
             </div>
             <div>
               <ngx-extended-pdf-viewer
-                [src]="'assets/download-data/aofs/aof-sgm.pdf'"
+                [src]="getLink('aofs',media?.aof?.aof)"
               ></ngx-extended-pdf-viewer>
             </div>
           </el-dialog-panel>
@@ -435,105 +374,44 @@ export class InspectionGeneraleComponent implements AfterViewInit, OnInit {
     },
   ];
 
-  directeursTechniques = [
-    {
-      nom: "ADJOVI Marcel",
-      fonction: "Directeur Technique Principal",
-      photo:
-        "https://images.pexels.com/photos/3184317/pexels-photo-3184317.jpeg?auto=compress&cs=tinysrgb&w=200",
-      responsabilites: [
-        "Coordination des missions d'inspection",
-        "Supervision des équipes techniques",
-        "Validation des rapports d'audit",
-      ],
-    },
-    {
-      nom: "KOSSOU Françoise",
-      fonction: "Directrice Audit Interne",
-      photo:
-        "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=200",
-      responsabilites: [
-        "Audit des procédures internes",
-        "Évaluation des systèmes de contrôle",
-        "Recommandations d'amélioration",
-      ],
-    },
-    {
-      nom: "TOGNON Sylvain",
-      fonction: "Directeur Contrôle de Gestion",
-      photo:
-        "https://images.pexels.com/photos/3184302/pexels-photo-3184302.jpeg?auto=compress&cs=tinysrgb&w=200",
-      responsabilites: [
-        "Contrôle de la gestion publique",
-        "Analyse des performances",
-        "Suivi des indicateurs",
-      ],
-    },
-  ];
 
-  contactsSpecifiques = [
-    {
-      icone: "🔍",
-      service: "Service Inspection Administrative",
-      description: "Contrôle du fonctionnement des services administratifs.",
-      telephone: "+229 21 30 15 01",
-      email: "mtfp.usager@gouv.bj",
-      horaires: "Lun-Ven 8h-16h",
-      specialite: "Dysfonctionnements administratifs",
-    },
-    {
-      icone: "👥",
-      service: "Service Inspection RH",
-      description: "Contrôle de la gestion des ressources humaines.",
-      telephone: "+229 21 30 15 02",
-      email: "mtfp.usager@gouv.bj",
-      horaires: "Lun-Ven 8h-16h",
-      specialite: "Gestion du personnel public",
-    },
-    {
-      icone: "⚖️",
-      service: "Service Déontologie",
-      description: "Enquêtes disciplinaires et respect de l'éthique.",
-      telephone: "+229 21 30 15 03",
-      email: "mtfp.usager@gouv.bj",
-      horaires: "Lun-Ven 8h-17h",
-      specialite: "Violations déontologiques",
-    },
-    {
-      icone: "📊",
-      service: "Service Audit et Évaluation",
-      description: "Audit des processus et évaluation des performances.",
-      telephone: "+229 21 30 15 04",
-      email: "mtfp.usager@gouv.bj",
-      horaires: "Lun-Ven 8h-16h",
-      specialite: "Audit de performance",
-    },
-    {
-      icone: "🚨",
-      service: "Cellule d'Urgence",
-      description: "Traitement des signalements urgents et crises.",
-      telephone: "+229 21 30 15 99",
-      email: "mtfp.usager@gouv.bj",
-      horaires: "24h/24 - 7j/7",
-      specialite: "Situations d'urgence",
-    },
-    {
-      icone: "📞",
-      service: "Accueil et Orientation",
-      description: "Information et orientation des usagers.",
-      telephone: "+229 21 30 15 00",
-      email: "mtfp.usager@gouv.bj",
-      horaires: "Lun-Ven 7h30-17h",
-      specialite: "Information générale",
-    },
-  ];
 
-  constructor(private animationService: AnimationService) {}
+teams:any[] = [];
 
-  ngOnInit() {
-    this.metiersDeLaStructure = metiers.filter(m => m.structureId === this.structureId);
+  fichesMetiers = [];
+
+  structure:any
+  media:any
+
+    constructor(private animationService: AnimationService,private publicService:PublicService) {}
+  
+    ngOnInit() {
+      this.getAll()
+    }
+  
+  
+  
+    getAll(){
+      this.publicService.getIgsep().subscribe((res:any)=>{
+        this.structure=res.data?.structure
+        this.media=res.data?.aof
+        this.teams=res.data?.structure?.teams1
+      })
+    }
+
+
+  openPdf() {
+    const dialog = document.getElementById('dialog') as any;
+    if (dialog) {
+      dialog.showModal();
+    }
   }
 
+
+
+      getLink(dir:any,photo:any){
+        return`${ConfigService.toFile("storage")}/${dir}/${photo}`
+      }
   ngAfterViewInit() {
     setTimeout(() => {
       this.animationService.initScrollAnimations();
