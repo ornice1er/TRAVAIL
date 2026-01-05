@@ -233,6 +233,7 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
 
           <a
             routerLink="/communiques"
+            [queryParams]="{ nature: 'Concours' }"
             class="group flex flex-col items-center p-6 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
             aria-label="Concours publics"
           >
@@ -284,7 +285,7 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
 
         <div class="grid grid-cols-1 md:grid-cols-1 gap-6 mt-6">
           <a
-            href="https://reformesbenin.gouv.bj"
+            href="https://reformesbenin.gouv.bj/accueil"
              target="_blank"
             class="group flex flex-col items-center p-6 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
             aria-label="Suivi des réformes administratives et institutionnelles"
@@ -336,7 +337,7 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
               "
               class="px-6 py-3 rounded-md font-medium transition-all duration-200"
             >
-              Communiqués Concours
+              Communiqués concours
             </button>
             <button
               (click)="activeTabCommunique = 'autres'"
@@ -347,7 +348,7 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
               "
               class="px-6 py-3 rounded-md font-medium transition-all duration-200"
             >
-              Autres Communiqués
+              Autres communiqués
             </button>
           </div>
         </div>

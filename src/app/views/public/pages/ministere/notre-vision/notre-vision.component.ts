@@ -30,8 +30,7 @@ import { ConfigService } from '../../../../../core/utils/config-service';
                 <svg class="mx-auto mb-4 w-24 h-24 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
-                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Document Officiel</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Consultez le document présentant notre vision et nos missions.</p>
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">AOF</h3>
                 <div class="flex flex-col space-y-3">
                   <button (click)="openPdf()" class="w-full bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors">
                       Lire le document

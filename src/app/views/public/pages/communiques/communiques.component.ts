@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Actualite } from '../../../../shared/models/actualite.model';
 import { AnimationService } from '../../../../shared/services/animation.service';
 import { ConfigService } from '../../../../core/utils/config-service';
@@ -284,10 +284,19 @@ export class CommuniquesComponent {
       total:0
     }
   
-    constructor(private animationService: AnimationService,private publicService:PublicService) {}
+    constructor(private animationService: AnimationService,private publicService:PublicService, private route:ActivatedRoute) {}
   
     ngOnInit() {
+      this.route.queryParams.subscribe(params => {
+        const nature = params['nature'];
+      if(nature){
+        this.categorieActive=nature
+      }else{
+        this.categorieActive="Toutes"
+      }
+      });
       this.getAll()
+
     }
   
   
@@ -299,6 +308,7 @@ export class CommuniquesComponent {
        this.communiques=res.data.communiques.data
        this.communiquesFiltrees=this.communiques
        this.pg.total=res.data.communiques.total
+       this.appliquerFiltres()
       })
     }
   
