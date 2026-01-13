@@ -16,6 +16,7 @@ export class AdminSideBarComponent {
     { id: 'admin/tableau-de-bord', label: 'Tableau de bord', icon: 'ri-dashboard-line' },
     { id: 'admin/communiques', label: 'Communiqués', icon: 'ri-file-text-line' },
     { id: 'admin/actualites', label: 'Actualités', icon: 'ri-news-line' },
+    { id: 'admin/tests', label: 'Concours', icon: 'ri-news-line' },
     { id: 'admin/posters', label: 'Posters', icon: 'ri-image-line' },
     { id: 'admin/membres-structure', label: 'Membres Structure', icon: 'ri-team-line' },
     // { id: 'admin/recrutements', label: 'Recrutements', icon: 'ri-user-add-line' },

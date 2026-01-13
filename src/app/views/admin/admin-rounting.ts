@@ -42,6 +42,10 @@ import { OrganigrammeEditionComponent } from './pages/organigramme/organigramme-
 
 import { PosterComponent } from './pages/poster/poster.component';
 import { AuthGuard } from '../../core/guards/auth.guard';
+import { TestComponent } from './pages/test/test.component';
+import { TestCreationComponent } from './pages/test/test-creation/test-creation.component';
+import { TestEditionComponent } from './pages/test/test-edition/test-edition.component';
+import { TestDetailsComponent } from './pages/test/test-details/test-details.component';
 
 export const AdminRounting: Routes = [
   {
@@ -154,6 +158,59 @@ export const AdminRounting: Routes = [
             breadcrumb: [
               { label: 'Accueil', url: '/admin/tableau-de-bord' },
               { label: 'Communiqués', url: '/admin/communiques' },
+              { label: 'Détails' }
+            ]
+          }
+      
+      },
+
+
+
+        // === Test ===
+      { 
+        path: 'tests', 
+        component: TestComponent,
+          data: {
+            title: 'Liste des concours',
+            breadcrumb: [
+              { label: 'Accueil', url: '/admin/tableau-de-bord' },
+              { label: 'Liste des concours'}
+            ]
+          }
+      
+      },
+      { path: 'tests/creation', 
+        component: TestCreationComponent,
+          data: {
+            title: 'Création d\'un concours',
+            breadcrumb: [
+              { label: 'Accueil', url: '/admin/tableau-de-bord' },
+              { label: 'Concours', url: '/admin/tests' },
+              { label: 'Création' }
+            ]
+          }
+      
+      },
+      { path: 'tests/edition/:id', 
+        component: TestEditionComponent ,
+       data: {
+            title: 'Modification d\'un concours',
+            breadcrumb: [
+              { label: 'Accueil', url: '/admin/tableau-de-bord' },
+              { label: 'Concours', url: '/admin/tests' },
+              { label: 'Modification' }
+            ]
+          }
+      
+      },
+      { 
+        path: 'tests/details/:id', 
+        component: TestDetailsComponent,
+       data: {
+            title: 'Détails d\'un concours',
+            breadcrumb: [
+              { label: 'Accueil', url: '/admin/tableau-de-bord' },
+              { label: 'Communiqués', url: '/admin/tests' },
               { label: 'Détails' }
             ]
           }

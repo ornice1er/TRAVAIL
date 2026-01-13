@@ -1,0 +1,191 @@
+   <div class="bg-white rounded-xl shadow-sm border border-gray-100">
+
+        <div class="p-6 space-y-8">
+          <!-- Image du communiqué -->
+          <div class="w-full h-64 bg-gray-200 rounded-lg overflow-hidden">
+            <img 
+              [src]="'assets/cite.jpg'" 
+              alt="Image du communiqué" 
+              class="w-full h-full object-cover object-top"
+            />
+          </div>
+
+            <div>
+            <h3 class="text-sm font-semibold text-gray-700 mb-2 font-montserrat">Catégorie du communiqué</h3>
+            <p class="text-lg font-medium text-gray-900 font-roboto">{{communique?.category}}</p>
+          </div>
+
+          <!-- Titre, résumé, description, auteur, publication -->
+          <div>
+            <h3 class="text-sm font-semibold text-gray-700 mb-2 font-montserrat">Titre du communiqué</h3>
+            <p class="text-lg font-medium text-gray-900 font-roboto">{{communique?.title}}</p>
+          </div>
+
+          <div>
+            <h3 class="text-sm font-semibold text-gray-700 mb-2 font-montserrat">Résumé</h3>
+            <p class="text-gray-700 leading-relaxed font-roboto" [innerHTML]="communique?.resume">
+            </p>
+          </div>
+
+          <div>
+            <h3 class="text-sm font-semibold text-gray-700 mb-2 font-montserrat">Description</h3>
+            <div
+            class="rich-content text-gray-700 leading-relaxed font-roboto space-y-4"
+            [innerHTML]="communique?.description">
+          </div>
+          </div>
+
+          <!-- <div>
+            <h3 class="text-sm font-semibold text-gray-700 mb-2 font-montserrat">Auteur</h3>
+            <p class="text-gray-900 font-roboto">Direction de la Communication</p>
+          </div>
+
+          <div>
+            <h3 class="text-sm font-semibold text-gray-700 mb-2 font-montserrat">À publié sur l'accueil principal</h3>
+            <p class="text-gray-900 font-roboto">OUI</p>
+          </div> -->
+
+          <!-- Liste des médias -->
+          <div>
+            <h3 class="text-lg font-bold text-gray-900 mb-4 font-montserrat">LISTE DES MÉDIAS</h3>
+              <div class="flex justify-center mb-4">
+              <button
+                (click)="openAddMediaModal()"
+                class="flex items-center gap-2 bg-gradient-to-r from-benin-green to-benin-blue hover:from-benin-green/90 hover:to-benin-blue/90 text-white font-semibold py-2.5 px-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 transform hover:scale-105"
+              >
+                <i class="fas fa-plus"></i>
+                Ajouter un média
+              </button>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full border border-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider border-r border-gray-200 font-montserrat">Nom</th>
+                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider border-r border-gray-200 font-montserrat">Fichier</th>
+                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider font-montserrat">Action</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white">
+                  <tr *ngIf="medias?.length === 0">
+                    <td colspan="3" class="px-6 py-8 text-center text-gray-500 font-roboto">Aucune donnée disponible</td>
+                  </tr>
+                  <tr *ngFor="let media of medias; let i = index" class="border-t border-gray-200">
+                    <td class="px-6 py-4 text-sm text-gray-900 border-r border-gray-200 font-roboto">{{media.nom}}</td>
+                    <td class="px-6 py-4 text-sm text-gray-900 border-r border-gray-200 font-roboto">
+                      <a target="_blank" [href]="getLink('communiques',media.filename)">Lire fichier</a>
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-900 font-roboto">
+                        <button
+                        (click)="delete(media?.id)"
+                      pButton
+                      type="submit"
+                      label="Supprimer"
+                      class="p-button-danger"
+                    ></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+        <p-dialog
+        header="Ajout de pièce"
+        [(visible)]="displayModal"
+        [modal]="true"
+        [draggable]="false"
+        [resizable]="false"
+        [style]="{ width: '450px' }"
+        [closable]="true"
+        [dismissableMask]="true"
+      >
+        <form
+          [formGroup]="form"
+          (ngSubmit)="submit()"
+          class="flex flex-col gap-4 p-2"
+        >
+          <!-- Nom du fichier -->
+          <div class="flex flex-col gap-2">
+            <label for="nom" class="text-sm font-semibold text-gray-700"
+              >Nom du fichier</label
+            >
+            <input
+              pInputText
+              id="nom"
+              formControlName="nom"
+              class="w-full"
+              placeholder="Entrez le nom du fichier"
+            />
+          </div>
+
+          <!-- Référence -->
+          <div class="flex flex-col gap-2">
+            <label for="reference" class="text-sm font-semibold text-gray-700"
+              >Référence du fichier</label
+            >
+            <input
+              pInputText
+              id="reference"
+              formControlName="reference"
+              class="w-full"
+              placeholder="Ex: DOC-2025-001"
+            />
+          </div>
+
+          <!-- Type -->
+          <div class="flex flex-col gap-2">
+            <label for="type" class="text-sm font-semibold text-gray-700"
+              >Type du fichier</label
+            >
+            <p-dropdown
+              id="type"
+              formControlName="type"
+              [options]="fileTypes"
+              optionLabel="label"
+              optionValue="value"
+              placeholder="Sélectionnez un type"
+              class="w-full"
+            ></p-dropdown>
+          </div>
+
+          <!-- Pièce jointe -->
+          <div class="flex flex-col gap-2">
+            <label for="file" class="text-sm font-semibold text-gray-700"
+              >Pièce jointe</label
+            >
+            <p-fileUpload
+              mode="basic"
+              name="file"
+              accept=".pdf,image/*,video/*"
+              maxFileSize="10000000"
+              (onSelect)="onFileSelect($event)"
+              chooseLabel="Choisir un fichier"
+              class="w-full"
+              accept=".pdf"
+            ></p-fileUpload>
+          </div>
+
+          <!-- Boutons -->
+          <div class="flex justify-end gap-3 pt-4 border-t mt-3">
+            <button
+              pButton
+              type="button"
+              label="Annuler"
+              class="p-button-text"
+              (click)="displayModal = false"
+            ></button>
+
+            <button
+              pButton
+              type="submit"
+              label="Ajouter"
+              class="p-button-secondary"
+            ></button>
+          </div>
+        </form>
+      </p-dialog>
