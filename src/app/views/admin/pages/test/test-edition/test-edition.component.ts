@@ -7,8 +7,9 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Router, ActivatedRoute } from '@angular/router';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ToastrService } from 'ngx-toastr';
-import { CommuniqueService } from '../../../../../core/services/communique.service';
 import { LocalStorageService } from '../../../../../core/utils/local-stoarge-service';
+import { TestService } from '../../../../../core/services/test.service';
+import { CommuniqueService } from '../../../../../core/services/communique.service';
 const Font = Quill.import('formats/font') as any;
 Font.whitelist = ['bookman', 'arial', 'times-new-roman'];
 Quill.register('formats/font', Font, true);
@@ -29,7 +30,11 @@ activeMenu = 'concours';
   publishLocation = '';
   showLocationDropdown = false;
 loading=false
-communiqueId:any
+testId:any
+mediaId:any
+communiquesSelected:any[]=[];
+communiques:any[]=[];
+
    publishOptions = [
     'Page d\'accueil',
     'Section actualités', 
@@ -50,27 +55,48 @@ communiqueId:any
   ]
 };
   constructor(
-    private communiqueService:CommuniqueService,
+    private testService:TestService,
     private lsService:LocalStorageService,
     private router:Router,
     private route:ActivatedRoute,
-    private toastr:ToastrService
+    private toastr:ToastrService,
+    private communiqueService:CommuniqueService
   ){
 
   }
 
 
   ngOnInit(){
-    this.communiqueId=this.route.snapshot.paramMap.get('id')
-    if(this.communiqueId)this.get()
+    this.testId=this.route.snapshot.paramMap.get('id')
+    if(this.testId){
+      this.get()
+      this.getAll()
+    }
   }
+
+
+
+  getAll() {
+      this.communiqueService.getAll(10,1).subscribe((res:any)=>{
+          this.communiques=res.data.data
+         },
+         (err:any)=>{
+          this.loading=false
+          this.toastr.error(err.error?.message, 'Communiqué');
+    
+        })
+  }
+
 
     get() {
     this.loading=true
-      this.communiqueService.get(this.communiqueId).subscribe((res:any)=>{
+      this.testService.get(this.testId).subscribe((res:any)=>{
           this.loading=false    
+          this.mediaId=res.data?.media_id
           this.title=res.data?.title
           this.content=res.data?.description
+          this.has_principal_access=res.data?.has_principal_access
+          this.communiquesSelected=res.data?.communiques
           this.toastr.success('Connexion réussie', 'Connexion');
          },
          (err:any)=>{
@@ -83,17 +109,18 @@ communiqueId:any
 
   handleSubmit() {
     this.loading=true
-      this.communiqueService.update(
-        this.communiqueId,
+      this.testService.update(
+        this.mediaId,
         {
         title:this.title,
         description:this.content,
         category:this.category,
-                has_principal_access:this.has_principal_access
+        has_principal_access:this.has_principal_access,
+        communiques:this.communiquesSelected
 
       }).subscribe((res:any)=>{
           this.loading=false
-               this.router.navigate(['/admin/communiques'])
+               this.router.navigate(['/admin/tests'])
     
           this.toastr.success('Connexion réussie', 'Connexion');
          },

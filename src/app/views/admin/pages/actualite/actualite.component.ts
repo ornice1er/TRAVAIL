@@ -152,8 +152,19 @@ export class ActualiteComponent {
 
 
   openModal() {
-    console.log('Ouvrir modal');
-    // afficher le modal Angular (PrimeNG ou Tailwind)
+        this.loading=true
+      this.actualityService.archive(this.selected_data.id).subscribe((res:any)=>{
+          this.loading=false
+
+          this.getAll()
+
+
+         },
+         (err:any)=>{
+          this.loading=false
+          this.toastr.error(err.error?.message, 'Communiqué');
+    
+        })
   }
 
 

@@ -4,12 +4,12 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { SharedModule } from '../../../../../core/utils/shared.module';
-import { CommuniqueFileService } from '../../../../../core/services/communique-file.service';
-import { CommuniqueService } from '../../../../../core/services/communique.service';
 import { AppErrorShow } from '../../../../../core/utils/app-error-show';
 import { AppSweetAlert } from '../../../../../core/utils/app-sweet-alert';
 import { ConfigService } from '../../../../../core/utils/config-service';
 import { LocalStorageService } from '../../../../../core/utils/local-stoarge-service';
+import { TestService } from '../../../../../core/services/test.service';
+import { TestFileService } from '../../../../../core/services/test-file.service';
 
 @Component({
   selector: 'app-test-details',
@@ -22,31 +22,31 @@ activeMenu: string = 'concours';
   searchQuery: string = '';
   loading=true
   medias: any[] = []; // Aucune donnée disponible pour le moment
-  communique:any
+  test:any
  form: FormGroup;
   file?: File;
 displayModal = false;
   fileTypes = [
-    { label: 'PDF', value: 'pdf' },
-    { label: 'Image', value: 'image' },
-    { label: 'Vidéo', value: 'video' },
+    { label: 'ADMIS AU CONCOURS', value: 'ADMIS AU CONCOURS' },
+    { label: 'REFUSE AU CONCOURS', value: 'REFUSE AU CONCOURS' },
+    { label: 'DOIT RECOMPOSER', value: 'DOIT RECOMPOSER' },
+    { label: 'AUTRES', value: 'AUTRES' },
   ];
 
-  communiqueId:any=""
+  testId:any=""
   
   
      constructor(
       private fb: FormBuilder,
-        private communiqueService:CommuniqueService,
-        private communiqueFileService:CommuniqueFileService,
+        private testService:TestService,
+        private testFileService:TestFileService,
         private route:ActivatedRoute,
         private lsService:LocalStorageService,
         private router:Router,
         private toastr:ToastrService
       ){
      this.form = this.fb.group({
-      nom: ['', Validators.required],
-      reference: ['', Validators.required],
+      title: ['', Validators.required],
       type: ['', Validators.required],
       file: [null, Validators.required],
     });
@@ -56,7 +56,7 @@ displayModal = false;
      
     
       ngOnInit(){
-        this.communiqueId = this.route.snapshot.paramMap.get('id')
+        this.testId = this.route.snapshot.paramMap.get('id')
         this.get()
       }
     
@@ -72,16 +72,15 @@ displayModal = false;
         if (this.form.invalid || !this.file) return;
 
         const formData = new FormData();
-        formData.append('nom', this.form.value.nom);
-        formData.append('reference', this.form.value.reference);
+        formData.append('title', this.form.value.title);
         formData.append('type', this.form.value.type);
         formData.append('file', this.file);
-        formData.append('communiques_id', this.communiqueId.toString());
+        formData.append('test_id', this.testId.toString());
 
          this.loading=true
-          this.communiqueFileService.store(formData).subscribe((res:any)=>{
+          this.testFileService.store(formData).subscribe((res:any)=>{
               this.loading=false
-              this.communique=res.data    
+              this.test=res.data    
               this.displayModal=false
               this.get()
              },
@@ -99,9 +98,9 @@ displayModal = false;
     
       get() {
         this.loading=true
-          this.communiqueService.get(this.communiqueId).subscribe((res:any)=>{
+          this.testService.get(this.testId).subscribe((res:any)=>{
               this.loading=false
-              this.communique=res.data    
+              this.test=res.data    
               this.medias=res.data.files
              },
              (err:any)=>{
@@ -117,7 +116,7 @@ displayModal = false;
     let confirmed=AppSweetAlert.confirmBox('info','Suppression','Voulez vous vraiment retirer cet élément?',);
     confirmed.then((result:any)=>{
        if (result.isConfirmed) {
-        this.communiqueFileService.delete(id).subscribe((res:any)=>{
+        this.testFileService.delete(id).subscribe((res:any)=>{
           this.toastr.success(res.message)
           this.get()
       },

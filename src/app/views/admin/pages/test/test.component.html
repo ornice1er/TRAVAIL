@@ -1,11 +1,11 @@
 <div class="bg-white rounded-xl shadow-sm border border-gray-100">
         <div class="p-6 border-b border-gray-200 bg-gradient-to-r from-benin-green/5 to-benin-blue/5 flex items-center justify-between">
           <div>
-            <h2 class="text-xl font-bold text-gray-900 font-montserrat">Liste des communiqués en cours</h2>
-            <p class="text-sm text-gray-600 mt-1 font-roboto">{{communiques.length}} élément(s)</p>
+            <h2 class="text-xl font-bold text-gray-900 font-montserrat">Liste des concours</h2>
+            <p class="text-sm text-gray-600 mt-1 font-roboto">{{tests.length}} élément(s)</p>
           </div>
-          <a routerLink="/admin/communiques/creation" class="px-6 py-2 bg-gradient-to-r from-benin-green to-benin-blue text-white font-medium rounded-lg hover:shadow-lg transition-all duration-200 whitespace-nowrap font-roboto">
-            Créer un communiqué
+          <a routerLink="/admin/tests/creation" class="px-6 py-2 bg-gradient-to-r from-benin-green to-benin-blue text-white font-medium rounded-lg hover:shadow-lg transition-all duration-200 whitespace-nowrap font-roboto">
+            Créer un concours
           </a>
         </div>
 
@@ -148,7 +148,7 @@
               </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
-              <tr *ngFor="let communique of communiques | paginate: { id: 'communique_id',
+              <tr *ngFor="let communique of tests | paginate: { id: 'communique_id',
                                                       itemsPerPage: pg.pageSize,
                                                       currentPage: pg.page,
                                                       totalItems: pg.total }; let i = index" class="hover:bg-gray-50 transition-colors">
@@ -157,7 +157,7 @@
                 </td>
                 <td class="px-6 py-4 text-sm text-gray-900 font-roboto">{{startIndex + i + 1}}</td>
                 <td class="px-6 py-4 text-sm text-gray-900 font-roboto max-w-md">
-                  <a routerLink="/admin/communiques/details/{{communique.id}}" class="line-clamp-2 hover:text-benin-green transition-colors cursor-pointer">{{communique.title}}</a>
+                  <a routerLink="/admin/tests/details/{{communique.id}}" class="line-clamp-2 hover:text-benin-green transition-colors cursor-pointer">{{communique.title}}</a>
                 </td>
                 <td class="px-6 py-4 text-center">
                   <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 font-roboto">{{communique?.motif ?? 'Non défini'}}</span>
@@ -179,7 +179,7 @@
         </div>
 
         <div class="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
-          <ul class="flex justify-center mt-12 list-none space-x-2" *ngIf="communiques.length > 0">
+          <ul class="flex justify-center mt-12 list-none space-x-2" *ngIf="tests.length > 0">
 
           <pagination-controls  id="communique_id"
                       (pageChange)="pageChanged($event)"

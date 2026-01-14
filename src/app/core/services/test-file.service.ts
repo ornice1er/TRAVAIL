@@ -6,7 +6,7 @@ import { ConfigService } from '../utils/config-service';
   providedIn: 'root'
 })
 export class TestFileService {
-  url=ConfigService.toApiUrl("communique-files/");
+  url=ConfigService.toApiUrl("test-files/");
 
   constructor(private http:HttpClient) { }
 
@@ -15,10 +15,10 @@ export class TestFileService {
   }
  
   getByState(state:any){
-    return this.http.get<any[]>(`${ConfigService.toApiUrl("communique-files-by-state")}/${state}`,ConfigService.addAction('LISTER'));
+    return this.http.get<any[]>(`${ConfigService.toApiUrl("test-files-by-state")}/${state}`,ConfigService.addAction('LISTER'));
   }
   updateAccount(id:any,resource:any){
-    return this.http.post<any[]>(`${ConfigService.toApiUrl("communique-files-account-update")}/${id}`,resource,ConfigService.addAction('LISTER'));
+    return this.http.post<any[]>(`${ConfigService.toApiUrl("test-files-account-update")}/${id}`,resource,ConfigService.addAction('LISTER'));
   }
 
 
@@ -44,7 +44,7 @@ export class TestFileService {
   }
 
   setState(id:any,state:any){
-    return this.http.get<any[]>(`${ConfigService.toApiUrl("communique-files-set-state")}/${id}/state/${state}`,ConfigService.addAction('CHANGER_STATUT'));
+    return this.http.get<any[]>(`${ConfigService.toApiUrl("test-files-set-state")}/${id}/state/${state}`,ConfigService.addAction('CHANGER_STATUT'));
   }
 
 }

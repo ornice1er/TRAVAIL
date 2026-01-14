@@ -22,7 +22,7 @@ export class TestComponent {
   selectedItems: number[] = [];
   Math=Math
   loading=false
-  communiques: any[] = [];
+  tests: any[] = [];
     pg:any={
     pageSize:9,
     page:1,
@@ -50,27 +50,27 @@ export class TestComponent {
       this.testService.getAll(this.pg.pageSize,this.pg.page).subscribe((res:any)=>{
           this.loading=false
 
-          this.communiques=res.data.data
+          this.tests=res.data.data
           this.pg.total=res.data.total
           this.selected_data=null
 
          },
          (err:any)=>{
           this.loading=false
-          this.toastr.error(err.error?.message, 'Communiqué');
+          this.toastr.error(err.error?.message, 'Concours');
     
         })
   }
 
 
   get totalPages(): number {
-    return Math.ceil(this.communiques.length / this.itemsPerPage);
+    return Math.ceil(this.tests.length / this.itemsPerPage);
   }
 
   get currentCommuniques(): any[] {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    const endIndex = Math.min(startIndex + this.itemsPerPage, this.communiques.length);
-    return this.communiques.slice(startIndex, endIndex);
+    const endIndex = Math.min(startIndex + this.itemsPerPage, this.tests.length);
+    return this.tests.slice(startIndex, endIndex);
   }
 
   get startIndex(): number {
@@ -78,7 +78,7 @@ export class TestComponent {
   }
 
   get endIndex(): number {
-    return Math.min(this.startIndex + this.itemsPerPage, this.communiques.length);
+    return Math.min(this.startIndex + this.itemsPerPage, this.tests.length);
   }
 
   handleSelectItem(id: number,el:any) {
@@ -121,13 +121,24 @@ export class TestComponent {
     onEdit() {
     console.log('Editer');
 
-    this.router.navigate(["/admin/communiques/edition/"+this.selected_data?.id])
+    this.router.navigate(["/admin/tests/edition/"+this.selected_data?.id])
     // implémenter l'édition
   }
 
   onDelete() {
-    console.log('Supprimer');
-    // confirmation et appel API
+        this.loading=true
+      this.testService.delete(this.selected_data.id).subscribe((res:any)=>{
+          this.loading=false
+
+          this.getAll()
+
+
+         },
+         (err:any)=>{
+          this.loading=false
+          this.toastr.error(err.error?.message, 'Concours');
+    
+        })
   }
 
   onTransmit() {
@@ -141,14 +152,14 @@ export class TestComponent {
          },
          (err:any)=>{
           this.loading=false
-          this.toastr.error(err.error?.message, 'Communiqué');
+          this.toastr.error(err.error?.message, 'Concours');
     
         })
   }
 
 
     onShowDetails() {
-    this.router.navigate(["/admin/communiques/details/"+this.selected_data?.id])
+    this.router.navigate(["/admin/tests/details/"+this.selected_data?.id])
     // implémenter la transmission
   }
 
@@ -169,7 +180,7 @@ export class TestComponent {
          },
          (err:any)=>{
           this.loading=false
-          this.toastr.error(err.error?.message, 'Communiqué');
+          this.toastr.error(err.error?.message, 'Concours');
     
         })
   }
@@ -185,12 +196,13 @@ export class TestComponent {
          },
          (err:any)=>{
           this.loading=false
-          this.toastr.error(err.error?.message, 'Communiqué');
+          this.toastr.error(err.error?.message, 'Concours');
     
         })
   }
 
   onArchive() {
+    
          this.loading=true
       this.testService.archive(this.selected_data.id).subscribe((res:any)=>{
           this.loading=false
@@ -201,7 +213,7 @@ export class TestComponent {
          },
          (err:any)=>{
           this.loading=false
-          this.toastr.error(err.error?.message, 'Communiqué');
+          this.toastr.error(err.error?.message, 'Concours');
     
         })
   }

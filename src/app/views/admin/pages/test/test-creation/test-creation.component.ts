@@ -9,6 +9,7 @@ import { LocalStorageService } from '../../../../../core/utils/local-stoarge-ser
 import Quill from 'quill';
 import { QuillModule } from 'ngx-quill';
 import { LoadingComponent } from '../../../../../shared/components/loading/loading.component';
+import { CommuniqueService } from '../../../../../core/services/communique.service';
 const Font = Quill.import('formats/font') as any;
 Font.whitelist = ['bookman', 'arial', 'times-new-roman'];
 Quill.register('formats/font', Font, true);
@@ -36,6 +37,9 @@ loading=false
     'Archives'
   ];
 
+  communiquesSelected:any[]=[];
+communiques:any[]=[];
+
 
       modules = {
   toolbar: [
@@ -52,15 +56,29 @@ loading=false
     private testService:TestService,
     private lsService:LocalStorageService,
     private router:Router,
-    private toastr:ToastrService
+    private toastr:ToastrService,
+    private communiqueService:CommuniqueService
   ){
 
   }
 
 
   ngOnInit(){
-
+    this.getAll()
   }
+
+
+    getAll() {
+      this.communiqueService.getAll(10,1).subscribe((res:any)=>{
+          this.communiques=res.data.data
+         },
+         (err:any)=>{
+          this.loading=false
+          this.toastr.error(err.error?.message, 'Communiqué');
+    
+        })
+  }
+
 
   handleSubmit() {
     this.loading=true
@@ -68,16 +86,17 @@ loading=false
         title:this.title,
         description:this.content,
         category:this.category,
-        has_principal_access:this.has_principal_access
+        has_principal_access:this.has_principal_access,
+        communiques:this.communiquesSelected
       }).subscribe((res:any)=>{
           this.loading=false
-               this.router.navigate(['/admin/communiques'])
+               this.router.navigate(['/admin/tests'])
     
           this.toastr.success('Connexion réussie', 'Connexion');
          },
          (err:any)=>{
           this.loading=false
-          this.toastr.error(err.error?.message, 'Communiqué');
+          this.toastr.error(err.error?.message, 'Concours');
     
         })
   }
