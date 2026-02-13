@@ -14,10 +14,7 @@ import { ConfigService } from '../../../../core/utils/config-service';
 
     <!-- Breadcrumb -->
     <nav class="mb-8">
-      <a
-        routerLink="/communiques"
-        class="text-primary-800 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300 inline-flex items-center"
-      >
+      <a routerLink="/communiques" class="text-primary-800 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300 inline-flex items-center">
         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
         </svg>
@@ -27,8 +24,6 @@ import { ConfigService } from '../../../../core/utils/config-service';
 
     <!-- ARTICLE CENTRÉ -->
     <article class="max-w-4xl mx-auto">
-
-      <!-- En-tête -->
       <header class="mb-8">
         <div class="flex items-center mb-4">
           <span class="bg-primary-800 dark:bg-primary-700 text-white px-4 py-2 rounded-full text-sm font-medium mr-4">
@@ -44,11 +39,9 @@ import { ConfigService } from '../../../../core/utils/config-service';
         </h1>
       </header>
 
-      <!-- Contenu -->
       <div class="prose prose-lg dark:prose-invert max-w-none rich-content" [innerHTML]="communique.description"></div>
 
-      <!-- Tags -->
-      <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
+      <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700" *ngIf="communique.tags?.length">
         <h4 class="text-sm font-semibold text-gray-900 dark:text-white mb-4">Mots-clés :</h4>
         <div class="flex flex-wrap gap-2">
           <span *ngFor="let tag of communique.tags"
@@ -57,95 +50,116 @@ import { ConfigService } from '../../../../core/utils/config-service';
           </span>
         </div>
       </div>
-
     </article>
-  </div>
 
-  <!-- MÉDIAS EN PLEINE LARGEUR -->
-  <section class="max-w-4xl mx-auto mt-12">
-    <h4 class="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-4">
-      📎 Médias associés
-    </h4>
+    <!-- Fichiers du Communiqué -->
+    <section *ngIf="communique.files?.length" class="max-w-4xl mx-auto mt-12">
+      <h4 class="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-4">
+        📄 Fichiers du communiqué
+      </h4>
 
-    <div class="space-y-4">
-      <div *ngFor="let media of medias"
-        class="group flex items-center w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl px-6 py-4 hover:shadow-md transition-all duration-300">
+      <div class="space-y-4">
+        <div *ngFor="let media of communique.files"
+          class="group flex items-center w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl px-6 py-4 hover:shadow-md transition-all duration-300">
 
-        <!-- Icône -->
-        <div class="flex items-center justify-center w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900/40 mr-4">
-          <ng-container [ngSwitch]="media.type">
-            <svg *ngSwitchCase="'pdf'" class="w-7 h-7 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M12 11V3l8 8h-6a2 2 0 01-2-2zM12 15v6m0 0l3-3m-3 3l-3-3"/>
-            </svg>
-            <svg *ngSwitchDefault class="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M7 3h10a2 2 0 012 2v14a2 2 0 01-2 2H7a2 2 0 01-2-2V5a2 2 0 012-2z"/>
-            </svg>
-          </ng-container>
-        </div>
+          <div class="flex items-center justify-center w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900/40 mr-4">
+            <ng-container [ngSwitch]="media.type">
+              <svg *ngSwitchCase="'pdf'" class="w-7 h-7 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 11V3l8 8h-6a2 2 0 01-2-2zM12 15v6m0 0l3-3m-3 3l-3-3"/>
+              </svg>
+              <svg *ngSwitchDefault class="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M7 3h10a2 2 0 012 2v14a2 2 0 01-2 2H7a2 2 0 01-2-2V5a2 2 0 012-2z"/>
+              </svg>
+            </ng-container>
+          </div>
 
-        <!-- Contenu -->
-        <div class="flex-1 min-w-0">
-          <h5 class="font-medium text-gray-900 dark:text-white mb-1 truncate" [title]="media.nom">
-            {{ media.nom }}
-          </h5>
-          <p class="text-xs text-gray-500 dark:text-gray-400">
-            {{ media.created_at | date : "d MMMM yyyy" : "fr" }}
-          </p>
-        </div>
+          <div class="flex-1 min-w-0">
+            <h5 class="font-medium text-gray-900 dark:text-white mb-1 truncate" [title]="media.nom">
+              {{ media.nom }}
+            </h5>
+            <p class="text-xs text-gray-500 dark:text-gray-400">
+              {{ media.created_at | date : "d MMMM yyyy" : "fr" }}
+            </p>
+          </div>
 
-        <!-- Actions -->
-        <div class="flex items-center space-x-4 ml-4">
-          <a [href]="getLink('communiques', media.filename)" target="_blank"
-            class="text-primary-700 dark:text-primary-400 hover:underline text-sm font-medium">Voir</a>
-          <a [href]="getLink('communiques', media.filename)" download
-            class="text-gray-600 dark:text-gray-300 hover:text-primary-700 text-sm">Télécharger</a>
+          <div class="flex items-center space-x-4 ml-4">
+            <a [href]="getLink('communiques', media.filename)" target="_blank"
+              class="text-primary-700 dark:text-primary-400 hover:underline text-sm font-medium">Voir</a>
+            <a [href]="getLink('communiques', media.filename)" download
+              class="text-gray-600 dark:text-gray-300 hover:text-primary-700 text-sm">Télécharger</a>
+          </div>
         </div>
       </div>
+    </section>
 
-      
-    </div>
-    <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
-            <h4
-              class="text-sm font-semibold text-gray-900 dark:text-white mb-4"
-            >
-              Partager cet article :
-            </h4>
-            <div class="flex space-x-4">
-              <button
-                class="flex items-center space-x-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
-              >
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"
-                  />
+    <!-- Concours associé -->
+    <section *ngIf="communique.concours" class="max-w-4xl mx-auto mt-12">
+      <h3 class="text-2xl font-bold mb-4">🎓 Concours associé</h3>
+
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6">
+
+        <h4 class="text-xl font-semibold">{{ communique.concours.title }}</h4>
+        <div class="prose dark:prose-invert mt-4" [innerHTML]="communique.concours.description"></div>
+
+        <!-- Fichiers du concours -->
+        <div *ngFor="let group of groupedConcoursFiles | keyvalue" class="mt-6">
+          <h5 class="font-semibold text-primary-700 mb-2">{{ group.key }}</h5>
+
+          <div *ngFor="let file of group.value" class="group flex items-center w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl px-6 py-4 hover:shadow-md transition-all duration-300 mb-2">
+            <div class="flex items-center justify-center w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900/40 mr-4">
+              <ng-container [ngSwitch]="file.type">
+                <svg *ngSwitchCase="'pdf'" class="w-7 h-7 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 11V3l8 8h-6a2 2 0 01-2-2zM12 15v6m0 0l3-3m-3 3l-3-3"/>
                 </svg>
-                <span>Twitter</span>
-              </button>
-              <button
-                class="flex items-center space-x-2 text-blue-700 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors"
-              >
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"
-                  />
+                <svg *ngSwitchDefault class="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M7 3h10a2 2 0 012 2v14a2 2 0 01-2 2H7a2 2 0 01-2-2V5a2 2 0 012-2z"/>
                 </svg>
-                <span>Facebook</span>
-              </button>
-              <button
-                class="flex items-center space-x-2 text-blue-800 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 transition-colors"
-              >
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M22.23 0H1.77C.8 0 0 .77 0 1.72v20.56C0 23.23.8 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.2 0 22.23 0zM7.27 20.1H3.65V9.24h3.62V20.1zM5.47 7.76h-.03c-1.22 0-2-.83-2-1.87 0-1.06.8-1.87 2.05-1.87 1.24 0 2 .8 2.02 1.87 0 1.04-.78 1.87-2.05 1.87zM20.34 20.1h-3.63v-5.8c0-1.45-.52-2.45-1.83-2.45-1 0-1.6.67-1.87 1.32-.1.23-.11.55-.11.88v6.05H9.28s.05-9.82 0-10.84h3.63v1.54a3.6 3.6 0 0 1 3.26-1.8c2.37 0 4.15 1.55 4.15 4.9v6.2h.02z"
-                  />
-                </svg>
-                <span>LinkedIn</span>
-              </button>
+              </ng-container>
+            </div>
+
+            <div class="flex-1 min-w-0">
+              <h5 class="font-medium text-gray-900 dark:text-white mb-1 truncate" [title]="file.title">
+                {{ file.title }}
+              </h5>
+              <p class="text-xs text-gray-500 dark:text-gray-400">
+                {{ file.created_at | date : "d MMMM yyyy" : "fr" }}
+              </p>
+            </div>
+
+            <div class="flex items-center space-x-4 ml-4">
+              <a [href]="getLink('tests', file.filename)" target="_blank"
+                 class="text-primary-700 dark:text-primary-400 hover:underline text-sm font-medium">Voir</a>
+              <a [href]="getLink('tests', file.filename)" download
+                 class="text-gray-600 dark:text-gray-300 hover:text-primary-700 text-sm">Télécharger</a>
             </div>
           </div>
-  </section>
+        </div>
+
+        <!-- Communiqués associés au concours -->
+        <div *ngIf="communique.concours.lists?.length" class="mt-8 pt-4 border-t border-gray-200 dark:border-gray-700">
+          <h5 class="font-semibold text-gray-900 dark:text-white mb-4">📢 Communiqués associés</h5>
+
+          <div *ngFor="let c of communique.concours.lists" class="group flex items-center w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl px-6 py-4 hover:shadow-md transition-all duration-300 mb-2">
+            <div class="flex-1 min-w-0">
+              <h5 class="font-medium text-gray-900 dark:text-white mb-1 truncate">{{ c.title }}</h5>
+              <p class="text-xs text-gray-500 dark:text-gray-400">
+                {{ c.created_at | date : "d MMMM yyyy" : "fr" }}
+              </p>
+            </div>
+            <div class="flex items-center space-x-4 ml-4">
+              <a [routerLink]="['/communiques', c.slug]" class="text-primary-700 dark:text-primary-400 hover:underline text-sm font-medium">Voir</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </div>
 </div>
 
   `,
@@ -166,6 +180,7 @@ export class CommuniqueDetailComponent {
 articlesSimilaires: any[]=[];
   articles: any[] = [];
   medias: any[] = [];
+  groupedConcoursFiles: { [key: string]: any[] } = {};
 
     networks: any[] = [];
 
@@ -186,7 +201,13 @@ articlesSimilaires: any[]=[];
       this.communique=res.data.communique
       this.medias=this.communique?.files
       let links=res.data.shareLinks
-
+      // Regrouper les fichiers du concours par type
+        if (this.communique?.concours?.files) {
+          this.groupedConcoursFiles = this.groupBy(
+            this.communique.concours.files,
+            'type'
+          );
+        }
       this.networks = [
           {
             name: 'Twitter',
@@ -319,6 +340,13 @@ articlesSimilaires: any[]=[];
         ];
       
     })
+  }
+
+    groupBy(list: any[], key: string) {
+    return list.reduce((result, item) => {
+      (result[item[key]] = result[item[key]] || []).push(item);
+      return result;
+    }, {});
   }
 
     getLink(dir:any,photo:any){

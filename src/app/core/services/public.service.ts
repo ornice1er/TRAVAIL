@@ -89,6 +89,10 @@ export class PublicService {
       return this.http.get<any>(`${ConfigService.toApiUrl("page/communiques")}/${slug}`);
     }
 
+     getOneConcours(slug:any){
+      return this.http.get<any>(`${ConfigService.toApiUrl("page/concours")}/${slug}`);
+    }
+
      getStructureSousTutelles(){
       return this.http.get<any>(`${ConfigService.toApiUrl("structures-sous-tutelles")}`);
     }
@@ -131,6 +135,10 @@ export class PublicService {
 
      getCommuniques(pageSize:any,page:any){
       return this.http.get<any>(`${ConfigService.toApiUrl("public/communiques")}?pageSize=${pageSize}&page=${page}`);
+    }
+
+     getConcours(pageSize:any,page:any){
+      return this.http.get<any>(`${ConfigService.toApiUrl("public/concours")}?pageSize=${pageSize}&page=${page}`);
     }
 
      getOppStages(){

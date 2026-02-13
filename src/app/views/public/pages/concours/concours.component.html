@@ -1,30 +1,14 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Actualite } from '../../../../shared/models/actualite.model';
-import { AnimationService } from '../../../../shared/services/animation.service';
-import { ConfigService } from '../../../../core/utils/config-service';
-import { PublicService } from '../../../../core/services/public.service';
-import { NgxPaginationModule } from 'ngx-pagination';
-
-@Component({
-  selector: "app-communiques",
-  standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule,NgxPaginationModule],
-  template: `
      <!-- Hero Section -->
     <div
       class="bg-gradient-to-r from-primary-800 to-primary-900 dark:from-primary-900 dark:to-primary-950 text-white pt-32 pb-16"
     >
       <div class="container-custom">
         <div class="text-center ">
-          <h1 class="text-4xl lg:text-5xl font-bold mb-6">Communiqués</h1>
+          <h1 class="text-4xl lg:text-5xl font-bold mb-6">Concours</h1>
           <p
             class="text-xl text-primary-100 dark:text-primary-200 max-w-3xl mx-auto"
           >
-            Restez informé des dernières nouvelles et initiatives du Ministère
-            du Travail.
+            Restez informé des concours et avenants
           </p>
         </div>
       </div>
@@ -43,7 +27,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
           class="flex flex-col md:flex-row items-center justify-center gap-6"
         >
           <!-- Filtres par catégorie -->
-          <div
+          <!-- <div
             class="flex flex-wrap justify-center gap-4"
             role="group"
             aria-label="Filtrer les actualités par catégorie"
@@ -62,9 +46,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
             >
               {{ categorie }}
             </button>
-          </div>
+          </div> -->
           <!-- Filtre par structure -->
-          <div class="relative w-full md:w-auto">
+          <!-- <div class="relative w-full md:w-auto">
             <select
               (change)="filtrerParStructure($event)"
               class="form-select w-full md:w-64 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
@@ -74,7 +58,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
                 {{ structure.name }}
               </option>
             </select>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>
@@ -91,8 +75,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
   >
     <article
       *ngFor="
-        let communique of communiquesFiltrees | paginate: {
-            id: 'communique_id',
+        let concour of concoursFiltrees | paginate: {
+            id: 'concour_id',
             itemsPerPage: pg.pageSize,
             currentPage: pg.page,
             totalItems: pg.total
@@ -114,7 +98,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
           <span
             class="bg-primary-100 dark:bg-primary-900/40 text-primary-800 dark:text-primary-300 px-2 py-0.5 rounded-full font-medium"
           >
-            {{ communique.category ?? 'Communiqué officiel' }}
+           Concours
           </span>
           <span class="flex items-center space-x-1">
             <svg
@@ -130,34 +114,34 @@ import { NgxPaginationModule } from 'ngx-pagination';
                 d="M8 7V3m8 4V3m-9 8h10m-11 5h12a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v7a2 2 0 002 2z"
               />
             </svg>
-            <span>{{ communique.created_at | date: 'd MMMM yyyy' : 'fr' }}</span>
+            <span>{{ concour.created_at | date: 'd MMMM yyyy' : 'fr' }}</span>
           </span>
         </div>
 
         <!-- Titre -->
          <a
-            [routerLink]="['/communiques', communique.slug]"
+            [routerLink]="['/concours', concour.slug]"
             class="inline-flex items-center text-primary-700 dark:text-primary-400 font-medium hover:underline"
           >
         <h3
           class="text-xl font-semibold cursor-pointer text-gray-900 dark:text-white mb-3 group-hover:text-primary-700 dark:group-hover:text-primary-400 transition-colors line-clamp-2"
         >
-          {{ communique.title }}
+          {{ concour.title }}
         </h3>
           </a>
 
         <!-- Description courte -->
-        <p class="text-gray-600 dark:text-gray-300 text-sm mb-4 line-clamp-3">
-          {{ communique.sub_description }}
-        </p>
+      <p class="text-gray-600 dark:text-gray-300 text-sm mb-4 line-clamp-3 rich-content "
+   [innerHTML]="(concour.description | slice:0:150) + (concour.description.length > 150 ? '...' : '')">
+</p>
 
         <!-- Pied -->
         <div class="flex items-center justify-between mt-auto">
           <a
-            [routerLink]="['/communiques', communique.slug]"
+            [routerLink]="['/concours', concour.slug]"
             class="inline-flex items-center text-primary-700 dark:text-primary-400 font-medium hover:underline"
           >
-            Lire le communiqué
+            Lire plus
             <svg
               class="w-4 h-4 ml-2"
               fill="none"
@@ -173,9 +157,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
             </svg>
           </a>
 
-          <div *ngIf="communique.tags?.length" class="flex space-x-2">
+          <div *ngIf="concour.tags?.length" class="flex space-x-2">
             <span
-              *ngFor="let tag of communique.tags.slice(0, 2)"
+              *ngFor="let tag of concour.tags.slice(0, 2)"
               class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-1 rounded-full text-xs font-medium"
             >
               #{{ tag }}
@@ -188,9 +172,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
 
 
         <!-- Pagination -->
-         <ul class="flex justify-center mt-12 list-none space-x-2" *ngIf="communiquesFiltrees.length > 0">
+         <ul class="flex justify-center mt-12 list-none space-x-2" *ngIf="concoursFiltrees.length > 0">
 
-          <pagination-controls  id="communique_id"
+          <pagination-controls  id="concour_id"
                       (pageChange)="pageChanged($event)"
                       (pageBoundsCorrection)="pageChanged($event)"
                       [maxSize]="pg.total"
@@ -250,123 +234,4 @@ import { NgxPaginationModule } from 'ngx-pagination';
           </form>
         </div>
       </div>
-    </section>-->  `,
-  styles: [
-    `
-      .line-clamp-2 {
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-      }
-
-      .line-clamp-3 {
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-      }
-    `,
-  ],
-})
-export class CommuniquesComponent {
-  categorieActive:any  = 0;
-    structureActive:any = 0;
-  
-    categories:any[] = [];
-  
-    structures: any[] = [];
-  
-    actualiteUne: any ;
-  
-    communiques: any[] = [  ];
-  
-    communiquesFiltrees:any = [];
-  
-    pg:any={
-      pageSize:9,
-      page:1,
-      total:0
-    }
-  
-    constructor(private animationService: AnimationService,private publicService:PublicService, private route:ActivatedRoute) {}
-  
-    ngOnInit() {
-      this.route.queryParams.subscribe(params => {
-        const nature = params['nature'];
-      if(nature){
-        this.categorieActive=nature
-      }else{
-        this.categorieActive="Toutes"
-      }
-      });
-      this.getAll()
-
-    }
-  
-  
-  
-    getAll(){
-      this.publicService.getCommuniques(this.pg.pageSize,this.pg.page).subscribe((res:any)=>{
-      this.categories=["Toutes",...res.data?.categories]
-      this.structures=[{id:0,name:"Toutes les structures"},...res.data?.structures]
-       this.communiques=res.data.communiques.data
-       this.communiquesFiltrees=this.communiques
-       this.pg.total=res.data.communiques.total
-       this.appliquerFiltres()
-      })
-    }
-  
-    ngAfterViewInit() {
-      setTimeout(() => {
-        this.animationService.initScrollAnimations();
-      }, 100);
-    }
-  
-    filtrerParCategorie(categorie: any) {
-      
-      this.categorieActive = categorie;
-      this.appliquerFiltres();
-    }
-  
-    filtrerParStructure(ev: any) {
-      this.structureActive = parseInt(ev.target.value);
-      this.appliquerFiltres();
-    }
-  
-    appliquerFiltres() {
-      let communiques = [...this.communiques];
-  
-      // Filtrage par catégorie
-      if (this.categorieActive !== 'Toutes') {
-        communiques = communiques.filter(
-          (a) => {
-           let categorySet=this.categorieActive =="Communiqués concours"?'Concours':'Activité' ;
-            return a.category ===     categorySet 
-          });
-      }
-  
-      // Filtrage par structure
-      if (this.structureActive !== 0 && this.structureActive !== 1) {
-        communiques = communiques.filter((a) => a.media?.structure_id === this.structureActive);
-      }
-  
-      this.communiquesFiltrees = communiques;
-    }
-  
-    trackByActualiteId(index: number, actualite: Actualite): number {
-      return actualite.id;
-    }
-  
-      getLink(dir:any,photo:any){
-        return`${ConfigService.toFile("storage")}/${dir}/${photo}`
-      }
-  
-  
-      pageChanged(ev:any){
-  
-        this.pg.page=ev
-        this.getAll()
-      }
-  
-}
+    </section>--> 

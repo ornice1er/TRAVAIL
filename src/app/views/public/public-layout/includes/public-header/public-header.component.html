@@ -144,6 +144,12 @@
                    role="menuitem">
                   Services en ligne
                 </a>
+                 <a routerLink="/concours" 
+                   routerLinkActive="text-primary-800 dark:text-primary-400 font-semibold"
+                   class="text-gray-700 dark:text-gray-300 hover:text-primary-800 dark:hover:text-primary-400 transition-colors font-medium"
+                   role="menuitem">
+                  Concours
+                </a>
                 <a routerLink="/textes-lois" 
                    routerLinkActive="text-primary-800 dark:text-primary-400 font-semibold"
                    class="text-gray-700 dark:text-gray-300 hover:text-primary-800 dark:hover:text-primary-400 transition-colors font-medium"
@@ -305,6 +311,13 @@
                    class="text-gray-700 dark:text-gray-300 hover:text-primary-800 dark:hover:text-primary-400 transition-colors font-medium"
                    role="menuitem">
                   Services en ligne
+                </a>
+                 <a routerLink="/concours" 
+                   (click)="closeMobileMenu()"
+                   routerLinkActive="text-primary-800 dark:text-primary-400 font-semibold"
+                   class="text-gray-700 dark:text-gray-300 hover:text-primary-800 dark:hover:text-primary-400 transition-colors font-medium"
+                   role="menuitem">
+                 Concours
                 </a>
                 <a routerLink="/textes-lois" 
                    (click)="closeMobileMenu()"
