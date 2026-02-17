@@ -18,6 +18,10 @@ export const PublicRounting: Routes = [
     loadComponent: () => import('./pages/ministere/le-ministre/le-ministre.component').then(m => m.LeMinistereComponent)
   },
   {
+    path: 'ministere/le-cabinet',
+    loadComponent: () => import('./pages/ministere/cabinet/cabinet.component').then(m => m.CabinetComponent)
+  },
+  {
     path: 'ministere/notre-vision',
     loadComponent: () => import('./pages/ministere/notre-vision/notre-vision.component').then(m => m.NotreVisionComponent)
   },

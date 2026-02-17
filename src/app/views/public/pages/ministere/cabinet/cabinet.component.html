@@ -1,0 +1,66 @@
+<!-- HERO -->
+<div
+  class="bg-gradient-to-r from-primary-800 to-primary-900 text-white pt-32 pb-16"
+>
+  <div class="container-custom text-center">
+    <h1 class="text-4xl lg:text-5xl font-bold mb-6">LE CABINET DU MINISTRE</h1>
+    <p class="text-xl text-primary-100 max-w-3xl mx-auto">
+      Découvrez les membres du cabinet du ministre.
+    </p>
+  </div>
+</div>
+
+<section class="section-padding bg-white dark:bg-gray-900">
+  <div class="container-custom">
+
+    <!-- TITRE -->
+    <div class="mb-8">
+      <h2 class="text-3xl font-bold mb-4">Cabinet du Ministre</h2>
+      <p class="text-lg text-gray-600 dark:text-gray-300">
+        L'équipe dirigeante qui accompagne le Ministre dans l'exercice de ses fonctions.
+      </p>
+    </div>
+
+    <!-- SKELETON -->
+    <div *ngIf="loading" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div *ngFor="let i of [1,2,3,4,5,6]"
+           class="h-96 bg-gray-200 rounded animate-pulse">
+      </div>
+    </div>
+
+    <!-- GRID -->
+    <div *ngIf="!loading"
+         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <div
+        *ngFor="let membre of membresCabinet; trackBy: trackById"
+        class="bg-white dark:bg-gray-800 rounded shadow hover:-translate-y-2 hover:shadow-xl transition-all duration-300 text-center"
+      >
+
+        <!-- PHOTO -->
+        <div class="w-full h-60 md:h-72 lg:h-80 overflow-hidden rounded-t">
+          <img
+            loading="lazy"
+            [src]="getLink('teams', membre.photo)"
+            [alt]="membre.name"
+            class="w-full h-full object-contain object-center"
+            (error)="onImageError($event)"
+          />
+        </div>
+
+        <!-- NOM -->
+        <h3 class="mt-4 px-4 text-lg font-bold line-clamp-2">
+          {{ membre.name }}
+        </h3>
+
+        <!-- FONCTION -->
+        <p class="px-4 pb-6 text-sm text-gray-600 dark:text-gray-300 line-clamp-3">
+          {{ membre.office }}
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>

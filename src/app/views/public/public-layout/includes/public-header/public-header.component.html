@@ -80,6 +80,11 @@
                        role="menuitem">
                       Le Ministre
                     </a>
+                    <a routerLink="/ministere/le-cabinet" 
+                       class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-800 dark:hover:text-primary-400 transition-colors"
+                       role="menuitem">
+                      Le Cabinet
+                    </a>
                     <a routerLink="/ministere/notre-vision" 
                        class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-800 dark:hover:text-primary-400 transition-colors"
                        role="menuitem">
@@ -235,6 +240,12 @@
                        class="block text-gray-600 dark:text-gray-400 hover:text-primary-800 dark:hover:text-primary-400 transition-colors py-2 text-sm"
                        role="menuitem">
                       Le Ministre
+                    </a>
+                     <a routerLink="/ministere/le-cabinet" 
+                       (click)="closeMobileMenu()"
+                       class="block text-gray-600 dark:text-gray-400 hover:text-primary-800 dark:hover:text-primary-400 transition-colors py-2 text-sm"
+                       role="menuitem">
+                      Le cabinet du ministre
                     </a>
                     <a routerLink="/ministere/notre-vision" 
                        (click)="closeMobileMenu()"
