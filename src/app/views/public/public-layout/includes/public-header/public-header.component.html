@@ -72,80 +72,22 @@
                     </svg>
                   </button>
                   
-                  <!-- Dropdown menu -->
-                  <div *ngIf="showMinistereMenu" 
-                       class="absolute top-full left-0 w-[36rem] max-w-[90vw] grid grid-cols-1 md:grid-cols-2 gap-x-3 bg-white space-y-0 dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-2 z-50 animate-fade-in"
+                  <!-- Méga-menu groupé par familles -->
+                  <div *ngIf="showMinistereMenu"
+                       class="absolute top-full left-0 w-[52rem] max-w-[92vw] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-6 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 p-6 z-50 animate-fade-in"
                        role="menu">
-                    <a routerLink="/ministere/le-ministre" 
-                       class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-800 dark:hover:text-primary-400 transition-colors"
-                       role="menuitem">
-                      Le Ministre
-                    </a>
-                    <a routerLink="/ministere/le-cabinet" 
-                       class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-800 dark:hover:text-primary-400 transition-colors"
-                       role="menuitem">
-                      Le Cabinet
-                    </a>
-                    <a routerLink="/ministere/notre-vision" 
-                       class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-800 dark:hover:text-primary-400 transition-colors"
-                       role="menuitem">
-                      Notre vision
-                    </a>
-                    <a routerLink="/ministere/secretariat-general" 
-                       class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-800 dark:hover:text-primary-400 transition-colors"
-                       role="menuitem">
-                      Secrétariat Général du Ministère
-                    </a>
-                    <a routerLink="/ministere/inspection-generale" 
-                       class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-800 dark:hover:text-primary-400 transition-colors"
-                       role="menuitem">
-                      Inspection Générale des Services et Emplois Publics
-                    </a>
-                    <a routerLink="/ministere/direction-planification" 
-                       class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-800 dark:hover:text-primary-400 transition-colors"
-                       role="menuitem">
-                      Direction de la Planification de l'Administration et des Finances
-                    </a>
-                    <a routerLink="/ministere/direction-systemes-information" 
-                       class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-800 dark:hover:text-primary-400 transition-colors"
-                       role="menuitem">
-                      Direction des Systèmes d'Information
-                    </a>
-                    <a routerLink="/ministere/direction-generale-travail" 
-                       class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-800 dark:hover:text-primary-400 transition-colors"
-                       role="menuitem">
-                      Direction Générale du Travail
-                    </a>
-                    <a routerLink="/ministere/direction-generale-fonction-publique"
-                       class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-800 dark:hover:text-primary-400 transition-colors"
-                       role="menuitem">
-                      Direction Générale de la Fonction Publique
-                    </a>
-                    <a routerLink="/ministere/direction-budget"
-                       class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-800 dark:hover:text-primary-400 transition-colors"
-                       role="menuitem">
-                      Direction Générale du Budget
-                    </a>
-                    <a routerLink="/ministere/direction-renforcement-capacites" 
-                       class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-800 dark:hover:text-primary-400 transition-colors"
-                       role="menuitem">
-                      Direction Générale du Renforcement des Capacités et de l'Employabilité
-                    </a>
-                    <a routerLink="/ministere/cellule-suivi-reformes" 
-                       class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-800 dark:hover:text-primary-400 transition-colors"
-                       role="menuitem">
-                      Cellule de Suivi des Réformes
-                    </a>
-                    <a routerLink="/ministere/directions-departementales" 
-                       class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-800 dark:hover:text-primary-400 transition-colors"
-                       role="menuitem">
-                      Directions Départementales
-                    </a>
-                    <a routerLink="/ministere/structures-sous-tutelle" 
-                       class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-800 dark:hover:text-primary-400 transition-colors"
-                       role="menuitem">
-                      Structures sous tutelle
-                    </a>
+                    <div *ngFor="let famille of ministereMenu" class="min-w-0">
+                      <h3 class="text-xs font-semibold uppercase tracking-wide text-primary-800 dark:text-primary-400 border-b border-gray-100 dark:border-gray-700 pb-2 mb-2">
+                        {{ famille.titre }}
+                      </h3>
+                      <a *ngFor="let lien of famille.liens"
+                         [routerLink]="lien.route"
+                         routerLinkActive="text-primary-800 dark:text-primary-400 font-semibold"
+                         class="block px-2 py-1.5 rounded-md text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-800 dark:hover:text-primary-400 transition-colors"
+                         role="menuitem">
+                        {{ lien.label }}
+                      </a>
+                    </div>
                   </div>
                 </div>
                 
@@ -186,8 +128,16 @@
                    Fiches Métiers
                 </a> -->
                 
+                <!-- Bouton Recherche -->
+                <button (click)="toggleSearch()"
+                        class="p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:text-primary-800 dark:hover:text-primary-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
+                        [attr.aria-expanded]="showSearch"
+                        [attr.aria-label]="showSearch ? 'Fermer la recherche' : 'Ouvrir la recherche'">
+                  <i class="fas w-5 h-5" [ngClass]="showSearch ? 'fa-times' : 'fa-search'"></i>
+                </button>
+
                 <!-- Toggle Dark Mode -->
-                <button (click)="toggleTheme()" 
+                <button (click)="toggleTheme()"
                         class="p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:text-primary-800 dark:hover:text-primary-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
                         [attr.aria-label]="themeService.isDarkMode ? 'Activer le mode clair' : 'Activer le mode sombre'">
                   <svg *ngIf="!themeService.isDarkMode" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -211,12 +161,59 @@
               </button>
             </div>
             
+            <!-- Barre de recherche (desktop) -->
+            <div *ngIf="showSearch" class="hidden lg:block border-t border-gray-200 dark:border-gray-700 py-4 animate-fade-in">
+              <form (ngSubmit)="submitSearch()" role="search" class="max-w-2xl mx-auto">
+                <div class="flex items-center bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden focus-within:ring-2 focus-within:ring-primary-500">
+                  <span class="pl-4 text-gray-400" aria-hidden="true">
+                    <i class="fas fa-search"></i>
+                  </span>
+                  <input id="header-search-input"
+                         type="search"
+                         name="q"
+                         [(ngModel)]="searchTerm"
+                         placeholder="Rechercher une actualité, un concours, un document…"
+                         aria-label="Saisissez votre recherche"
+                         class="flex-1 px-4 py-3 bg-transparent text-gray-900 dark:text-white focus:outline-none" />
+                  <button type="submit"
+                          class="bg-primary-800 hover:bg-primary-900 text-white font-medium px-6 py-3 transition-colors">
+                    Rechercher
+                  </button>
+                  <button type="button"
+                          (click)="toggleSearch()"
+                          class="px-4 py-3 text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors"
+                          aria-label="Fermer la recherche">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </form>
+            </div>
+
             <!-- Menu mobile -->
             <div *ngIf="isMobileMenuOpen" class="lg:hidden border-t border-gray-200 dark:border-gray-700 py-4" role="menu" aria-label="Menu de navigation mobile">
               <div class="flex flex-col space-y-4">
-                <a routerLink="/" 
+
+                <!-- Recherche (mobile) -->
+                <form (ngSubmit)="submitSearch()" role="search" class="mb-2">
+                  <div class="flex items-center bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden focus-within:ring-2 focus-within:ring-primary-500">
+                    <span class="pl-3 text-gray-400" aria-hidden="true">
+                      <i class="fas fa-search"></i>
+                    </span>
+                    <input type="search"
+                           name="q"
+                           [(ngModel)]="searchTerm"
+                           placeholder="Rechercher…"
+                           aria-label="Saisissez votre recherche"
+                           class="flex-1 px-3 py-2 bg-transparent text-gray-900 dark:text-white focus:outline-none text-sm" />
+                    <button type="submit" class="bg-primary-800 text-white px-4 py-2 text-sm" aria-label="Lancer la recherche">
+                      <i class="fas fa-arrow-right"></i>
+                    </button>
+                  </div>
+                </form>
+
+                <a routerLink="/"
                    (click)="closeMobileMenu()"
-                   routerLinkActive="text-primary-800 dark:text-primary-400 font-semibold" 
+                   routerLinkActive="text-primary-800 dark:text-primary-400 font-semibold"
                    [routerLinkActiveOptions]="{exact: true}"
                    class="text-gray-700 dark:text-gray-300 hover:text-primary-800 dark:hover:text-primary-400 transition-colors font-medium"
                    role="menuitem">
@@ -239,92 +236,21 @@
                     </svg>
                   </button>
                   
-                  <!-- Sous-menu mobile -->
-                  <div *ngIf="showMobileMinistereMenu" class="ml-4 mt-2 space-y-2">
-                    <a routerLink="/ministere/le-ministre" 
-                       (click)="closeMobileMenu()"
-                       class="block text-gray-600 dark:text-gray-400 hover:text-primary-800 dark:hover:text-primary-400 transition-colors py-2 text-sm"
-                       role="menuitem">
-                      Le Ministre
-                    </a>
-                     <a routerLink="/ministere/le-cabinet" 
-                       (click)="closeMobileMenu()"
-                       class="block text-gray-600 dark:text-gray-400 hover:text-primary-800 dark:hover:text-primary-400 transition-colors py-2 text-sm"
-                       role="menuitem">
-                      Le cabinet du ministre
-                    </a>
-                    <a routerLink="/ministere/notre-vision" 
-                       (click)="closeMobileMenu()"
-                       class="block text-gray-600 dark:text-gray-400 hover:text-primary-800 dark:hover:text-primary-400 transition-colors py-2 text-sm"
-                       role="menuitem">
-                      Notre vision
-                    </a>
-                    <a routerLink="/ministere/secretariat-general" 
-                       (click)="closeMobileMenu()"
-                       class="block text-gray-600 dark:text-gray-400 hover:text-primary-800 dark:hover:text-primary-400 transition-colors py-2 text-sm"
-                       role="menuitem">
-                      Secrétariat Général
-                    </a>
-                    <a routerLink="/ministere/inspection-generale" 
-                       (click)="closeMobileMenu()"
-                       class="block text-gray-600 dark:text-gray-400 hover:text-primary-800 dark:hover:text-primary-400 transition-colors py-2 text-sm"
-                       role="menuitem">
-                      Inspection Générale
-                    </a>
-                    <a routerLink="/ministere/direction-planification" 
-                       (click)="closeMobileMenu()"
-                       class="block text-gray-600 dark:text-gray-400 hover:text-primary-800 dark:hover:text-primary-400 transition-colors py-2 text-sm"
-                       role="menuitem">
-                      Direction Planification
-                    </a>
-                    <a routerLink="/ministere/direction-systemes-information" 
-                       (click)="closeMobileMenu()"
-                       class="block text-gray-600 dark:text-gray-400 hover:text-primary-800 dark:hover:text-primary-400 transition-colors py-2 text-sm"
-                       role="menuitem">
-                      Direction Systèmes Information
-                    </a>
-                    <a routerLink="/ministere/direction-generale-travail" 
-                       (click)="closeMobileMenu()"
-                       class="block text-gray-600 dark:text-gray-400 hover:text-primary-800 dark:hover:text-primary-400 transition-colors py-2 text-sm"
-                       role="menuitem">
-                      Direction Générale Travail
-                    </a>
-                    <a routerLink="/ministere/direction-generale-fonction-publique"
-                       (click)="closeMobileMenu()"
-                       class="block text-gray-600 dark:text-gray-400 hover:text-primary-800 dark:hover:text-primary-400 transition-colors py-2 text-sm"
-                       role="menuitem">
-                      Direction Générale Fonction Publique
-                    </a>
-                    <a routerLink="/ministere/direction-budget"
-                       (click)="closeMobileMenu()"
-                       class="block text-gray-600 dark:text-gray-400 hover:text-primary-800 dark:hover:text-primary-400 transition-colors py-2 text-sm"
-                       role="menuitem">
-                      Direction Générale du Budget
-                    </a>
-                    <a routerLink="/ministere/direction-renforcement-capacites" 
-                       (click)="closeMobileMenu()"
-                       class="block text-gray-600 dark:text-gray-400 hover:text-primary-800 dark:hover:text-primary-400 transition-colors py-2 text-sm"
-                       role="menuitem">
-                      Direction Générale du Renforcement des Capacités et de l'Employabilité
-                    </a>
-                    <a routerLink="/ministere/cellule-suivi-reformes" 
-                       (click)="closeMobileMenu()"
-                       class="block text-gray-600 dark:text-gray-400 hover:text-primary-800 dark:hover:text-primary-400 transition-colors py-2 text-sm"
-                       role="menuitem">
-                      Cellule Suivi Réformes
-                    </a>
-                    <a routerLink="/ministere/directions-departementales" 
-                       (click)="closeMobileMenu()"
-                       class="block text-gray-600 dark:text-gray-400 hover:text-primary-800 dark:hover:text-primary-400 transition-colors py-2 text-sm"
-                       role="menuitem">
-                      Directions Départementales
-                    </a>
-                    <a routerLink="/ministere/structures-sous-tutelle" 
-                       (click)="closeMobileMenu()"
-                       class="block text-gray-600 dark:text-gray-400 hover:text-primary-800 dark:hover:text-primary-400 transition-colors py-2 text-sm"
-                       role="menuitem">
-                      Structures sous tutelle
-                    </a>
+                  <!-- Sous-menu mobile groupé par familles -->
+                  <div *ngIf="showMobileMinistereMenu" class="ml-4 mt-2 space-y-4">
+                    <div *ngFor="let famille of ministereMenu">
+                      <h4 class="text-xs font-semibold uppercase tracking-wide text-primary-800 dark:text-primary-400 mb-1">
+                        {{ famille.titre }}
+                      </h4>
+                      <a *ngFor="let lien of famille.liens"
+                         [routerLink]="lien.route"
+                         (click)="closeMobileMenu()"
+                         routerLinkActive="text-primary-800 dark:text-primary-400 font-semibold"
+                         class="block text-gray-600 dark:text-gray-400 hover:text-primary-800 dark:hover:text-primary-400 transition-colors py-1.5 text-sm"
+                         role="menuitem">
+                        {{ lien.label }}
+                      </a>
+                    </div>
                   </div>
                 </div>
                 

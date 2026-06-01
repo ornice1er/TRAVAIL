@@ -173,4 +173,8 @@ export class PublicService {
 
     }
 
+     search(term:any,limit:number=8){
+      return this.http.get<any>(`${ConfigService.toApiUrl("public/search")}?q=${encodeURIComponent(term)}&limit=${limit}`);
+    }
+
 }

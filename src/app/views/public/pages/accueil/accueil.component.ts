@@ -41,21 +41,21 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
                   >
                     <div class="text-white">
                       <div
-                        class="inline-block bg-white/20 dark:bg-white/10 px-4 py-2 rounded-full text-sm font-medium mb-4"
+                        class="reveal-up inline-block bg-white/20 dark:bg-white/10 px-4 py-2 rounded-full text-sm font-medium mb-4"
                       >
                         {{ media?.type }}
                       </div>
                       <h1
-                        class="text-3xl lg:text-3xl 2xl:text-5xl font-bold mb-6 leading-tight"
+                        class="reveal-up reveal-up-delay-1 text-3xl lg:text-3xl 2xl:text-5xl font-bold mb-6 leading-tight"
                       >
                         {{ media?.actualite?.title }}
                       </h1>
                       <p
-                        class="text-lg lg:text-xl 2xl:text-4xl mb-8 text-white/90 font-light rich-content"
+                        class="reveal-up reveal-up-delay-2 text-lg lg:text-xl 2xl:text-4xl mb-8 text-white/90 font-light rich-content"
                         [innerHTML]=" media?.actualite?.sub_description | truncateHtml:100"
                       >
                       </p>
-                      <div class="flex flex-col sm:flex-row gap-4">
+                      <div class="reveal-up reveal-up-delay-3 flex flex-col sm:flex-row gap-4">
                         <a
                           routerLink="actualites/{{media?.actualite?.slug}}"
                           class="btn-primary bg-white text-primary-800 hover:bg-gray-100"
@@ -141,55 +141,14 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
       </div>
     </section>
 
-    <!-- Section Statistiques 
-    <section
-      class="section-padding bg-primary-800 dark:bg-primary-900 text-white"
-      aria-label="Statistiques du ministère"
-    >
-      <div class="container-custom">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl lg:text-4xl font-bold mb-4">
-            Le Ministère en chiffres
-          </h2>
-          <p class="text-xl text-primary-100 dark:text-primary-200">
-            Notre impact sur l'emploi et la fonction publique
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div
-            *ngFor="let stat of statistiques; let i = index"
-            class="text-center"
-            role="group"
-            [attr.aria-label]="stat.libelle + ': ' + stat.valeur"
-          >
-            <div
-              class="text-4xl lg:text-5xl font-bold mb-2 text-secondary-400 dark:text-secondary-300"
-              #statElement
-              [attr.data-target]="stat.targetValue"
-              [attr.aria-label]="stat.valeur"
-            >
-              {{ stat.displayValue }}
-            </div>
-            <div class="text-primary-100 dark:text-primary-200 text-lg">
-              {{ stat.libelle }}
-            </div>
-            <div class="text-primary-200 dark:text-primary-300 text-sm mt-2">
-              {{ stat.description }}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>-->
-
-    <!-- Accès rapide aux services essentiels -->
+    <!-- Accès rapide aux services essentiels (juste après le hero) -->
     <section
       class="py-12 bg-white dark:bg-gray-900"
       aria-label="Accès rapide aux services"
     >
       <div class="container-custom">
         <h2
-          class="text-2xl font-bold text-center text-gray-900 dark:text-white mb-8"
+          class="title-accent text-2xl font-bold text-center text-gray-900 dark:text-white mb-8"
         >
           Accès rapide
         </h2>
@@ -303,6 +262,125 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
               ></span
             >
           </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services en ligne (mis en avant, juste après le hero) -->
+    <section
+      *ngIf="servicesEnLigne?.length"
+      class="section-padding bg-gray-50 dark:bg-gray-800"
+      aria-label="Services en ligne disponibles"
+    >
+      <div class="container-custom">
+        <div class="text-center mb-12">
+          <span
+            class="inline-block text-xs font-semibold uppercase tracking-widest text-benin-green mb-3"
+          >
+            E-Services
+          </span>
+          <h2
+            class="title-accent text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4"
+          >
+            Services en ligne
+          </h2>
+          <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            Effectuez vos démarches administratives en quelques clics, 24h/24 et 7j/7.
+          </p>
+        </div>
+
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+          role="list"
+        >
+          <a
+            *ngFor="let media of servicesEnLigne"
+            [href]="media?.prestation?.link"
+            class="card group p-6 flex flex-col items-start no-underline border-t-4 border-t-transparent hover:border-t-benin-green hover:-translate-y-1"
+            role="listitem"
+            [attr.aria-label]="'Accéder au service : ' + media?.prestation?.name"
+          >
+            <div
+              class="w-14 h-14 rounded-xl bg-gradient-to-br from-primary-800 to-benin-green text-white flex items-center justify-center mb-5 shadow-md group-hover:scale-110 transition-transform"
+              aria-hidden="true"
+            >
+              <i class="fas fa-bolt text-xl"></i>
+            </div>
+            <h3
+              class="text-lg font-semibold text-gray-900 dark:text-white mb-2 leading-snug"
+            >
+              {{ media?.prestation?.name }}
+            </h3>
+            <span
+              class="mt-auto inline-flex items-center gap-2 text-sm font-medium text-primary-800 dark:text-primary-400 group-hover:gap-3 transition-all"
+            >
+              Accéder au service
+              <i class="fas fa-arrow-right text-xs" aria-hidden="true"></i>
+            </span>
+          </a>
+        </div>
+
+        <div class="text-center mt-12">
+          <a
+            routerLink="/services"
+            class="btn-secondary"
+            aria-label="Voir tous nos services disponibles"
+          >
+            Voir tous nos services
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Statistiques -->
+    <section
+      class="section-padding bg-gradient-to-br from-primary-800 to-primary-950 dark:from-primary-900 dark:to-gray-950 text-white"
+      aria-label="Statistiques du ministère"
+    >
+      <div class="container-custom">
+        <div class="text-center mb-16">
+          <span class="inline-block text-xs font-semibold uppercase tracking-widest text-secondary-400 mb-3">
+            Transparence
+          </span>
+          <h2 class="title-accent text-3xl lg:text-4xl font-bold mb-4">
+            Le Ministère en chiffres
+          </h2>
+          <p class="text-xl text-primary-100 dark:text-primary-200">
+            Notre impact sur le budget, l'emploi et la fonction publique
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div
+            *ngFor="let stat of statistiques; let i = index"
+            class="reveal-up text-center rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm p-8 hover:bg-white/10 transition-colors"
+            [class.reveal-up-delay-1]="i === 1"
+            [class.reveal-up-delay-2]="i === 2"
+            [class.reveal-up-delay-3]="i === 3"
+            role="group"
+            [attr.aria-label]="stat.libelle + ': ' + stat.valeur"
+          >
+            <div
+              class="w-14 h-14 mx-auto mb-5 rounded-xl bg-secondary-400/20 text-secondary-300 flex items-center justify-center"
+              aria-hidden="true"
+            >
+              <i class="fas {{ stat.icon }} text-xl"></i>
+            </div>
+            <div
+              class="text-4xl lg:text-5xl font-bold mb-2 text-secondary-400 dark:text-secondary-300"
+              #statElement
+              [attr.data-target]="stat.targetValue"
+              [attr.aria-label]="stat.valeur"
+            >
+              {{ stat.displayValue }}
+            </div>
+            <div class="text-white text-lg font-medium">
+              {{ stat.libelle }}
+            </div>
+            <div class="text-primary-200 dark:text-primary-300 text-sm mt-2">
+              {{ stat.description }}
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -432,70 +510,7 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
       </div>
     </section>
 
-    <!-- Services en ligne -->
-    <section
-      class="section-padding bg-gray-50 dark:bg-gray-800"
-      aria-label="Services en ligne disponibles"
-    >
-      <div class="container-custom">
-        <div class="text-center mb-16">
-          <h2
-            class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4"
-          >
-            Services en ligne
-          </h2>
-          <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Simplifiez vos démarches administratives grâce à nos services
-            numériques accessibles 24h/24.
-          </p>
-        </div>
-
-        <div
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
-          role="list"
-        >
-          <div
-            *ngFor="let media of servicesEnLigne"
-            class="card p-6 text-center hover:scale-105 transition-all duration-300"
-            role="listitem"
-          >
-            <div
-              class="w-16 h-16 bg-secondary-100 dark:bg-secondary-900/30 rounded-lg flex items-center justify-center mx-auto mb-6"
-              aria-hidden="true"
-            >
-              <span class="text-3xl">📄</span>
-            </div>
-            <h3
-              class="text-xl font-semibold text-gray-900 dark:text-white mb-3"
-            >
-              {{ media?.prestation?.name }}
-            </h3>
-            <!--<p class="text-gray-600 dark:text-gray-300 mb-6">
-              {{ service.description }}
-            </p>-->
-            <a
-              [href]="media?.prestation?.link"
-              class="btn-primary text-sm"
-              [attr.aria-label]="'Accéder au service: ' + media?.prestation?.name "
-            >
-              Accéder au service
-            </a>
-          </div>
-        </div>
-
-        <div class="text-center mt-12">
-          <a
-            routerLink="/services"
-            class="btn-secondary"
-            aria-label="Voir tous nos services disponibles"
-          >
-            Voir tous nos services
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section Fiches métiers 
+    <!-- Section Fiches métiers
     <section
       class="section-padding bg-white dark:bg-gray-900"
       aria-label="Fiches métiers par structure"
@@ -1056,6 +1071,7 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
     },
   ];
 
+  // NOTE: valeurs d'exemple à valider / remplacer par des données réelles avant la prod.
   statistiques = [
     {
       valeur: "156K",
@@ -1063,6 +1079,7 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
       targetValue: 156000,
       libelle: "Agents publics formés",
       description: "Depuis 2016",
+      icon: "fa-user-graduate",
     },
     {
       valeur: "2.5M",
@@ -1070,6 +1087,7 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
       targetValue: 2500000,
       libelle: "Travailleurs protégés",
       description: "Couverture sociale",
+      icon: "fa-shield-halved",
     },
     {
       valeur: "45K",
@@ -1077,13 +1095,15 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
       targetValue: 45000,
       libelle: "Entreprises suivies",
       description: "Secteur privé",
+      icon: "fa-building",
     },
     {
       valeur: "12",
       displayValue: "0",
       targetValue: 12,
-      libelle: "Concours en cours",
-      description: "Recrutements 2024",
+      libelle: "Concours organisés",
+      description: "Recrutements",
+      icon: "fa-graduation-cap",
     },
   ];
 

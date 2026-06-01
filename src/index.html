@@ -8,8 +8,8 @@
   <meta name="author" content="Ministère du Budget et de la Fonction Publique - République du Bénin">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <base href="https://preprodmtfp.gouv.bj/pprod-siteweb/">
-    <!-- <base href="/"> -->
+  <!-- base href injecté à la compilation via angular.json (baseHref par configuration) -->
+  <base href="/">
 
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -19,9 +19,6 @@
   <link rel="manifest" href="/site.webmanifest" />
   
   <!-- Préchargement des polices critiques -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  
  <link rel="icon" type="image/png" href="assets/logo-mtfp-budget.jpeg" />
 
   <!-- Open Graph / Facebook -->
@@ -58,7 +55,7 @@
     <!-- Message de chargement accessible -->
     <div style="display: flex; justify-content: center; align-items: center; height: 100vh; font-family: system-ui, sans-serif;">
       <div role="status" aria-live="polite">
-        <p>Chargement du site du Ministère du Budget...</p>
+        <p>Chargement du site du Ministère du Budget et de la Fonction Publique...</p>
         <div style="width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid #023E79; border-radius: 50%; animation: spin 1s linear infinite; margin: 20px auto;"></div>
       </div>
     </div>

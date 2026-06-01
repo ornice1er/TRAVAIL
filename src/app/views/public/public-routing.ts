@@ -115,6 +115,10 @@ export const PublicRounting: Routes = [
     path: 'fiches-metiers/:id',
     loadComponent: () => import('./pages/fiches-metiers-detail/fiches-metiers-detail.component').then(m => m.FichesMetiersDetailComponent)
   },
+  {
+    path: 'recherche',
+    loadComponent: () => import('./pages/recherche/recherche.component').then(m => m.RechercheComponent)
+  },
       ]
     }
 ]

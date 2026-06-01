@@ -1,5 +1,16 @@
 @import 'tailwindcss';
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+/* Polices hébergées localement (Montserrat pour le corps, Roboto pour les titres) */
+@import '@fontsource/montserrat/latin-300.css';
+@import '@fontsource/montserrat/latin-400.css';
+@import '@fontsource/montserrat/latin-500.css';
+@import '@fontsource/montserrat/latin-600.css';
+@import '@fontsource/montserrat/latin-700.css';
+@import '@fontsource/montserrat/latin-800.css';
+@import '@fontsource/roboto/latin-400.css';
+@import '@fontsource/roboto/latin-500.css';
+@import '@fontsource/roboto/latin-600.css';
+@import '@fontsource/roboto/latin-700.css';
+@import '@fontsource/roboto/latin-800.css';
 @config "../tailwind.config.js";
 @import 'mapbox-gl/dist/mapbox-gl.css';
 /* @import '@tailwindplus/elements'; */
@@ -19,7 +30,12 @@
   body {
     font-family: 'Montserrat', system-ui, sans-serif;
   }
-  
+
+  /* Titres en Roboto, corps de texte en Montserrat */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Roboto', system-ui, sans-serif;
+  }
+
   /* Amélioration du contraste pour l'accessibilité */
   *:focus {
     outline: 2px solid #0369a1;
@@ -71,9 +87,9 @@
     letter-spacing: 0.01em;
   }
   
-  /* Styles pour les liens accessibles */
-  a:not(.btn-primary):not(.btn-secondary) {
-    @apply underline-offset-2 hover:underline focus:underline;
+  /* Soulignement réservé aux liens dans le contenu rédactionnel (pas le menu/footer) */
+  .rich-content a {
+    @apply underline underline-offset-2;
   }
   
   /* Amélioration des formulaires */
@@ -158,9 +174,51 @@
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
-.animate-on-scroll .animate {
+.animate-on-scroll.animate {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Keyframe de base (utilisée par .animate-fade-in) */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Animation d'entrée sobre, institutionnelle (sans dépendance JS) */
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.reveal-up {
+  animation: revealUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.reveal-up-delay-1 { animation-delay: 0.12s; }
+.reveal-up-delay-2 { animation-delay: 0.24s; }
+.reveal-up-delay-3 { animation-delay: 0.36s; }
+
+/* Accent décoratif sous les titres de section */
+.title-accent::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 4px;
+  margin: 1rem auto 0;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #023E79, #008751);
+}
+
+/* Respect des préférences de mouvement réduit (accessibilité) */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-up,
+  .animate-fade-in,
+  .animate-on-scroll {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 /* Amélioration de l'accessibilité pour les lecteurs d'écran */

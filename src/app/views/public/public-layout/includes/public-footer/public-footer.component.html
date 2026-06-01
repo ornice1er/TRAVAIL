@@ -53,27 +53,73 @@
               </ul>
             </div>
             
-            <!-- Institutions -->
+            <!-- Contact -->
             <div>
-              <h4 class="text-lg font-semibold mb-6">Institutions</h4>
-              <ul class="space-y-3">
-                <li><a href="https://www.gouv.bj" target="_blank" class="text-gray-300 hover:text-white transition-colors">Gouvernement</a></li>
-                <li><a href="#" class="text-gray-300 hover:text-white transition-colors">ANPE</a></li>
-                <li><a href="#" class="text-gray-300 hover:text-white transition-colors">CNSS</a></li>
-                <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Inspection du Travail</a></li>
-                <li><a href="#" class="text-gray-300 hover:text-white transition-colors">DGFP</a></li>
+              <h4 class="text-lg font-semibold mb-6">Contact</h4>
+              <ul class="space-y-3 text-gray-300">
+                <li class="flex items-start gap-3">
+                  <i class="fas fa-location-dot mt-1 text-gray-400" aria-hidden="true"></i>
+                  <span>Route de l'Aéroport, Cité Ministérielle, Cotonou, Bénin</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i class="fas fa-phone mt-1 text-gray-400" aria-hidden="true"></i>
+                  <a href="tel:+2290152160000" class="hover:text-white transition-colors">+229 01 52 16 00 00</a>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i class="fas fa-envelope mt-1 text-gray-400" aria-hidden="true"></i>
+                  <a href="mailto:mtfp.usager@gouv.bj" class="hover:text-white transition-colors">mtfp.usager&#64;gouv.bj</a>
+                </li>
               </ul>
             </div>
           </div>
         </div>
       </div>
       
+      <!-- Bande Partenaires & institutions -->
+      <div class="border-t border-gray-800 py-10">
+        <div class="container-custom">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+
+            <div>
+              <h4 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-5">
+                Institutions
+              </h4>
+              <div class="flex flex-wrap gap-3">
+                <a *ngFor="let item of institutions"
+                   [href]="item.url"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="inline-flex items-center px-4 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-gray-200 text-sm transition-colors">
+                  {{ item.label }}
+                </a>
+              </div>
+            </div>
+
+            <div>
+              <h4 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-5">
+                Partenaires techniques et financiers
+              </h4>
+              <div class="flex flex-wrap gap-3">
+                <a *ngFor="let item of partenaires"
+                   [href]="item.url"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="inline-flex items-center px-4 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-gray-200 text-sm transition-colors">
+                  {{ item.label }}
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
       <!-- Barre de copyright -->
       <div class="border-t border-gray-800 py-6">
         <div class="container-custom">
           <div class="flex flex-col md:flex-row justify-between items-center">
             <p class="text-gray-400 text-sm mb-4 md:mb-0">
-              © {{ currentYear }} Ministère du Budget - République du Bénin. Tous droits réservés.
+              © {{ currentYear }} Ministère du Budget et de la Fonction Publique - République du Bénin. Tous droits réservés.
             </p>
             <div class="flex space-x-6">
               <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Mentions légales</a>

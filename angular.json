@@ -11,12 +11,14 @@
           "builder": "@angular/build:application",
           "configurations": {
             "development": {
+              "baseHref": "/",
               "extractLicenses": false,
               "namedChunks": true,
               "optimization": false,
               "sourceMap": true
             },
             "production": {
+              "baseHref": "/pprod-siteweb/",
               "aot": true,
               "extractLicenses": true,
               "namedChunks": false,

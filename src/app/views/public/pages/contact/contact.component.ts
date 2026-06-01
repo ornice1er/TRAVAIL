@@ -303,7 +303,7 @@ export const environment = {
                     class="ml-3 text-sm text-gray-600 dark:text-gray-300"
                   >
                     J'accepte que mes données personnelles soient traitées par
-                    le Ministère du Budget dans le cadre de ma demande.
+                    le Ministère du Budget et de la Fonction Publique dans le cadre de ma demande.
                     <span class="text-red-500" aria-label="requis">*</span>
                   </label>
                 </div>

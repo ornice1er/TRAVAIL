@@ -1,0 +1,106 @@
+<!-- Hero Section -->
+<div
+  class="bg-gradient-to-r from-primary-800 to-primary-900 dark:from-primary-900 dark:to-primary-950 text-white pt-32 pb-16"
+>
+  <div class="container-custom">
+    <div class="text-center">
+      <h1 class="text-4xl lg:text-5xl font-bold mb-6">Recherche</h1>
+      <p class="text-xl text-primary-100 dark:text-primary-200 max-w-3xl mx-auto">
+        Actualités, communiqués, concours et documents du Ministère
+      </p>
+
+      <!-- Champ de recherche -->
+      <form (ngSubmit)="soumettre()" class="mt-8 max-w-2xl mx-auto" role="search">
+        <div class="flex items-center bg-white rounded-lg shadow-lg overflow-hidden">
+          <span class="pl-4 text-gray-400" aria-hidden="true">
+            <i class="fas fa-search"></i>
+          </span>
+          <input
+            type="search"
+            name="q"
+            [(ngModel)]="term"
+            placeholder="Rechercher un mot-clé…"
+            aria-label="Saisissez votre recherche"
+            class="flex-1 px-4 py-4 text-gray-900 focus:outline-none"
+          />
+          <button
+            type="submit"
+            class="bg-benin-green hover:bg-green-700 text-white font-medium px-6 py-4 transition-colors"
+          >
+            Rechercher
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Résultats -->
+<section class="section-padding bg-white dark:bg-gray-900" aria-live="polite">
+  <div class="container-custom">
+
+    <!-- Chargement -->
+    <div *ngIf="loading" class="text-center py-16 text-gray-500 dark:text-gray-400">
+      <i class="fas fa-spinner fa-spin text-3xl mb-4" aria-hidden="true"></i>
+      <p>Recherche en cours…</p>
+    </div>
+
+    <!-- Compteur -->
+    <div *ngIf="!loading && searched" class="mb-8">
+      <p class="text-gray-600 dark:text-gray-300">
+        <span class="font-semibold text-gray-900 dark:text-white">{{ total }}</span>
+        résultat(s) pour
+        <span class="font-semibold text-primary-800 dark:text-primary-400">« {{ term }} »</span>
+      </p>
+    </div>
+
+    <!-- Liste des résultats -->
+    <div *ngIf="!loading && results.length > 0" class="grid grid-cols-1 gap-4">
+      <a
+        *ngFor="let r of results"
+        [routerLink]="r.route"
+        class="card p-5 flex items-start gap-4 no-underline"
+      >
+        <span
+          class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary-50 dark:bg-primary-900/30 text-primary-800 dark:text-primary-400 flex items-center justify-center"
+          aria-hidden="true"
+        >
+          <i class="fas {{ iconeType(r.type) }} text-lg"></i>
+        </span>
+        <div class="min-w-0">
+          <span
+            class="inline-block text-xs font-medium px-2 py-0.5 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 mb-1"
+          >
+            {{ r.label }}
+          </span>
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white truncate">
+            {{ r.title }}
+          </h3>
+          <p *ngIf="r.excerpt" class="text-gray-600 dark:text-gray-400 text-sm mt-1">
+            {{ r.excerpt }}
+          </p>
+        </div>
+      </a>
+    </div>
+
+    <!-- Aucun résultat -->
+    <div
+      *ngIf="!loading && searched && results.length === 0"
+      class="text-center py-16 text-gray-500 dark:text-gray-400"
+    >
+      <i class="fas fa-magnifying-glass text-4xl mb-4" aria-hidden="true"></i>
+      <p class="text-lg">Aucun résultat pour « {{ term }} ».</p>
+      <p class="text-sm mt-2">Essayez avec d'autres mots-clés.</p>
+    </div>
+
+    <!-- État initial -->
+    <div
+      *ngIf="!loading && !searched"
+      class="text-center py-16 text-gray-500 dark:text-gray-400"
+    >
+      <i class="fas fa-keyboard text-4xl mb-4" aria-hidden="true"></i>
+      <p class="text-lg">Saisissez au moins 2 caractères pour lancer une recherche.</p>
+    </div>
+
+  </div>
+</section>

@@ -11,7 +11,7 @@ import { AnimationService } from '../../../../shared/services/animation.service'
     <div class="bg-gradient-to-r from-primary-800 to-primary-900 dark:from-primary-900 dark:to-primary-950 text-white pt-32 pb-16">
       <div class="container-custom">
         <div class="text-center ">
-          <h1 class="text-4xl lg:text-5xl font-bold mb-6">Le Ministère du Budget</h1>
+          <h1 class="text-4xl lg:text-5xl font-bold mb-6">Le Ministère du Budget et de la Fonction Publique</h1>
           <p class="text-xl text-primary-100 dark:text-primary-200 max-w-3xl mx-auto">
             Découvrez notre organisation, nos missions et notre engagement pour le développement de l'emploi au Bénin.
           </p>
