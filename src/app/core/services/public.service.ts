@@ -74,6 +74,9 @@ export class PublicService {
      getDGFP(){
       return this.http.get<any>(`${ConfigService.toApiUrl("dgfp")}`);
     }
+     getDGB(){
+      return this.http.get<any>(`${ConfigService.toApiUrl("dgb")}`);
+    }
  getCSRAI(){
       return this.http.get<any>(`${ConfigService.toApiUrl("csrai")}`);
     }

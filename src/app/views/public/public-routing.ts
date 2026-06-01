@@ -50,6 +50,10 @@ export const PublicRounting: Routes = [
     loadComponent: () => import('./pages/ministere/direction-generale-fonction-publique/direction-generale-fonction-publique.component').then(m => m.DirectionGeneraleFonctionPubliqueComponent)
   },
   {
+    path: 'ministere/direction-budget',
+    loadComponent: () => import('./pages/ministere/direction-budget/direction-budget.component').then(m => m.DirectionBudgetComponent)
+  },
+  {
     path: 'ministere/direction-renforcement-capacites',
     loadComponent: () => import('./pages/ministere/direction-renforcement-capacites/direction-renforcement-capacites.component').then(m => m.DirectionRenforcementCapacitesComponent)
   },

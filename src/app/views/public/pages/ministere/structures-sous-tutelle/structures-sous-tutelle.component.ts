@@ -15,7 +15,7 @@ import { ConfigService } from '../../../../../core/utils/config-service';
         <div class="text-center ">
           <h1 class="text-4xl lg:text-5xl font-bold mb-6">Structures sous Tutelle</h1>
           <p class="text-xl text-secondary-100 dark:text-secondary-200 max-w-3xl mx-auto">
-            Les organismes et institutions spécialisés placés sous la tutelle du Ministère du Travail et de la Fonction Publique.
+            Les organismes et institutions spécialisés placés sous la tutelle du Ministère du Budget et de la Fonction Publique.
           </p>
         </div>
       </div>

@@ -303,7 +303,7 @@ export const environment = {
                     class="ml-3 text-sm text-gray-600 dark:text-gray-300"
                   >
                     J'accepte que mes données personnelles soient traitées par
-                    le Ministère du Travail dans le cadre de ma demande.
+                    le Ministère du Budget dans le cadre de ma demande.
                     <span class="text-red-500" aria-label="requis">*</span>
                   </label>
                 </div>
@@ -391,7 +391,7 @@ export const environment = {
                 📍 Adresse
               </h4>
               <p class="text-gray-700 dark:text-gray-300">
-                Ministère du Travail et de la Fonction Publique<br />
+                Ministère du Budget et de la Fonction Publique<br />
                 Route de l'Aéroport, CITE MINISTERIELLE<br />
                 01 BP 394 Cotonou, Bénin
               </p>
@@ -500,7 +500,7 @@ export class ContactComponent implements OnInit, AfterViewInit {
       .setLngLat([2.3997338, 6.354602])
       .setPopup(
         new mapboxgl.Popup({ offset: 25 }).setHTML(
-          `<h3 class="font-bold text-lg text-black">Ministère du Travail et de la Fonction Publique</h3><p class="text-gray-600">Route de l'Aéroport, CITE MINISTERIELLE, Cotonou, Bénin</p>`
+          `<h3 class="font-bold text-lg text-black">Ministère du Budget et de la Fonction Publique</h3><p class="text-gray-600">Route de l'Aéroport, CITE MINISTERIELLE, Cotonou, Bénin</p>`
         )
       )
       .addTo(this.map);

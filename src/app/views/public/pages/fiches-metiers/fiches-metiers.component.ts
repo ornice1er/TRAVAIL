@@ -26,7 +26,7 @@ import { MetiersListComponent } from "../../../../shared/components/metiers-list
             class="text-xl text-primary-100 dark:text-primary-200 max-w-3xl mx-auto"
           >
             Découvrez tous les métiers et opportunités de carrière dans les
-            structures du Ministère du Travail et de la Fonction Publique
+            structures du Ministère du Budget et de la Fonction Publique
           </p>
         </div>
       </div>
@@ -133,7 +133,7 @@ import { MetiersListComponent } from "../../../../shared/components/metiers-list
         <div class="text-center">
           <h2 class="text-3xl font-bold mb-6">Rejoignez-nous</h2>
           <p class="text-xl text-primary-100 dark:text-primary-200 mb-8 max-w-3xl mx-auto">
-            Le Ministère du Travail et de la Fonction Publique offre de
+            Le Ministère du Budget et de la Fonction Publique offre de
             nombreuses opportunités de carrière pour contribuer au développement
             du Bénin.
           </p>

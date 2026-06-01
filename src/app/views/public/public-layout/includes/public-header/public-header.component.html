@@ -37,9 +37,10 @@
           <div class="container-custom">
             <div class="flex justify-between items-center py-4">
               <!-- Logo -->
-              <a routerLink="/" class="flex items-center space-x-4">
-                <img src="assets/logo-mtfp.jpeg" *ngIf="!themeService.isDarkMode" alt="Logo du Ministère du Travail et de la Fonction Publique du Bénin" class="h-16">
-                <img src="assets/logo-mtfp.jpeg" *ngIf="themeService.isDarkMode" alt="Logo du Ministère du Travail et de la Fonction Publique du Bénin" class="h-14">
+              <a routerLink="/" class="flex items-center min-w-0 mr-4">
+                <img src="assets/logo-mtfp-budget.jpeg"
+                     alt="Logo du Ministère du Budget et de la Fonction Publique du Bénin"
+                     class="h-9 sm:h-11 md:h-12 lg:h-14 w-auto max-w-full object-contain dark:bg-white dark:rounded-md dark:p-1">
               </a>
               
               <!-- Menu desktop -->
@@ -73,7 +74,7 @@
                   
                   <!-- Dropdown menu -->
                   <div *ngIf="showMinistereMenu" 
-                       class="absolute top-full left-0  w-2xl grid grid-cols-1 md:grid-cols-2 gap-x-3 bg-white space-y-0 dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-2 z-50 animate-fade-in"
+                       class="absolute top-full left-0 w-[36rem] max-w-[90vw] grid grid-cols-1 md:grid-cols-2 gap-x-3 bg-white space-y-0 dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-2 z-50 animate-fade-in"
                        role="menu">
                     <a routerLink="/ministere/le-ministre" 
                        class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-800 dark:hover:text-primary-400 transition-colors"
@@ -115,10 +116,15 @@
                        role="menuitem">
                       Direction Générale du Travail
                     </a>
-                    <a routerLink="/ministere/direction-generale-fonction-publique" 
+                    <a routerLink="/ministere/direction-generale-fonction-publique"
                        class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-800 dark:hover:text-primary-400 transition-colors"
                        role="menuitem">
                       Direction Générale de la Fonction Publique
+                    </a>
+                    <a routerLink="/ministere/direction-budget"
+                       class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-800 dark:hover:text-primary-400 transition-colors"
+                       role="menuitem">
+                      Direction Générale du Budget
                     </a>
                     <a routerLink="/ministere/direction-renforcement-capacites" 
                        class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-800 dark:hover:text-primary-400 transition-colors"
@@ -283,11 +289,17 @@
                        role="menuitem">
                       Direction Générale Travail
                     </a>
-                    <a routerLink="/ministere/direction-generale-fonction-publique" 
+                    <a routerLink="/ministere/direction-generale-fonction-publique"
                        (click)="closeMobileMenu()"
                        class="block text-gray-600 dark:text-gray-400 hover:text-primary-800 dark:hover:text-primary-400 transition-colors py-2 text-sm"
                        role="menuitem">
                       Direction Générale Fonction Publique
+                    </a>
+                    <a routerLink="/ministere/direction-budget"
+                       (click)="closeMobileMenu()"
+                       class="block text-gray-600 dark:text-gray-400 hover:text-primary-800 dark:hover:text-primary-400 transition-colors py-2 text-sm"
+                       role="menuitem">
+                      Direction Générale du Budget
                     </a>
                     <a routerLink="/ministere/direction-renforcement-capacites" 
                        (click)="closeMobileMenu()"

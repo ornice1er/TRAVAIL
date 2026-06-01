@@ -29,7 +29,7 @@ import { ConfigService } from "../../../../../core/utils/config-service";
             class="text-xl text-secondary-100 dark:text-secondary-200 max-w-3xl mx-auto"
           >
             L'organe de planification stratégique et de gestion financière du
-            Ministère du Travail et de la Fonction Publique.
+            Ministère du Budget et de la Fonction Publique.
           </p>
         </div>
       </div>

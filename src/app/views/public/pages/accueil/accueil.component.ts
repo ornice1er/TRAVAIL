@@ -16,7 +16,7 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
     <section
       class="relative h-screen overflow-hidden"
       role="banner"
-      aria-label="Slider des communiqués du Ministère du Travail"
+      aria-label="Slider des communiqués du Ministère du Budget"
     >
       <div class="relative h-full">
         <!-- Slides -->
@@ -320,7 +320,7 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
             Communiqués
           </h2>
           <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Retrouvez tous les communiqués officiels du Ministère du Travail et
+            Retrouvez tous les communiqués officiels du Ministère du Budget et
             de la Fonction Publique
           </p>
         </div>

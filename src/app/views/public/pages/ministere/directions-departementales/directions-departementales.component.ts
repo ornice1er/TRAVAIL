@@ -31,7 +31,7 @@ import { ConfigService } from "../../../../../core/utils/config-service";
           <p
             class="text-xl text-primary-100 dark:text-primary-200 max-w-3xl mx-auto"
           >
-            Le réseau territorial du Ministère du Travail et de la Fonction
+            Le réseau territorial du Ministère du Budget et de la Fonction
             Publique sur l'ensemble du territoire béninois.
           </p>
         </div>
