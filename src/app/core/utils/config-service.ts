@@ -16,6 +16,15 @@ export const ConfigService: any = {
   /** Image de remplacement quand un média est absent en base. */
   placeholder: 'assets/placeholder.svg',
   /**
+   * URL d'un document servi à travers l'API (et non en fichier statique) :
+   * c'est la seule qui porte les en-têtes CORS, nécessaires au lecteur PDF
+   * intégré et au téléchargement depuis le navigateur.
+   */
+  toDocument(dir:any, name:any) {
+    if (!name) { return ''; }
+    return this.toApiUrl(`public/file/${dir}/${name}`);
+  },
+  /**
    * URL d'un fichier du dossier storage de l'API.
    * Renvoie l'image de remplacement si le nom est vide : évite les requêtes « .../null ».
    */

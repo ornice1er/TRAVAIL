@@ -1,6 +1,8 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, HostListener, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { ToastrService } from 'ngx-toastr';
 import { Document } from '../../../../shared/models/actualite.model';
 import { AnimationService } from '../../../../shared/services/animation.service';
 import { PublicService } from '../../../../core/services/public.service';
@@ -10,7 +12,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 @Component({
   selector: 'app-textes-lois',
   standalone: true,
-  imports: [CommonModule, FormsModule,NgxPaginationModule],
+  imports: [CommonModule, FormsModule, NgxPaginationModule, NgxExtendedPdfViewerModule],
   template: `
     <!-- Hero Section -->
     <div class="bg-gradient-to-r from-accent-700 to-accent-800 dark:from-accent-800 dark:to-accent-900 text-white pt-32 pb-16">
@@ -77,17 +79,30 @@ import { NgxPaginationModule } from 'ngx-pagination';
                 </div>
                 <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3 break-words">{{ document.name }}</h3>
                 <p class="text-gray-600 dark:text-gray-300 mb-4 rich-content break-words" [innerHTML]="document.description"></p>
-                <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
-                  <a [href]="getLink('docs',document.filename)" 
-                     target="_blank"
-                     class="text-accent-700 dark:text-accent-400 hover:text-accent-800 dark:hover:text-accent-300 font-medium inline-flex items-center">
-                    📄 Télécharger le PDF
-                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                    </svg>
-                  </a>
-                  <button class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 font-medium inline-flex items-center">
-                    🔗 Partager
+                <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+                  <button type="button"
+                          (click)="lireDocument(document)"
+                          class="inline-flex items-center gap-2 rounded-lg bg-accent-700 hover:bg-accent-800 text-white text-sm font-medium px-4 py-2 transition-colors focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2"
+                          [attr.aria-label]="'Lire le document ' + document.name">
+                    <i class="fas fa-book-open" aria-hidden="true"></i>
+                    Lire
+                  </button>
+
+                  <button type="button"
+                          (click)="telechargerDocument(document)"
+                          [disabled]="documentEnTelechargement === document.id"
+                          class="inline-flex items-center gap-2 rounded-lg border border-accent-700 dark:border-accent-400 text-accent-700 dark:text-accent-400 hover:bg-accent-50 dark:hover:bg-accent-900/20 text-sm font-medium px-4 py-2 transition-colors disabled:opacity-60 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2"
+                          [attr.aria-label]="'Télécharger le document ' + document.name">
+                    <i class="fas" [ngClass]="documentEnTelechargement === document.id ? 'fa-spinner fa-spin' : 'fa-download'" aria-hidden="true"></i>
+                    {{ documentEnTelechargement === document.id ? 'Téléchargement…' : 'Télécharger' }}
+                  </button>
+
+                  <button type="button"
+                          (click)="partagerDocument(document)"
+                          class="inline-flex items-center gap-2 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 text-sm font-medium px-4 py-2 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                          [attr.aria-label]="'Partager le document ' + document.name">
+                    <i class="fas fa-share-nodes" aria-hidden="true"></i>
+                    Partager
                   </button>
                 </div>
               </div>
@@ -169,9 +184,74 @@ import { NgxPaginationModule } from 'ngx-pagination';
         </div>
       </div>
     </section>
+
+    <!-- Lecteur de document -->
+    <div *ngIf="documentAffiche"
+         class="fixed inset-0 z-[80] flex items-end sm:items-center justify-center p-0 sm:p-4"
+         role="dialog"
+         aria-modal="true"
+         [attr.aria-label]="'Lecture de ' + documentAffiche.name">
+      <div class="absolute inset-0 bg-black/70" (click)="fermerLecteur()" aria-hidden="true"></div>
+
+      <div class="relative flex flex-col w-full sm:max-w-5xl h-[92vh] sm:h-[88vh] bg-white dark:bg-gray-900 sm:rounded-2xl shadow-2xl overflow-hidden motion-safe:animate-menu-in">
+        <!-- En-tête -->
+        <div class="flex items-start gap-3 border-b border-gray-200 dark:border-gray-700 px-4 py-3">
+          <div class="min-w-0 flex-1">
+            <h2 class="text-sm sm:text-base font-semibold text-gray-900 dark:text-white truncate">
+              {{ documentAffiche.name }}
+            </h2>
+            <p class="text-xs text-gray-500 dark:text-gray-400">{{ getTypeLabel(documentAffiche.type) }}</p>
+          </div>
+
+          <button type="button"
+                  (click)="telechargerDocument(documentAffiche)"
+                  class="hidden sm:inline-flex items-center gap-2 rounded-lg border border-accent-700 dark:border-accent-400 text-accent-700 dark:text-accent-400 hover:bg-accent-50 dark:hover:bg-accent-900/20 text-sm font-medium px-3 py-1.5 transition-colors shrink-0">
+            <i class="fas fa-download" aria-hidden="true"></i>
+            Télécharger
+          </button>
+
+          <button type="button"
+                  (click)="fermerLecteur()"
+                  class="p-2 rounded-lg text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors shrink-0"
+                  aria-label="Fermer le lecteur">
+            <i class="fas fa-times text-lg" aria-hidden="true"></i>
+          </button>
+        </div>
+
+        <!-- Document -->
+        <div class="flex-1 min-h-0 bg-gray-100 dark:bg-gray-800">
+          <ngx-extended-pdf-viewer
+            [src]="urlDocumentAffiche"
+            height="100%"
+            zoom="page-width"
+            [showOpenFileButton]="false"
+            [showPrintButton]="true"
+            [showDownloadButton]="false"
+            [showSidebarButton]="false"
+            [textLayer]="true">
+          </ngx-extended-pdf-viewer>
+        </div>
+
+        <!-- Actions sur mobile -->
+        <div class="sm:hidden flex gap-2 border-t border-gray-200 dark:border-gray-700 px-4 py-3">
+          <button type="button"
+                  (click)="telechargerDocument(documentAffiche)"
+                  class="flex-1 inline-flex items-center justify-center gap-2 rounded-lg bg-accent-700 text-white text-sm font-medium px-4 py-2">
+            <i class="fas fa-download" aria-hidden="true"></i>
+            Télécharger
+          </button>
+          <button type="button"
+                  (click)="partagerDocument(documentAffiche)"
+                  class="flex-1 inline-flex items-center justify-center gap-2 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 text-sm font-medium px-4 py-2">
+            <i class="fas fa-share-nodes" aria-hidden="true"></i>
+            Partager
+          </button>
+        </div>
+      </div>
+    </div>
   `
 })
-export class TextesLoisComponent implements AfterViewInit {
+export class TextesLoisComponent implements AfterViewInit, OnDestroy {
   
   typeActif = 'tous';
   termeRecherche = '';
@@ -196,7 +276,7 @@ export class TextesLoisComponent implements AfterViewInit {
   }
 
 
-  constructor(private animationService: AnimationService,private publicService:PublicService) {}
+  constructor(private animationService: AnimationService,private publicService:PublicService, private toastr: ToastrService) {}
   
   ngAfterViewInit() {
     setTimeout(() => {
@@ -263,6 +343,122 @@ export class TextesLoisComponent implements AfterViewInit {
     return labels[type as keyof typeof labels] || type;
   }
 
+
+  /** Document ouvert dans le lecteur, null si le lecteur est fermé. */
+  documentAffiche: any = null;
+  urlDocumentAffiche = '';
+  /** Identifiant du document en cours de téléchargement (pour l'indicateur). */
+  documentEnTelechargement: any = null;
+
+  lireDocument(doc: any) {
+    this.documentAffiche = doc;
+    this.urlDocumentAffiche = ConfigService.toDocument('docs', doc.filename);
+    document.body.classList.add('overflow-hidden');
+  }
+
+  fermerLecteur() {
+    this.documentAffiche = null;
+    this.urlDocumentAffiche = '';
+    document.body.classList.remove('overflow-hidden');
+  }
+
+  @HostListener('document:keydown.escape')
+  onEchap() {
+    if (this.documentAffiche) { this.fermerLecteur(); }
+  }
+
+  ngOnDestroy() {
+    document.body.classList.remove('overflow-hidden');
+  }
+
+  /**
+   * Télécharge le fichier au lieu de l'ouvrir dans un onglet.
+   * Le PDF est récupéré puis enregistré depuis le navigateur ; si la requête
+   * échoue (fichier absent, blocage inter-domaine), on ouvre le lien.
+   */
+  async telechargerDocument(doc: any) {
+    const url = ConfigService.toDocument('docs', doc.filename);
+    const nomFichier = this.nomDeFichier(doc, url);
+
+    this.documentEnTelechargement = doc.id;
+
+    try {
+      const reponse = await fetch(url);
+      if (!reponse.ok) { throw new Error(`HTTP ${reponse.status}`); }
+
+      const blob = await reponse.blob();
+      const lienTemporaire = document.createElement('a');
+      lienTemporaire.href = URL.createObjectURL(blob);
+      lienTemporaire.download = nomFichier;
+      document.body.appendChild(lienTemporaire);
+      lienTemporaire.click();
+      lienTemporaire.remove();
+      URL.revokeObjectURL(lienTemporaire.href);
+    } catch {
+      window.open(url, '_blank', 'noopener');
+    } finally {
+      this.documentEnTelechargement = null;
+    }
+  }
+
+  /**
+   * Partage le document : boîte de partage du système quand elle existe
+   * (mobile), sinon copie du lien dans le presse-papiers.
+   */
+  async partagerDocument(doc: any) {
+    const url = this.getLink('docs', doc.filename);
+    const donnees = { title: doc.name, text: `Document du Ministère du Budget et de la Fonction Publique : ${doc.name}`, url };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(donnees);
+        return;
+      } catch (erreur: any) {
+        // L'utilisateur a fermé la boîte de partage : on ne fait rien de plus.
+        if (erreur?.name === 'AbortError') { return; }
+      }
+    }
+
+    if (await this.copierDansPressePapiers(url)) {
+      this.toastr.success('Lien du document copié', 'Partage');
+    } else {
+      // Dernier recours : on affiche le lien, sans fenêtre bloquante.
+      this.toastr.info(url, 'Lien du document', { disableTimeOut: true, closeButton: true });
+    }
+  }
+
+  /** Copie via l'API presse-papiers, avec repli sur la méthode historique. */
+  private async copierDansPressePapiers(texte: string): Promise<boolean> {
+    try {
+      await navigator.clipboard.writeText(texte);
+      return true;
+    } catch {
+      // API indisponible (contexte non sécurisé, permission refusée) :
+      // on repasse par un champ temporaire.
+      try {
+        const champ = document.createElement('textarea');
+        champ.value = texte;
+        champ.setAttribute('readonly', '');
+        champ.style.position = 'fixed';
+        champ.style.opacity = '0';
+        document.body.appendChild(champ);
+        champ.select();
+        const copie = document.execCommand('copy');
+        champ.remove();
+        return copie;
+      } catch {
+        return false;
+      }
+    }
+  }
+
+  private nomDeFichier(doc: any, url: string): string {
+    const depuisUrl = decodeURIComponent(url.split('/').pop() || '').split('?')[0];
+    if (depuisUrl) { return depuisUrl; }
+
+    const nom = (doc.name || 'document').replace(/[^a-zA-Z0-9-_ ]/g, '').trim().replace(/\s+/g, '-');
+    return `${nom}.pdf`;
+  }
 
       getLink(dir:any,photo:any){
         return ConfigService.toStorage(dir, photo)
