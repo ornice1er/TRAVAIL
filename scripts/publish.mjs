@@ -49,6 +49,8 @@ const { branche, configuration, url } = CIBLES[cible];
 const enAttente = git('status', '--porcelain')
   .split('\n')
   .filter(Boolean)
+  // Un fichier non suivi (« ?? ») survit au changement de branche : il ne bloque pas.
+  .filter(ligne => !ligne.startsWith('??'))
   .filter(ligne => {
     // Format : deux caractères d'état, une espace, puis le chemin
     // (« ancien -> nouveau » pour un renommage).
