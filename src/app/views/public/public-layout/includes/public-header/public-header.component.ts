@@ -1,8 +1,9 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnDestroy } from '@angular/core';
 import { ThemeService } from '../../../../../shared/services/theme.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
+import { filter, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-public-header',
@@ -10,7 +11,7 @@ import { Router, RouterModule } from '@angular/router';
   templateUrl: './public-header.component.html',
   styleUrl: './public-header.component.css'
 })
-export class PublicHeaderComponent {
+export class PublicHeaderComponent implements OnDestroy {
  isScrolled = false;
     isMobileMenuOpen = false;
     showMinistereMenu = false;
@@ -56,14 +57,21 @@ export class PublicHeaderComponent {
       },
     ];
 
+    private routerSub?: Subscription;
+
     constructor(public themeService: ThemeService, private router: Router) {}
-    
-    get headerClasses(): string {
-      return this.isScrolled ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-md fixed top-0 left-0 right-0 z-50' : 'bg-transparent';
-    }
-    
+
     ngOnInit() {
       this.checkScroll();
+      // Le menu mobile reste ouvert après un clic sur un lien de sous-menu : on le ferme à chaque navigation.
+      this.routerSub = this.router.events
+        .pipe(filter(e => e instanceof NavigationEnd))
+        .subscribe(() => this.closeMobileMenu());
+    }
+
+    ngOnDestroy() {
+      this.routerSub?.unsubscribe();
+      this.lockBodyScroll(false);
     }
     
     @HostListener('window:scroll', [])
@@ -108,7 +116,8 @@ export class PublicHeaderComponent {
     
     toggleMobileMenu() {
       this.isMobileMenuOpen = !this.isMobileMenuOpen;
-      
+      this.lockBodyScroll(this.isMobileMenuOpen);
+
       // Gérer l'accessibilité du focus
       if (this.isMobileMenuOpen) {
         // Focus sur le premier élément du menu
@@ -124,6 +133,12 @@ export class PublicHeaderComponent {
     closeMobileMenu() {
       this.isMobileMenuOpen = false;
       this.showMobileMinistereMenu = false;
+      this.lockBodyScroll(false);
+    }
+
+    /** Empêche la page de défiler derrière le menu mobile ouvert. */
+    private lockBodyScroll(lock: boolean) {
+      document.body.classList.toggle('overflow-hidden', lock);
     }
     
     toggleMobileMinistereMenu() {

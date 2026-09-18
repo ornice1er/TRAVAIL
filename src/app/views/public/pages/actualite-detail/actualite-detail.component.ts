@@ -1,9 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ActivatedRoute, RouterModule } from "@angular/router";
+import { ReadingProgressComponent } from '../../../../shared/components/reading-progress/reading-progress.component';
 import { Actualite } from "../../../../shared/models/actualite.model";
 import { PublicService } from "../../../../core/services/public.service";
 import { ConfigService } from "../../../../core/utils/config-service";
+import { SeoService } from "../../../../core/services/seo.service";
 
 
 
@@ -25,8 +27,9 @@ interface Network {
 @Component({
   selector: "app-actualite-detail",
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, ReadingProgressComponent],
   template: `
+    <app-reading-progress></app-reading-progress>
     <div class="pt-32 pb-16 bg-white dark:bg-gray-900" *ngIf="actualite">
       <div class="container-custom">
         <!-- Breadcrumb -->
@@ -114,7 +117,7 @@ interface Network {
   <h4 class="text-sm font-semibold text-gray-900 dark:text-white mb-4">
     Partager cet article :
   </h4>
-  <div class="flex space-x-4">
+  <div class="flex flex-wrap gap-x-4 gap-y-3">
     <ng-container *ngFor="let net of networks">
       <a [href]="net.url" target="_blank" rel="noopener noreferrer"
          class="flex items-center space-x-2 transition-colors"
@@ -194,7 +197,7 @@ articlesSimilaires: Actualite[]=[];
 
     networks: Network[] = [];
 
-  constructor(private route: ActivatedRoute,private publicService:PublicService) {}
+  constructor(private seo: SeoService, private route: ActivatedRoute,private publicService:PublicService) {}
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
@@ -209,6 +212,14 @@ articlesSimilaires: Actualite[]=[];
     getActualite(){
     this.publicService.getActualite(this.actualiteId).subscribe((res:any)=>{
       this.actualite=res.data.actualite
+      this.seo.update({
+        title: this.actualite?.title ?? 'Actualité',
+        description: this.seo.toDescription(this.actualite?.sub_description || this.actualite?.description),
+        image: ConfigService.toStorage('actualites/big', this.actualite?.big_photo || this.actualite?.photo),
+        type: 'article',
+        publishedAt: this.actualite?.created_at,
+        author: this.actualite?.author,
+      })
       let links=res.data.shareLinks
 
       this.networks = [
@@ -346,6 +357,6 @@ articlesSimilaires: Actualite[]=[];
   }
 
     getLink(dir:any,photo:any){
-      return`${ConfigService.toFile("storage")}/${dir}/${photo}`
+      return ConfigService.toStorage(dir, photo)
     }
 }

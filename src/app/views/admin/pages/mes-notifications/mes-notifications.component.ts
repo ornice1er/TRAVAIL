@@ -60,9 +60,9 @@ export class MesNotificationsComponent {
       this.notificationService.getAll(this.pg.pageSize,this.pg.page,true).subscribe((res:any)=>{
           this.loading=false
 
-          this.notifications=res.data.data
-          this.pg.total=res.data.total
-          this.total=res.data.total
+          this.notifications= res?.data?.data ?? []
+          this.pg.total= res?.data?.total ?? 0
+          this.total= res?.data?.total ?? 0
           this.selected_data=null
 
 

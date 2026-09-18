@@ -1,14 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ReadingProgressComponent } from '../../../../shared/components/reading-progress/reading-progress.component';
 import { PublicService } from '../../../../core/services/public.service';
 import { ConfigService } from '../../../../core/utils/config-service';
+import { SeoService } from '../../../../core/services/seo.service';
 
 @Component({
   selector: "app-communique-detail",
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, ReadingProgressComponent],
   template: `
+    <app-reading-progress></app-reading-progress>
 <div class="pt-32 pb-16 bg-white dark:bg-gray-900" *ngIf="communique">
   <div class="container-custom">
 
@@ -184,7 +187,7 @@ articlesSimilaires: any[]=[];
 
     networks: any[] = [];
 
-  constructor(private route: ActivatedRoute,private publicService:PublicService) {}
+  constructor(private route: ActivatedRoute,private publicService:PublicService, private seo: SeoService) {}
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
@@ -199,6 +202,13 @@ articlesSimilaires: any[]=[];
     getCommunique(){
     this.publicService.getCommunique(this.actualiteId).subscribe((res:any)=>{
       this.communique=res.data.communique
+      this.seo.update({
+        title: this.communique?.title ?? 'Communiqué',
+        description: this.seo.toDescription(this.communique?.sub_description || this.communique?.description),
+        image: ConfigService.toStorage('communiques', this.communique?.photo),
+        type: 'article',
+        publishedAt: this.communique?.created_at,
+      })
       this.medias=this.communique?.files
       let links=res.data.shareLinks
       // Regrouper les fichiers du concours par type
@@ -350,7 +360,7 @@ articlesSimilaires: any[]=[];
   }
 
     getLink(dir:any,photo:any){
-      return`${ConfigService.toFile("storage")}/${dir}/${photo}`
+      return ConfigService.toStorage(dir, photo)
     }
 
 

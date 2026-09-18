@@ -13,6 +13,18 @@ export const ConfigService: any = {
   toFile(path:any) {
     return `${this.apiScheme}://${this.apiFile}/${path}`;
   },
+  /** Image de remplacement quand un média est absent en base. */
+  placeholder: 'assets/placeholder.svg',
+  /**
+   * URL d'un fichier du dossier storage de l'API.
+   * Renvoie l'image de remplacement si le nom est vide : évite les requêtes « .../null ».
+   */
+  toStorage(dir:any, name:any) {
+    if (name === null || name === undefined || name === '' || name === 'null' || name === 'undefined') {
+      return this.placeholder;
+    }
+    return `${this.toFile('storage')}/${dir}/${name}`;
+  },
   getOrigin() {
     return `${this.apiScheme}://${this.apiFile}`;
   },

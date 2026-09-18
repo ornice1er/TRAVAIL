@@ -93,7 +93,7 @@ import { ConfigService } from "../../../../../core/utils/config-service";
               <img
                 [src]="getLink('structures/respos',structure?.photo_responsable)"
                 alt="{{structure?.name_responsable}} - {{structure?.fonction}}"
-                class="rounded-xl shadow-lg w-full min-w-md h-128 object-cover"
+                class="rounded-xl shadow-lg w-full h-72 sm:h-96 lg:h-128 object-cover"
               />
             </div>
             <div class="mt-6">
@@ -190,7 +190,7 @@ import { ConfigService } from "../../../../../core/utils/config-service";
                 <img
                 [src]="getLink('teams',team?.photo)"
                   alt=" {{team?.name}} - {{team?.office}}"
-                  class="rounded-xl shadow-lg w-full min-w-md h-100 object-cover object-top"
+                  class="rounded-xl shadow-lg w-full h-72 sm:h-96 lg:h-100 object-cover object-top"
                 />
               </div>
               <div class="mt-6">
@@ -453,7 +453,7 @@ export class SecretariatGeneralComponent implements AfterViewInit {
 
 
       getLink(dir:any,photo:any){
-        return`${ConfigService.toFile("storage")}/${dir}/${photo}`
+        return ConfigService.toStorage(dir, photo)
       }
 
   ngAfterViewInit() {

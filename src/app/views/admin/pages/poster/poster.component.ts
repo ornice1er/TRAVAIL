@@ -80,8 +80,8 @@ constructor(
     this.loading=true
 
     this.posterService.getAll(this.pg.pageSize,this.pg.page,true).subscribe((res:any)=>{
-      this.posters=res.data.data 
-      this.pg.total=res.data.total
+      this.posters= res?.data?.data ?? [] 
+      this.pg.total= res?.data?.total ?? 0
       this.modalService.dismissAll()
       this.loading=false
 
@@ -214,7 +214,7 @@ constructor(
 
 
       getLink(dir:any,photo:any){
-        return`${ConfigService.toFile("storage")}/${dir}/${photo}`
+        return ConfigService.toStorage(dir, photo)
       }
 
       getPage(event:any){

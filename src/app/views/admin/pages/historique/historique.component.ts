@@ -90,9 +90,9 @@ getTypelabel(key: string){
       this.mediaService.getAll(this.pg.pageSize,this.pg.page,true,category).subscribe((res:any)=>{
           this.loading=false
 
-          this.historique=res.data.data
-          this.pg.total=res.data.total
-          this.total=res.data.total
+          this.historique= res?.data?.data ?? []
+          this.pg.total= res?.data?.total ?? 0
+          this.total= res?.data?.total ?? 0
           this.selected_data=null
 
           this.filteredHistorique=this.historique

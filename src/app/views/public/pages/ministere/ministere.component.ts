@@ -28,7 +28,7 @@ import { AnimationService } from '../../../../shared/services/animation.service'
               <img src="https://www.travail.gouv.bj/storage/structures/respos/1678790596adidjatou-a-mathys.jpg" 
                    alt="Ministre du Travail" 
                    class="rounded-2xl shadow-lg w-full max-w-md mx-auto">
-              <div class="absolute -bottom-6 -right-6 w-24 h-24 bg-gov-blue-700 rounded-full flex items-center justify-center">
+              <div class="absolute -bottom-4 -right-2 sm:-bottom-6 sm:-right-6 w-16 h-16 sm:w-24 sm:h-24 bg-gov-blue-700 rounded-full flex items-center justify-center">
                 <span class="text-white text-2xl">🇧🇯</span>
               </div>
             </div>

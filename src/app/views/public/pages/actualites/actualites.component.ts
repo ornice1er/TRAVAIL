@@ -34,7 +34,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     <section class="section-padding bg-white dark:bg-gray-900">
       <div class="container-custom">
         <div class="">
-          <div class="card overflow-hidden">
+          <div class="card zoom-parent overflow-hidden">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-0">
               <div class="relative h-64 lg:h-auto lg:max-h-86">
                 <img
@@ -147,7 +147,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
                                                       totalItems: pg.total };
               trackBy: trackByActualiteId
             "
-            class="card overflow-hidden  hover:shadow-lg transition-all duration-300"
+            class="card zoom-parent overflow-hidden  hover:shadow-lg transition-all duration-300"
             role="listitem"
           >
             <div class="relative h-48 overflow-hidden">
@@ -381,7 +381,7 @@ export class ActualitesComponent implements OnInit, AfterViewInit {
   }
 
     getLink(dir:any,photo:any){
-      return`${ConfigService.toFile("storage")}/${dir}/${photo}`
+      return ConfigService.toStorage(dir, photo)
     }
 
 

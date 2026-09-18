@@ -1,0 +1,10 @@
+# Site du Ministère du Budget et de la Fonction Publique — République du Bénin
+User-agent: *
+Allow: /
+
+# Espaces privés et pages sans intérêt pour l'indexation
+Disallow: /admin
+Disallow: /auth
+Disallow: /recherche
+
+Sitemap: https://travail.gouv.bj/backend/sitemap.xml

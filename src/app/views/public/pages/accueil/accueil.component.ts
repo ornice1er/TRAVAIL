@@ -17,7 +17,14 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
       class="relative h-screen overflow-hidden"
       role="banner"
       aria-label="Slider des communiqués du Ministère du Budget"
+      (mouseenter)="pauseSlideShow()"
+      (mouseleave)="resumeSlideShow()"
+      (focusin)="pauseSlideShow()"
+      (focusout)="resumeSlideShow()"
     >
+      <h1 class="sr-only">
+        Ministère du Budget et de la Fonction Publique de la République du Bénin
+      </h1>
       <div class="relative h-full">
         <!-- Slides -->
         <div
@@ -35,7 +42,7 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
                 <div class="absolute inset-0 bg-black/30 dark:bg-black/50"></div>
               </div>
               <div class="relative h-full flex items-center">
-                <div class="container-custom">
+                <div class="container-custom px-12 sm:px-6 lg:px-8">
                   <div
                     class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
                   >
@@ -45,11 +52,11 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
                       >
                         {{ media?.type }}
                       </div>
-                      <h1
+                      <h2
                         class="reveal-up reveal-up-delay-1 text-3xl lg:text-3xl 2xl:text-5xl font-bold mb-6 leading-tight"
                       >
                         {{ media?.actualite?.title }}
-                      </h1>
+                      </h2>
                       <p
                         class="reveal-up reveal-up-delay-2 text-lg lg:text-xl 2xl:text-4xl mb-8 text-white/90 font-light rich-content"
                         [innerHTML]=" media?.actualite?.sub_description | truncateHtml:100"
@@ -72,12 +79,15 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
                       </div> -->
                     </div>
                     <div class="hidden lg:block">
-                      <img
-                        [src]="getLink('actualites',media?.actualite?.photo)"
-                        [alt]="media?.actualite?.title"
-                        class="rounded-2xl shadow-2xl w-full max-w-3xl mx-auto"
-                        loading="lazy"
-                      />
+                      <div class="overflow-hidden rounded-2xl shadow-2xl max-w-3xl mx-auto">
+                        <img
+                          [src]="getLink('actualites',media?.actualite?.photo)"
+                          [alt]="media?.actualite?.title"
+                          class="w-full"
+                          [class.slide-zoom]="i === currentSlide"
+                          loading="lazy"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -89,7 +99,7 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
         <!-- Navigation arrows -->
         <button
           (click)="previousSlide()"
-          class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 dark:bg-white/10 hover:bg-white/30 dark:hover:bg-white/20 text-white p-3 rounded-full transition-all z-10"
+          class="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-white/20 dark:bg-white/10 hover:bg-white/30 dark:hover:bg-white/20 text-white p-2 sm:p-3 rounded-full transition-all z-10 backdrop-blur-sm"
           aria-label="Slide précédent"
         >
           <svg
@@ -108,7 +118,7 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
         </button>
         <button
           (click)="nextSlide()"
-          class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 dark:bg-white/10 hover:bg-white/30 dark:hover:bg-white/20 text-white p-3 rounded-full transition-all z-10"
+          class="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-white/20 dark:bg-white/10 hover:bg-white/30 dark:hover:bg-white/20 text-white p-2 sm:p-3 rounded-full transition-all z-10 backdrop-blur-sm"
           aria-label="Slide suivant"
         >
           <svg
@@ -125,6 +135,15 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
             />
           </svg>
         </button>
+
+        <!-- Barre de progression du slide en cours -->
+        <div class="absolute bottom-0 left-0 right-0 h-1 bg-white/20 z-10" *ngIf="mediaActualites.length > 1">
+          <ng-container *ngFor="let step of [currentSlide]">
+            <div class="slide-progress h-full bg-white/80"
+                 [style.animation-duration.ms]="slideDuration"
+                 [style.animation-play-state]="isSlideShowPaused ? 'paused' : 'running'"></div>
+          </ng-container>
+        </div>
 
         <!-- Dots indicator -->
         <div
@@ -636,7 +655,7 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
         <div class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-2 gap-6">
           <article
             *ngFor="let media of actualitesRecentes"
-            class="card overflow-hidden hover:shadow-lg transition-all duration-300"
+            class="card zoom-parent overflow-hidden hover:shadow-lg transition-all duration-300"
           >
             <div class="grid grid-cols-1 md:grid-cols-3 gap-0">
               <div class="md:col-span-1">
@@ -834,10 +853,12 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
               Nous contacter
             </a>
             <a
-              href="tel:+22952160000"
-              class="btn-secondary border-white text-white hover:bg-white/10"
+              href="tel:+2290152160000"
+              class="inline-flex items-center justify-center gap-2 font-medium py-3 px-6 rounded-lg border-2 border-white/80 text-white hover:bg-white/10 focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-secondary-800 transition-all duration-200"
+              aria-label="Appeler le ministère au +229 01 52 16 00 00"
             >
-              📞 +229 21 30 00 00
+              <i class="fas fa-phone" aria-hidden="true"></i>
+              +229 01 52 16 00 00
             </a>
           </div>
         </div>
@@ -1158,25 +1179,52 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
+  /** Durée d'affichage d'un slide, partagée avec la barre de progression. */
+  slideDuration = 8000;
+  isSlideShowPaused = false;
+
   startSlideShow() {
+    this.stopSlideShow();
     this.slideInterval = setInterval(() => {
-      this.nextSlide();
-    }, 8000); // Change slide every 8 seconds pour laisser le temps de lire
+      if (!this.isSlideShowPaused) {
+        this.nextSlide();
+      }
+    }, this.slideDuration);
+  }
+
+  private stopSlideShow() {
+    if (this.slideInterval) {
+      clearInterval(this.slideInterval);
+      this.slideInterval = null;
+    }
+  }
+
+  /** Laisse le temps de lire quand la souris ou le clavier est sur le slider. */
+  pauseSlideShow() {
+    this.isSlideShowPaused = true;
+  }
+
+  resumeSlideShow() {
+    this.isSlideShowPaused = false;
   }
 
   nextSlide() {
+    if (!this.mediaActualites?.length) { return; }
     this.currentSlide = (this.currentSlide + 1) % this.mediaActualites.length;
   }
 
   previousSlide() {
+    if (!this.mediaActualites?.length) { return; }
     this.currentSlide =
       this.currentSlide === 0
         ? this.mediaActualites.length - 1
         : this.currentSlide - 1;
+    this.startSlideShow(); // relance le compte à rebours après une action manuelle
   }
 
   goToSlide(index: number) {
     this.currentSlide = index;
+    this.startSlideShow();
   }
 
   private animateCounters() {
@@ -1184,7 +1232,10 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
     statElements.forEach((element, index) => {
       const stat = this.statistiques[index];
       if (stat) {
-        this.animateCounter(element as HTMLElement, stat, index);
+        // Le compteur ne démarre qu'une fois la section à l'écran : sinon
+        // l'animation se joue pendant que le visiteur lit encore le haut de page.
+        this.animationService.onceVisible(element, () =>
+          this.animateCounter(element as HTMLElement, stat, index));
       }
     });
   }
@@ -1245,6 +1296,6 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   getLink(dir:any,photo:any){
-    return`${ConfigService.toFile("storage")}/${dir}/${photo}`
+    return ConfigService.toStorage(dir, photo)
   }
 }

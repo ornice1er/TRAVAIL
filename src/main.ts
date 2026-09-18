@@ -1,8 +1,8 @@
-import { Component, LOCALE_ID, provideZoneChangeDetection } from "@angular/core";
+import { Component, LOCALE_ID, OnDestroy, OnInit, provideZoneChangeDetection } from "@angular/core";
 import { bootstrapApplication, provideClientHydration } from "@angular/platform-browser";
 import { provideAnimations } from "@angular/platform-browser/animations";
 import { provideAnimationsAsync } from "@angular/platform-browser/animations/async";
-import { provideRouter } from "@angular/router";
+import { provideRouter, withInMemoryScrolling, withViewTransitions } from "@angular/router";
 import { routes } from "./app/app.routes";
 import { RouterOutlet } from "@angular/router";
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
@@ -12,6 +12,7 @@ import { provideToastr } from 'ngx-toastr';
 import localeFr from '@angular/common/locales/fr';
 import { registerLocaleData } from '@angular/common';
 import { AppHttpInterceptor } from "./app/core/utils/app-http-interceptor";
+import { installBrokenImageHandler } from "./app/core/utils/broken-image-handler";
 registerLocaleData(localeFr);
 
 
@@ -25,12 +26,29 @@ registerLocaleData(localeFr);
 
   `,
 })
-export class App {}
+export class App implements OnInit, OnDestroy {
+  private removeImageHandler?: () => void;
+
+  ngOnInit() {
+    this.removeImageHandler = installBrokenImageHandler();
+  }
+
+  ngOnDestroy() {
+    this.removeImageHandler?.();
+  }
+}
 
 bootstrapApplication(App, {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }), 
-    provideRouter(routes), 
+    provideRouter(
+      routes,
+      // Transition douce entre les pages (ignorée si le navigateur ne la gère pas
+      // ou si l'utilisateur a demandé un mouvement réduit).
+      withViewTransitions({ skipInitialTransition: true }),
+      // Sans cela, une nouvelle page s'ouvre à la position de défilement de la précédente.
+      withInMemoryScrolling({ scrollPositionRestoration: 'enabled', anchorScrolling: 'enabled' }),
+    ),
     provideClientHydration(),
     provideAnimations(),
     provideAnimationsAsync(),

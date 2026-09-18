@@ -359,7 +359,7 @@ export class CommuniquesComponent {
     }
   
       getLink(dir:any,photo:any){
-        return`${ConfigService.toFile("storage")}/${dir}/${photo}`
+        return ConfigService.toStorage(dir, photo)
       }
   
   

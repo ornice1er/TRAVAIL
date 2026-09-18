@@ -50,8 +50,8 @@ export class TestComponent {
       this.testService.getAll(this.pg.pageSize,this.pg.page).subscribe((res:any)=>{
           this.loading=false
 
-          this.tests=res.data.data
-          this.pg.total=res.data.total
+          this.tests= res?.data?.data ?? []
+          this.pg.total= res?.data?.total ?? 0
           this.selected_data=null
 
          },

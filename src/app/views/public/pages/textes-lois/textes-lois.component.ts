@@ -64,8 +64,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
                                                       currentPage: pg.page,
                                                       totalItems: pg.total }; trackBy: trackByDocumentId" 
                class="card p-6  hover:shadow-lg transition-all duration-300">
-            <div class="flex items-start justify-between">
-              <div class="flex-1">
+            <div class="sm:flex sm:items-start sm:justify-between sm:gap-4">
+              <div class="w-full min-w-0">
                 <div class="flex items-center mb-3">
                   <span [class]="getTypeClass(document.type)" 
                         class="px-3 py-1 rounded-full text-xs font-medium mr-3">
@@ -75,9 +75,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
                     {{ document.created_at | date:'d MMMM yyyy':'fr' }}
                   </span>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">{{ document.name }}</h3>
-                <p class="text-gray-600 dark:text-gray-300 mb-4 rich-content" [innerHTML]="document.description"></p>
-                <div class="flex items-center space-x-4">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3 break-words">{{ document.name }}</h3>
+                <p class="text-gray-600 dark:text-gray-300 mb-4 rich-content break-words" [innerHTML]="document.description"></p>
+                <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
                   <a [href]="getLink('docs',document.filename)" 
                      target="_blank"
                      class="text-accent-700 dark:text-accent-400 hover:text-accent-800 dark:hover:text-accent-300 font-medium inline-flex items-center">
@@ -91,7 +91,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
                   </button>
                 </div>
               </div>
-              <div class="ml-6 text-center">
+              <div class="mt-4 sm:mt-0 sm:ml-6 text-center shrink-0 flex sm:block justify-center">
                 <div class="w-16 h-20 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
                   <span class="text-2xl">📋</span>
                 </div>
@@ -265,7 +265,7 @@ export class TextesLoisComponent implements AfterViewInit {
 
 
       getLink(dir:any,photo:any){
-        return`${ConfigService.toFile("storage")}/${dir}/${photo}`
+        return ConfigService.toStorage(dir, photo)
       }
   
   

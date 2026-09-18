@@ -70,7 +70,7 @@ communiques:any[]=[];
 
     getAll() {
       this.communiqueService.getAll(10,1).subscribe((res:any)=>{
-          this.communiques=res.data.data
+          this.communiques= res?.data?.data ?? []
          },
          (err:any)=>{
           this.loading=false

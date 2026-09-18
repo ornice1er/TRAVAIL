@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { PublicService } from '../../../../core/services/public.service';
 import { ConfigService } from '../../../../core/utils/config-service';
+import { SeoService } from '../../../../core/services/seo.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -20,7 +21,7 @@ articlesSimilaires: any[]=[];
 
     networks: any[] = [];
 
-  constructor(private route: ActivatedRoute,private publicService:PublicService) {}
+  constructor(private route: ActivatedRoute,private publicService:PublicService, private seo: SeoService) {}
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
@@ -35,6 +36,12 @@ articlesSimilaires: any[]=[];
     getOneConcours(){
     this.publicService.getOneConcours(this.actualiteId).subscribe((res:any)=>{
       this.concour=res.data.concours
+      this.seo.update({
+        title: this.concour?.title ?? 'Concours',
+        description: this.seo.toDescription(this.concour?.description),
+        type: 'article',
+        publishedAt: this.concour?.created_at,
+      })
       let links=res.data.shareLinks
       // Regrouper les fichiers du concours par type
         if (this.concour?.files) {
@@ -194,7 +201,7 @@ groupFilesByType(files: any[]): Record<string, any[]> {
 
 
     getLink(dir:any,photo:any){
-      return`${ConfigService.toFile("storage")}/${dir}/${photo}`
+      return ConfigService.toStorage(dir, photo)
     }
 
 

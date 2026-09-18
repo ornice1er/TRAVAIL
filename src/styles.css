@@ -336,3 +336,157 @@ button, a, input, select, textarea {
 @import "primeng/resources/primeng.min.css";
 @import "primeicons/primeicons.css";
 @import "primeflex/primeflex.css"; */
+/* ============================================================
+   Animations institutionnelles (sobres, discrètes)
+   Toutes sont neutralisées par prefers-reduced-motion (bas du fichier).
+   ============================================================ */
+
+/* Apparition au défilement, pilotée par AnimationService (classe .animate) */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal.animate { opacity: 1; transform: none; }
+
+/* Décalages pour animer une grille élément par élément */
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+.reveal-delay-4 { transition-delay: 0.32s; }
+.reveal-delay-5 { transition-delay: 0.40s; }
+
+/* Toutes les cartes du site : léger soulèvement au survol */
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px -12px rgb(2 62 121 / 0.35);
+}
+.dark .card:hover {
+  box-shadow: 0 12px 28px -12px rgb(0 0 0 / 0.6);
+}
+
+/* Carte : léger soulèvement au survol */
+.card-hover {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px -12px rgb(2 62 121 / 0.35);
+}
+
+/* Zoom discret de l'image d'une carte au survol */
+.zoom-parent img { transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+.zoom-parent:hover img { transform: scale(1.04); }
+
+/* Soulignement animé des liens de navigation */
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 2px;
+  width: 100%;
+  border-radius: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+.link-underline:hover::after,
+.link-underline:focus-visible::after { transform: scaleX(1); }
+
+/* Menu mobile : ouverture glissée */
+@keyframes menuIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-menu-in { animation: menuIn 0.22s ease-out both; }
+
+/* Carrousel : fondu + très léger zoom de l'image de fond */
+@keyframes slideFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes kenBurns {
+  from { transform: scale(1); }
+  to   { transform: scale(1.06); }
+}
+.slide-fade { animation: slideFade 0.6s ease-out both; }
+.slide-zoom { animation: kenBurns 9s ease-out both; }
+
+/* Barre de progression du carrousel */
+@keyframes progressBar {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+.slide-progress {
+  transform-origin: left;
+  animation: progressBar linear both;
+}
+
+/* Bouton « retour en haut » */
+.to-top {
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.to-top.is-visible {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+/* Squelettes de chargement */
+@keyframes shimmer {
+  100% { transform: translateX(100%); }
+}
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: rgb(229 231 235);
+  border-radius: 0.5rem;
+}
+.dark .skeleton { background: rgb(55 65 81); }
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.45), transparent);
+  animation: shimmer 1.6s infinite;
+}
+.dark .skeleton::after {
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.08), transparent);
+}
+
+/* Transitions de page (View Transitions API) */
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root) { animation: slideFade 0.18s ease-out reverse; }
+  ::view-transition-new(root) { animation: slideFade 0.28s ease-out; }
+}
+
+/* Mouvement réduit : on neutralise tout */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .card:hover,
+  .card-hover,
+  .zoom-parent img,
+  .link-underline::after,
+  .animate-menu-in,
+  .slide-fade,
+  .slide-zoom,
+  .slide-progress,
+  .to-top,
+  .skeleton::after {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
