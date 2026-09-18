@@ -4,7 +4,14 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "start:host": "ng serve --host 0.0.0.0",
+    "build": "ng build --configuration development",
+    "build:dev": "ng build --configuration dev-server",
+    "build:pprod": "ng build --configuration production",
+    "build:prod": "ng build --configuration prod",
+    "publish:dev": "node scripts/publish.mjs dev",
+    "publish:pprod": "node scripts/publish.mjs pprod",
+    "publish:prod": "node scripts/publish.mjs prod",
     "test": "ng test"
   },
   "dependencies": {
