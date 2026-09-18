@@ -25,7 +25,10 @@ const args = argv.slice(2);
 const cible = args.find(a => !a.startsWith('-'));
 const option = nom => args.includes(nom);
 
-const git = (...params) => execFileSync('git', params, { encoding: 'utf8' }).trim();
+// trimEnd() et non trim() : « git status --porcelain » commence chaque ligne par
+// deux caractères d'état, dont un espace fréquent (« D » pour un fichier
+// supprimé). Couper le début décalerait le chemin.
+const git = (...params) => execFileSync('git', params, { encoding: 'utf8' }).trimEnd();
 const gitLive = (...params) => execFileSync('git', params, { stdio: 'inherit' });
 const info = message => console.log(`\n\x1b[36m▸ ${message}\x1b[0m`);
 const alerte = message => console.log(`\x1b[33m! ${message}\x1b[0m`);
@@ -46,7 +49,12 @@ const { branche, configuration, url } = CIBLES[cible];
 const enAttente = git('status', '--porcelain')
   .split('\n')
   .filter(Boolean)
-  .filter(ligne => !ligne.slice(3).startsWith(`${DIST}/`));
+  .filter(ligne => {
+    // Format : deux caractères d'état, une espace, puis le chemin
+    // (« ancien -> nouveau » pour un renommage).
+    const chemin = ligne.slice(3).split(' -> ').pop();
+    return !chemin.startsWith(`${DIST}/`);
+  });
 
 if (enAttente.length) {
   echec(
