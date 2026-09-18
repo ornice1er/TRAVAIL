@@ -351,7 +351,11 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
       </div>
     </section>
 
-    <!-- Section Statistiques -->
+    <!-- Section « Le Ministère en chiffres » masquée en production : les chiffres
+         ne sont pas encore disponibles. Retirer les deux marqueurs de commentaire
+         pour la réafficher. -->
+    <!-- Section Statistiques
+
     <section
       class="section-padding bg-gradient-to-br from-primary-800 to-primary-950 dark:from-primary-900 dark:to-gray-950 text-white"
       aria-label="Statistiques du ministère"
@@ -403,6 +407,7 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
         </div>
       </div>
     </section>
+    -->
 
     <!-- Section Communiqués -->
     <section
@@ -742,7 +747,11 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
       </div> -->
     </section>
 
-    <!-- Section Événements déclencheurs -->
+    <!-- Section « Événements déclencheurs » masquée en production, en attente
+         de validation des contenus. Retirer les deux marqueurs de commentaire
+         pour la réafficher. -->
+    <!-- Section Événements déclencheurs
+
     <section
       class="section-padding bg-gray-50 dark:bg-gray-800"
       aria-label="Événements déclencheurs"
@@ -831,6 +840,7 @@ import { TruncateHtmlPipe } from "../../../../core/pipes/truncate-html.pipe";
         </div>
       </div>
     </section>
+    -->
 
     <!-- Appel à l'action -->
     <section
