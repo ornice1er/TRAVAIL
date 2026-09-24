@@ -74,6 +74,8 @@ communiqueId:any
           this.loading=false    
           this.title=res.data?.title
           this.content=res.data?.description
+          this.category=res.data?.category
+          this.has_principal_access=res.data?.media?.has_principal_access ? '1' : '0'
           this.toastr.success('Connexion réussie', 'Connexion');
          },
          (err:any)=>{
