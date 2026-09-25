@@ -74,7 +74,7 @@ doc:any
             description: res.data.description,
             type: res.data.type,
             status: res.data?.status,
-            has_principal_access: res.data.media?.has_principal_access,
+            has_principal_access: res.data.media?.has_principal_access ? '1' : '0',
           });
                     this.toastr.success('Connexion réussie', 'Connexion');
          },
@@ -87,24 +87,26 @@ doc:any
 
 
   onSubmit() {
-        alert()
    const formData = new FormData();
         let object=this.docForm.value
         for (const key in object) {
           if (Object.prototype.hasOwnProperty.call(object, key)) {
             const element = object[key];
+            // Pas de nouveau fichier : ne rien envoyer (sinon "null" échoue à la validation "file")
+            if (element === null || element === undefined) continue;
             formData.append(key,element)
           }
         }
          this.loading=true
-          this.docService.update(this.doc?.media?.id,formData).subscribe((res:any)=>{
+          this.docService.update(this.docId,formData).subscribe((res:any)=>{
               this.loading=false
+               this.toastr.success(res.message, 'Document');
                this.router.navigate(["/admin/documentation"])
 
              },
              (err:any)=>{
               this.loading=false
-        
+              this.toastr.error(err.error?.message, 'Document');
             })
       }
 

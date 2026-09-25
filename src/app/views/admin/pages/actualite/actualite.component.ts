@@ -4,6 +4,7 @@ import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ActualiteService } from '../../../../core/services/actualite.service';
 import { ToastrService } from 'ngx-toastr';
+import { AppSweetAlert } from '../../../../core/utils/app-sweet-alert';
 import { LocalStorageService } from '../../../../core/utils/local-stoarge-service';
 
 
@@ -128,9 +129,24 @@ export class ActualiteComponent {
     // implémenter l'édition
   }
 
-   onDelete() {
-    console.log('Supprimer');
-    // confirmation et appel API
+  onDelete() {
+    if (!this.selected_data) {
+      this.toastr.warning('Aucun élément sélectionné', 'Actualité');
+      return;
+    }
+    AppSweetAlert.confirmBox('info','Suppression','Voulez vous vraiment supprimer cet élément ?').then((result:any)=>{
+      if (!result.isConfirmed) return;
+      this.loading=true
+      this.actualityService.delete(this.selected_data.id).subscribe((res:any)=>{
+          this.loading=false
+          this.toastr.success(res.message, 'Actualité');
+          this.getAll()
+         },
+         (err:any)=>{
+          this.loading=false
+          this.toastr.error(err.error?.message, 'Actualité');
+        })
+    })
   }
 
 

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AppSweetAlert } from '../../../../core/utils/app-sweet-alert';
 import { CommuniqueService } from '../../../../core/services/communique.service';
 import { LocalStorageService } from '../../../../core/utils/app-action-check';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -132,8 +133,23 @@ export class CommuniqueComponent {
   }
 
   onDelete() {
-    console.log('Supprimer');
-    // confirmation et appel API
+    if (!this.selected_data) {
+      this.toastr.warning('Aucun élément sélectionné', 'Communiqué');
+      return;
+    }
+    AppSweetAlert.confirmBox('info','Suppression','Voulez vous vraiment supprimer cet élément ?').then((result:any)=>{
+      if (!result.isConfirmed) return;
+      this.loading=true
+      this.communiqueService.delete(this.selected_data.id).subscribe((res:any)=>{
+          this.loading=false
+          this.toastr.success(res.message, 'Communiqué');
+          this.getAll()
+         },
+         (err:any)=>{
+          this.loading=false
+          this.toastr.error(err.error?.message, 'Communiqué');
+        })
+    })
   }
 
   onTransmit() {

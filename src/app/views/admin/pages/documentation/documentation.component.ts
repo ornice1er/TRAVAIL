@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { DocumentationService } from '../../../../core/services/documentation.service';
 import { Router, RouterModule } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AppSweetAlert } from '../../../../core/utils/app-sweet-alert';
 import { LocalStorageService } from '../../../../core/utils/local-stoarge-service';
 import { Actualite } from '../../../../shared/models/actualite.model';
 import { ConfigService } from '../../../../core/utils/config-service';
@@ -117,9 +118,24 @@ export class DocumentationComponent {
     // implémenter l'édition
   }
 
-   onDelete() {
-    console.log('Supprimer');
-    // confirmation et appel API
+  onDelete() {
+    if (!this.selected_data) {
+      this.toastr.warning('Aucun élément sélectionné', 'Document');
+      return;
+    }
+    AppSweetAlert.confirmBox('info','Suppression','Voulez vous vraiment supprimer cet élément ?').then((result:any)=>{
+      if (!result.isConfirmed) return;
+      this.loading=true
+      this.docService.delete(this.selected_data.id).subscribe((res:any)=>{
+          this.loading=false
+          this.toastr.success(res.message, 'Document');
+          this.getAll()
+         },
+         (err:any)=>{
+          this.loading=false
+          this.toastr.error(err.error?.message, 'Document');
+        })
+    })
   }
 
 
